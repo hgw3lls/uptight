@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><style>@font-face{font-family:'Courier Prime';font-style:italic;font-weight:400;src:url(fonts/font-0.woff2) format('woff2')}@font-face{font-family:'Courier Prime';font-weight:400;src:url(fonts/font-1.woff2) format('woff2')}@font-face{font-family:'Courier Prime';font-weight:700;src:url(fonts/font-2.woff2) format('woff2')}@font-face{font-family:'IBM Plex Sans';font-weight:400;src:url(fonts/font-3.woff2) format('woff2')}@font-face{font-family:'IBM Plex Sans';font-weight:500;src:url(fonts/font-4.woff2) format('woff2')}@font-face{font-family:'IBM Plex Sans';font-weight:600;src:url(fonts/font-5.woff2) format('woff2')}@font-face{font-family:'Jost';font-weight:800;src:url(fonts/font-7.woff2) format('woff2')}html,body{margin:0;background:#cfc7b0;color:#1c1a17;font-family:'IBM Plex Sans',Arial,sans-serif}a{color:#973609}a:hover{color:#c8470c}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid #c8470c;outline-offset:2px}@media (prefers-reduced-motion:reduce){*{transition:none!important}}</style><script src="lib/d3.min.js"></script><script src="lib/image-slot.js"></script></helmet>
+<div ref="{{ rootRef }}" style="height:100vh;min-height:520px;display:grid;grid-template-rows:auto minmax(0,1fr) auto;background:#ece6d3;position:relative;overflow:hidden">
+
+<header style="display:flex;align-items:stretch;background:#1c1a17;min-height:56px;gap:12px;flex-wrap:wrap">
+<div style="background:#f2c919;padding:0 38px 0 16px;clip-path:polygon(0 0,100% 0,calc(100% - 24px) 100%,0 100%);display:flex;align-items:center;gap:12px">
+<strong style="font:800 30px/1 Jost,sans-serif;letter-spacing:-.05em;color:#c8321f;text-transform:uppercase">Uptight</strong>
+<span style="font:700 10px 'Courier Prime',monospace;letter-spacing:.12em;color:#1c1a17">CLEVELAND · 1968</span></div>
+<span title="{{ apiTip }}" style="align-self:center;display:flex;align-items:center;gap:6px;font:700 10px 'Courier Prime',monospace;letter-spacing:.1em;color:{{ apiFg }};white-space:nowrap"><i style="width:8px;height:8px;border-radius:50%;background:{{ apiDot }};box-shadow:0 0 0 1.5px {{ apiFg }}"></i>{{ apiLabel }}</span>
+<nav aria-label="Filter places" style="display:flex;gap:6px;align-items:center;margin-left:auto;padding:8px 14px 8px 0;overflow-x:auto">
+<button onClick="{{ toggleQueue }}" aria-pressed="{{ queueOn }}" style="white-space:nowrap;font:800 13px Jost,sans-serif;letter-spacing:.02em;border:2px solid #f2c919;background:{{ queueBg }};color:{{ queueFg }};padding:5px 10px;border-radius:0;margin-right:6px">{{ queueBtn }}</button>
+<sc-for list="{{ filters }}" as="f" hint-placeholder-count="4"><button onClick="{{ f.onClick }}" aria-pressed="{{ f.on }}" style="display:flex;align-items:center;gap:7px;white-space:nowrap;font:700 11px 'Courier Prime',monospace;letter-spacing:.04em;border:2px solid #f5f0e1;background:{{ f.bg }};color:{{ f.fg }};padding:6px 10px;border-radius:0">
+<sc-if value="{{ f.circle }}"><i style="width:10px;height:10px;border-radius:50%;background:#1c1a17;box-shadow:0 0 0 1.5px #f5f0e1"></i></sc-if>
+<sc-if value="{{ f.diamond }}"><i style="width:9px;height:9px;background:#c8470c;transform:rotate(45deg);box-shadow:0 0 0 1.5px #f5f0e1"></i></sc-if>
+<sc-if value="{{ f.hollow }}"><i style="width:8px;height:8px;border:1.5px dashed {{ f.fg }};border-radius:50%"></i></sc-if>
+{{ f.label }}<span style="opacity:.75">{{ f.count }}</span></button></sc-for>
+</nav></header>
+
+<main ref="{{ wrapRef }}" onClick="{{ onMapClick }}" style="position:relative;overflow:hidden;background:#e6dfca;cursor:{{ L.cursor }};touch-action:none">
+<svg ref="{{ svgRef }}" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;display:block"></svg>
+<div style="position:absolute;inset:0;pointer-events:none">
+<sc-for list="{{ labels }}" as="lb"><span style="position:absolute;left:{{ lb.x }}px;top:{{ lb.y }}px;transform:translate(-50%,-50%);font:400 11px 'Courier Prime',monospace;letter-spacing:.18em;text-transform:uppercase;color:#675f50;white-space:nowrap">{{ lb.t }}</span></sc-for>
+<sc-for list="{{ cones }}" as="c"><svg width="1" height="1" style="position:absolute;left:{{ c.x }}px;top:{{ c.y }}px;overflow:visible;opacity:{{ c.op }}"><path d="{{ c.d }}" fill="{{ c.fill }}" stroke="{{ c.stroke }}" stroke-width="1.5" stroke-dasharray="{{ c.dash }}" stroke-linejoin="round"></path></svg></sc-for>
+<sc-if value="{{ coneTag }}"><span style="position:absolute;left:{{ coneTag.x }}px;top:{{ coneTag.y }}px;transform:translate(-50%,-50%);background:{{ coneTag.bg }};color:#f5f0e1;padding:2px 5px;font:700 9px 'Courier Prime',monospace;letter-spacing:.1em;white-space:nowrap">{{ coneTag.t }}</span></sc-if>
+<sc-for list="{{ pins }}" as="p"><button data-pin="1" tabIndex="{{ p.tab }}" onClick="{{ p.onClick }}" onMouseEnter="{{ p.onEnter }}" onMouseLeave="{{ p.onLeave }}" onFocus="{{ p.onEnter }}" onBlur="{{ p.onLeave }}" aria-label="{{ p.aria }}" aria-pressed="{{ p.sel }}" style="position:absolute;left:{{ p.x }}px;top:{{ p.y }}px;transform:translate(-50%,-50%);pointer-events:auto;width:44px;height:44px;padding:0;border:0;background:none;display:grid;place-items:center;opacity:{{ p.op }}">
+<sc-if value="{{ p.isCircle }}"><span style="width:30px;height:30px;border-radius:50%;background:#1c1a17;color:#f5f0e1;border:2px {{ p.bs }} #f5f0e1;box-sizing:border-box;outline:{{ p.ring }};outline-offset:3px;display:grid;place-items:center;font:700 12px 'Courier Prime',monospace;box-shadow:2px 2px 0 rgba(28,26,23,.25)">{{ p.label }}</span></sc-if>
+<sc-if value="{{ p.isDiamond }}"><span style="width:24px;height:24px;transform:rotate(45deg);background:#c8470c;border:1.5px solid #f5f0e1;outline:{{ p.ring }};outline-offset:4px;display:grid;place-items:center;box-shadow:2px 2px 0 rgba(28,26,23,.25)"><b style="transform:rotate(-45deg);font:700 12px 'Courier Prime',monospace;color:#fff">{{ p.label }}</b></span></sc-if>
+<sc-if value="{{ p.isCluster }}"><span style="width:40px;height:40px;border-radius:50%;background:#f2c919;color:#1c1a17;border:2px solid #1c1a17;outline:{{ p.ring }};outline-offset:3px;display:grid;place-items:center;font:800 17px Jost,sans-serif;box-shadow:3px 3px 0 #1f5a96">{{ p.label }}</span></sc-if>
+<sc-if value="{{ p.isProposal }}"><span style="width:30px;height:30px;border-radius:50%;background:rgba(245,240,225,.85);border:2px dashed #c8470c;color:#b63e09;display:grid;place-items:center;font:700 13px 'Courier Prime',monospace">?</span></sc-if>
+</button></sc-for>
+<sc-if value="{{ handle }}"><button data-nozoom="1" onPointerDown="{{ handle.down }}" onKeyDown="{{ handle.key }}" onClick="{{ stop }}" role="slider" aria-label="Camera bearing, drag or use arrow keys" aria-valuemin="0" aria-valuemax="359" aria-valuenow="{{ handle.b }}" style="position:absolute;left:{{ handle.x }}px;top:{{ handle.y }}px;transform:translate(-50%,-50%);pointer-events:auto;width:44px;height:44px;padding:0;border:0;background:none;display:grid;place-items:center;cursor:grab;touch-action:none"><span style="width:18px;height:18px;border-radius:50%;background:#f2c919;border:2px solid #1c1a17;box-shadow:2px 2px 0 rgba(28,26,23,.3)"></span></button></sc-if>
+<sc-if value="{{ hover }}"><div style="position:absolute;left:{{ hover.x }}px;top:{{ hover.y }}px;transform:translate(-50%,calc(-100% - 26px));background:#1c1a17;color:#f5f0e1;padding:7px 10px;max-width:240px;box-shadow:3px 3px 0 rgba(28,26,23,.25)"><div style="font:700 9px 'Courier Prime',monospace;letter-spacing:.1em;color:#f2c919">{{ hover.kicker }}</div><div style="font:800 14px/1.1 Jost,sans-serif;text-transform:uppercase;letter-spacing:-.02em;margin-top:3px">{{ hover.title }}</div><div style="font:400 10.5px 'Courier Prime',monospace;margin-top:4px;color:#ddd5be">{{ hover.sub }}</div></div></sc-if>
+</div>
+
+<div style="position:absolute;right:14px;top:14px;display:grid;gap:6px">
+<sc-for list="{{ zoomBtns }}" as="z"><button onClick="{{ z.onClick }}" aria-label="{{ z.aria }}" style="min-width:44px;height:44px;padding:0 8px;background:#f5f0e1;border:2px solid #1c1a17;border-radius:0;font:800 {{ z.fs }} Jost,sans-serif;color:#1c1a17;box-shadow:2px 2px 0 rgba(28,26,23,.18)">{{ z.t }}</button></sc-for>
+<button onClick="{{ toggleCones }}" aria-pressed="{{ conesOn }}" aria-label="Show camera directions" title="Camera directions" style="min-width:44px;height:44px;padding:0 6px;background:{{ conesBg }};color:{{ conesFg }};border:2px solid #1c1a17;border-radius:0;font:800 11px Jost,sans-serif;box-shadow:2px 2px 0 rgba(28,26,23,.18)">CAM</button>
+</div>
+
+<sc-if value="{{ placing }}"><div style="position:absolute;left:50%;top:14px;transform:translateX(-50%);background:#1c1a17;color:#f5f0e1;padding:10px 14px;display:flex;gap:14px;align-items:center;font:12px 'Courier Prime',monospace;box-shadow:3px 3px 0 #c8470c;max-width:calc(100% - 100px)"><span>Click the map where <b style="color:#f2c919">scene {{ placing.frame }}</b> was shot.</span><button onClick="{{ cancelPlacing }}" style="background:none;border:1.5px solid #f5f0e1;color:#f5f0e1;font:700 10px 'Courier Prime',monospace;padding:4px 7px;border-radius:0">ESC · CANCEL</button></div></sc-if>
+
+<sc-if value="{{ loading }}"><div style="position:absolute;inset:0;display:grid;place-items:center;font:700 12px 'Courier Prime',monospace;letter-spacing:.14em;color:#675f50">LOADING MAP + FRAMES…</div></sc-if>
+<sc-if value="{{ error }}"><div style="position:absolute;inset:0;display:grid;place-items:center"><div style="background:#f5f0e1;border:2px solid #1c1a17;padding:18px 20px;max-width:320px;box-shadow:4px 4px 0 rgba(28,26,23,.18)"><div style="font:800 20px Jost;text-transform:uppercase">Map didn't load</div><p style="font:12.5px/1.5 'IBM Plex Sans';color:#675f50;margin:6px 0 12px">Check that the local server is running, then try again.</p><button onClick="{{ retry }}" style="font:800 15px Jost;padding:9px 14px;background:#1c1a17;color:#ece6d3;border:2px solid #1c1a17;border-radius:0">Retry</button></div></div></sc-if>
+
+<sc-if value="{{ ready }}">
+<section aria-label="Selected scene" onClick="{{ stop }}" onTouchStart="{{ swipeStart }}" onTouchEnd="{{ swipeEnd }}" style="position:absolute;left:{{ L.cardLeft }};right:{{ L.cardRight }};top:{{ L.cardTop }};bottom:{{ L.cardBottom }};width:{{ L.cardWidth }};max-height:{{ L.cardMax }};overflow:auto;background:#f5f0e1;border:2px solid #1c1a17;box-shadow:4px 4px 0 #1f5a96;display:grid;gap:11px;padding:14px;box-sizing:border-box;align-content:start">
+<sc-if value="{{ L.narrow }}"><button onClick="{{ toggleSheet }}" aria-label="Expand details" style="justify-self:center;width:56px;height:14px;padding:0;border:0;background:none;display:grid;place-items:center"><i style="width:44px;height:4px;background:#b3aa92"></i></button></sc-if>
+<sc-if value="{{ q.on }}"><div style="display:grid;gap:6px;background:#1c1a17;color:#f5f0e1;padding:9px 10px;margin:-4px -4px 0"><div style="display:flex;justify-content:space-between;align-items:center;font:700 10px 'Courier Prime',monospace;letter-spacing:.12em"><span>RESEARCH QUEUE · <b style="color:#f2c919">{{ q.pos }} OF {{ q.total }}</b></span><span style="font-weight:400;letter-spacing:0">{{ q.done }} done</span></div><div style="height:4px;background:#675f50"><div style="height:100%;width:{{ q.pct }};background:#f2c919"></div></div><div style="display:flex;justify-content:space-between;font:11px 'Courier Prime',monospace"><button onClick="{{ prev }}" style="background:none;border:0;color:#f5f0e1;font:inherit;padding:0;text-decoration:underline">← Prev</button><button onClick="{{ next }}" style="background:none;border:0;color:#f5f0e1;font:inherit;padding:0;text-decoration:underline">Next in queue →</button></div></div></sc-if>
+<div role="tablist" aria-label="Compare" style="display:flex;border:2px solid #1c1a17"><sc-for list="{{ cmpTabs }}" as="ct"><button role="tab" aria-selected="{{ ct.on }}" onClick="{{ ct.onClick }}" style="flex:1;padding:6px 4px;border:0;border-right:{{ ct.br }};border-radius:0;background:{{ ct.bg }};color:{{ ct.fg }};font:700 10px 'Courier Prime',monospace;letter-spacing:.1em">{{ ct.t }}</button></sc-for></div>
+<div style="display:grid;grid-template-columns:{{ cmp.cols }};gap:6px">
+<sc-if value="{{ cmp.film }}"><div style="position:relative;border:2px solid #1c1a17;background:#ddd5be;overflow:hidden;min-height:60px">
+{{ sel.imgEl }}
+<span style="position:absolute;left:0;top:0;background:#1c1a17;color:#ece6d3;padding:2px 7px;font:700 12px 'Courier Prime',monospace">{{ sel.frameId }}</span>
+<span style="position:absolute;right:6px;bottom:7px;background:{{ sel.stampBg }};border:1.5px solid #1c1a17;color:#1c1a17;padding:1px 5px;font:700 9px 'Courier Prime',monospace;letter-spacing:.08em;transform:rotate(-4deg)">{{ sel.stamp }}</span></div></sc-if>
+<sc-if value="{{ cmp.today }}"><div style="position:relative;border:2px solid #1c1a17;background:#ddd5be;aspect-ratio:16/9;overflow:hidden">{{ todaySlot }}<span style="position:absolute;left:0;top:0;background:#1f5a96;color:#f5f0e1;padding:2px 7px;font:700 10px 'Courier Prime',monospace;letter-spacing:.08em;pointer-events:none">TODAY</span></div></sc-if>
+</div>
+<sc-if value="{{ sel.multi }}"><div style="display:flex;gap:6px;overflow-x:auto;position:relative"><sc-for list="{{ sel.thumbs }}" as="th"><button onClick="{{ th.onClick }}" aria-pressed="{{ th.on }}" style="flex:none;padding:0;border:2px solid {{ th.bc }};background:#ddd5be;border-radius:0;width:76px;position:relative">{{ th.imgEl }}<span style="position:absolute;left:0;bottom:0;background:#1c1a17;color:#ece6d3;font:700 9px 'Courier Prime',monospace;padding:1px 4px">{{ th.t }}</span></button></sc-for></div></sc-if>
+<sc-if value="{{ nearby.show }}"><div style="display:grid;gap:5px"><span style="font:700 10px 'Courier Prime',monospace;letter-spacing:.1em;color:#675f50">NEARBY SHOTS · BEFORE + AFTER</span><div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px"><sc-for list="{{ nearby.items }}" as="nb"><button onClick="{{ nb.onClick }}" aria-label="{{ nb.aria }}" title="{{ nb.aria }}" style="padding:0;border:1.5px solid {{ nb.bc }};background:#ddd5be;border-radius:0;position:relative;display:block">{{ nb.imgEl }}<sc-if value="{{ nb.flagged }}"><i style="position:absolute;right:2px;top:2px;width:7px;height:7px;background:#c8470c;transform:rotate(45deg)"></i></sc-if></button></sc-for></div></div></sc-if>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="font:700 10px 'Courier Prime',monospace;letter-spacing:.1em;color:#675f50">{{ sel.kicker }}</span><button onClick="{{ copyLink }}" style="flex:none;background:none;border:1.5px solid #1c1a17;border-radius:0;font:700 9px 'Courier Prime',monospace;letter-spacing:.08em;padding:3px 6px;color:#1c1a17">{{ copyLabel }}</button></div>
+<h2 style="font:800 22px/1 Jost,sans-serif;text-transform:uppercase;letter-spacing:-.03em;margin:0;padding-bottom:8px;border-bottom:4px solid #f2c919;text-wrap:balance">{{ sel.name }}</h2>
+<div style="font:400 11.5px/1.4 'Courier Prime',monospace;color:#675f50">{{ sel.address }}</div>
+<div style="display:grid;gap:5px;border:1px solid rgba(28,26,23,.25);padding:8px 10px"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font:700 10px 'Courier Prime',monospace;letter-spacing:.12em;color:#675f50">CONFIDENCE</span><b style="font:800 13px Jost,sans-serif;text-transform:uppercase;color:{{ conf.c }}">{{ conf.label }}</b></div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px"><sc-for list="{{ conf.bars }}" as="cb"><i style="height:6px;background:{{ cb.bg }};border:1px solid #1c1a17"></i></sc-for></div><div style="font:10.5px/1.4 'Courier Prime',monospace;color:#675f50">{{ conf.note }}</div></div>
+
+<sc-if value="{{ cam.show }}"><div style="display:grid;gap:7px;border:1px solid rgba(28,26,23,.25);padding:8px 10px">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="font:700 10px 'Courier Prime',monospace;letter-spacing:.1em;color:#675f50">CAMERA FACING</span><span style="display:flex;gap:6px;align-items:center"><b style="font:800 15px Jost,sans-serif;color:#1c1a17">{{ cam.value }}</b><span style="font:700 9px 'Courier Prime',monospace;letter-spacing:.1em;padding:2px 5px;border:1.5px dashed {{ cam.tagC }};color:{{ cam.tagC }}">{{ cam.tag }}</span></span></div>
+<div style="font:400 11px/1.4 'Courier Prime',monospace;color:#675f50">{{ cam.note }}</div>
+<sc-if value="{{ cam.editing }}"><div style="display:flex;gap:6px;flex-wrap:wrap"><button onClick="{{ cam.submit }}" style="font:800 13px Jost,sans-serif;padding:7px 10px;background:#1c1a17;color:#ece6d3;border:2px solid #1c1a17;border-radius:0">Submit {{ cam.value }} as evidence</button><button onClick="{{ cam.cancel }}" style="font:700 10px 'Courier Prime',monospace;padding:7px 9px;background:none;color:#1c1a17;border:1.5px solid #1c1a17;border-radius:0">CANCEL</button></div></sc-if>
+<sc-if value="{{ cam.canAdjust }}"><button onClick="{{ cam.adjust }}" style="justify-self:start;font:700 10px 'Courier Prime',monospace;letter-spacing:.06em;padding:6px 9px;background:none;color:#1c1a17;border:1.5px solid #1c1a17;border-radius:0">ADJUST BEARING ON MAP</button></sc-if>
+</div></sc-if>
+<sc-if value="{{ sel.placed }}"><div style="display:grid;gap:8px">
+<h3 style="font:700 10px 'Courier Prime',monospace;letter-spacing:.12em;color:#675f50;margin:2px 0 0">IS THIS THE PLACE?</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<button onClick="{{ votePrint }}" aria-pressed="{{ v.print }}" style="font:800 17px Jost,sans-serif;padding:11px;min-height:46px;border-radius:0;border:2px solid {{ v.pBorder }};background:{{ v.pBg }};color:{{ v.pFg }};outline:{{ v.pRing }};outline-offset:2px">PRINT</button>
+<button onClick="{{ voteNo }}" aria-pressed="{{ v.no }}" style="font:800 17px Jost,sans-serif;padding:11px;min-height:46px;border-radius:0;border:2px solid {{ v.nBorder }};background:{{ v.nBg }};color:{{ v.nFg }};outline:{{ v.nRing }};outline-offset:2px">NO GOOD</button></div>
+<sc-if value="{{ tally.show }}"><div style="display:grid;gap:4px"><div style="display:flex;height:6px;border:1.5px solid #1c1a17;background:#f5f0e1"><i style="width:{{ tally.pct }};background:#1c1a17"></i></div><span style="font:11px 'Courier Prime',monospace;color:#675f50">{{ tally.text }}</span></div></sc-if>
+<sc-if value="{{ v.has }}"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;background:#ece6d3;border:1px solid rgba(28,26,23,.25);padding:8px 10px;font:11px/1.4 'Courier Prime',monospace"><span>Saved · <b>{{ v.label }}</b>. Change it anytime.</span><button onClick="{{ next }}" style="background:#1c1a17;color:#ece6d3;border:0;border-radius:0;font:700 11px 'Courier Prime',monospace;padding:6px 9px;white-space:nowrap">NEXT PLACE →</button></div></sc-if>
+<sc-if value="{{ v.none }}"><button onClick="{{ voteSkip }}" style="justify-self:start;font:11px 'Courier Prime',monospace;background:none;border:0;padding:4px 0;color:#675f50;text-decoration:underline">Not sure · skip to next place →</button></sc-if>
+</div></sc-if>
+
+<sc-if value="{{ sel.unplaced }}"><div style="display:grid;gap:8px;border:2px dashed #8a8068;padding:12px">
+<div style="font:800 16px Jost,sans-serif;text-transform:uppercase;letter-spacing:-.02em">Not on the map yet</div>
+<p style="margin:0;font:12.5px/1.5 'IBM Plex Sans';color:#675f50">Recognize this spot? Drop a pin where you think it was shot, then add a source.</p>
+<button onClick="{{ startPlacing }}" style="justify-self:start;background:#c8321f;color:#fff;border:0;border-radius:0;font:800 15px Jost,sans-serif;padding:10px 24px 10px 14px;clip-path:polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%)">DROP A PIN</button>
+<button onClick="{{ openClue }}" style="justify-self:start;font:11px 'Courier Prime',monospace;background:none;border:0;padding:2px 0;color:#1c1a17;text-decoration:underline">Or just add a clue</button></div></sc-if>
+
+<sc-if value="{{ L.showDetail }}"><div style="display:grid;gap:10px">
+<p style="margin:0;font:12.5px/1.55 'IBM Plex Sans';color:#675f50;text-wrap:pretty">{{ sel.connection }}</p>
+<sc-if value="{{ sel.placed }}"><button onClick="{{ openHold }}" style="justify-self:start;background:#c8321f;color:#fff;border:0;border-radius:0;font:800 14px Jost,sans-serif;padding:9px 24px 9px 14px;clip-path:polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%)">HOLD · ADD EVIDENCE</button></sc-if>
+<sc-if value="{{ notes.show }}"><div style="display:grid;gap:6px;border-top:1px solid rgba(28,26,23,.25);padding-top:8px"><span style="font:700 10px 'Courier Prime',monospace;letter-spacing:.12em;color:#675f50">{{ notes.heading }}</span><sc-if value="{{ notes.empty }}"><span style="font:12px/1.45 'IBM Plex Sans';color:#675f50">No margin notes yet. Recognize this place? Add the first clue.</span></sc-if><sc-for list="{{ notes.items }}" as="nt"><div style="display:grid;gap:2px;border-left:2px dashed rgba(28,26,23,.4);padding-left:8px"><span style="font:700 9.5px 'Courier Prime',monospace;letter-spacing:.08em;color:#675f50">{{ nt.kicker }}</span><span style="font:12px/1.45 'IBM Plex Sans';color:#1c1a17;text-wrap:pretty">{{ nt.body }}</span></div></sc-for></div></sc-if>
+<div style="display:grid;gap:3px;border-top:1px solid rgba(28,26,23,.25);padding-top:8px"><span style="font:700 10px 'Courier Prime',monospace;letter-spacing:.12em;color:#675f50">SOURCES</span><sc-for list="{{ sel.sources }}" as="src"><a href="{{ src.url }}" target="_blank" rel="noopener" style="font:11.5px/1.4 'Courier Prime',monospace">{{ src.name }}</a></sc-for></div>
+</div></sc-if>
+<sc-if value="{{ L.sheetHint }}"><button onClick="{{ toggleSheet }}" style="font:11px 'Courier Prime',monospace;background:none;border:0;color:#675f50;text-decoration:underline;justify-self:start;padding:0">More about this place ↑</button></sc-if>
+</section>
+
+<sc-if value="{{ L.trayBtn }}"><button onClick="{{ toggleTray }}" style="position:absolute;left:12px;top:12px;background:#f5f0e1;border:2px solid #1c1a17;border-radius:0;font:700 11px 'Courier Prime',monospace;padding:8px 10px;box-shadow:2px 2px 0 rgba(28,26,23,.18)">{{ trayBtnLabel }}</button></sc-if>
+
+<sc-if value="{{ trayShown }}"><section aria-label="Unplaced scenes" onClick="{{ stop }}" style="position:absolute;left:{{ L.trayLeft }};right:{{ L.trayRight }};top:{{ L.trayTop }};bottom:{{ L.trayBottom }};background:#f5f0e1;border:2px solid #1c1a17;box-shadow:4px 4px 0 rgba(28,26,23,.18);padding:10px 12px;display:grid;gap:8px;outline:{{ trayRing }};outline-offset:3px">
+<div style="display:flex;align-items:baseline;gap:10px"><span style="font:700 10px 'Courier Prime',monospace;letter-spacing:.12em">STILL UNPLACED · {{ unplacedCount }}</span><span style="font:11px 'Courier Prime',monospace;color:#675f50">Know where these were shot?</span><button onClick="{{ toggleTray }}" style="margin-left:auto;background:none;border:0;font:11px 'Courier Prime',monospace;color:#675f50;text-decoration:underline;padding:0">Hide</button></div>
+<div style="display:flex;gap:12px;overflow-x:auto;padding-bottom:2px">
+<sc-for list="{{ unplaced }}" as="u" hint-placeholder-count="3"><button onClick="{{ u.onClick }}" aria-pressed="{{ u.on }}" style="flex:none;display:grid;grid-template-columns:104px 170px;gap:10px;align-items:center;text-align:left;background:{{ u.bg }};border:2px solid {{ u.bc }};border-radius:0;padding:5px;color:#1c1a17">
+{{ u.imgEl }}
+<span style="display:grid;gap:3px"><b style="font:800 13px/1.05 Jost,sans-serif;text-transform:uppercase;letter-spacing:-.02em">{{ u.name }}</b><span style="font:10px/1.3 'Courier Prime',monospace;color:#675f50">{{ u.lead }}</span><span style="font:700 10px 'Courier Prime',monospace;color:#b63e09">PLACE IT →</span></span></button></sc-for>
+</div></section></sc-if>
+</sc-if>
+<sc-if value="{{ shot }}"><div onClick="{{ closeShot }}" role="dialog" aria-label="Film frame viewer" style="position:absolute;inset:0;background:rgba(28,26,23,.82);display:grid;place-items:center;padding:20px;z-index:6">
+<div onClick="{{ stop }}" style="width:min(760px,100%,calc((100vh - 330px) * 1.78 + 28px));min-width:min(320px,100%);max-height:100%;overflow:auto;display:grid;gap:10px;background:#f5f0e1;border:2px solid #1c1a17;box-shadow:4px 4px 0 #1f5a96;padding:12px;box-sizing:border-box">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div style="display:grid;gap:2px"><span style="font:700 10px 'Courier Prime',monospace;letter-spacing:.1em;color:#675f50">FRAME {{ shot.id }} OF {{ shot.total }} · {{ shot.time }}</span><b style="font:800 18px/1.1 Jost,sans-serif;text-transform:uppercase;letter-spacing:-.02em;color:#1c1a17">{{ shot.title }}</b></div><button onClick="{{ closeShot }}" aria-label="Close" style="flex:none;font:700 10px 'Courier Prime',monospace;padding:6px 8px;background:none;border:1.5px solid #1c1a17;border-radius:0;color:#1c1a17">ESC · CLOSE</button></div>
+{{ shot.imgEl }}
+<sc-if value="{{ shot.meta }}"><dl style="margin:0;display:grid;grid-template-columns:88px minmax(0,1fr);gap:5px 12px;border:1px solid rgba(28,26,23,.25);padding:9px 10px"><sc-for list="{{ shot.meta }}" as="m"><dt style="font:700 9.5px 'Courier Prime',monospace;letter-spacing:.1em;color:#675f50">{{ m.k }}</dt><dd style="margin:0;font:12.5px/1.45 'IBM Plex Sans';color:#1c1a17;overflow-wrap:anywhere">{{ m.v }}</dd></sc-for></dl></sc-if>
+<div style="display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px">
+<button onClick="{{ shot.prev }}" style="font:800 14px Jost,sans-serif;padding:9px 12px;background:none;border:2px solid #1c1a17;border-radius:0;color:#1c1a17">← Prev</button>
+<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+<sc-if value="{{ shot.isScene }}"><button onClick="{{ shot.openScene }}" style="font:800 14px Jost,sans-serif;padding:9px 12px;background:#1c1a17;color:#ece6d3;border:2px solid #1c1a17;border-radius:0">Open scene on map</button></sc-if>
+<sc-if value="{{ shot.canFlag }}"><button onClick="{{ shot.flag }}" aria-pressed="{{ shot.flagged }}" style="font:700 11px 'Courier Prime',monospace;letter-spacing:.06em;padding:10px 12px;background:{{ shot.flagBg }};color:{{ shot.flagFg }};border:2px solid #c8470c;border-radius:0">{{ shot.flagLabel }}</button></sc-if>
+</div>
+<button onClick="{{ shot.next }}" style="font:800 14px Jost,sans-serif;padding:9px 12px;background:none;border:2px solid #1c1a17;border-radius:0;color:#1c1a17">Next →</button>
+</div>
+<div style="font:400 11px/1.4 'Courier Prime',monospace;color:#675f50">← → step through every frame · add a frame that shows a real, findable place and it joins the unplaced tray and research queue</div>
+</div></div></sc-if>
+</main>
+<footer aria-label="Film timeline" style="background:#f5f0e1;border-top:2px solid #1c1a17;padding:8px 16px 10px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;align-items:center">
+<span style="font:700 10px 'Courier Prime',monospace;letter-spacing:.12em;color:#675f50;grid-row:span 2">FILM<br>TIMELINE</span>
+<div onMouseMove="{{ scrubMove }}" onMouseLeave="{{ scrubLeave }}" onClick="{{ scrubClick }}" title="Hover to scrub the whole film · click to open a frame" style="position:relative;height:30px;border-bottom:2px solid #1c1a17;cursor:pointer;background:repeating-linear-gradient(90deg,transparent 0 calc(10% - 1px),rgba(28,26,23,.18) calc(10% - 1px) 10%)">
+<sc-for list="{{ filmTicks }}" as="ft"><i style="position:absolute;left:{{ ft.l }};bottom:0;width:1px;height:{{ ft.h }};background:{{ ft.c }};pointer-events:none"></i></sc-for>
+<sc-if value="{{ scrub }}"><div style="position:absolute;left:{{ scrub.left }};bottom:38px;transform:translateX(-50%);width:176px;background:#1c1a17;border:2px solid #1c1a17;box-shadow:3px 3px 0 rgba(28,26,23,.25);pointer-events:none;z-index:3">{{ scrub.imgEl }}<div style="display:flex;justify-content:space-between;gap:6px;padding:3px 5px;font:700 9px 'Courier Prime',monospace;letter-spacing:.06em;color:#f5f0e1"><span>{{ scrub.time }}</span><span style="color:#f2c919">{{ scrub.tag }}</span></div></div><i style="position:absolute;left:{{ scrub.left }};top:0;bottom:0;width:1px;background:#1c1a17;pointer-events:none"></i></sc-if>
+<sc-for list="{{ ticks }}" as="tk"><button onClick="{{ tk.onClick }}" title="{{ tk.title }}" aria-label="{{ tk.title }}" style="position:absolute;left:{{ tk.left }};bottom:0;transform:translateX(-50%);width:16px;height:30px;padding:0;border:0;background:none;display:flex;align-items:flex-end;justify-content:center"><i style="display:block;width:{{ tk.w }};height:{{ tk.h }};background:{{ tk.c }};border-radius:{{ tk.r }}"></i></button></sc-for>
+<sc-if value="{{ playhead }}"><span style="position:absolute;left:{{ playhead.left }};top:-4px;transform:translateX(-50%);font:700 9px 'Courier Prime',monospace;color:#b63e09;pointer-events:none;white-space:nowrap">▼</span></sc-if>
+</div>
+<div style="display:flex;justify-content:space-between;font:10px 'Courier Prime',monospace;color:#675f50"><span>0:00</span><span>{{ curTime }}</span><span>{{ endTime }}</span></div>
+</footer>
+
+<sc-if value="{{ drawerOpen }}"><div onClick="{{ closeDrawer }}" style="position:absolute;inset:0;background:rgba(28,26,23,.55);display:flex;justify-content:flex-end;z-index:5">
+<aside role="dialog" aria-label="Add evidence" onClick="{{ stop }}" style="width:min(480px,100%);height:100%;overflow:auto;background:#f5f0e1;border-left:2px solid #1c1a17;padding:22px;box-sizing:border-box;display:grid;gap:14px;align-content:start">
+<div style="display:flex;justify-content:space-between;align-items:center"><span style="font:700 10px 'Courier Prime',monospace;letter-spacing:.12em;color:#675f50">HOLD · SCENE {{ d.frameId }}</span><button onClick="{{ closeDrawer }}" aria-label="Close" style="width:36px;height:36px;border:2px solid #1c1a17;background:none;border-radius:0;font:800 16px Jost">×</button></div>
+<sc-if value="{{ d.showSteps }}"><ol style="display:flex;gap:8px;padding:0;margin:0;list-style:none"><sc-for list="{{ d.steps }}" as="st"><li style="flex:1;border-top:2px solid {{ st.bc }};padding-top:6px;font:{{ st.w }} 10px 'Courier Prime',monospace;color:{{ st.c }}">{{ st.label }}</li></sc-for></ol></sc-if>
+<div style="font:11px/1.5 'Courier Prime',monospace;color:#675f50">{{ d.context }}</div>
+
+<sc-if value="{{ d.s0 }}"><div style="display:grid;gap:10px">
+<h2 style="font:800 24px/1.05 Jost;text-transform:uppercase;letter-spacing:-.03em;margin:0">What are you adding?</h2>
+<sc-for list="{{ d.types }}" as="ty"><button onClick="{{ ty.onClick }}" aria-pressed="{{ ty.on }}" style="text-align:left;display:grid;gap:3px;padding:12px 14px;border-radius:0;border:2px solid {{ ty.bc }};background:{{ ty.bg }};color:#1c1a17;box-shadow:{{ ty.sh }}"><b style="font:800 16px Jost;text-transform:uppercase;letter-spacing:-.02em">{{ ty.label }}</b><span style="font:12px/1.4 'IBM Plex Sans';color:#675f50">{{ ty.desc }}</span></button></sc-for>
+</div></sc-if>
+
+<sc-if value="{{ d.s1 }}"><div style="display:grid;gap:14px">
+<h2 style="font:800 24px/1.05 Jost;text-transform:uppercase;letter-spacing:-.03em;margin:0">Add evidence</h2>
+<label style="display:grid;gap:6px;font:700 10px 'Courier Prime',monospace;letter-spacing:.1em;color:#675f50">WHAT DID YOU FIND?<textarea value="{{ d.text }}" onChange="{{ setText }}" rows="4" placeholder="What do you recognize? How does the evidence connect?" style="font:13px/1.5 'IBM Plex Sans';color:#1c1a17;background:#fff8e8;border:1px solid #675f50;border-radius:0;padding:9px;resize:vertical"></textarea></label>
+<sc-if value="{{ d.needsAddress }}"><label style="display:grid;gap:6px;font:700 10px 'Courier Prime',monospace;letter-spacing:.1em;color:#675f50">ADDRESS OR PLACE NAME<input value="{{ d.address }}" onChange="{{ setAddress }}" placeholder="e.g. E. 55th & Woodland, northwest corner" style="font:13px 'IBM Plex Sans';padding:9px 10px;border:2px solid #1c1a17;border-radius:0;background:#fff;color:#1c1a17"></label></sc-if>
+<label style="display:grid;gap:6px;font:700 10px 'Courier Prime',monospace;letter-spacing:.1em;color:#675f50">SOURCE LINKS · ONE PER LINE<textarea value="{{ d.links }}" onChange="{{ setLinks }}" rows="2" placeholder="https://" style="font:12px/1.5 'Courier Prime',monospace;color:#1c1a17;background:#fff8e8;border:1px solid #675f50;border-radius:0;padding:9px;resize:vertical"></textarea></label>
+<button onClick="{{ pickFiles }}" style="border:2px dashed #8a8068;background:none;border-radius:0;padding:16px;font:11px/1.5 'Courier Prime',monospace;color:#675f50">{{ d.filesLabel }}</button>
+<input ref="{{ fileRef }}" type="file" multiple accept="image/jpeg,image/png,image/webp,application/pdf,text/plain" onChange="{{ onFiles }}" style="display:none">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid rgba(28,26,23,.25);padding:9px 10px;font:11px/1.4 'Courier Prime',monospace;color:#675f50"><span>{{ d.pinLabel }}</span><button onClick="{{ repick }}" style="background:none;border:1.5px solid #1c1a17;border-radius:0;font:700 10px 'Courier Prime',monospace;padding:5px 8px;color:#1c1a17;white-space:nowrap">{{ d.pinBtn }}</button></div>
+</div></sc-if>
+
+<sc-if value="{{ d.s2 }}"><div style="display:grid;gap:12px">
+<h2 style="font:800 24px/1.05 Jost;text-transform:uppercase;letter-spacing:-.03em;margin:0">Review</h2>
+<dl style="margin:0;display:grid;grid-template-columns:76px minmax(0,1fr);gap:8px 12px;border-top:1px solid rgba(28,26,23,.25);padding-top:10px"><sc-for list="{{ d.review }}" as="r"><dt style="font:700 10px 'Courier Prime',monospace;letter-spacing:.1em;color:#675f50">{{ r.k }}</dt><dd style="margin:0;font:12.5px/1.45 'IBM Plex Sans';word-break:break-word">{{ r.v }}</dd></sc-for></dl>
+<label style="display:grid;gap:6px;font:700 10px 'Courier Prime',monospace;letter-spacing:.1em;color:#675f50">CREDIT ME AS · OPTIONAL<input value="{{ d.credit }}" onChange="{{ setCredit }}" placeholder="Name or initials" style="font:13px 'IBM Plex Sans';color:#1c1a17;background:#fff8e8;border:1px solid #675f50;border-radius:0;padding:9px"></label>
+</div></sc-if>
+
+<sc-if value="{{ d.s3 }}"><div style="display:grid;gap:12px;padding-top:6px">
+<div style="justify-self:start;border:2.5px solid #1c1a17;padding:4px 10px;font:800 26px Jost;letter-spacing:.02em;transform:rotate(-3deg);background:#f2c919">HELD</div>
+<h2 style="font:800 24px/1.05 Jost;text-transform:uppercase;letter-spacing:-.03em;margin:0">Thanks — it's in the review pile</h2>
+<p style="margin:0;font:13px/1.5 'IBM Plex Sans';color:#675f50">{{ d.doneNote }}</p>
+</div></sc-if>
+
+<sc-if value="{{ d.err }}"><div role="alert" style="font:11.5px/1.4 'Courier Prime',monospace;color:#b63e09;border-left:2px solid #c8470c;padding-left:9px">{{ d.err }}</div></sc-if>
+<div style="display:flex;justify-content:space-between;gap:10px;padding-top:4px">
+<button onClick="{{ d.backFn }}" style="font:800 15px Jost;border:2px solid #1c1a17;padding:10px 14px;background:none;border-radius:0;color:#1c1a17">{{ d.backLabel }}</button>
+<button onClick="{{ d.fwdFn }}" style="font:800 15px Jost;border:2px solid #1c1a17;padding:10px 14px;background:#1c1a17;color:#ece6d3;border-radius:0">{{ d.fwdLabel }}</button></div>
+</aside></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;autoCenter&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Map&quot;},&quot;focusZoom&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:3,&quot;min&quot;:1,&quot;max&quot;:10,&quot;step&quot;:0.5,&quot;unit&quot;:&quot;×&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Map&quot;}}">
+const MATCH = ['Strong match', 'Visual match'];
+const TYPES = [
+  { k: 'clue', label: 'Clue', desc: 'Something you recognize in the frame.' },
+  { k: 'fact', label: 'Fact', desc: 'A documented detail about this place.' },
+  { k: 'location', label: 'Proposed location', desc: 'Where you think it was shot. Needs a link, file or map pin.' },
+  { k: 'proof', label: 'Photo / proof', desc: 'An image or document that shows it.' }
+];
+const LABELS = [['Downtown', -81.688, 41.5015], ['Ohio City', -81.709, 41.4875], ['Central', -81.664, 41.4975], ['Tremont', -81.6935, 41.4826], ['Woodland Ave', -81.657, 41.4848], ['Lake Erie', -81.705, 41.5045]];
+const CONF = { 'Strong match': { n: 4, label: 'High', c: '#1c1a17' }, 'Visual match': { n: 3, label: 'Good', c: '#1c1a17' }, 'Candidate': { n: 2, label: 'Tentative', c: '#b63e09' }, 'Unplaced': { n: 0, label: 'Unknown', c: '#675f50' } };
+const FOV = 50, DIRS = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+const compass = b => `${Math.round(b)}° ${DIRS[Math.round(b / 45) % 8]}`;
+const estBearing = s => { let h = 0; for (const ch of s.id) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return (h % 72) * 5; };
+const baseBearing = s => typeof s.bearing === 'number' ? s.bearing : estBearing(s);
+const conePath = (b, R) => { const p = a => { const r = a * Math.PI / 180; return [(R * Math.sin(r)).toFixed(1), (-R * Math.cos(r)).toFixed(1)]; }; const [x1, y1] = p(b - FOV / 2), [x2, y2] = p(b + FOV / 2); return `M0 0 L${x1} ${y1} A${R} ${R} 0 0 1 ${x2} ${y2} Z`; };
+const shotSrc = id => `media/frames/${String(id).padStart(8, '0')}.jpg`;
+const hms = v => { v = Math.max(0, v); const h = Math.floor(v / 3600), m = Math.floor(v % 3600 / 60), s2 = Math.floor(v % 60); return `${h}:${String(m).padStart(2, '0')}:${String(s2).padStart(2, '0')}`; };
+const VOTE_API = { print: 'correct', nogood: 'incorrect', skip: 'skip' }, VOTE_UI = { correct: 'print', incorrect: 'nogood', skip: 'skip' };
+const parseCSV = txt => { const rows = []; let row = [], f = '', q = false; for (let i = 0; i < txt.length; i++) { const c = txt[i]; if (q) { if (c === '"' && txt[i + 1] === '"') { f += '"'; i++; } else if (c === '"') q = false; else f += c; } else if (c === '"') q = true; else if (c === ',') { row.push(f); f = ''; } else if (c === '\n' || c === '\r') { if (c === '\r' && txt[i + 1] === '\n') i++; row.push(f); rows.push(row); row = []; f = ''; } else f += c; } if (f || row.length) { row.push(f); rows.push(row); } return rows; };
+const ago = iso => { const m = Math.round((Date.now() - new Date(iso)) / 60000); return m < 60 ? m + 'm ago' : m < 1440 ? Math.round(m / 60) + 'h ago' : Math.round(m / 1440) + 'd ago'; };
+const kindOf = s => !s.coord ? 'unplaced' : MATCH.includes(s.status) ? 'matched' : 'candidate';
+
+class Component extends DCLogic {
+  state = { queue: false, held: {}, cmp: 'film', data: null, err: false, sel: 'detroit', frame: 0, filter: 'all', votes: {}, hover: null, t: { k: 1, x: 0, y: 0 }, size: { w: 0, h: 0 }, trayOpen: true, trayMobile: false, sheetOpen: false, placing: null, proposal: null, drawer: null, cones: false, bearings: {}, camEdit: null, film: null, scrub: null, shot: null, flags: {}, api: 'checking', tallies: {}, notes: {}, meta: {}, sending: false };
+  rootRef = React.createRef(); wrapRef = React.createRef(); svgRef = React.createRef(); fileRef = React.createRef();
+
+  componentDidMount() {
+    try { this.setState({ votes: JSON.parse(localStorage.getItem('uptight-mock-votes') || '{}'), bearings: JSON.parse(localStorage.getItem('uptight-mock-bearings') || '{}'), flags: JSON.parse(localStorage.getItem('uptight-mock-flags') || '{}') }); } catch (e) {}
+    fetch('data/film-frames.json').then(r => r.json()).then(film => this.setState({ film })).catch(() => {});
+    fetch('data/locations.csv').then(r => r.text()).then(txt => {
+      const [head, ...rows] = parseCSV(txt.trim()), col = n => head.indexOf(n), meta = {};
+      const keys = [['location', 'LOCATION'], ['confidence', 'CONFIDENCE'], ['clues', 'CLUES'], ['notes', 'NOTES'], ['source_url', 'SOURCE']];
+      rows.forEach(r => { const items = keys.map(([k, label]) => ({ k: label, v: (r[col(k)] || '').trim() })).filter(x => x.v); if (items.length) meta[+r[col('frame_id')]] = items; });
+      this.setState({ meta });
+    }).catch(() => {});
+    this.load();
+    this.ro = new ResizeObserver(() => { const el = this.wrapRef.current; if (!el) return; const w = el.clientWidth, h = el.clientHeight; const s = this.state.size; if (w !== s.w || h !== s.h) this.setState({ size: { w, h } }, () => this.drawBase()); });
+    this.onKey = e => {
+      if (this.state.shot != null) {
+        if (e.key === 'Escape') this.setState({ shot: null });
+        if (e.key === 'ArrowRight') { e.preventDefault(); this.stepShot(1); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); this.stepShot(-1); }
+        return;
+      }
+      if (e.key === 'Escape' && this.state.camEdit) { this.setState({ camEdit: null }); return; }
+      if (document.activeElement?.dataset?.nozoom) return;
+      if (e.key === 'Escape') { if (this.state.drawer) this.setState({ drawer: null }); else if (this.state.placing) this.setState({ placing: null }); return; }
+      if (/INPUT|TEXTAREA/.test(document.activeElement?.tagName) || this.state.drawer) return;
+      const onPin = !!document.activeElement?.dataset?.pin;
+      const refocus = () => onPin && requestAnimationFrame(() => { const b = this.wrapRef.current && this.wrapRef.current.querySelector('[data-pin][aria-pressed="true"]'); b && b.focus(); });
+      if (e.key === 'ArrowRight' || (onPin && e.key === 'ArrowDown')) { e.preventDefault(); this.step(1, refocus); }
+      if (e.key === 'ArrowLeft' || (onPin && e.key === 'ArrowUp')) { e.preventDefault(); this.step(-1, refocus); }
+      if (/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName)) return;
+      if (e.key === '+' || e.key === '=') this.zoomBy(1.8);
+      if (e.key === '-' || e.key === '_') this.zoomBy(1 / 1.8);
+      if (e.key === '0') this.zoomReset();
+    };
+    window.addEventListener('keydown', this.onKey);
+    this.attach();
+  }
+  linkFor() { const s = this.state; return '#place=' + s.sel + (s.frame ? '&frame=' + s.frame : ''); }
+  syncHash() { const h = this.linkFor(); try { if (location.hash !== h) history.replaceState(null, '', h); } catch (e) {} try { if (location.hash !== h) location.hash = h; } catch (e) {} }
+  toggleCustom(id, t) {
+    const s = this.state, sid = 'f' + id, exists = s.data.sites.some(x => x.id === sid);
+    const site = { id: sid, custom: true, status: 'Unplaced', name: `Frame ${id} — unplaced`, address: 'Flagged from the film · no leads yet', connection: 'Added from the frame viewer as a possible real location.', sources: [], frames: [{ id, time: hms(t), image: shotSrc(id) }] };
+    const sites = exists ? s.data.sites.filter(x => x.id !== sid) : [...s.data.sites, site];
+    try { localStorage.setItem('uptight-mock-custom', JSON.stringify(sites.filter(x => x.custom))); } catch (e) {}
+    this.setState({ data: { ...s.data, sites }, ...(exists && s.sel === sid ? { sel: s.data.sites[0].id, frame: 0 } : {}) });
+  }
+  stepShot(d) { const n = this.state.film ? this.state.film.frames.length : 0; if (!n) return; this.setState(s => ({ shot: Math.min(n - 1, Math.max(0, s.shot + d)) })); }
+  focusSel() {
+    const s = this.state; if (!s.data || !this.proj || !this.zoom || s.placing) return false;
+    const site = s.data.sites.find(x => x.id === s.sel); if (!site || !site.coord) return true;
+    const k = Math.max(1, Math.min(16, +(this.props.focusZoom ?? 3)));
+    const [x, y] = this.screen(site.coord); this.zoomTo(x, y, k); return true;
+  }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); window.removeEventListener('keydown', this.onKey); }
+  componentDidUpdate(pp, ps) {
+    this.attach();
+    const s = this.state;
+    if (s.data && (this.lastLink !== s.sel + '/' + s.frame)) { this.lastLink = s.sel + '/' + s.frame; this.syncHash(); if (s.copied) this.setState({ copied: false }); }
+    if ((this.props.autoCenter ?? true) && this.lastFocus !== s.sel && this.focusSel()) this.lastFocus = s.sel;
+    if (s.api === 'live' && this.lastFetch !== s.sel) { this.lastFetch = s.sel; const st = s.data.sites.find(x => x.id === s.sel); if (st && !st.custom) this.fetchSite(st.id); }
+    const key = [s.trayOpen, s.size.w, s.size.h].join('|');
+    if (s.data && (this.lastDraw !== key || this.lastData !== s.data)) { this.lastDraw = key; this.lastData = s.data; this.drawBase(); }
+  }
+  load() { this.setState({ err: false, data: null }); fetch('data/map-data.json').then(r => { if (!r.ok) throw 0; return r.json(); }).then(data => { let custom = []; try { custom = JSON.parse(localStorage.getItem('uptight-mock-custom') || '[]'); } catch (e) {} data = { ...data, sites: [...data.sites, ...custom] }; const h = new URLSearchParams(location.hash.slice(1)), id = h.get('place'), fr = +h.get('frame') || 0; const ok = id && data.sites.some(x => x.id === id); this.setState({ data, ...(ok ? { sel: id, frame: fr } : {}) }, () => { this.drawBase(); this.probeApi(); }); }).catch(() => this.setState({ err: true })); }
+  async probeApi() {
+    const first = this.state.data.sites.find(x => !x.custom);
+    try { const r = await fetch('/api/votes?site=' + encodeURIComponent(first.id), { headers: { Accept: 'application/json' } }); const v = await r.json(); if (!r.ok || !v.counts) throw 0; this.setState({ api: 'live', tallies: { ...this.state.tallies, [first.id]: v } }); }
+    catch (e) { this.setState({ api: 'local' }); }
+  }
+  live(site) { return this.state.api === 'live' && site && !site.custom; }
+  async fetchSite(id) {
+    try {
+      const [vr, cr] = await Promise.all([fetch('/api/votes?site=' + encodeURIComponent(id)), fetch('/api/contributions?site=' + encodeURIComponent(id))]);
+      const v = await vr.json(), c = await cr.json();
+      this.setState(s => ({ tallies: vr.ok ? { ...s.tallies, [id]: v } : s.tallies, notes: cr.ok ? { ...s.notes, [id]: c.contributions } : s.notes, votes: vr.ok && v.yourVote ? { ...s.votes, [id]: VOTE_UI[v.yourVote] } : s.votes }));
+    } catch (e) {}
+  }
+  async apiVote(id, val) {
+    try { const r = await fetch('/api/votes', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ site: id, choice: VOTE_API[val] }) }); const v = await r.json(); if (r.ok) this.setState(s => ({ tallies: { ...s.tallies, [id]: v } })); } catch (e) {}
+  }
+  async apiContribute(site, fields, files) {
+    const fd = new FormData(); fd.set('site', site.id); fd.set('frame', String(site.frames[0].id));
+    Object.entries(fields).forEach(([k, v]) => v != null && v !== '' && fd.set(k, String(v)));
+    (files || []).forEach(f => fd.append('proof', f));
+    const r = await fetch('/api/contributions', { method: 'POST', body: fd }); const a = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(a.error || 'Could not save to the local server.');
+    this.fetchSite(site.id); return a;
+  }
+  attach() {
+    const el = this.wrapRef.current; if (!el || el === this.obsEl) return;
+    this.obsEl = el; this.ro.observe(el); this.setupZoom(el); this.setState({ size: { w: el.clientWidth, h: el.clientHeight } }, () => this.drawBase());
+  }
+  setupZoom(el) {
+    if (!window.d3) return setTimeout(() => this.setupZoom(el), 80);
+    this.zoom = d3.zoom().scaleExtent([1, 16]).filter(e => (!e.ctrlKey || e.type === 'wheel') && !e.button && !(e.target.closest && e.target.closest('[data-nozoom]'))).on('zoom', e => {
+      const t = e.transform; this.baseG && this.baseG.attr('transform', t.toString());
+      this.setState({ t: { k: t.k, x: t.x, y: t.y }, hover: null });
+    });
+    d3.select(el).call(this.zoom).on('dblclick.zoom', null);
+  }
+  narrow() { return this.state.size.w > 0 && this.state.size.w < 760; }
+  drawBase() {
+    if (!window.d3) return setTimeout(() => this.drawBase(), 80);
+    const el = this.wrapRef.current, svgEl = this.svgRef.current, { data } = this.state; if (!data) return; if (!el || !svgEl || el.clientWidth < 50 || el.clientHeight < 50) { clearTimeout(this.rt); this.rt = setTimeout(() => this.drawBase(), 120); return; } const w = el.clientWidth, h = el.clientHeight; if (w !== this.state.size.w || h !== this.state.size.h) { this.setState({ size: { w, h } }); }
+    const n = w < 760;
+    const ext = n ? [[24, 70], [w - 60, h * 0.5]] : [[400, 40], [w - 70, h - (this.state.trayOpen ? 200 : 50)]];
+    this.proj = d3.geoMercator().fitExtent(ext, { type: 'MultiPoint', coordinates: [[-81.712, 41.505], [-81.645, 41.482]] });
+    const path = d3.geoPath(this.proj), svg = d3.select(svgEl);
+    svg.selectAll('*').remove(); svg.attr('viewBox', `0 0 ${w} ${h}`);
+    const t = this.state.t, g = svg.append('g').attr('transform', `translate(${t.x},${t.y}) scale(${t.k})`); this.baseG = g;
+    g.append('g').selectAll('path').data(data.neighborhoods.features).join('path').attr('d', path).attr('fill', '#f5f0e1').attr('stroke', '#b3aa92').attr('stroke-width', 1).attr('vector-effect', 'non-scaling-stroke');
+    g.append('g').selectAll('path').data(data.roads.features).join('path').attr('d', path).attr('fill', 'none').attr('stroke', '#cfc6ad').attr('stroke-width', 0.8).attr('vector-effect', 'non-scaling-stroke');
+    g.append('g').selectAll('path').data(data.river.features).join('path').attr('d', path).attr('fill', 'none').attr('stroke', '#a9b8b6').attr('stroke-width', 6).attr('stroke-linecap', 'round').attr('vector-effect', 'non-scaling-stroke');
+    this.setState({ projV: Date.now() });
+  }
+  screen(c) { const [x, y] = this.proj(c), t = this.state.t; return [x * t.k + t.x, y * t.k + t.y]; }
+  zoomTo(sx, sy, k2) {
+    if (!this.zoom) return;
+    const t = this.state.t, { w, h } = this.state.size, n = this.narrow();
+    const mx = (sx - t.x) / t.k, my = (sy - t.y) / t.k;
+    const cx = n ? w / 2 : (400 + w) / 2, cy = n ? h * 0.3 : (h - (this.state.trayOpen ? 160 : 0)) / 2;
+    d3.select(this.wrapRef.current).transition().duration(450).call(this.zoom.transform, d3.zoomIdentity.translate(cx - mx * k2, cy - my * k2).scale(k2));
+  }
+  zoomBy(f) { if (this.zoom) d3.select(this.wrapRef.current).transition().duration(250).call(this.zoom.scaleBy, f); }
+  zoomReset() { if (this.zoom) d3.select(this.wrapRef.current).transition().duration(350).call(this.zoom.transform, d3.zoomIdentity); }
+  saveVotes(votes) { this.setState({ votes }); try { localStorage.setItem('uptight-mock-votes', JSON.stringify(votes)); } catch (e) {} }
+  order() {
+    const { data, filter, queue } = this.state; if (!data) return [];
+    if (queue) return data.sites.filter(s => kindOf(s) !== 'matched');
+    return data.sites.filter(s => filter === 'all' || kindOf(s) === filter);
+  }
+  select(id, cb) { this.setState({ sel: id, frame: 0, hover: null }, cb); }
+  step(d, cb) { const o = this.order(); if (!o.length) return; const i = o.findIndex(s => s.id === this.state.sel); this.select(o[(i + d + o.length) % o.length].id, cb); }
+  openDrawer(type, extra) { this.fileObjs = []; this.setState({ drawer: { site: this.state.sel, step: type ? 1 : 0, type: type || null, text: '', links: '', address: '', files: [], credit: '', err: null, ...extra } }); }
+  setD(patch) { this.setState(s => ({ drawer: { ...s.drawer, ...patch } })); }
+  validate(d) {
+    if (!d.type) return 'Pick what you are adding.';
+    if (d.step === 1) {
+      if (d.text.trim().length < 10) return 'Write at least a sentence (10+ characters).';
+      const hasPin = this.state.proposal && this.state.proposal.id === d.site;
+      if (d.type === 'location' && !(d.address || '').trim()) return 'Add the address or place name you think it is.';
+      if (d.type === 'location' && !d.links.trim() && !d.files.length && !hasPin) return 'A proposed location needs a source link, an attachment or a map pin.';
+      if (d.type === 'proof' && !d.links.trim() && !d.files.length) return 'Photo / proof needs a file or a link.';
+    }
+    return null;
+  }
+
+  renderVals() {
+    const s = this.state, data = s.data, n = this.narrow();
+    const ready = !!data && !!this.proj;
+    const sites = data ? data.sites : [];
+    const placedSites = sites.filter(x => x.coord);
+    const num = id => placedSites.findIndex(x => x.id === id) + 1;
+    const counts = { all: sites.length, matched: 0, candidate: 0, unplaced: 0 };
+    sites.forEach(x => counts[kindOf(x)]++);
+    const fdef = [['all', 'ALL'], ['matched', 'MATCHED'], ['candidate', 'CANDIDATES'], ['unplaced', 'UNPLACED']];
+    const filters = fdef.map(([k, label]) => ({ label, count: counts[k], on: !s.queue && s.filter === k, bg: !s.queue && s.filter === k ? '#f5f0e1' : 'transparent', fg: !s.queue && s.filter === k ? '#1c1a17' : '#f5f0e1', circle: k === 'matched', diamond: k === 'candidate', hollow: k === 'unplaced',
+      onClick: () => { const first = sites.find(x => k === 'all' || kindOf(x) === k); this.setState({ queue: false, filter: k, sel: first && kindOf(sites.find(x => x.id === s.sel)) !== k && k !== 'all' ? first.id : s.sel, frame: 0, trayOpen: k === 'unplaced' ? true : s.trayOpen, trayMobile: k === 'unplaced' ? true : s.trayMobile }); } }));
+
+    // pins + clustering in screen space
+    let pins = [], labels = [], cones = [], coneTag = null, handle = null;
+    if (ready) {
+      const { w, h } = s.size;
+      labels = LABELS.map(([t, lo, la]) => { const [x, y] = this.screen([lo, la]); return { t, x, y }; }).filter(l => l.x > 40 && l.x < w - 40 && l.y > 12 && l.y < h - 12 && (!n || l.t !== 'Lake Erie'));
+      const groups = [];
+      placedSites.forEach(site => {
+        const [x, y] = this.screen(site.coord);
+        const g = groups.find(g => Math.hypot(g.x - x, g.y - y) < 34);
+        if (g) { g.items.push(site); g.x = (g.x * (g.items.length - 1) + x) / g.items.length; g.y = (g.y * (g.items.length - 1) + y) / g.items.length; }
+        else groups.push({ x, y, items: [site] });
+      });
+      pins = groups.map((g, gi) => {
+        const one = g.items.length === 1, site = g.items[0], k = kindOf(site);
+        const hasSel = g.items.some(i => i.id === s.sel);
+        const vis = g.items.some(i => s.queue ? kindOf(i) !== 'matched' : (s.filter === 'all' || kindOf(i) === s.filter));
+        const enter = () => this.setState({ hover: one ? { x: g.x, y: g.y, kicker: `${num(site.id)} · ${site.status.toUpperCase()}`, title: site.name, sub: `${site.frames.length} frame${site.frames.length > 1 ? 's' : ''} · ${site.frames[0].time}` } : { x: g.x, y: g.y, kicker: `${g.items.length} PLACES`, title: g.items.map(i => num(i.id)).join(' · '), sub: 'Click to zoom in' } });
+        return { x: g.x, y: g.y, sel: hasSel, op: vis ? 1 : 0.3, label: one ? num(site.id) : g.items.length,
+          bs: site.status === 'Strong match' || !one ? 'solid' : 'dashed', isCircle: one && k === 'matched', isDiamond: one && k === 'candidate', isCluster: !one, isProposal: false,
+          ring: hasSel ? (one && k === 'candidate' ? '3px solid #1c1a17' : '3px solid #c8470c') : 'none',
+          aria: one ? `${num(site.id)}. ${site.name}, ${site.status}, ${(CONF[site.status] || {}).label || ''} confidence` : `${g.items.length} places, zoom in`,
+          onEnter: enter, onLeave: () => this.setState({ hover: null }),
+          onClick: e => { e.stopPropagation(); if (s.placing) return; if (one) this.select(site.id); else this.zoomTo(g.x, g.y, Math.min(16, s.t.k * 3.2)); } };
+      });
+      const visOf = i => s.queue ? kindOf(i) !== 'matched' : (s.filter === 'all' || kindOf(i) === s.filter);
+      const editing = s.camEdit && s.camEdit.id === s.sel;
+      if (s.cones || editing) {
+        const singles = s.cones ? groups.filter(g => g.items.length === 1).map(g => g.items[0]) : [];
+        const selSite = placedSites.find(x => x.id === s.sel);
+        if (selSite && !singles.includes(selSite)) singles.push(selSite);
+        singles.forEach(site => {
+          const isSel = site.id === s.sel, k = kindOf(site), mine = s.bearings[site.id];
+          const b = isSel && editing ? s.camEdit.b : mine != null ? mine : baseBearing(site);
+          const est = !(isSel && editing) && mine == null && typeof site.bearing !== 'number';
+          const [x, y] = this.screen(site.coord), R = isSel ? 92 : 58;
+          const ink = isSel && (editing || mine != null) ? '31,90,150' : k === 'candidate' ? '200,71,12' : '28,26,23';
+          cones.push({ x, y, d: conePath(b, R), fill: `rgba(${ink},${isSel ? .2 : .1})`, stroke: `rgb(${ink})`, dash: est || (isSel && mine != null && !editing) ? '5 4' : 'none', op: visOf(site) ? 1 : 0.3, sel: isSel });
+          if (isSel) {
+            const r = b * Math.PI / 180, tx = x + (R + 16) * Math.sin(r), ty = y - (R + 16) * Math.cos(r);
+            coneTag = { x: n ? tx : Math.max(440, tx), y: ty, t: editing ? compass(b) : mine != null ? 'YOURS · IN REVIEW' : est ? 'EST.' : compass(b), bg: editing || mine != null ? '#1f5a96' : '#1c1a17' };
+            if (editing) {
+              const hx = x + R * Math.sin(r), hy = y - R * Math.cos(r);
+              const setB = nb => this.setState({ camEdit: { id: site.id, b: ((Math.round(nb) % 360) + 360) % 360 } });
+              handle = { x: hx, y: hy, b: Math.round(b),
+                key: e => { if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { e.preventDefault(); setB(s.camEdit.b + 5); } if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { e.preventDefault(); setB(s.camEdit.b - 5); } },
+                down: e => {
+                  e.stopPropagation(); e.preventDefault();
+                  const move = ev => { const rc = this.wrapRef.current.getBoundingClientRect(), [px, py] = this.screen(site.coord); setB(Math.atan2(ev.clientX - rc.left - px, -(ev.clientY - rc.top - py)) * 180 / Math.PI); };
+                  const up = () => { window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); };
+                  window.addEventListener('pointermove', move); window.addEventListener('pointerup', up);
+                } };
+            }
+          }
+        });
+      }
+      const ti = Math.max(0, pins.findIndex(p => p.sel)); pins.forEach((p, i) => { p.tab = i === ti ? 0 : -1; });
+      if (s.proposal) { const [x, y] = this.screen(s.proposal.coord); pins.push({ x, y, sel: false, op: 1, tab: -1, isProposal: true, aria: 'Your proposed pin', onClick: e => e.stopPropagation(), onEnter: () => {}, onLeave: () => {} }); }
+    }
+
+    const img = (src, alt, w, border) => React.createElement('img', { src, alt, style: { width: w, aspectRatio: '16/9', objectFit: 'cover', display: 'block', background: '#ddd5be', border: border || 0, boxSizing: 'border-box' } });
+    const site = sites.find(x => x.id === s.sel) || sites[0];
+    let sel = {}, v = {};
+    if (site) {
+      const k = kindOf(site), fi = Math.min(s.frame, site.frames.length - 1), f = site.frames[fi];
+      sel = { imgEl: img(f.image, `${site.name} — film frame ${f.time}`, '100%'), alt: `${site.name} — film frame ${f.time}`, frameId: f.id, stamp: k === 'unplaced' ? 'UNPLACED' : k === 'matched' ? 'MATCHED' : 'CANDIDATE', stampBg: k === 'candidate' ? '#f2c919' : 'rgba(245,240,225,.92)',
+        multi: site.frames.length > 1, thumbs: site.frames.map((fr, i) => ({ imgEl: img(fr.image, '', '100%'), t: fr.time.slice(0, 8), on: i === fi, bc: i === fi ? '#c8470c' : '#1c1a17', onClick: () => this.setState({ frame: i }) })),
+        kicker: `${site.coord ? num(site.id) + ' · ' : ''}${site.status.toUpperCase()} · ${f.time}`, name: site.name.replace(/ — unplaced$/, ''), address: site.address, connection: site.connection,
+        sources: (site.sources || []).map(([name, url]) => ({ name, url })), placed: k !== 'unplaced', unplaced: k === 'unplaced' };
+      const vote = s.votes[site.id];
+      const btn = (key, primary) => {
+        const on = vote === key, other = vote && !on;
+        return { bg: on || (!vote && primary) ? '#1c1a17' : 'transparent', fg: on || (!vote && primary) ? '#ece6d3' : '#675f50', border: on || (!vote && primary) ? '#1c1a17' : '#675f50', ring: on ? '3px solid #c8470c' : 'none', dim: other };
+      };
+      const p = btn('print', true), no = btn('nogood', false);
+      v = { print: vote === 'print', no: vote === 'nogood', has: vote === 'print' || vote === 'nogood', none: !vote || vote === 'skip', label: vote === 'print' ? 'PRINT' : 'NO GOOD',
+        pBg: p.bg, pFg: p.fg, pBorder: p.border, pRing: p.ring, nBg: no.bg, nFg: no.fg, nBorder: no.border, nRing: no.ring };
+    }
+    const vote = val => () => { this.saveVotes({ ...s.votes, [site.id]: val }); if (this.live(site)) this.apiVote(site.id, val); if (val === 'skip') this.step(1); };
+    const tv = site && s.tallies[site.id], tc = tv && tv.counts;
+    const tally = tc && this.live(site) && kindOf(site) !== 'unplaced' ? (() => { const n = (tc.correct || 0) + (tc.incorrect || 0); return { show: true, pct: (n ? Math.round(tc.correct / n * 100) : 0) + '%', text: n ? `${Math.round(tc.correct / n * 100)}% say print · ${tc.correct} print · ${tc.incorrect} no good${tc.skip != null ? ' · ' + tc.skip + ' skip' : ''}` : 'No votes yet — be the first.' }; })() : { show: false };
+    const nl = site && s.notes[site.id];
+    const notes = nl && this.live(site) ? { show: true, heading: `MARGIN NOTES · ${nl.length}`, empty: !nl.length, items: nl.slice(0, 3).map(r => ({ kicker: `${(r.kind || '').toUpperCase()} · ${r.author} · ${ago(r.created_at)}${r.status ? ' · ' + r.status.toUpperCase() : ''}`, body: r.body.length > 220 ? r.body.slice(0, 217) + '…' : r.body })) } : { show: false };
+
+    const unplacedSites = sites.filter(x => !x.coord);
+    const unplaced = unplacedSites.map(u => ({ imgEl: img(u.frames[0].image, '', '104px', '1.5px solid #1c1a17'), name: u.name.replace(/ — unplaced$/, ''), lead: u.address, on: u.id === s.sel, bc: u.id === s.sel ? '#c8470c' : '#1c1a17', bg: u.id === s.sel ? '#fff8e8' : '#ece6d3',
+      onClick: () => { this.select(u.id); if (n) this.setState({ trayMobile: false, sheetOpen: false }); } }));
+
+    const trayShown = ready && unplacedSites.length > 0 && (n ? s.trayMobile : s.trayOpen) && !s.placing;
+    const L = n ? {
+      narrow: true, cursor: s.placing ? 'crosshair' : 'grab',
+      cardLeft: '0', cardRight: '0', cardTop: 'auto', cardBottom: '0', cardWidth: 'auto', cardMax: s.sheetOpen ? '78%' : '54%',
+      showDetail: s.sheetOpen, sheetHint: !s.sheetOpen, trayBtn: !s.trayMobile && !s.placing,
+      trayLeft: '8px', trayRight: '8px', trayTop: '8px', trayBottom: 'auto'
+    } : {
+      narrow: false, cursor: s.placing ? 'crosshair' : 'grab',
+      cardLeft: '16px', cardRight: 'auto', cardTop: '16px', cardBottom: 'auto', cardWidth: '360px', cardMax: 'calc(100% - 32px)',
+      showDetail: true, sheetHint: false, trayBtn: !s.trayOpen && !s.placing,
+      trayLeft: '392px', trayRight: '16px', trayTop: 'auto', trayBottom: '16px'
+    };
+
+    // drawer
+    let d = {};
+    if (s.drawer) {
+      const dr = s.drawer, ds = sites.find(x => x.id === dr.site), step = dr.step, hasPin = s.proposal && s.proposal.id === dr.site;
+      const typeLabel = (TYPES.find(t => t.k === dr.type) || {}).label;
+      const goStep = st => this.setD({ step: st, err: null });
+      d = { frameId: ds.frames[0].id, showSteps: step < 3, s0: step === 0, s1: step === 1, s2: step === 2, s3: step === 3, err: dr.err, text: dr.text, links: dr.links, credit: dr.credit,
+        context: `${ds.name.replace(/ — unplaced$/, '')} · ${ds.frames[0].time}${typeLabel ? ' · ' + typeLabel : ''}`,
+        steps: ['1. Choose', '2. Evidence', '3. Review'].map((label, i) => ({ label, c: i === step ? '#b63e09' : i < step ? '#1c1a17' : '#675f50', bc: i <= step ? '#c8470c' : '#b3aa92', w: i === step ? '700' : '400' })),
+        types: TYPES.map(t => ({ ...t, on: dr.type === t.k, bc: dr.type === t.k ? '#1c1a17' : '#b3aa92', bg: dr.type === t.k ? '#fff8e8' : 'transparent', sh: dr.type === t.k ? '3px 3px 0 #1f5a96' : 'none', onClick: () => this.setD({ type: t.k, err: null }) })),
+        filesLabel: dr.files.length ? `Attached: ${dr.files.join(', ')} · click to change` : 'Attach proof · JPG, PNG, WebP, PDF or text',
+        pinLabel: hasPin ? `Map pin: ${s.proposal.coord[1].toFixed(5)}, ${s.proposal.coord[0].toFixed(5)}` : 'No map pin · optional',
+        pinBtn: hasPin ? 'RE-PICK' : 'DROP PIN',
+        review: [['TYPE', typeLabel], ['NOTE', dr.text], ...(dr.type === 'location' ? [['ADDRESS', dr.address || '—']] : []), ['LINKS', dr.links.trim() || '—'], ['FILES', dr.files.join(', ') || '—'], ['PIN', hasPin ? `${s.proposal.coord[1].toFixed(5)}, ${s.proposal.coord[0].toFixed(5)}` : '—']].map(([k, v]) => ({ k, v })),
+        backLabel: step === 0 ? 'Cancel' : step === 3 ? 'Back to map' : '← Back',
+        needsAddress: dr.type === 'location', address: dr.address || '',
+        doneNote: dr.sentLive ? `Saved to the local research server as unverified. It's now in the margin notes for this place.` : ds.custom ? `Saved in this browser. This place came from the frame viewer, so it isn't in locations.json yet and can't go to the server.` : `Saved in this browser only — start the local server (start-map.command) to share it with other researchers.`,
+        fwdLabel: s.sending ? 'Saving…' : step === 2 ? 'Submit' : step === 3 ? (unplacedSites.length ? 'Next unplaced →' : 'Done') : 'Next →',
+        backFn: () => step === 0 || step === 3 ? this.setState({ drawer: null }) : goStep(step - 1),
+        fwdFn: () => {
+          if (step === 3) { const nx = unplacedSites.find(u => u.id !== dr.site); this.setState({ drawer: null, ...(nx ? { sel: nx.id, frame: 0 } : {}) }); return; }
+          const err = this.validate(dr); if (err) return this.setD({ err });
+          if (step === 2) {
+            if (s.sending) return;
+            this.setState({ held: { ...s.held, [dr.site]: true } });
+            if (this.live(ds)) {
+              const pin = hasPin ? s.proposal.coord : null;
+              this.setState({ sending: true });
+              this.apiContribute(ds, { kind: dr.type, body: dr.text.trim(), address: (dr.address || '').trim(), author: dr.credit.trim(), links: dr.links.trim(), latitude: pin && pin[1].toFixed(6), longitude: pin && pin[0].toFixed(6) }, this.fileObjs)
+                .then(() => this.setState(st => ({ sending: false, drawer: st.drawer && { ...st.drawer, step: 3, err: null, sentLive: true } })))
+                .catch(e => this.setState(st => ({ sending: false, drawer: st.drawer && { ...st.drawer, err: e.message + ' Your draft is still here.' } })));
+              return;
+            }
+          }
+          goStep(step + 1);
+        } };
+    }
+
+    const t = s.t;
+    const sec = x => { const [a, b, c] = x.split(':').map(Number); return a * 3600 + b * 60 + c; };
+    const allFrames = sites.flatMap(x => x.frames.map((fr, i) => ({ site: x, fr, i })));
+    const total = s.film ? s.film.duration : allFrames.length ? Math.max(...allFrames.map(a => sec(a.fr.time))) + 100 : 1;
+    const sceneOf = {}; allFrames.forEach(a => { sceneOf[a.fr.id] = a; });
+    const ff = s.film ? s.film.frames : [];
+    const filmTicks = ff.map(([id, t]) => ({ l: (t / total * 100) + '%', h: sceneOf[id] ? '0px' : '7px', c: '#b3aa92' }));
+    const shotIdxOfId = id => ff.findIndex(f => f[0] === id);
+    const openShot = id => { const i = shotIdxOfId(id); if (i >= 0) this.setState({ shot: i, scrub: null, hover: null }); };
+    const nearestIdx = t => { let b = 0, bd = Infinity; for (let i = 0; i < ff.length; i++) { const d = Math.abs(ff[i][1] - t); if (d < bd) { bd = d; b = i; } } return b; };
+    const scrubMove = e => { if (!ff.length) return; const r = e.currentTarget.getBoundingClientRect(); const i = nearestIdx((e.clientX - r.left) / r.width * total); if (i !== s.scrub) this.setState({ scrub: i }); };
+    let scrub = null;
+    if (s.scrub != null && ff[s.scrub]) { const [id, t] = ff[s.scrub], sc = sceneOf[id]; scrub = { left: (t / total * 100) + '%', imgEl: img(shotSrc(id), '', '100%'), time: hms(t), tag: sc ? 'SCENE · ' + sc.site.name.replace(/ — unplaced$/, '').toUpperCase().slice(0, 16) : '#' + id }; }
+    let shot = null;
+    if (s.shot != null && ff[s.shot]) {
+      const [id, t] = ff[s.shot], sc = sceneOf[id], flagged = !!(sc && sc.site.custom);
+      shot = { id, total: ff.length, time: hms(t), imgEl: img(shotSrc(id), `Film frame ${id} at ${hms(t)}`, '100%', '2px solid #1c1a17'), title: sc ? sc.site.name.replace(/ — unplaced$/, '') : flagged ? 'Flagged as a possible location' : 'Unresearched frame',
+        meta: s.meta[id] || null, isScene: !!sc, canFlag: !sc || flagged, flagged, flagBg: 'transparent', flagFg: '#b63e09', flagLabel: flagged ? 'REMOVE PLACE' : '◆ ADD AS NEW PLACE',
+        prev: () => this.stepShot(-1), next: () => this.stepShot(1),
+        openScene: () => sc && this.setState({ shot: null, sel: sc.site.id, frame: sc.i, queue: false }),
+        flag: () => this.toggleCustom(id, t) };
+    }
+    const fmt = v => { v = Math.round(v); return Math.floor(v / 3600) + ':' + String(Math.floor(v % 3600 / 60)).padStart(2, '0'); };
+    const curFrame = site ? site.frames[Math.min(s.frame, site.frames.length - 1)] : null;
+    const col = { matched: '#1c1a17', candidate: '#c8470c', unplaced: '#8a8068' };
+    const ticks = allFrames.map(a => { const k = kindOf(a.site), on = a.site.id === s.sel, cur = curFrame && a.fr.id === curFrame.id;
+      return { left: (sec(a.fr.time) / total * 100) + '%', title: `${a.fr.time.slice(0, 8)} · ${a.site.name}`, c: cur ? '#c8470c' : col[k], w: k === 'candidate' ? '7px' : '5px', h: cur ? '28px' : on ? '22px' : '14px', r: k === 'matched' ? '0' : k === 'candidate' ? '0' : '3px',
+        onClick: e => { e.stopPropagation(); this.setState({ sel: a.site.id, frame: a.i, hover: null, scrub: null }); } }; });
+    let nearby = { show: false, items: [] };
+    if (curFrame && ff.length) {
+      const ci = shotIdxOfId(curFrame.id);
+      if (ci >= 0) nearby = { show: true, items: [-3, -2, -1, 1, 2, 3].map(d => ci + d).filter(i => i >= 0 && i < ff.length).map(i => { const [id, t] = ff[i]; return { imgEl: img(shotSrc(id), '', '100%'), aria: `Frame ${id} · ${hms(t)}${i < ci ? ' · before' : ' · after'}`, bc: sceneOf[id] ? '#c8470c' : '#1c1a17', op: 1, flagged: !!sceneOf[id], onClick: () => openShot(id) }; }) };
+    }
+    const qList = this.order(), qIdx = qList.findIndex(x => x.id === s.sel);
+    const qDone = qList.filter(x => s.held[x.id] || s.votes[x.id]).length;
+    const cmpMode = s.cmp;
+    const cf = site ? (CONF[site.status] || CONF.Unplaced) : CONF.Unplaced, ev = site && s.held[site.id] ? 1 : 0;
+    const conf = { label: cf.label, c: cf.c, bars: [0, 1, 2, 3].map(i => ({ bg: i < cf.n ? (cf.n >= 3 ? '#1c1a17' : '#c8470c') : 'transparent' })),
+      note: (site && site.status === 'Unplaced' ? 'No location yet — needs a pin and a source.' : site && site.status === 'Candidate' ? 'Plausible, not yet confirmed by a source.' : site && site.status === 'Strong match' ? 'Confirmed by matching sources.' : 'Matches visually; one more source would confirm.') + (ev ? ' Your evidence is in review.' : '') };
+    return {
+      swipeStart: e => { const p = e.touches[0]; this.sw = { x: p.clientX, y: p.clientY, top: e.currentTarget.scrollTop, t: Date.now() }; },
+      swipeEnd: e => {
+        const a = this.sw; this.sw = null; if (!a || Date.now() - a.t > 600) return;
+        const p = e.changedTouches[0], dx = p.clientX - a.x, dy = p.clientY - a.y;
+        if (e.target.closest && e.target.closest('input,textarea,image-slot,[data-nozoom]')) return;
+        if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) this.step(dx < 0 ? 1 : -1);
+        else if (n && Math.abs(dy) > 50 && Math.abs(dy) > Math.abs(dx) * 1.5 && a.top <= 0) this.setState({ sheetOpen: dy < 0 });
+      },
+      filmTicks, scrub, shot, nearby, scrubMove, scrubLeave: () => s.scrub != null && this.setState({ scrub: null }),
+      scrubClick: () => { if (s.scrub != null) this.setState({ shot: s.scrub, scrub: null }); },
+      closeShot: () => this.setState({ shot: null }),
+      tally, notes,
+      cones, coneTag, handle, conesOn: s.cones, conesBg: s.cones ? '#1c1a17' : '#f5f0e1', conesFg: s.cones ? '#f2c919' : '#1c1a17',
+      toggleCones: e => { e.stopPropagation(); this.setState({ cones: !s.cones, camEdit: s.cones ? null : s.camEdit }); },
+      cam: (() => {
+        if (!site || !site.coord) return { show: false };
+        const editing = s.camEdit && s.camEdit.id === site.id, mine = s.bearings[site.id], known = typeof site.bearing === 'number';
+        const b = editing ? s.camEdit.b : mine != null ? mine : baseBearing(site);
+        return { show: true, editing, canAdjust: !editing, value: compass(b),
+          tag: editing ? 'DRAFT' : mine != null ? 'IN REVIEW' : known ? 'SOURCED' : 'EST.', tagC: editing || mine != null ? '#1f5a96' : known ? '#1c1a17' : '#b63e09',
+          note: editing ? 'Drag the yellow handle on the map, or focus it and use arrow keys (5° steps).' : mine != null ? `You suggested ${compass(mine)}. Others can vote on it.` : known ? 'From a documented source.' : 'Estimated from the frame — not yet checked against the street.',
+          adjust: () => this.setState({ cones: true, camEdit: { id: site.id, b }, sheetOpen: false }, () => this.focusSel()),
+          cancel: () => this.setState({ camEdit: null }),
+          submit: () => { const bearings = { ...s.bearings, [site.id]: s.camEdit.b }; try { localStorage.setItem('uptight-mock-bearings', JSON.stringify(bearings)); } catch (e) {} this.setState({ bearings, camEdit: null, held: { ...s.held, [site.id]: true } }); if (this.live(site)) this.apiContribute(site, { kind: 'fact', body: `Camera bearing: ${compass(s.camEdit.b)} (set by dragging the view cone on the map).`, author: '' }).catch(() => {}); } };
+      })(),
+      conf, copyLabel: s.copied ? 'COPIED ✓' : 'COPY LINK',
+      copyLink: () => { this.syncHash(); const u = location.href.split('#')[0] + this.linkFor(); (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).catch(() => {}).finally(() => this.setState({ copied: true })); },
+      ticks, playhead: curFrame ? { left: (sec(curFrame.time) / total * 100) + '%' } : null, curTime: curFrame ? `${curFrame.time.slice(0, 8)} · scene ${curFrame.id}` : '', endTime: fmt(total),
+      queueOn: s.queue, queueBg: s.queue ? '#f2c919' : 'transparent', queueFg: s.queue ? '#1c1a17' : '#f2c919', queueBtn: s.queue ? 'EXIT QUEUE' : 'RESEARCH QUEUE →',
+      toggleQueue: () => { const on = !s.queue; const first = sites.find(x => kindOf(x) !== 'matched'); this.setState({ queue: on, filter: 'all', ...(on && first && kindOf(site) === 'matched' ? { sel: first.id, frame: 0 } : {}) }); },
+      q: { on: s.queue && qIdx >= 0, pos: qIdx + 1, total: qList.length, done: qDone, pct: (qList.length ? qDone / qList.length * 100 : 0) + '%' },
+      prev: () => this.step(-1),
+      cmpTabs: [['film', '1968 FRAME'], ['today', 'TODAY'], ['both', 'SIDE BY SIDE']].map(([k, t2], i) => ({ t: t2, on: cmpMode === k, bg: cmpMode === k ? '#1c1a17' : 'transparent', fg: cmpMode === k ? '#ece6d3' : '#1c1a17', br: i < 2 ? '2px solid #1c1a17' : '0', onClick: () => this.setState({ cmp: k }) })),
+      cmp: { film: cmpMode !== 'today', today: cmpMode !== 'film', cols: cmpMode === 'both' ? '1fr 1fr' : '1fr' },
+      todaySlot: site ? React.createElement('image-slot', { key: 'today-' + site.id, id: 'today-' + site.id, shape: 'rect', placeholder: 'Drop a present-day photo of this spot', style: { position: 'absolute', inset: 0, width: '100%', height: '100%' } }) : null,
+      rootRef: this.rootRef, wrapRef: this.wrapRef, svgRef: this.svgRef, fileRef: this.fileRef,
+      filters, pins, labels, hover: s.hover, ready, loading: !data && !s.err, error: s.err, retry: () => this.load(),
+      sel, v, L, unplaced, unplacedCount: unplacedSites.length, trayShown, trayRing: s.filter === 'unplaced' ? '3px solid #c8470c' : 'none',
+      trayBtnLabel: `STILL UNPLACED · ${unplacedSites.length}`,
+      zoomBtns: [{ t: '+', fs: '20px', aria: 'Zoom in', onClick: e => { e.stopPropagation(); this.zoomBy(1.8); } }, { t: '−', fs: '20px', aria: 'Zoom out', onClick: e => { e.stopPropagation(); this.zoomBy(1 / 1.8); } }, { t: 'FIT', fs: '11px', aria: 'Reset view', onClick: e => { e.stopPropagation(); this.zoomReset(); } }],
+      placing: s.placing ? { frame: (sites.find(x => x.id === s.placing) || site).frames[0].id } : null,
+      cancelPlacing: e => { e.stopPropagation(); this.setState({ placing: null }); },
+      stop: e => e.stopPropagation(),
+      onMapClick: e => {
+        if (!s.placing || !this.proj) return;
+        const r = this.wrapRef.current.getBoundingClientRect(), mx = (e.clientX - r.left - t.x) / t.k, my = (e.clientY - r.top - t.y) / t.k;
+        const coord = this.proj.invert([mx, my]), id = s.placing;
+        const prev = s.drawer && s.drawer.site === id ? s.drawer : null;
+        this.setState({ placing: null, proposal: { id, coord }, drawer: prev ? { ...prev, step: 1, err: null } : { site: id, step: 1, type: 'location', text: '', links: '', files: [], credit: '', err: null } });
+      },
+      votePrint: vote('print'), voteNo: vote('nogood'), voteSkip: vote('skip'), next: () => this.step(1),
+      openHold: () => this.openDrawer(null), openClue: () => this.openDrawer('clue'),
+      startPlacing: () => this.setState({ placing: site.id, sheetOpen: false, hover: null }),
+      toggleTray: () => this.setState(n ? { trayMobile: !s.trayMobile } : { trayOpen: !s.trayOpen }, () => this.drawBase()),
+      toggleSheet: () => this.setState({ sheetOpen: !s.sheetOpen }),
+      drawerOpen: !!s.drawer && !s.placing, d, closeDrawer: () => this.setState({ drawer: null }),
+      setText: e => this.setD({ text: e.target.value, err: null }), setLinks: e => this.setD({ links: e.target.value, err: null }), setCredit: e => this.setD({ credit: e.target.value }),
+      pickFiles: () => this.fileRef.current && this.fileRef.current.click(),
+      onFiles: e => { this.fileObjs = Array.from(e.target.files || []); this.setD({ files: this.fileObjs.map(f => f.name), err: null }); },
+      setAddress: e => this.setD({ address: e.target.value, err: null }),
+      apiLabel: s.api === 'live' ? 'LIVE · SHARED' : s.api === 'checking' ? 'CONNECTING…' : 'OFFLINE · THIS BROWSER',
+      apiDot: s.api === 'live' ? '#7fbf6a' : 'transparent', apiFg: s.api === 'live' ? '#f5f0e1' : '#b3aa92',
+      apiTip: s.api === 'live' ? 'Votes and evidence go to the local research server (SQLite) and are shared with everyone on it.' : 'No local server found. Votes, evidence, bearings and new places are saved in this browser only. Run start-map.command and open the prototype from the server to share.',
+      repick: () => this.setState({ placing: s.drawer.site }),
+    };
+  }
+}
+</script>
+</body>
+</html>
