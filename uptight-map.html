@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./config.js"></script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -288,6 +289,16 @@ class Component extends DCLogic {
     if (!r.ok) throw new Error(a.error || 'Could not save to the local server.');
     this.fetchSite(site.id); return a;
   }
+  async emailContribute(site, fields, files) {
+    const E = window.UPTIGHT_EMAIL || {}, f = site.frames && site.frames[0] || {};
+    const maps = fields.latitude && fields.longitude ? 'https://www.google.com/maps?q=' + fields.latitude + ',' + fields.longitude : '';
+    const payload = { access_key: E.accessKey, subject: 'Uptight map: ' + (fields.kind || 'submission') + ' for ' + site.name, from_name: fields.author || 'Anonymous', place: site.name, place_id: site.id, scene_frame: f.id, scene_time: f.time, kind: fields.kind, note: fields.body, address: fields.address, credit: fields.author, source_links: fields.links, latitude: fields.latitude, longitude: fields.longitude, map_link: maps, attachments_not_sent: (files || []).map(x => x.name).join(', '), page: location.href };
+    Object.keys(payload).forEach(k => (payload[k] == null || payload[k] === '') && delete payload[k]);
+    const r = await fetch(E.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) });
+    const a = await r.json().catch(() => ({}));
+    if (!r.ok || a.success === false) throw new Error(a.message || 'Could not send the email.');
+    return a;
+  }
   attach() {
     const el = this.wrapRef.current; if (!el || el === this.obsEl) return;
     this.obsEl = el; this.ro.observe(el); this.setupZoom(el); this.setState({ size: { w: el.clientWidth, h: el.clientHeight } }, () => this.drawBase());
@@ -475,7 +486,7 @@ class Component extends DCLogic {
         review: [['TYPE', typeLabel], ['NOTE', dr.text], ...(dr.type === 'location' ? [['ADDRESS', dr.address || '—']] : []), ['LINKS', dr.links.trim() || '—'], ['FILES', dr.files.join(', ') || '—'], ['PIN', hasPin ? `${s.proposal.coord[1].toFixed(5)}, ${s.proposal.coord[0].toFixed(5)}` : '—']].map(([k, v]) => ({ k, v })),
         backLabel: step === 0 ? 'Cancel' : step === 3 ? 'Back to map' : '← Back',
         needsAddress: dr.type === 'location', address: dr.address || '',
-        doneNote: dr.sentLive ? `Saved to the local research server as unverified. It's now in the margin notes for this place.` : ds.custom ? `Saved in this browser. This place came from the frame viewer, so it isn't in locations.json yet and can't go to the server.` : `Saved in this browser only — start the local server (start-map.command) to share it with other researchers.`,
+        doneNote: dr.sentEmail ? `Sent to the Uptight researchers by email as unverified. Thank you.` : dr.sentLive ? `Saved to the local research server as unverified. It's now in the margin notes for this place.` : ds.custom ? `Saved in this browser. This place came from the frame viewer, so it isn't in locations.json yet and can't go to the server.` : `Saved in this browser only — start the local server (start-map.command) to share it with other researchers.`,
         fwdLabel: s.sending ? 'Saving…' : step === 2 ? 'Submit' : step === 3 ? (unplacedSites.length ? 'Next unplaced →' : 'Done') : 'Next →',
         backFn: () => step === 0 || step === 3 ? this.setState({ drawer: null }) : goStep(step - 1),
         fwdFn: () => {
@@ -489,6 +500,14 @@ class Component extends DCLogic {
               this.setState({ sending: true });
               this.apiContribute(ds, { kind: dr.type, body: dr.text.trim(), address: (dr.address || '').trim(), author: dr.credit.trim(), links: dr.links.trim(), latitude: pin && pin[1].toFixed(6), longitude: pin && pin[0].toFixed(6) }, this.fileObjs)
                 .then(() => this.setState(st => ({ sending: false, drawer: st.drawer && { ...st.drawer, step: 3, err: null, sentLive: true } })))
+                .catch(e => this.setState(st => ({ sending: false, drawer: st.drawer && { ...st.drawer, err: e.message + ' Your draft is still here.' } })));
+              return;
+            }
+            if (window.UPTIGHT_EMAIL && window.UPTIGHT_EMAIL.accessKey) {
+              const pin = hasPin ? s.proposal.coord : null;
+              this.setState({ sending: true });
+              this.emailContribute(ds, { kind: dr.type, body: dr.text.trim(), address: (dr.address || '').trim(), author: dr.credit.trim(), links: dr.links.trim(), latitude: pin && pin[1].toFixed(6), longitude: pin && pin[0].toFixed(6) }, this.fileObjs)
+                .then(() => this.setState(st => ({ sending: false, drawer: st.drawer && { ...st.drawer, step: 3, err: null, sentEmail: true } })))
                 .catch(e => this.setState(st => ({ sending: false, drawer: st.drawer && { ...st.drawer, err: e.message + ' Your draft is still here.' } })));
               return;
             }
