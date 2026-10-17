@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1c1a17">
+  <meta name="description" content="A Cleveland location review of all 682 indexed stills from Uptight (1968), with confidence assessments, full coverage notes and historical sources.">
+  <title>Uptight — Cleveland location review</title>
+  <style>
+    @font-face{font-family:'Courier Prime';font-weight:400;src:url('fonts/font-1.woff2') format('woff2');font-display:swap}
+    @font-face{font-family:'Courier Prime';font-weight:700;src:url('fonts/font-2.woff2') format('woff2');font-display:swap}
+    @font-face{font-family:'IBM Plex Sans';font-weight:400;src:url('fonts/font-3.woff2') format('woff2');font-display:swap}
+    @font-face{font-family:'IBM Plex Sans';font-weight:500;src:url('fonts/font-4.woff2') format('woff2');font-display:swap}
+    @font-face{font-family:'IBM Plex Sans';font-weight:600;src:url('fonts/font-5.woff2') format('woff2');font-display:swap}
+    @font-face{font-family:'Jost';font-weight:800;src:url('fonts/font-7.woff2') format('woff2');font-display:swap}
+    :root{--paper:#f5f0e1;--ground:#ece6d3;--ink:#1c1a17;--muted:#675f50;--rule:#b3aa92;--yellow:#f2c919;--red:#c8321f;--link:#973609}
+    *{box-sizing:border-box}
+    html{scroll-padding-top:24px}
+    body{margin:0;background:var(--ground);color:var(--ink);font:400 16px/1.6 'IBM Plex Sans',Arial,sans-serif}
+    a{color:var(--link);text-underline-offset:.18em;text-decoration-thickness:1px}
+    a:hover{text-decoration-thickness:2px}
+    button,input{font:inherit;border-radius:0}
+    button{cursor:pointer}
+    a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visible,summary:focus-visible{outline:3px solid var(--red);outline-offset:4px}
+    [hidden]{display:none!important}
+    .skip-link{position:absolute;left:16px;top:-100px;z-index:5;padding:10px 16px;background:var(--yellow);color:var(--ink);font-weight:600}
+    .skip-link:focus{top:10px}
+    .masthead{display:flex;align-items:stretch;justify-content:space-between;gap:10px;background:var(--ink);border-bottom:4px solid var(--yellow);min-height:66px}
+    .brand{display:flex;align-items:center;gap:15px;background:var(--yellow);padding:12px 48px 12px 24px;clip-path:polygon(0 0,100% 0,calc(100% - 24px) 100%,0 100%);color:var(--ink);text-decoration:none}
+    .brand:focus-visible{outline-offset:-6px}
+    .brand strong{font:800 34px/1 Jost,sans-serif;letter-spacing:-.05em;color:var(--red);text-transform:uppercase}
+    .brand span{font:700 10px/1.3 'Courier Prime',monospace;letter-spacing:.12em;white-space:nowrap}
+    .masthead nav{display:flex;align-items:center;gap:5px;padding:8px 18px 8px 0;flex-wrap:wrap}
+    .masthead nav a{display:flex;align-items:center;min-height:44px;padding:8px 11px;color:var(--paper);font:700 11px/1.3 'Courier Prime',monospace;letter-spacing:.07em;text-transform:uppercase;text-decoration:none}
+    .masthead nav a:hover{color:var(--yellow);text-decoration:underline}
+    .masthead nav a:first-child{border:1px solid var(--paper)}
+    .page{max-width:1160px;margin:0 auto;padding:50px 36px 70px}
+    .eyebrow{margin:0 0 16px;font:700 11px/1.5 'Courier Prime',monospace;letter-spacing:.13em;text-transform:uppercase}
+    .eyebrow .divider{display:inline-block;margin:0 .7em;color:var(--red)}
+    h1,h2,h3,p{margin-top:0}
+    h1,h2,h3{font-family:Jost,Arial,sans-serif;font-weight:800}
+    h1{font-size:clamp(42px,6.5vw,78px);line-height:.97;letter-spacing:-.045em;text-transform:uppercase;max-width:870px;margin-bottom:22px;text-wrap:balance}
+    h1 span{color:var(--red)}
+    h2{font-size:clamp(26px,3vw,36px);line-height:1.06;letter-spacing:-.03em;margin-bottom:14px;text-wrap:balance}
+    h3{font-size:21px;line-height:1.14;letter-spacing:-.02em;margin-bottom:9px}
+    .hero-intro{max-width:790px;font-size:19px;line-height:1.5;margin-bottom:25px}
+    .scope{max-width:900px;font-size:14px;color:var(--muted);line-height:1.6}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);margin:28px 0 0;border:2px solid var(--ink);background:var(--paper)}
+    .stat{display:flex;align-items:baseline;gap:10px;padding:17px 21px}
+    .stat+.stat{border-left:1px solid var(--ink)}
+    .stat dt{order:2;font:700 10px/1.5 'Courier Prime',monospace;letter-spacing:.06em;text-transform:uppercase}
+    .stat dd{margin:0;font:800 36px/1 Jost,sans-serif;letter-spacing:-.04em}
+    .section{margin-top:52px;padding-top:25px;border-top:3px solid var(--ink);scroll-margin-top:24px}
+    .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px}
+    .section-no{flex-shrink:0;color:var(--muted);font:700 12px 'Courier Prime',monospace}
+    .section-intro{max-width:790px;color:var(--muted);font-size:15px;margin-bottom:22px}
+    .summary-copy{max-width:900px;font-size:17px}
+    .summary-copy p:last-child{margin-bottom:0}
+    .summary-highlights{padding-left:23px;margin:0}
+    .summary-highlights li{padding-left:5px;margin:10px 0}
+    .summary-highlights li::marker{color:var(--red)}
+    .confidence-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;margin:24px 0 0;border:1px solid var(--ink);background:var(--rule)}
+    .confidence-item{padding:18px 20px;background:var(--paper)}
+    .confidence-item:last-child:nth-child(odd){grid-column:1/-1}
+    .confidence-item dt{font:800 18px/1.2 Jost,sans-serif;margin-bottom:8px}
+    .confidence-item dd{margin:0;font-size:14px;line-height:1.6;color:var(--muted)}
+    .register{list-style:none;margin:0;padding:0}
+    .register-item{display:grid;grid-template-columns:minmax(230px,.88fr) minmax(0,1.4fr);gap:28px;padding:23px 0;border-bottom:1px solid var(--rule)}
+    .register-item:first-child{padding-top:0}
+    .register-item h3{margin-bottom:10px}
+    .assessment{display:inline-block;padding:4px 7px;border:1px solid var(--ink);background:var(--yellow);font:700 10px/1.45 'Courier Prime',monospace;letter-spacing:.035em}
+    .assessment[data-confidence="probable"],.assessment[data-confidence="tentative"]{background:transparent;border-style:dashed}
+    .assessment[data-confidence="unplaced"]{background:transparent;color:var(--muted);border-color:var(--muted)}
+    .register-detail{font-size:14px;line-height:1.65}
+    .register-detail p{margin-bottom:10px}
+    .register-detail p:last-child{margin-bottom:0}
+    .register-detail .address{font:400 11px/1.6 'Courier Prime',monospace;color:var(--muted)}
+    .register-detail .confidence-note{color:var(--muted)}
+    .visible-landmark{margin-top:16px;padding:13px 15px;background:var(--paper);border-left:3px solid var(--yellow)}
+    .visible-landmark h4{font:600 15px/1.4 'IBM Plex Sans',sans-serif;margin:0 0 5px}
+    .visible-landmark .landmark-confidence{display:block;margin-bottom:7px;font:700 10px/1.5 'Courier Prime',monospace;color:var(--muted)}
+    .frame-links{display:flex;flex-wrap:wrap;gap:5px 11px;margin:10px 0 0;font:700 11px/1.5 'Courier Prime',monospace}
+    .frame-links a{display:inline-flex;align-items:center;min-height:30px}
+    .source-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+    .source-links a{display:inline-flex;align-items:center;min-height:28px;padding:2px 6px;border:1px solid var(--rule);font:700 10px/1.4 'Courier Prime',monospace;text-decoration:none}
+    .source-links a:hover{border-color:var(--link);text-decoration:underline}
+    .context-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:0}
+    .context-grid .section{margin-top:45px}
+    .context-item{margin-top:20px;padding:18px 20px;background:var(--paper);border-left:4px solid var(--yellow)}
+    .context-item:first-child{margin-top:0}
+    .context-item p{font-size:14px;line-height:1.7;margin-bottom:10px}
+    .context-item p:last-child{margin-bottom:0}
+    .context-item .status{display:block;font:700 10px/1.5 'Courier Prime',monospace;letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;color:var(--muted)}
+    #exclusions .context-item{border-left-color:var(--red)}
+    .search-panel{padding:20px;background:var(--paper);border:2px solid var(--ink);margin:22px 0 16px}
+    .search-panel label{display:block;font:700 12px/1.5 'Courier Prime',monospace;margin-bottom:9px}
+    .search-controls{display:flex;gap:10px}
+    .search-controls input{width:100%;min-width:0;min-height:46px;padding:9px 12px;background:#fffdf7;border:1px solid var(--ink);color:var(--ink);font-size:16px}
+    .button{display:inline-flex;justify-content:center;align-items:center;min-height:44px;padding:9px 14px;border:2px solid var(--ink);background:var(--ink);color:var(--paper);font:700 11px/1.4 'Courier Prime',monospace;letter-spacing:.03em;text-decoration:none;text-align:center}
+    .button:hover{background:var(--yellow);color:var(--ink);text-decoration:none}
+    .button.secondary{background:transparent;color:var(--ink)}
+    .button.secondary:hover{background:var(--yellow)}
+    .search-help{margin:10px 0 0;color:var(--muted);font-size:13px;line-height:1.5}
+    .review-method{margin:20px 0;color:var(--muted);font-size:14px}
+    .review-method summary{cursor:pointer;min-height:36px;padding:6px 0;color:var(--link);font-weight:600}
+    .review-method ul{padding-left:22px;max-width:850px;margin:7px 0 0}
+    .review-method li{margin:8px 0}
+    .results-count{font:700 11px/1.6 'Courier Prime',monospace;margin:17px 0;color:var(--muted)}
+    .frame-result{margin:18px 0 25px;padding:21px 23px;background:var(--yellow);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink)}
+    .frame-result .eyebrow{margin-bottom:9px;letter-spacing:.06em}
+    .frame-result p{font-size:15px;margin-bottom:12px}
+    .frame-result .button{margin-top:4px}
+    .frame-result .assessment{margin-bottom:13px}
+    .frame-result ul{font-size:14px;line-height:1.7;margin:12px 0;padding-left:22px}
+    .frame-result li{margin:9px 0}
+    .table-wrap{width:100%;overflow-x:auto;border:1px solid var(--ink);background:var(--paper)}
+    .coverage-table{width:100%;border-collapse:collapse;text-align:left;table-layout:fixed}
+    .coverage-table caption{text-align:left;padding:12px 17px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--rule)}
+    .coverage-table th,.coverage-table td{padding:17px;vertical-align:top;overflow-wrap:break-word}
+    .coverage-table thead th{background:var(--ink);color:var(--paper);font:700 11px/1.6 'Courier Prime',monospace;letter-spacing:.08em;text-transform:uppercase}
+    .coverage-table .frames-col{width:155px}
+    .coverage-table tbody th{font-weight:400;text-align:left}
+    .coverage-table tbody tr+tr{border-top:1px solid var(--rule)}
+    .coverage-table tbody tr:nth-child(even){background:rgba(28,26,23,.025)}
+    .range-link{display:inline-block;font:700 15px/1.5 'Courier Prime',monospace;min-height:29px}
+    .range-time{display:block;margin-top:3px;font:400 11px/1.5 'Courier Prime',monospace;color:var(--muted)}
+    .coverage-table .scene{display:block;font:600 16px/1.4 'IBM Plex Sans',Arial,sans-serif;margin-bottom:6px}
+    .coverage-table p{font-size:14px;line-height:1.7;margin:0}
+    .frame-notes{margin-top:12px;border-left:3px solid var(--yellow);padding-left:12px}
+    .frame-notes summary{cursor:pointer;color:var(--link);font:700 11px/1.5 'Courier Prime',monospace;min-height:32px;padding:6px 0}
+    .frame-notes ul{padding-left:19px;margin:5px 0 0}
+    .frame-notes li{font-size:13px;line-height:1.65;margin:9px 0}
+    .frame-notes li a{font:700 11px 'Courier Prime',monospace}
+    .empty-state{border:1px dashed var(--muted);padding:24px;background:var(--paper);font-size:15px;margin-top:16px}
+    .sources-list{list-style:none;padding:0;margin:22px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 30px}
+    .source{padding:19px 0;border-top:1px solid var(--rule);scroll-margin-top:24px}
+    .source-id{font:700 11px/1.6 'Courier Prime',monospace;letter-spacing:.06em;color:var(--muted);display:block;margin-bottom:5px}
+    .source a{font:600 15px/1.5 'IBM Plex Sans',Arial,sans-serif;overflow-wrap:anywhere}
+    .source p{font-size:13px;line-height:1.7;color:var(--muted);margin:7px 0 0}
+    .supplementary-sources{margin-top:30px}
+    .supplementary-sources h3{margin-bottom:7px}
+    .supplementary-sources>p{font-size:14px;color:var(--muted);margin-bottom:0}
+    .downloads{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 0}
+    .provenance{margin:20px 0 0;font-size:13px;line-height:1.7;color:var(--muted);overflow-wrap:anywhere}
+    .page-footer{margin-top:46px;padding-top:20px;border-top:1px solid var(--ink);display:flex;justify-content:space-between;gap:25px;align-items:baseline;font:400 11px/1.7 'Courier Prime',monospace;color:var(--muted)}
+    .page-footer p{margin:0}
+    .page-footer a{flex-shrink:0;min-height:36px;padding-top:6px;font-weight:700}
+    .load-state{margin:35px 0;padding:22px;border:1px solid var(--ink);background:var(--paper)}
+    .load-state p{margin-bottom:12px}
+    .load-state p:last-child{margin-bottom:0}
+    noscript p{padding:20px;border:2px solid var(--red);background:var(--paper)}
+    @media(max-width:760px){
+      .masthead{flex-wrap:wrap;gap:0}
+      .brand{padding:12px 38px 12px 18px;min-height:58px}
+      .brand strong{font-size:30px}
+      .masthead nav{padding:5px 8px 5px 4px}
+      .masthead nav a{font-size:10px;padding:8px}
+      .page{padding:35px 22px 40px}
+      .hero-intro{font-size:17px}
+      .stat{flex-direction:column;gap:0;padding:15px}
+      .stat dt{margin-top:5px;font-size:9px}
+      .stat dd{font-size:31px}
+      .register-item{grid-template-columns:minmax(170px,.8fr) minmax(0,1.3fr);gap:19px}
+      .context-grid{grid-template-columns:1fr;gap:0}
+      .sources-list{grid-template-columns:1fr}
+      .coverage-table .frames-col{width:125px}
+      .coverage-table th,.coverage-table td{padding:14px 12px}
+    }
+    @media(max-width:480px){
+      .masthead nav{width:100%;padding:3px 10px}
+      .brand span{font-size:9px}
+      .page{padding:28px 16px 35px}
+      h1{font-size:43px}
+      .eyebrow{font-size:10px}
+      .eyebrow .divider{margin:0 .35em}
+      .stats{margin-top:22px}
+      .stat{padding:12px 10px}
+      .stat dd{font-size:29px}
+      .confidence-list{grid-template-columns:1fr}
+      .confidence-item{padding:16px}
+      .register-item{grid-template-columns:1fr;gap:12px}
+      .register-item h3{font-size:22px}
+      .section{margin-top:38px;padding-top:21px}
+      .search-panel{padding:15px}
+      .search-controls{gap:7px}
+      .search-controls .button{padding:8px 10px}
+      .frame-result{padding:18px;margin-right:4px}
+      .coverage-table .frames-col{width:94px}
+      .coverage-table th,.coverage-table td{padding:13px 10px}
+      .coverage-table caption{padding:12px 10px}
+      .range-link{font-size:13px}
+      .range-time{font-size:9px}
+      .coverage-table .scene{font-size:14px}
+      .coverage-table p{font-size:13px;line-height:1.65}
+      .page-footer{display:block}
+      .page-footer a{display:inline-flex;margin-top:14px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    @media print{
+      body{background:#fff;color:#000;font-size:10pt}
+      .page{padding:0;max-width:none}
+      .masthead,.search-panel,.downloads,.page-footer,.skip-link,.frame-result .button{display:none}
+      h1{font-size:38pt}
+      h2{font-size:22pt}
+      .section{margin-top:24px;break-before:auto}
+      .context-grid,.sources-list{display:block}
+      .source,.register-item,.context-item,tr{break-inside:avoid}
+      .table-wrap{overflow:visible}
+      .coverage-table thead{display:table-header-group}
+      a{color:#000}
+      .stats,.confidence-list,.table-wrap,.context-item{background:#fff}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the review</a>
+  <header class="masthead">
+    <a class="brand" href="./" aria-label="Uptight Cleveland 1968 — return to the film map"><strong>Uptight</strong><span>Cleveland · 1968</span></a>
+    <nav aria-label="Review navigation">
+      <a href="./">← Film map</a>
+      <a href="#coverage">Coverage audit</a>
+      <a href="#sources">Sources</a>
+    </nav>
+  </header>
+
+  <main class="page" id="main" tabindex="-1" aria-busy="true">
+    <header class="hero">
+      <p class="eyebrow">Location review <span class="divider" aria-hidden="true">/</span> <time id="review-date" datetime="2026-10-17">17 October 2026</time></p>
+      <h1>Cleveland,<br><span>located frame by frame.</span></h1>
+      <p class="hero-intro">A review of all 682 indexed stills from <em>Uptight</em> (1968), connecting the film’s Cleveland locations with historical records and photographs.</p>
+      <p class="scope" id="scope">These are selected stills from the film. Assessments distinguish a recognizable landmark, a plausible candidate and a location that remains unplaced.</p>
+    </header>
+
+    <div class="load-state" id="loading-state" role="status"><p>Loading the location review…</p></div>
+    <div class="load-state" id="error-state" role="alert" hidden>
+      <h2>The review could not load</h2>
+      <p>Check your connection and try again. The film map and downloadable records are also available below.</p>
+      <button class="button" id="retry-button" type="button">Try again</button>
+    </div>
+    <noscript><p>JavaScript is needed to display and search the full review. You can still <a href="data/location-review.json" download>download the review data</a>, <a href="data/locations.csv" download>download the frame records</a>, or <a href="./">return to the film map</a>.</p></noscript>
+
+    <div id="review-content" hidden>
+      <dl class="stats" aria-label="Review coverage">
+        <div class="stat"><dt>Indexed stills</dt><dd id="still-count">682</dd></div>
+        <div class="stat"><dt>Coverage ranges</dt><dd id="range-count">102</dd></div>
+        <div class="stat"><dt>Report sources</dt><dd id="source-count">29</dd></div>
+      </dl>
+
+      <section class="section" id="findings" aria-labelledby="findings-heading">
+        <div class="section-head"><h2 id="findings-heading">What the review establishes</h2><span class="section-no" aria-hidden="true">01</span></div>
+        <div class="summary-copy" id="summary"></div>
+        <dl class="confidence-list" id="confidence-list" aria-label="How confidence is assessed"></dl>
+        <details class="review-method"><summary>Scope and limits of the review</summary><ul id="review-caveats"></ul></details>
+      </section>
+
+      <section class="section" id="locations" aria-labelledby="locations-heading">
+        <div class="section-head"><h2 id="locations-heading">The Cleveland location register</h2><span class="section-no" aria-hidden="true">02</span></div>
+        <p class="section-intro">Follow the frame links to inspect the film stills. Each assessment keeps the remaining uncertainty visible.</p>
+        <ul class="register" id="location-register"></ul>
+      </section>
+
+      <div class="context-grid">
+        <section class="section" id="documented-areas" aria-labelledby="documented-heading">
+          <h2 id="documented-heading">Documented filming areas</h2>
+          <p class="section-intro">Production evidence can identify an area before an individual still has been matched to it.</p>
+          <div id="documented-list"></div>
+        </section>
+        <section class="section" id="exclusions" aria-labelledby="exclusions-heading">
+          <h2 id="exclusions-heading">Geographic exclusions</h2>
+          <p class="section-intro">These sequences belong outside the Cleveland location register.</p>
+          <div id="exclusion-list"></div>
+        </section>
+      </div>
+
+      <section class="section" id="coverage" aria-labelledby="coverage-heading">
+        <div class="section-head"><h2 id="coverage-heading">Every indexed still, accounted for</h2><span class="section-no" aria-hidden="true">03</span></div>
+        <p class="section-intro" id="coverage-method">Contiguous ranges account for all 682 stills. Repeated interiors and close-ups are grouped when their geographic result is the same. “Unplaced” records an outcome of inspection.</p>
+        <div class="search-panel" role="search" aria-label="Search the coverage review">
+          <label for="coverage-search">Find a frame, place, scene or clue</label>
+          <div class="search-controls">
+            <input id="coverage-search" name="coverage-search" type="search" placeholder="Try 63, Eagle Avenue, or bowling" aria-describedby="search-help" autocomplete="off" spellcheck="false">
+            <button class="button secondary" id="clear-search" type="button">Clear</button>
+          </div>
+          <p class="search-help" id="search-help">Enter an exact frame number or a phrase. Search includes the individual frame notes as well as the coverage ranges.</p>
+        </div>
+        <p class="results-count" id="results-count" role="status" aria-live="polite" aria-atomic="true"></p>
+        <section class="frame-result" id="frame-result" aria-labelledby="frame-result-heading" hidden></section>
+        <div class="table-wrap" id="coverage-table-wrap">
+          <table class="coverage-table">
+            <caption>Frame ranges link to their first still in the film map. Times refer to the website’s version of the film.</caption>
+            <colgroup><col class="frames-col"><col></colgroup>
+            <thead><tr><th scope="col">Frames / time</th><th scope="col">Scene / review outcome</th></tr></thead>
+            <tbody id="coverage-rows"></tbody>
+          </table>
+        </div>
+        <p class="empty-state" id="empty-state" hidden></p>
+      </section>
+
+      <section class="section" id="sources" aria-labelledby="sources-heading">
+        <div class="section-head"><h2 id="sources-heading">Historical evidence &amp; comparison images</h2><span class="section-no" aria-hidden="true">04</span></div>
+        <p class="section-intro" id="source-method">Sources support the particular facts described. Film-location assessments remain the visual inferences stated in the review. Source links open in a new tab.</p>
+        <ol class="sources-list" id="sources-list"></ol>
+        <div class="supplementary-sources" id="supplementary-sources" hidden>
+          <h3>Supplementary map references</h3>
+          <p>These references support map placement and are additional to the report’s 29 sources.</p>
+          <ol class="sources-list" id="supplementary-sources-list"></ol>
+        </div>
+      </section>
+    </div>
+
+    <section class="section" id="records" aria-labelledby="records-heading">
+      <h2 id="records-heading">Take the records with you</h2>
+      <div class="downloads">
+        <a class="button" href="data/location-review.json" download>Download review · JSON</a>
+        <a class="button secondary" href="data/locations.csv" download>Download frames · CSV</a>
+      </div>
+      <p class="provenance" id="provenance">Based on <cite>Uptight_Cleveland_Location_Review(1).pdf</cite>, prepared 17 October 2026.</p>
+    </section>
+
+    <footer class="page-footer">
+      <p>Uptight · Cleveland · 1968<br>Locations, evidence and open questions.</p>
+      <a href="./">← Return to the film map</a>
+    </footer>
+  </main>
+  <script>
+    'use strict';
+
+    // Keep the search rules independent of DOM rendering.
+    function normalizeReviewText(value) {
+      return String(value == null ? '' : value).normalize('NFKD')
+        .replace(/[\u0300-\u036f]/g, '').replace(/[–—]/g, '-')
+        .toLowerCase().replace(/\s+/g, ' ').trim();
+    }
+
+    function parseFrameQuery(query) {
+      const match = String(query).trim().match(/^(?:frame\s*|#)?(\d+)$/i);
+      return match ? Number(match[1]) : null;
+    }
+
+    function reviewNoteText(note) {
+      const findings = Array.isArray(note.findings) ? note.findings : [];
+      return normalizeReviewText([
+        note.scene, note.observation, note.location, note.confidence,
+        note.classification, note.timestamp,
+        ...(note.sourceIds || []), ...(note.siteIds || []), ...(note.caveats || []),
+        ...findings.flatMap(finding => [finding.name, finding.confidenceLabel, finding.connection, ...(finding.sourceIds || [])])
+      ].filter(Boolean).join(' '));
+    }
+
+    function buildCoverageIndex(review) {
+      const notes = Object.entries(review.frameNotes || {}).map(([frame, note]) => ({
+        frame: Number(frame), note, text: reviewNoteText(note)
+      })).sort((left, right) => left.frame - right.frame);
+      return review.coverage.map(range => {
+        const rangeNotes = notes.filter(entry => entry.frame >= range.firstFrame && entry.frame <= range.lastFrame);
+        return {
+          range,
+          notes: rangeNotes,
+          text: normalizeReviewText([
+            range.firstFrame + '-' + range.lastFrame, range.startTime, range.endTime,
+            range.scene, range.observation, ...(range.sourceIds || []),
+            ...rangeNotes.map(entry => entry.text)
+          ].join(' '))
+        };
+      });
+    }
+
+    function searchCoverage(index, rawQuery) {
+      const query = normalizeReviewText(rawQuery);
+      const frame = parseFrameQuery(rawQuery);
+      const matches = index.filter(entry => frame !== null
+        ? Number.isSafeInteger(frame) && frame >= entry.range.firstFrame && frame <= entry.range.lastFrame
+        : !query || entry.text.includes(query)
+      ).map(entry => ({
+        ...entry,
+        matchingNotes: frame !== null
+          ? entry.notes.filter(note => note.frame === frame)
+          : query ? entry.notes.filter(note => note.text.includes(query)) : []
+      }));
+      return { matches, frame, query };
+    }
+
+    (function () {
+      const byId = id => document.getElementById(id);
+      const state = { review: null, index: [], sources: new Map(), loading: false };
+
+      function element(tag, className, text) {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined && text !== null) node.textContent = String(text);
+        return node;
+      }
+
+      function addParagraph(parent, text, className) {
+        if (text) parent.appendChild(element('p', className || '', text));
+      }
+
+      function addUniqueParagraphs(parent, texts, className) {
+        const seen = new Set();
+        texts.filter(Boolean).forEach(text => {
+          const key = normalizeReviewText(text);
+          if (!seen.has(key)) {
+            addParagraph(parent, text, className);
+            seen.add(key);
+          }
+        });
+      }
+
+      function frameLink(frame, label) {
+        const link = element('a', '', label || 'Frame ' + frame);
+        link.href = './#shot=' + Number(frame);
+        return link;
+      }
+
+      function addFrameLinks(parent, frames) {
+        const uniqueFrames = [...new Set((frames || []).map(Number))].filter(Number.isSafeInteger);
+        if (!uniqueFrames.length) return;
+        const links = element('div', 'frame-links');
+        uniqueFrames.forEach(frame => links.appendChild(frameLink(frame)));
+        parent.appendChild(links);
+      }
+
+      function addSourceLinks(parent, ids) {
+        const uniqueIds = [...new Set(ids || [])].filter(id => state.sources.has(id));
+        if (!uniqueIds.length) return;
+        const links = element('div', 'source-links');
+        uniqueIds.forEach(id => {
+          const link = element('a', '', id);
+          link.href = '#source-' + id;
+          link.setAttribute('aria-label', 'Source ' + id + ': ' + state.sources.get(id).title);
+          links.appendChild(link);
+        });
+        parent.appendChild(links);
+      }
+
+      function confidenceBadge(label) {
+        const badge = element('span', 'assessment', label);
+        const normalized = normalizeReviewText(label);
+        badge.dataset.confidence = normalized.includes('tentative') ? 'tentative'
+          : normalized.includes('probable') ? 'probable'
+          : normalized.includes('unplaced') ? 'unplaced' : 'strong';
+        return badge;
+      }
+
+      function renderRegister(review) {
+        const fragment = document.createDocumentFragment();
+        (review.locationRegister || []).forEach(location => {
+          const item = element('li', 'register-item');
+          const heading = element('div');
+          heading.appendChild(element('h3', '', location.name));
+          if (location.confidenceLabel) heading.appendChild(confidenceBadge(location.confidenceLabel));
+          addFrameLinks(heading, location.frames);
+          const detail = element('div', 'register-detail');
+          addParagraph(detail, location.address, 'address');
+          addUniqueParagraphs(detail, [location.connection, location.confidenceNote]);
+          addParagraph(detail, location.pinNote, 'confidence-note');
+          addSourceLinks(detail, location.sourceIds);
+          (location.visibleLandmarks || []).forEach(landmark => {
+            const visible = element('div', 'visible-landmark');
+            visible.appendChild(element('h4', '', landmark.name));
+            if (landmark.confidenceLabel) visible.appendChild(element('span', 'landmark-confidence', landmark.confidenceLabel));
+            addParagraph(visible, landmark.connection);
+            addFrameLinks(visible, landmark.frames);
+            addSourceLinks(visible, landmark.sourceIds);
+            detail.appendChild(visible);
+          });
+          item.append(heading, detail);
+          fragment.appendChild(item);
+        });
+        byId('location-register').replaceChildren(fragment);
+      }
+
+      function renderContext(review) {
+        const documented = document.createDocumentFragment();
+        (review.documentedLocations || []).forEach(location => {
+          const item = element('article', 'context-item');
+          item.appendChild(element('span', 'status', location.confidenceLabel || 'Documented filming area; no frame matched'));
+          item.appendChild(element('h3', '', location.name));
+          addUniqueParagraphs(item, [location.connection, location.confidenceNote]);
+          addSourceLinks(item, location.sourceIds);
+          documented.appendChild(item);
+        });
+        byId('documented-list').replaceChildren(documented);
+
+        const exclusions = document.createDocumentFragment();
+        (review.geographicExclusions || []).forEach(exclusion => {
+          const item = element('article', 'context-item');
+          const range = exclusion.firstFrame === exclusion.lastFrame
+            ? String(exclusion.firstFrame) : exclusion.firstFrame + '–' + exclusion.lastFrame;
+          item.appendChild(element('span', 'status', (exclusion.assessment || 'Outside Cleveland') + ' · Frames ' + range));
+          item.appendChild(element('h3', '', exclusion.name));
+          addParagraph(item, exclusion.connection);
+          addFrameLinks(item, exclusion.frames);
+          addSourceLinks(item, exclusion.sourceIds);
+          exclusions.appendChild(item);
+        });
+        byId('exclusion-list').replaceChildren(exclusions);
+      }
+
+      function safeExternalUrl(value) {
+        try {
+          const url = new URL(value);
+          return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : null;
+        } catch (error) {
+          return null;
+        }
+      }
+
+      function renderSources(review) {
+        const reportSources = document.createDocumentFragment();
+        const supplementarySources = document.createDocumentFragment();
+        let supplementaryCount = 0;
+        review.sources.forEach(source => {
+          const item = element('li', 'source');
+          item.id = 'source-' + source.id;
+          item.appendChild(element('span', 'source-id', source.id));
+          const url = safeExternalUrl(source.url);
+          const title = element(url ? 'a' : 'span', '', source.title);
+          if (url) {
+            title.href = url;
+            title.target = '_blank';
+            title.rel = 'noopener noreferrer';
+          }
+          item.appendChild(title);
+          addParagraph(item, source.note);
+          if (/^S\d+$/.test(source.id)) reportSources.appendChild(item);
+          else {
+            supplementarySources.appendChild(item);
+            supplementaryCount += 1;
+          }
+        });
+        byId('sources-list').replaceChildren(reportSources);
+        byId('supplementary-sources-list').replaceChildren(supplementarySources);
+        byId('supplementary-sources').hidden = !supplementaryCount;
+      }
+
+      function renderExactFrame(frame, matches) {
+        const panel = byId('frame-result');
+        panel.replaceChildren();
+        const record = state.review.frameNotes[String(frame)];
+        if (frame === null || !matches.length || !record) {
+          panel.hidden = true;
+          return;
+        }
+        const label = ['Frame ' + frame, record.timestamp, record.classification].filter(Boolean).join(' · ');
+        panel.appendChild(element('p', 'eyebrow', label));
+        const heading = element('h3', '', record.location || record.scene || 'Frame ' + frame);
+        heading.id = 'frame-result-heading';
+        panel.appendChild(heading);
+        if (record.confidence) panel.appendChild(confidenceBadge(record.confidence));
+        addParagraph(panel, record.observation);
+        const distinctDetails = new Set([normalizeReviewText(record.observation)]);
+        const findings = (record.findings || []).filter(finding => finding.connection);
+        if (findings.length) {
+          const list = element('ul');
+          findings.forEach(finding => {
+            const text = finding.connection;
+            const key = normalizeReviewText(text);
+            if (distinctDetails.has(key)) return;
+            const item = element('li');
+            item.appendChild(element('strong', '', finding.name + (finding.confidenceLabel ? ' · ' + finding.confidenceLabel : '') + '. '));
+            item.appendChild(document.createTextNode(text));
+            list.appendChild(item);
+            distinctDetails.add(key);
+          });
+          if (list.childElementCount) panel.appendChild(list);
+        }
+        (record.caveats || []).forEach(caveat => {
+          const key = normalizeReviewText(caveat);
+          if (!distinctDetails.has(key)) {
+            addParagraph(panel, caveat);
+            distinctDetails.add(key);
+          }
+        });
+        addSourceLinks(panel, record.sourceIds);
+        const link = frameLink(frame, 'Open frame ' + frame + ' in the map →');
+        link.className = 'button';
+        panel.appendChild(link);
+        panel.hidden = false;
+      }
+
+      function addMatchingNotes(parent, notes) {
+        if (!notes.length) return;
+        const details = element('details', 'frame-notes');
+        details.appendChild(element('summary', '', notes.length + ' matching frame note' + (notes.length === 1 ? '' : 's')));
+        const list = element('ul');
+        notes.forEach(entry => {
+          const item = element('li');
+          item.appendChild(frameLink(entry.frame));
+          item.appendChild(document.createTextNode(' · ' + (entry.note.location || entry.note.scene || '') + ' — ' + (entry.note.observation || '')));
+          const extraDetails = (entry.note.findings || []).map(finding => finding.connection).concat(entry.note.caveats || []);
+          const uniqueDetails = [...new Set(extraDetails.filter(Boolean))].filter(text => text !== entry.note.observation);
+          uniqueDetails.forEach(text => addParagraph(item, text));
+          addSourceLinks(item, entry.note.sourceIds);
+          list.appendChild(item);
+        });
+        details.appendChild(list);
+        parent.appendChild(details);
+      }
+
+      function renderCoverage() {
+        if (!state.review) return;
+        const rawQuery = byId('coverage-search').value;
+        const result = searchCoverage(state.index, rawQuery);
+        const fragment = document.createDocumentFragment();
+        result.matches.forEach(entry => {
+          const range = entry.range;
+          const row = element('tr');
+          row.id = 'coverage-' + range.firstFrame;
+          const frames = element('th');
+          frames.scope = 'row';
+          const label = range.firstFrame === range.lastFrame ? String(range.firstFrame) : range.firstFrame + '–' + range.lastFrame;
+          const link = frameLink(range.firstFrame, label);
+          link.className = 'range-link';
+          link.setAttribute('aria-label', 'Frames ' + label + ': open frame ' + range.firstFrame + ' in the map');
+          frames.appendChild(link);
+          frames.appendChild(element('span', 'range-time', range.startTime));
+          const outcome = element('td');
+          outcome.appendChild(element('span', 'scene', range.scene));
+          addParagraph(outcome, range.observation);
+          addSourceLinks(outcome, range.sourceIds);
+          if (result.frame === null && result.query) addMatchingNotes(outcome, entry.matchingNotes);
+          row.append(frames, outcome);
+          fragment.appendChild(row);
+        });
+        byId('coverage-rows').replaceChildren(fragment);
+        renderExactFrame(result.frame, result.matches);
+        const total = state.index.length;
+        const count = result.matches.length;
+        const countText = result.frame !== null
+          ? 'Frame ' + result.frame + ' · ' + count + ' coverage range' + (count === 1 ? '' : 's') + ' found'
+          : result.query ? count + ' of ' + total + ' coverage ranges shown'
+          : total + ' coverage ranges · all ' + state.review.scope.indexedFrames + ' indexed stills';
+        byId('results-count').textContent = countText;
+        byId('coverage-table-wrap').hidden = count === 0;
+        const empty = byId('empty-state');
+        empty.hidden = count > 0;
+        if (!count) {
+          empty.textContent = result.frame !== null
+            ? 'No indexed still matches that frame number. The review covers frames 1–' + state.review.scope.indexedFrames + '.'
+            : 'No coverage range matches “' + rawQuery.trim() + '”. Try a shorter phrase, another clue, or an exact frame number.';
+        }
+      }
+
+      function hashFrame() {
+        const match = window.location.hash.match(/^#frame=(\d+)$/);
+        return match ? match[1] : null;
+      }
+
+      function applyHashFrame(shouldScroll) {
+        const frame = hashFrame();
+        if (frame === null) return;
+        byId('coverage-search').value = frame;
+        renderCoverage();
+        if (shouldScroll) byId('coverage').scrollIntoView({ block: 'start' });
+      }
+
+      function renderReview(review) {
+        state.review = review;
+        state.index = buildCoverageIndex(review);
+        state.sources = new Map(review.sources.map(source => [source.id, source]));
+        const reviewDate = new Date(review.reviewDate + 'T12:00:00Z');
+        if (!Number.isNaN(reviewDate.getTime())) {
+          byId('review-date').dateTime = review.reviewDate;
+          byId('review-date').textContent = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(reviewDate);
+        }
+        byId('scope').textContent = review.scope.statement;
+        byId('still-count').textContent = review.scope.indexedFrames;
+        byId('range-count').textContent = review.coverage.length;
+        byId('source-count').textContent = review.sources.filter(source => /^S\d+$/.test(source.id)).length;
+        const highlights = element('ul', 'summary-highlights');
+        (review.summary || []).forEach(text => highlights.appendChild(element('li', '', text)));
+        byId('summary').replaceChildren(highlights);
+        const definitions = document.createDocumentFragment();
+        (review.confidenceDefinitions || []).forEach(definition => {
+          const item = element('div', 'confidence-item');
+          item.append(element('dt', '', definition.label), element('dd', '', definition.description));
+          definitions.appendChild(item);
+        });
+        byId('confidence-list').replaceChildren(definitions);
+        const caveats = document.createDocumentFragment();
+        (review.scope.caveats || []).forEach(text => caveats.appendChild(element('li', '', text)));
+        byId('review-caveats').replaceChildren(caveats);
+        byId('coverage-method').textContent = 'The review groups all ' + review.scope.indexedFrames + ' indexed stills into ' + review.coverage.length + ' contiguous ranges, from ' + review.scope.firstTimestamp + ' to ' + review.scope.lastTimestamp + '. Repeated interiors and close-ups share a range when their geographic result is the same. “Unplaced” records an outcome of inspection.';
+        renderRegister(review);
+        renderContext(review);
+        renderSources(review);
+        const provenance = byId('provenance');
+        provenance.replaceChildren(document.createTextNode('Based on '), element('cite', '', review.sourceDocument.title), document.createTextNode(' · ' + review.sourceDocument.pages + ' pages · Prepared ' + byId('review-date').textContent + '.'));
+        renderCoverage();
+        byId('review-content').hidden = false;
+        applyHashFrame(true);
+      }
+
+      function validateReview(review) {
+        if (!review || !review.scope || !Array.isArray(review.coverage) || !review.coverage.length || !Array.isArray(review.sources) || !review.frameNotes || !review.sourceDocument) throw new Error('Incomplete review data');
+        if (!review.coverage.every(range => Number.isSafeInteger(range.firstFrame) && Number.isSafeInteger(range.lastFrame) && range.firstFrame > 0 && range.lastFrame >= range.firstFrame)) throw new Error('Invalid coverage ranges');
+      }
+
+      async function loadReview() {
+        if (state.loading) return;
+        state.loading = true;
+        byId('main').setAttribute('aria-busy', 'true');
+        byId('loading-state').hidden = false;
+        byId('error-state').hidden = true;
+        try {
+          const response = await fetch('data/location-review.json', { cache: 'no-cache' });
+          if (!response.ok) throw new Error('Review request failed');
+          const review = await response.json();
+          validateReview(review);
+          renderReview(review);
+        } catch (error) {
+          byId('review-content').hidden = true;
+          byId('error-state').hidden = false;
+        } finally {
+          state.loading = false;
+          byId('loading-state').hidden = true;
+          byId('main').setAttribute('aria-busy', 'false');
+        }
+      }
+
+      byId('coverage-search').addEventListener('input', renderCoverage);
+      byId('clear-search').addEventListener('click', function () {
+        byId('coverage-search').value = '';
+        if (hashFrame() !== null) history.replaceState(null, '', window.location.pathname + window.location.search + '#coverage');
+        renderCoverage();
+        byId('coverage-search').focus();
+      });
+      byId('retry-button').addEventListener('click', loadReview);
+      window.addEventListener('hashchange', function () { if (state.review) applyHashFrame(true); });
+      loadReview();
+    }());
+  </script>
+</body>
+</html>
