@@ -1,0 +1,34 @@
+/* Map gestures belong to the drawing surface; panels retain native scrolling. */
+.u-map-panel{pointer-events:auto;touch-action:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#675f50 #e6dfca;scrollbar-gutter:stable;cursor:auto}
+.u-map-panel::-webkit-scrollbar{width:9px;height:9px}
+.u-map-panel::-webkit-scrollbar-thumb{background:#8a8068;border:2px solid #e6dfca;border-radius:8px}
+.u-map-panel::-webkit-scrollbar-track{background:#e6dfca}
+.u-scroll-x{overscroll-behavior-x:contain;touch-action:pan-x pan-y pinch-zoom}
+.u-map-toolbar{display:flex;flex:1 0 100%;min-width:0;flex-wrap:wrap;align-items:center;gap:4px 14px;box-sizing:border-box;border-top:1px solid #514b3f;padding:6px 14px}
+.u-hd .u-map-toolbar .u-nav{flex:0 1 auto;margin:0;padding:0!important;border:0;justify-content:flex-start}
+.u-location-search{position:relative;flex:1 1 270px;min-width:0;display:flex;align-items:center;gap:9px;z-index:8;touch-action:auto}
+.u-location-search>label{color:#f2c919;font:700 10px 'Courier Prime',monospace;letter-spacing:.06em;white-space:nowrap}
+.u-search-field{display:flex;flex:1;min-width:0;gap:0}
+.u-search-field input{box-sizing:border-box;width:100%;min-width:0;min-height:38px;border:2px solid #b3aa92;border-right:0;border-radius:0;background:#f5f0e1;color:#1c1a17;padding:7px 9px;font:14px 'IBM Plex Sans',Arial,sans-serif}
+.u-search-field button{flex:none;min-height:38px;border:2px solid #f2c919;border-radius:0;background:#f2c919;color:#1c1a17;padding:6px 12px;font:800 13px Jost,sans-serif}
+.u-search-field button:disabled{opacity:.65;cursor:wait}
+.u-search-results{position:absolute;left:0;right:0;top:calc(100% + 8px);min-width:0;max-height:min(360px,55vh);overflow:auto;box-sizing:border-box;background:#f5f0e1;color:#1c1a17;border:2px solid #1c1a17;box-shadow:4px 4px 0 #1f5a96;padding:12px;display:grid;gap:10px}
+.u-search-results p{margin:0;font:12px/1.45 'IBM Plex Sans',Arial,sans-serif}
+.u-search-results .u-search-status{font-weight:600}
+.u-search-results .u-search-error{color:#973609}
+.u-search-results ul{list-style:none;display:grid;gap:6px;margin:0;padding:0}
+.u-search-results li button{display:grid;gap:4px;text-align:left;width:100%;border:1px solid #b3aa92;background:#ece6d3;color:#1c1a17;padding:10px;font:13px/1.35 'IBM Plex Sans',Arial,sans-serif;cursor:pointer}
+.u-search-results li button:hover{border-color:#1f5a96;background:#fff8e8}
+.u-search-results li small{font:10px 'Courier Prime',monospace;color:#675f50}
+.u-search-results footer{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid #b3aa92;padding-top:8px;font:10px/1.5 'Courier Prime',monospace}
+.u-quiet-button{background:none;border:1px solid #675f50;color:#1c1a17;padding:5px 8px;font:700 10px 'Courier Prime',monospace;cursor:pointer}
+.u-found-pin{position:absolute;left:392px;right:76px;top:14px;max-width:430px;max-height:min(260px,45%);overflow:auto;box-sizing:border-box;z-index:3;padding:12px;background:#f5f0e1;border:2px solid #1f5a96;box-shadow:3px 3px 0 #1c1a17;display:grid;gap:9px}
+.u-found-pin header{display:flex;justify-content:space-between;align-items:center;gap:12px;font:700 10px 'Courier Prime',monospace;letter-spacing:.08em;color:#1f5a96}
+.u-found-pin h2{font:600 14px/1.35 'IBM Plex Sans',Arial,sans-serif;margin:0}
+.u-found-pin p{font:11px/1.4 'Courier Prime',monospace;margin:0;color:#675f50}
+.u-found-actions{display:flex;flex-wrap:wrap;gap:7px}
+.u-found-actions button{font:700 11px 'Courier Prime',monospace;padding:9px 10px;border:1.5px solid #1f5a96;background:#1f5a96;color:#fff;cursor:pointer}
+.u-found-actions button+button{background:none;color:#1f5a96}
+.u-road-name{font:10px 'IBM Plex Sans',Arial,sans-serif;fill:#675f50;paint-order:stroke;stroke:#f5f0e1;stroke-width:3px;stroke-linejoin:round;pointer-events:none}
+@media(max-width:1050px){.u-map-toolbar{gap:7px}.u-location-search{flex-basis:100%}.u-hd .u-map-toolbar .u-nav{flex:1 1 100%;justify-content:flex-start}}
+@media(max-width:759px){.u-hd .u-map-toolbar{order:4;padding:6px 10px}.u-location-search{gap:6px}.u-location-search>label{font-size:9px}.u-search-field input{font-size:16px;padding:6px}.u-search-field button{padding:6px 10px}.u-search-results{max-height:48vh}.u-map-controls{grid-template-columns:repeat(3,44px);gap:4px!important;right:10px!important;top:10px!important}.u-map-controls>button{min-width:44px!important;padding:0 3px!important}.u-found-pin{left:10px;right:10px;top:114px;max-height:min(210px,calc(100% - 190px));padding:10px;gap:7px}.u-found-actions button{padding:8px;font-size:10px}}

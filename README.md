@@ -8,6 +8,58 @@ The public map keeps votes, flags and camera drafts in each visitor's browser.
 The header labels this **VOTES · THIS BROWSER**. Public evidence contributions
 have a separate, durable record in this repository's GitHub Issues.
 
+## Map navigation
+
+The **Find a spot** field accepts a modern address/place name or decimal
+latitude, longitude, such as `41.494325, -81.701799`. Submit with **Go** or
+Enter. Address results stay within the Cleveland research area; coordinates
+are resolved in the browser without an address-service request. Unambiguous
+longitude-first pairs are accepted too.
+
+Selecting a result centers a blue temporary pin while retaining the selected
+film still. **Use pin for frame …** opens the evidence draft with that actual
+frame ID, the proposed coordinates and the entered address. **Adjust on map**
+lets the visitor choose a nearby point through the existing pin proposal flow.
+A lookup does not create a verified film location or submit an evidence record.
+**Fit** returns to the landmark overview; **Area** shows the research boundary.
+
+The search and geographic context share the research rectangle
+`[-81.74, 41.43, -81.57, 41.56]` in west/south/east/north order. It covers the
+Flats, southern industrial valley, Hough and Glenville with surrounding context.
+It is a project research extent, not the Cleveland municipal boundary. Direct
+map pin proposals are checked against the same boundary.
+
+Map drag, wheel and touch gestures are attached only to the map SVG. Details,
+film-viewer and evidence panels retain native scrolling, contain overscroll,
+and accept keyboard focus. Keyboard shortcuts respect panels and editing
+controls. On phones, the explicit sheet handle expands/collapses the details;
+scrolling the text does not change the scene or sheet state.
+
+### Street and water context
+
+`data/cleveland-context.json` bundles expanded **January 2026** modern street
+and water geometry from [Census TIGERweb](https://tigerweb.geo.census.gov/tigerwebmain/TIGERweb_main.html).
+The file retains source URLs, data date, public-domain attribution and the
+exact research bounds. It includes 4,696 source road records grouped into
+2,402 drawing features and 34 water polygons. Separate street segments stay
+separate; labels appear on visible segments when zoomed in. Water rings follow
+D3's spherical winding convention. Original map geometry remains a loading
+fallback. The modern background supplies geographic context, including changed
+roads, and does not reconstruct the 1968 street layout.
+
+### Address search service
+
+`assets/map-navigation.js` provides local coordinate parsing and a configurable
+[Photon](https://github.com/komoot/photon#demo-server) address client. The public
+service permits reasonable project use, may throttle requests, and does not
+promise availability. The UI attributes Photon and OpenStreetMap contributors.
+Requests run only after explicit submission, use the API's hard bounding box,
+check every returned point locally, and apply a submit debounce, a minimum
+one-second request interval, an in-memory cache and an eight-second timeout.
+Typing cancels stale work without running autocomplete requests. Coordinates
+remain usable if address search fails. No API key or live map tile service is
+needed. Higher traffic should use a separately configured search service.
+
 ## Location review
 
 `location-review.html` presents the 17 October 2026 review, including searchable
@@ -120,7 +172,9 @@ node --test --test-isolation=none tests/*.cjs
 ```
 
 They cover selected-frame preservation, unresolved stills, proposed map points,
-local camera drafts, the optional local-server upload frame, GitHub draft and
+local camera drafts, native panel/map gesture boundaries, keyboard and touch
+focus, bounded address/coordinate searches, temporary pin handoff, the optional
+local-server upload frame, GitHub draft and
 review-status handling, safe public record rendering, and recovery from stalled
 requests. Research-page checks cover comparison navigation, image annotations,
 source links, image dialogs and the five question-specific contribution routes.
