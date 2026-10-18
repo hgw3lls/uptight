@@ -113,6 +113,28 @@ test('saving a camera direction keeps it a local draft and opens supporting evid
   assert.match(url.searchParams.get('note'), /unverified/i);
 });
 
+test('published owner reviews are visible without converting approval into identification confidence', () => {
+  const {c} = make();
+  c.state.data = JSON.parse(JSON.stringify(data));
+  c.state.sel = 'third';
+  const site = c.state.data.sites.find(item => item.id === 'third');
+  const before = {coord: site.coord, status: site.status, confidence: site.confidenceLabel};
+  site.reviewedContributions = [
+    {issueNumber: 1, issueUrl: 'javascript:alert(1)', reviewDate: '2026-10-18', decision: 'approved', mode: 'evidence', publicNote: 'Historical source accepted; precise camera position remains unresolved.'},
+    {issueNumber: 2, reviewDate: '2026-10-19', decision: 'disputed', mode: 'location', publicNote: 'This is not an approved map update.'},
+    {issueNumber: '3oops', decision: 'approved', publicNote: 'Invalid issue number'},
+    {issueNumber: 4, decision: 'approved', publicNote: ''}
+  ];
+  const selected = c.renderVals().sel;
+  assert.equal(selected.hasReviews, true);
+  assert.equal(selected.reviews.length, 1);
+  assert.equal(selected.reviews[0].url, 'https://github.com/hgw3lls/uptight/issues/1');
+  assert.equal(selected.reviews[0].note, site.reviewedContributions[0].publicNote);
+  assert.match(selected.reviews[0].label, /2026-10-18.*evidence/);
+  assert.deepEqual({coord: site.coord, status: site.status, confidence: site.confidenceLabel}, before);
+  assert.equal(site.coord, null);
+});
+
 test('optional local-server uploads retain the actual selected frame', async () => {
   const {c, requests} = make();
   const site = data.sites.find(item => item.id === 'eagle');

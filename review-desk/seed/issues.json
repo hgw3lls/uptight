@@ -1,0 +1,79 @@
+{
+  "snapshotAt": "2026-10-18T16:22:21.383816Z",
+  "issues": [
+    {
+      "url": "https://api.github.com/repos/hgw3lls/uptight/issues/1",
+      "repository_url": "https://api.github.com/repos/hgw3lls/uptight",
+      "labels_url": "https://api.github.com/repos/hgw3lls/uptight/issues/1/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hgw3lls/uptight/issues/1/comments",
+      "events_url": "https://api.github.com/repos/hgw3lls/uptight/issues/1/events",
+      "html_url": "https://github.com/hgw3lls/uptight/issues/1",
+      "id": 5911320087,
+      "node_id": "I_kwDOVIo77s8AAAABYFeWFw",
+      "number": 1,
+      "title": "[Location evidence] Frame 658 — New candidate",
+      "user": {
+        "login": "hgw3lls",
+        "id": 21956260,
+        "node_id": "MDQ6VXNlcjIxOTU2MjYw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/21956260?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hgw3lls",
+        "html_url": "https://github.com/hgw3lls",
+        "followers_url": "https://api.github.com/users/hgw3lls/followers",
+        "following_url": "https://api.github.com/users/hgw3lls/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hgw3lls/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hgw3lls/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hgw3lls/subscriptions",
+        "organizations_url": "https://api.github.com/users/hgw3lls/orgs",
+        "repos_url": "https://api.github.com/users/hgw3lls/repos",
+        "events_url": "https://api.github.com/users/hgw3lls/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hgw3lls/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "open",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 0,
+      "created_at": "2026-10-18T15:52:21Z",
+      "updated_at": "2026-10-18T15:52:21Z",
+      "closed_at": null,
+      "assignee": null,
+      "author_association": "OWNER",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "### Location or area\n\nFormer Clark Avenue Bridge / steelworks area\n\n### Frame number\n\n658\n\n### Research question\n\n_No response_\n\n### Contribution type\n\nNew candidate\n\n### Evidence statement\n\nFormer Clark Avenue Bridge is the better candidate for frames 653/654/657/658. Its relationship to the industrial works and its bridge form are compatible with the historical County Engineer photograph. A 1935 image taken from Clark Avenue also documents neighboring furnaces [S12, S29].\n\n### Source date\n\n1935\n\n### Attribution and catalogue reference\n\nA 1935 image taken from Clark Avenue also documents neighboring furnaces\n\n### Source links\n\nhttps://clevelandmemory.contentdm.oclc.org/digital/collection/cca/id/126/\nhttps://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/108/\n\n### Proposed address or map point\n\n41.470289, -81.675500\nUser-proposed point (unverified): latitude 41.470289, longitude -81.675500. This does not establish a landmark footprint or camera position.\n\n### Image and document attachments\n\n_No response_\n\n### Site reference\n\nUPTIGHT-EVIDENCE-V1\nplace: third\nframe: 658\nFilm still: https://hgw3lls.github.io/uptight/#shot=658\nLocation register: https://hgw3lls.github.io/uptight/#place=third",
+      "closed_by": null,
+      "reactions": {
+        "url": "https://api.github.com/repos/hgw3lls/uptight/issues/1/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hgw3lls/uptight/issues/1/timeline",
+      "performed_via_github_app": null,
+      "state_reason": null,
+      "pinned_comment": null
+    }
+  ]
+}

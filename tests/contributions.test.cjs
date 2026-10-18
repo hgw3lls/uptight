@@ -162,3 +162,42 @@ test('email receipt requires explicit service success and sends only text fields
   await assert.rejects(send(validDraft, config, async () => response({})), /not accept/i);
   await assert.rejects(send(validDraft, { endpoint: 'http://example.org', accessKey: 'no' }, async () => response({ success: true })), /not configured/i);
 });
+
+test('published review notes use the latest valid repository record and do not imply issue status', () => {
+  const row = { issueNumber: 3, issueUrl: 'https://github.com/hgw3lls/uptight/issues/3',
+    decision: 'approved', mode: 'evidence', publicNote: 'Useful archival evidence, with location still unplaced.',
+    reviewedAt: '2026-10-18T12:00:00Z', sourceLinks: ['https://example.org/source', 'javascript:alert(1)'] };
+  const later = { ...row, decision: 'under-review', publicNote: '<img src=x> Check this new contradiction.', reviewedAt: '2026-10-18T13:00:00Z' };
+  const reviews = fn('normalisePublishedReviews')({ schemaVersion: 1, decisions: [row, later,
+    { ...row, issueUrl: 'https://github.com/other/repo/issues/3' },
+    { ...row, decision: '__proto__' }, { ...row, publicNote: '' }, { ...row, reviewedAt: null },
+    { ...row, issueNumber: '3' }, { ...row, mode: 'automatic' }] });
+  assert.equal(Object.keys(reviews).length, 1);
+  assert.equal(reviews[3].decision, 'under-review');
+  assert.equal(reviews[3].publicNote, later.publicNote, 'Review text stays literal until textContent rendering');
+  assert.deepEqual(reviews[3].sourceLinks, ['https://example.org/source']);
+  assert.equal(api.deriveIssueStatus(issue()).key, 'received', 'Published notes never silently substitute for GitHub status');
+  assert.throws(() => api.normalisePublishedReviews({ schemaVersion: 2, decisions: [] }));
+});
+
+test('review-note reads are bounded and failures do not become false approvals', async () => {
+  let call;
+  const empty = await fn('fetchPublishedReviews')({ fetchImpl: async (url, options) => { call = { url, options }; return response({ schemaVersion: 1, decisions: [] }); } });
+  assert.deepEqual(empty, { state: 'ok', reviews: {} });
+  assert.equal(call.url, './data/review-decisions.json'); assert.equal(call.options.method, 'GET');
+  const absent = await api.fetchPublishedReviews({ fetchImpl: async () => response({}, { status: 404 }) });
+  assert.deepEqual(absent, empty);
+  const failed = await api.fetchPublishedReviews({ fetchImpl: async () => response({}, { status: 500 }) });
+  assert.equal(failed.state, 'error'); assert.deepEqual(failed.reviews, {});
+  const offline = await api.fetchPublishedReviews({ online: false, fetchImpl: async () => { throw Error('must not fetch'); } });
+  assert.equal(offline.state, 'offline');
+  const savedSetTimeout = global.setTimeout, savedClearTimeout = global.clearTimeout;
+  try {
+    let timeout, signal;
+    global.setTimeout = (callback, delay) => { assert.ok(delay > 0 && delay <= 10000); timeout = callback; return 'deadline'; };
+    global.clearTimeout = () => {};
+    const request = api.fetchPublishedReviews({ fetchImpl: async (_, options) => { signal = options.signal; return { ok: true, json: () => new Promise(() => {}) }; } });
+    await new Promise(resolve => setImmediate(resolve)); timeout();
+    assert.equal((await request).state, 'error'); assert.equal(signal.aborted, true);
+  } finally { global.setTimeout = savedSetTimeout; global.clearTimeout = savedClearTimeout; }
+});

@@ -4,6 +4,23 @@ Static build of the v2 map interface, served by GitHub Pages.
 
 Live at `https://hgw3lls.github.io/uptight/`
 
+## Local review desk
+
+The owner can read submitted evidence and publish review decisions from the
+[local review desk](review-desk/README.md). Run `python3 review-desk/app.py`, or
+use its Mac/Windows launcher. It provides an inbox, film and source inspection,
+current/proposed map points, local drafts, and an explicit publication preview.
+Reading works without an account; publishing uses a locally authenticated GitHub
+CLI account or a session-only token with repository write access.
+
+An approval can retain evidence or update a location pin while preserving its
+chosen confidence level. Published review notes appear on the map, and the app
+synchronizes the submission's review label after committing the decision.
+
+The review desk's source is tracked here, but **it is not deployed to GitHub
+Pages**. `scripts/build_pages.py` creates the public artifact from an explicit
+runtime allowlist. Review drafts and credentials are never part of that artifact.
+
 The public map keeps votes, flags and camera drafts in each visitor's browser.
 The header labels this **VOTES · THIS BROWSER**. Public evidence contributions
 have a separate, durable record in this repository's GitHub Issues.

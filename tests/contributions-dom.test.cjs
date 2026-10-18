@@ -47,7 +47,11 @@ test('DOM handoff keeps drafts unsent, carries selected context and renders untr
   const attack = '<img src=x onerror="window.injected=true">';
   global.fetch = async (url, options = {}) => {
     calls.push({ url, options });
-    return url.startsWith('./') ? reply({ sites: [{ id: 'madison', name: 'Madison Square Building', confidenceLabel: 'Probable / high confidence' }] })
+    if (url === './data/review-decisions.json') return reply({ schemaVersion: 1, decisions: [{
+      issueNumber: 7, issueUrl: 'https://github.com/hgw3lls/uptight/issues/7', reviewedAt: '2026-10-18T01:00:00Z',
+      decision: 'disputed', mode: 'evidence', publicNote: attack, sourceLinks: ['javascript:alert(1)', 'https://example.org/archive']
+    }] });
+    return url === './data/map-data.json' ? reply({ sites: [{ id: 'madison', name: 'Madison Square Building', confidenceLabel: 'Probable / high confidence' }] })
       : reply([{ number: 7, title: attack, body: 'UPTIGHT-EVIDENCE-V1', html_url: 'https://github.com/hgw3lls/uptight/issues/7',
         labels: [{ name: 'evidence:disputed' }], user: { login: '<script>visitor</script>' }, state: 'closed', updated_at: '2026-10-18T00:00:00Z' }]);
   };
@@ -60,6 +64,8 @@ test('DOM handoff keeps drafts unsent, carries selected context and renders untr
     assert.equal(get('frame-preview').src, './media/frames/00000063.jpg');
     assert.match(get('feed-status').textContent, /1 public evidence record retrieved/);
     assert.ok(f.created.some(node => node.tagName === 'A' && node.textContent === attack));
+    assert.ok(f.created.some(node => node.tagName === 'P' && node.className === 'review-note' && node.textContent === attack));
+    assert.equal(f.created.some(node => node.href && node.href.startsWith('javascript:')), false);
     assert.equal(f.created.some(node => node.tagName === 'IMG' || node.tagName === 'SCRIPT'), false);
     assert.equal(get('email-send').hidden, true);
     let prevented = false;
@@ -75,7 +81,7 @@ test('DOM handoff keeps drafts unsent, carries selected context and renders untr
     assert.equal(url.searchParams.get('frame'), '63');
     assert.equal(url.searchParams.get('evidence'), get('explanation').value);
     assert.ok(get('draft-text').value.includes('Not submitted'));
-    assert.equal(calls.length, 2);
+    assert.equal(calls.length, 3);
     assert.ok(calls.every(call => !call.options.method || call.options.method === 'GET'));
     get('evidence-form').listeners.input();
     assert.equal(get('prepared').hidden, true, 'Editing invalidates the previously prepared outgoing link');

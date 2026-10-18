@@ -1,0 +1,5 @@
+/_site/
+/dist/
+**/__pycache__/
+*.py[cod]
+.uptight-review-desk/

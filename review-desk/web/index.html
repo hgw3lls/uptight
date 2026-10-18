@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Uptight — Local review desk</title>
+  <link rel="stylesheet" href="/app.css">
+  <script src="/vendor/d3.min.js" defer></script>
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#evidence-heading">Skip to selected submission</a>
+  <header class="app-header">
+    <a class="brand" href="/" aria-label="Uptight local review desk"><strong>UPTIGHT</strong><span>CLEVELAND · 1968</span></a>
+    <div class="desk-title"><h1>Review desk</h1><span class="local-tag">ON THIS COMPUTER</span></div>
+    <div class="header-actions">
+      <button type="button" id="connection-button" class="dark-button"><span class="connection-dot" id="connection-dot" aria-hidden="true"></span><span id="connection-label">Connection</span></button>
+      <button type="button" id="history-button" class="dark-button">History <span id="history-count" class="count">0</span></button>
+      <a id="public-site-link" class="dark-link" href="https://hgw3lls.github.io/uptight/" target="_blank" rel="noopener noreferrer">Public map ↗</a>
+    </div>
+  </header>
+
+  <div id="global-notice" class="global-notice" role="status" hidden></div>
+  <div id="startup" class="startup"><div class="loader" aria-hidden="true"></div><h2>Opening your review desk…</h2><p>Loading submissions and local drafts.</p><button id="startup-retry" type="button" hidden>Try again</button></div>
+
+  <main id="workspace" class="workspace" hidden>
+    <aside class="inbox" aria-labelledby="inbox-heading">
+      <div class="inbox-top">
+        <div class="section-title"><h2 id="inbox-heading">Submissions</h2><span id="issue-count" class="count">0</span></div>
+        <p class="muted">Read the evidence. Save your decision locally. Publish when it is ready.</p>
+        <label class="sr-only" for="inbox-search">Search submissions</label>
+        <input id="inbox-search" type="search" placeholder="Search frame, place, or text…" autocomplete="off">
+        <label class="sr-only" for="inbox-filter">Filter submissions</label>
+        <select id="inbox-filter">
+          <option value="all">All submissions</option>
+          <option value="pending">Awaiting review</option>
+          <option value="under-review">Under review</option>
+          <option value="disputed">Disputed</option>
+          <option value="approved">Approved decisions</option>
+          <option value="published">Has a published review</option>
+          <option value="unsaved">Unsaved edits</option>
+        </select>
+        <div class="refresh-row"><button id="refresh-button" type="button" class="small secondary">Refresh submissions</button><span id="refresh-spinner" hidden aria-hidden="true">↻</span></div>
+        <p id="refresh-status" class="micro"></p>
+      </div>
+      <nav id="issue-list" class="issue-list scroll-region" aria-label="Submission inbox"></nav>
+      <div class="inbox-bottom"><a class="quiet-link" href="/api/export" download="uptight-review-backup.json">Download local backup ↓</a><button id="copy-backup-button" type="button" class="text-button">Copy backup</button><p class="micro">Drafts and private notes stay on this computer until you export them.</p></div>
+    </aside>
+
+    <div class="detail-columns">
+      <section class="evidence-pane pane scroll-region" aria-labelledby="evidence-heading" tabindex="-1">
+        <div id="empty-selection" class="empty-state"><span class="empty-number">01</span><h2>Choose a submission</h2><p>Its film still, source material, and current research will appear here.</p></div>
+        <div id="evidence-content" hidden>
+          <div class="pane-heading"><div><div id="issue-kicker" class="eyebrow"></div><h2 id="evidence-heading" tabindex="-1"></h2></div><a id="issue-link" class="quiet-link" target="_blank" rel="noopener noreferrer">Original ↗</a></div>
+          <div id="issue-meta" class="issue-meta"></div>
+          <p id="issue-status" class="remote-status"></p>
+
+          <section class="film-card" aria-labelledby="film-heading">
+            <div class="section-title"><h3 id="film-heading">Film still</h3><span id="film-counter" class="mono"></span></div>
+            <button id="film-enlarge" type="button" class="film-image-button" aria-label="Enlarge selected film still"><img id="film-image" alt="" draggable="false"><span class="image-caption">Enlarge ↗</span></button>
+            <p id="film-error" class="inline-error" hidden>The still could not load. Try another frame or refresh the desk.</p>
+            <div class="film-controls"><button id="frame-previous" type="button" class="small secondary" aria-label="Previous film frame">←</button><label for="frame-input">Frame</label><input id="frame-input" type="number" min="1" max="682" step="1" inputmode="numeric"><button id="frame-next" type="button" class="small secondary" aria-label="Next film frame">→</button><button id="frame-reset" type="button" class="small text-button">Submission frame</button></div>
+            <div id="related-frames" class="frame-strip" aria-label="Other frames linked to this location"></div>
+          </section>
+
+          <section class="evidence-section" aria-labelledby="submission-heading"><h3 id="submission-heading">Contributor’s evidence</h3><dl id="submission-facts" class="facts"></dl><div id="submission-evidence" class="prose"></div><details class="plain-details"><summary>Read the complete submission</summary><div id="submission-body" class="prose raw-body"></div></details></section>
+          <section class="evidence-section" aria-labelledby="sources-heading"><div class="section-title"><h3 id="sources-heading">Submitted sources</h3><span id="source-count" class="count">0</span></div><div id="submitted-sources" class="source-list"></div><div id="submitted-attachments" class="attachments"></div></section>
+          <section class="evidence-section" aria-labelledby="current-heading"><div class="section-title"><h3 id="current-heading">Current public research</h3><span class="eyebrow">BEFORE THIS REVIEW</span></div><div id="current-research"></div></section>
+          <section class="evidence-section" aria-labelledby="comments-heading"><div class="section-title"><h3 id="comments-heading">Discussion</h3><button id="reload-comments" type="button" class="small text-button">Reload</button></div><div id="comments-status" class="micro" role="status"></div><div id="issue-comments"></div></section>
+        </div>
+      </section>
+
+      <section class="review-pane pane scroll-region" aria-labelledby="review-heading" tabindex="-1">
+        <div id="review-placeholder" class="empty-state"><span class="empty-number">02</span><h2>Make a considered decision</h2><p>Approving evidence and establishing a map location are separate choices.</p></div>
+        <div id="review-content" hidden>
+          <div class="pane-heading"><div><span class="eyebrow">YOUR REVIEW</span><h2 id="review-heading">Decision &amp; map</h2></div><span id="draft-badge" class="badge">Local draft</span></div>
+          <form id="review-form" novalidate>
+            <label class="field-label" for="decision">Review decision</label>
+            <select id="decision" data-field="decision"><option value="pending">Awaiting review</option><option value="under-review">Under review — more evidence needed</option><option value="disputed">Disputed — record the concern</option><option value="approved">Approve contribution</option></select>
+            <p id="decision-help" class="field-help">A saved decision stays local until you preview and publish it.</p>
+
+            <fieldset class="mode-choices"><legend>What should this review change?</legend><label class="choice"><input type="radio" name="review-mode" value="evidence" checked><span><strong>Evidence &amp; review record</strong><small>Add the review and its sources to the research.</small></span></label><label class="choice"><input type="radio" name="review-mode" value="location"><span><strong>Location record &amp; map pin</strong><small>Explicitly set the location, confidence, and meaning of the point.</small></span></label></fieldset>
+
+            <label class="field-label" for="place">Link this review to</label><select id="place" data-field="place"></select>
+            <p id="linked-scope" class="scope-note"></p>
+
+            <section class="map-section" aria-labelledby="map-heading"><div class="section-title"><h3 id="map-heading">Compare the points</h3><span class="eyebrow">MODERN CONTEXT</span></div><div class="map-legend"><span><i class="legend-current"></i>Current</span><span><i class="legend-submitted"></i>Submitted</span><span><i class="legend-draft"></i>Your draft</span></div><div class="map-wrap"><svg id="review-map" viewBox="0 0 640 360" role="img" aria-label="Cleveland map comparing the current, submitted, and draft points"></svg><p id="map-fallback" class="map-fallback" hidden>Map context is unavailable. You can still review and edit coordinates below.</p></div><div class="map-controls"><button id="map-zoom-in" type="button" class="small secondary" aria-label="Zoom map in">+</button><button id="map-zoom-out" type="button" class="small secondary" aria-label="Zoom map out">−</button><button id="map-fit" type="button" class="small secondary">Fit points</button><button id="map-area" type="button" class="small secondary">Full area</button><button id="map-explore" type="button" class="small secondary" aria-pressed="false">Move map</button></div><p id="map-message" class="micro" role="status">Use + / − to zoom. Scrolling here continues through the review.</p><div id="point-comparison" class="point-comparison"></div><p class="map-credit">Streets &amp; water: U.S. Census Bureau, January 2026. Context for orientation; historical street layouts may differ.</p></section>
+
+            <div id="location-fields" hidden>
+              <label class="field-label" for="location-name">Location name</label><input id="location-name" data-field="name" type="text" maxlength="240" autocomplete="off">
+              <label class="field-label" for="location-address">Address or area description</label><input id="location-address" data-field="address" type="text" maxlength="600" autocomplete="off">
+              <div class="coordinate-actions"><button id="use-submitted-point" type="button" class="small secondary">Use submitted point</button><button id="pick-map-point" type="button" class="small secondary" aria-pressed="false">Choose on map</button><button id="clear-point" type="button" class="small text-button">Clear pin</button></div>
+              <div class="coordinate-fields"><div><label class="field-label" for="latitude">Latitude</label><input id="latitude" data-field="latitude" type="text" inputmode="decimal" placeholder="41.470289" autocomplete="off" spellcheck="false"></div><div><label class="field-label" for="longitude">Longitude</label><input id="longitude" data-field="longitude" type="text" inputmode="decimal" placeholder="-81.675500" autocomplete="off" spellcheck="false"></div></div>
+              <p id="coordinate-validation" class="field-help" role="status"></p>
+              <label class="field-label" for="location-status">Public location status</label><select id="location-status" data-field="status"><option value="Candidate">Candidate</option><option value="Strong match">Strong match</option><option value="Unplaced">Unplaced</option></select>
+              <p class="field-help">You can approve a candidate. Approval records your review; it does not make the identification certain.</p>
+              <label class="field-label" for="confidence-label">Confidence label</label><input id="confidence-label" data-field="confidenceLabel" type="text" maxlength="160" placeholder="For example: Probable candidate">
+              <label class="field-label" for="confidence-note">What supports this confidence?</label><textarea id="confidence-note" data-field="confidenceNote" rows="4" maxlength="12000" placeholder="Describe what matches, what the sources establish, and what remains unresolved."></textarea>
+              <label class="field-label" for="pin-note">What does this pin represent?</label><textarea id="pin-note" data-field="pinNote" rows="3" maxlength="6000" placeholder="Name the landmark or area and any positional uncertainty."></textarea><p class="field-help">A map pin locates a site or area. Keep an exact camera-position claim in the evidence unless it has been separately established.</p>
+            </div>
+
+            <label class="field-label" for="public-note">Public review note <span class="required-hint">Required to publish</span></label><textarea id="public-note" data-field="publicNote" rows="5" maxlength="18000" placeholder="Explain your decision in terms a visitor can understand. Say which evidence you accept and what remains uncertain."></textarea><p class="field-help">This note and the submitted source links will appear in the public review record.</p>
+            <details class="private-details"><summary>Private working notes <span>Only on this computer</span></summary><label class="sr-only" for="private-note">Private working notes</label><textarea id="private-note" data-field="privateNote" rows="4" maxlength="24000" placeholder="Questions, reminders, or unfinished thinking. These are excluded from publication."></textarea></details>
+            <div id="review-error" class="inline-error" role="alert" hidden></div>
+            <div class="save-bar"><div><span id="save-status" class="save-status" role="status">Local draft</span><span class="micro">Preview checks the latest public record.</span></div><div class="save-actions"><button id="save-draft" type="submit" class="secondary">Save draft</button><button id="preview-button" type="button" class="primary">Preview publication →</button></div></div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <dialog id="connection-dialog" class="dialog connection-dialog" aria-labelledby="connection-heading"><div class="dialog-heading"><div><span class="eyebrow">PUBLISH FROM THIS COMPUTER</span><h2 id="connection-heading">Connect your GitHub account</h2></div><button type="button" class="icon-button" data-close-dialog aria-label="Close connection settings">×</button></div><div class="dialog-body"><p>Reading submissions and saving drafts work without signing in. Connect when you are ready to publish a review to <strong>hgw3lls/uptight</strong>.</p><div id="connection-status" class="status-card" role="status"></div><section class="setup-option"><span class="option-number">1</span><div><h3>Use the GitHub CLI <span class="recommended">Recommended</span></h3><p>If GitHub CLI is already signed in on this computer, connect it below. Otherwise, run <code>gh auth login</code> in a terminal first.</p><button id="connect-gh" type="button" class="primary">Connect GitHub CLI</button></div></section><details class="token-option"><summary>Use a temporary access token instead</summary><p>Create a fine-grained token for this repository with <strong>Contents</strong> and <strong>Issues</strong> read/write access. It is held only for this running session.</p><p><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">Open GitHub token settings ↗</a></p><form id="token-form"><label class="field-label" for="session-token">Session token</label><input id="session-token" type="password" autocomplete="off" spellcheck="false" autocapitalize="none"><button id="connect-token" type="submit" class="secondary">Connect for this session</button></form></details><div id="connection-error" class="inline-error" role="alert" hidden></div></div><div class="dialog-footer"><button id="disconnect-button" type="button" class="text-button">Disconnect</button><button type="button" class="secondary" data-close-dialog>Done</button></div></dialog>
+
+  <dialog id="preview-dialog" class="dialog preview-dialog" aria-labelledby="preview-heading"><div class="dialog-heading"><div><span class="eyebrow">FINAL CHECK</span><h2 id="preview-heading">Preview public changes</h2></div><button type="button" class="icon-button" data-close-dialog aria-label="Close publication preview">×</button></div><div id="preview-body" class="dialog-body"></div><div id="preview-error" class="inline-error dialog-error" role="alert" hidden></div><div class="dialog-footer"><span id="publish-status" class="micro" role="status"></span><div class="dialog-footer-actions"><button id="preview-connect" type="button" class="secondary" hidden>Connect to publish</button><button id="refresh-preview" type="button" class="secondary" hidden>Get a fresh preview</button><button id="close-preview" type="button" class="secondary" data-close-dialog>Keep editing</button><button id="publish-button" type="button" class="primary">Publish this decision</button></div></div></dialog>
+
+  <dialog id="history-dialog" class="dialog history-dialog" aria-labelledby="history-heading"><div class="dialog-heading"><div><span class="eyebrow">PUBLICATION LOG</span><h2 id="history-heading">Review history</h2></div><button type="button" class="icon-button" data-close-dialog aria-label="Close history">×</button></div><div class="dialog-body"><p>Published reviews are recorded here. Saving or approving a local draft does not add an entry.</p><div id="history-list"></div></div><div class="dialog-footer"><a class="quiet-link" href="/api/export" download="uptight-review-backup.json">Download local backup ↓</a><button type="button" class="secondary" data-close-dialog>Done</button></div></dialog>
+
+  <dialog id="image-dialog" class="dialog image-dialog" aria-labelledby="large-image-caption"><div class="dialog-heading"><h2 id="large-image-caption">Film still</h2><button type="button" class="icon-button" data-close-dialog aria-label="Close image">×</button></div><img id="large-image" alt=""><p class="micro image-hint">Use ← / → to inspect adjacent film frames. Escape closes this view.</p></dialog>
+  <div id="announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

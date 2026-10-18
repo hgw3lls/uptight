@@ -33,9 +33,9 @@
     'under-review': { key: 'under-review', label: 'Under review', reviewed: true,
       note: 'The maintainer has explicitly marked this evidence for review.' },
     incorporated: { key: 'incorporated', label: 'Incorporated', reviewed: true,
-      note: 'The maintainer has explicitly marked this evidence as incorporated. Follow the issue for the change and its limits.' },
+      note: 'The maintainer has explicitly marked this evidence as incorporated. Read the published review or linked issue for its scope and limits.' },
     disputed: { key: 'disputed', label: 'Disputed', reviewed: true,
-      note: 'The maintainer has explicitly marked this evidence as disputed. Read the issue discussion for the reasons.' },
+      note: 'The maintainer has explicitly marked this evidence as disputed. Read the published review or linked issue for the reasons.' },
     conflicting: { key: 'conflicting', label: 'Conflicting review labels', reviewed: false,
       note: 'More than one review status is applied. No single outcome is asserted; consult the issue discussion.' },
   };
@@ -168,6 +168,42 @@
       author: clean(issue.user && issue.user.login).slice(0, 100) || 'Contributor',
       updatedAt: Number.isNaN(updated.getTime()) ? null : updated.toISOString(),
       state: issue.state === 'closed' ? 'closed' : 'open', status: deriveIssueStatus(issue) };
+  }
+  function normalisePublishedReviews(data) {
+    if (!data || data.schemaVersion !== 1 || !Array.isArray(data.decisions)) throw new Error('Unexpected public review record');
+    const reviews = {};
+    const labels = { pending: 'Awaiting review', 'under-review': 'Under review', disputed: 'Disputed', approved: 'Approved contribution' };
+    for (const row of data.decisions) {
+      if (!row || !Number.isInteger(row.issueNumber) || row.issueNumber < 1 || !own(labels, row.decision) ||
+          !['evidence', 'location'].includes(row.mode) || typeof row.publicNote !== 'string' || !row.publicNote.trim()) continue;
+      const reviewedAt = new Date(row.reviewedAt);
+      if (typeof row.reviewedAt !== 'string' || !/^\d{4}-\d{2}-\d{2}T/.test(row.reviewedAt) || Number.isNaN(reviewedAt.getTime())) continue;
+      if (row.issueUrl !== REPOSITORY + '/issues/' + row.issueNumber) continue;
+      reviews[row.issueNumber] = {
+        issueNumber: row.issueNumber, decision: row.decision, label: labels[row.decision], mode: row.mode,
+        publicNote: row.publicNote.trim(), reviewedAt: reviewedAt.toISOString(),
+        sourceLinks: (Array.isArray(row.sourceLinks) ? row.sourceLinks : []).map(safeSourceUrl).filter(Boolean).slice(0, 12),
+      };
+    }
+    return reviews;
+  }
+  async function fetchPublishedReviews(options) {
+    const opts = options || {};
+    if (opts.online === false) return { state: 'offline', reviews: {} };
+    const fetchImpl = opts.fetchImpl || fetch, controller = new AbortController();
+    let timer;
+    const deadline = new Promise((_, reject) => {
+      timer = setTimeout(() => { controller.abort(); reject(new Error('Review record timed out')); }, 8000);
+    });
+    const request = Promise.resolve().then(async () => {
+      const response = await fetchImpl('./data/review-decisions.json', { method: 'GET', credentials: 'same-origin', cache: 'no-cache', signal: controller.signal });
+      if (response.status === 404) return { state: 'ok', reviews: {} };
+      if (!response.ok) throw new Error('Review record unavailable');
+      return { state: 'ok', reviews: normalisePublishedReviews(await response.json()) };
+    });
+    try { return await Promise.race([request, deadline]); }
+    catch (_) { return { state: 'error', reviews: {} }; }
+    finally { clearTimeout(timer); }
   }
   async function fetchEvidenceIssues(options) {
     const opts = options || {}, fetchImpl = opts.fetchImpl || fetch;
@@ -319,7 +355,10 @@
       loadingFeed = true; $('refresh-issues').disabled = true;
       $('feed-status').textContent = 'Checking the public GitHub issue list…';
       $('feed-status').dataset.state = 'loading'; $('feed-list').replaceChildren(); $('feed-updated').textContent = '';
-      const result = await fetchEvidenceIssues({ online: win.navigator.onLine });
+      const [result, published] = await Promise.all([
+        fetchEvidenceIssues({ online: win.navigator.onLine }),
+        fetchPublishedReviews({ online: win.navigator.onLine }),
+      ]);
       $('feed-status').dataset.state = result.state;
       if (result.state === 'error' || result.state === 'offline') $('feed-status').textContent = result.message;
       else {
@@ -329,11 +368,29 @@
           : result.truncated ? 'No evidence records found among the recently updated issues checked. Older records may exist; use the full GitHub list.'
           : 'No public evidence issues have been posted yet. Your draft is not part of this list until you submit it on GitHub.';
         if (result.checkedAt) $('feed-updated').textContent = 'Checked ' + new Date(result.checkedAt).toLocaleString() + '. ' + (result.truncated ? 'Limited to the 200 most recently updated repository issues; the GitHub list has the full history.' : 'Read-only view of public GitHub records.');
+        if (published.state === 'error') $('feed-updated').textContent += ' Published review notes could not be loaded; issue statuses remain available below.';
         result.issues.forEach(item => {
           const li = text('li', undefined, 'issue-card');
           const status = text('span', item.status.label, 'issue-status'); status.dataset.status = item.status.key;
           const heading = text('h3'); const link = text('a', item.title); link.href = item.url; link.target = '_blank'; link.rel = 'noopener noreferrer'; heading.appendChild(link);
           li.append(status, heading, text('p', '#' + item.number + ' · ' + item.author + ' · Issue ' + item.state, 'issue-meta'), text('p', item.status.note, 'small'));
+          const review = published.reviews[item.number];
+          if (review) {
+            const section = text('section', undefined, 'published-review');
+            section.append(text('p', 'Published review · ' + review.reviewedAt.slice(0, 10), 'issue-meta'),
+              text('h4', review.label), text('p', review.publicNote, 'review-note'));
+            if (review.decision === 'approved') section.append(text('p', review.mode === 'location'
+              ? 'This review includes a location update. The map records its confidence and the meaning of the point.'
+              : 'Evidence review only. This decision does not change the map pin or location confidence.', 'small'));
+            const expectedStatus = review.decision === 'approved' ? 'incorporated' : review.decision === 'pending' ? 'received' : review.decision;
+            if (item.status.key !== expectedStatus) section.append(text('p', 'The latest published review and the current issue label differ. The issue status above has not been inferred from this note.', 'small'));
+            if (review.sourceLinks.length) {
+              const sources = text('ul', undefined, 'review-sources');
+              review.sourceLinks.forEach((url, i) => { const row = text('li'); const source = text('a', 'Source ' + (i + 1) + ' ↗'); source.href = url; source.target = '_blank'; source.rel = 'noopener noreferrer'; row.appendChild(source); sources.appendChild(row); });
+              section.appendChild(sources);
+            }
+            li.appendChild(section);
+          }
           $('feed-list').appendChild(li);
         });
       }
@@ -366,5 +423,5 @@
     loadFeed();
   }
   return { REPOSITORY, QUESTIONS, STANCES, MAX_PREFILL_LENGTH, parseQuery, validateDraft, safeSourceUrl,
-    buildIssueUrl, buildDraftText, deriveIssueStatus, normaliseEvidenceIssue, fetchEvidenceIssues, sendEmailNote, init };
+    buildIssueUrl, buildDraftText, deriveIssueStatus, normaliseEvidenceIssue, normalisePublishedReviews, fetchPublishedReviews, fetchEvidenceIssues, sendEmailNote, init };
 });
