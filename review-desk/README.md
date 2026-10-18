@@ -1,8 +1,9 @@
 # Uptight Review Desk
 
 A local inbox for reviewing contributions to the *Uptight* Cleveland location
-map. Read a submission, inspect its film frame and sources, compare its proposed
-point with the current map, and publish a decision from this app.
+map. Read a submission, edit the information it proposes, and choose
+**Approve & publish to site** to update the location's actual website entry.
+You can also include a map pin change when the proposal establishes one.
 
 The source is kept in this repository. **The review app is excluded from GitHub
 Pages.** It runs on your computer at a loopback address. You do not need to use
@@ -42,17 +43,25 @@ first opening includes a dated snapshot of submission **#1, frame 658**. Choose
 
 1. Select a record in the inbox. Read the evidence, source dates, archive links,
    attachments and discussion alongside the film frame.
-2. Compare the submitted point with the current location. The map distinguishes
-   the submitted coordinate from an existing location pin and your edited point.
-3. Choose what to approve. **Evidence & review record** retains the contribution without
-   placing or moving a pin. **Location record & map pin** lets you choose an existing
-   location or create a new one, then review its coordinates and map wording.
-4. Set a decision and write the public review note. You can keep a submission
-   pending, mark it under review, dispute it, or approve it. Private notes are
-   saved separately on your computer.
-5. **Save draft** retains your work locally. To update the project, open the
-   publication preview, inspect its before/after changes, then explicitly
-   publish the decision.
+2. Choose **Update website information**. The proposed evidence becomes an
+   editable draft of the main location description. Review its wording, location
+   name, address, and historical context against the current information shown
+   alongside it. You can update an existing location or create a new one.
+3. If you also want to publish the proposed coordinate, select the optional pin
+   update and **Use submitted point**, or choose/type a different point. Check
+   its confidence and explain what the pin represents. A text-only update keeps
+   an existing pin and its confidence as they are.
+4. Select **Approve website update** and choose **Review website changes**. Check
+   the exact old and new text, source additions, and any coordinate change.
+   A separate review note is optional for website information updates.
+5. Choose **Approve & publish to site**. The app commits the reviewed information
+   to the website data and provides a link to the updated location. GitHub Pages
+   then deploys that commit, so the public update can take a moment to appear.
+
+**Save draft** keeps work locally. You can also retain a pending, under-review,
+or disputed decision. The older evidence-only and location-only modes remain
+available for existing drafts. Evidence-only approval adds a review and sources;
+the website information option updates the main location text.
 
 **Approval is a publication decision, not a confidence rating.** A pin can be
 approved for the public map while remaining a **Candidate**. Choose the matching
@@ -101,6 +110,14 @@ The preview is generated against the current repository and submission. It
 shows the exact changes before any public write:
 
 - A dated decision is added to `data/review-decisions.json`.
+- An approved website information update writes the location's name, address,
+  film/location description, and historical context in `data/map-data.json`.
+  These are the fields visitors read in the main location card. Submitted sources
+  are added to its source list. The preview and review history retain old/new
+  text values.
+- Text-only website updates preserve an existing pin and confidence. Optional
+  pin updates use the same coordinate validation as a location approval. A new
+  location can be published as an unpinned candidate with a valid frame.
 - The public contribution history displays the latest published review note and
   source links, including under-review and disputed decisions.
 - An approved contribution linked to a location adds a published review note and
@@ -118,6 +135,15 @@ shows the exact changes before any public write:
 The app preserves other map records, source history, the map background, and all
 film images. Existing research reports remain dated research snapshots; the
 new review note records the later decision and its scope.
+
+## Update an existing installation
+
+Stop the old desk with **Control-C** in its Terminal window. Unzip the updated
+download into a new folder and open its launcher. Saved work is kept in the same
+local data directory and remains available. Refresh submissions to load current
+public information. Existing evidence-only drafts retain their original mode;
+choose **Update website information** when you want to publish their proposed
+text into the main location entry.
 
 If the repository, issue or draft changes after preview, the app requires a fresh
 preview. It never force-pushes over someone else's work. If the commit succeeds

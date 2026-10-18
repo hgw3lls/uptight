@@ -13,7 +13,7 @@ from urllib.parse import unquote
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from review_core import (API_ROOT, BOUNDS, DECISIONS_PATH, MAP_PATH, REPOSITORY,
                          GitHubClient, GithubError, ReviewDesk, ReviewError,
-                         canonical_json, file_json, git_blob_sha, normalise_issue,
+                         canonical_json, file_json, fingerprint, git_blob_sha, normalise_issue,
                          safe_url, within_bounds)
 
 
@@ -308,6 +308,173 @@ class WorkflowTests(DeskCase):
         self.assertEqual(draft["decision"], "pending")
         self.assertIsNone(draft["latitude"])
         self.assertIsNone(draft["longitude"])
+        self.assertIs(draft["updatePin"], False)
+
+    def test_content_approval_updates_website_text_with_exact_preview_and_preserves_pin(self):
+        before = json.loads(self.github.read_file(MAP_PATH))
+        original = before["sites"][1]
+        self.connect()
+        try:
+            preview = self.preview(mode="content", place="madison", name="Madison Square Building",
+                                   address="Revised archival address", connection="The submitted archive adds a new comparison of the storefront shown in the film.",
+                                   history="The historical record now includes the dated archive comparison.",
+                                   latitude=41.47, longitude=-81.67, status="Strong match")
+        except ReviewError as exc:
+            self.fail("Content publishing must accept editable website information: " + exc.message)
+        changes = {item["field"]: item for item in preview["changes"]}
+        for field, expected in (("name", "Madison Square Building"), ("address", "Revised archival address"),
+                                ("connection", "The submitted archive adds a new comparison of the storefront shown in the film."),
+                                ("history", "The historical record now includes the dated archive comparison.")):
+            self.assertEqual(changes["sites.madison." + field]["before"], original.get(field))
+            self.assertEqual(changes["sites.madison." + field]["after"], expected)
+        self.assertEqual(changes["sites.madison.sources"]["before"], original["sources"])
+        self.assertIn(["Source submitted with issue #1", "https://archive.example/item/2/"], changes["sites.madison.sources"]["after"])
+        self.assertIn("website information", preview["summary"])
+        result = self.desk.publish(1, preview["previewId"])
+        after = json.loads(self.github.read_file(MAP_PATH))
+        site = after["sites"][1]
+        for field in ("name", "address", "connection", "history"):
+            self.assertEqual(site[field], changes["sites.madison." + field]["after"])
+        for field in ("coord", "status", "confidenceLabel", "confidenceNote", "pinNote", "coordinateSourceIds", "coordinateUncertaintyMeters", "sourceIds"):
+            self.assertEqual(site[field], original[field], field)
+        self.assertNotIn("previousMapPositions", site)
+        self.assertEqual(after["sites"][0], before["sites"][0])
+        self.assertEqual(after["roads"], before["roads"])
+        self.assertEqual(result["siteUrl"], "https://hgw3lls.github.io/uptight/#place=madison")
+        self.assertEqual(site["reviewedContributions"][-1]["mode"], "content")
+        self.assertIs(result["record"]["updatePin"], False)
+        self.assertIs(site["reviewedContributions"][-1]["updatePin"], False)
+        for content in self.github.blobs.values():
+            self.assertNotIn(b"PRIVATE-NOTE-DO-NOT-PUBLISH", content)
+
+    def test_content_blank_public_note_gets_a_reviewable_public_audit_sentence(self):
+        self.connect()
+        preview = self.preview(mode="content", connection="The submitted evidence identifies the roadway visible in this film sequence.",
+                               history="A dated archival view supports the location description.", publicNote="")
+        self.assertGreaterEqual(len(preview["publicNote"]), 20)
+        self.assertIn("issue #1", preview["publicNote"])
+        self.assertNotIn("PRIVATE-NOTE", json.dumps(preview))
+        result = self.desk.publish(1, preview["previewId"])
+        self.assertEqual(result["record"]["publicNote"], preview["publicNote"])
+        site = json.loads(self.github.read_file(MAP_PATH))["sites"][0]
+        self.assertEqual(site["reviewedContributions"][-1]["publicNote"], preview["publicNote"])
+        self.assertIsNone(site["coord"])
+
+    def test_content_new_location_can_be_unpinned_without_claiming_identification_confidence(self):
+        result = self.publish(mode="content", place="new", connection="The submitted source proposes this location as a candidate for the film sequence.",
+                              history="This description comes from the cited historical source.", publicNote="", status="Strong match",
+                              latitude=41.47, longitude=-81.67)
+        sites = json.loads(self.github.read_file(MAP_PATH))["sites"]
+        self.assertEqual(len(sites), 3)
+        site = sites[-1]
+        self.assertEqual(site["id"], "issue-1")
+        self.assertIsNone(site["coord"])
+        self.assertEqual(site["status"], "Candidate")
+        self.assertEqual(site["confidenceLabel"], "Location unverified")
+        self.assertIn("not been established", site["confidenceNote"])
+        self.assertIn("No map pin", site["pinNote"])
+        self.assertEqual(site["frames"], map_fixture()["sites"][0]["frames"])
+        self.assertEqual(result["siteUrl"], "https://hgw3lls.github.io/uptight/#place=issue-1")
+        changes = {item["field"]: item for item in result["record"]["changes"]}
+        for field in ("name", "address", "connection", "history"):
+            self.assertEqual(changes["sites.issue-1." + field]["after"], site[field])
+
+    def test_content_can_explicitly_update_the_pin_and_retires_old_coordinate_provenance(self):
+        result = self.publish(mode="content", place="madison", updatePin=True, latitude=41.51, longitude=-81.63,
+                              connection="The archive comparison supports this revised description and separately reviewed point.", history="Revised historical account.")
+        site = json.loads(self.github.read_file(MAP_PATH))["sites"][1]
+        self.assertEqual(site["coord"], [-81.63, 41.51])
+        self.assertEqual(site["status"], "Candidate")
+        self.assertNotIn("coordinateSourceIds", site)
+        self.assertNotIn("coordinateUncertaintyMeters", site)
+        self.assertEqual(site["previousMapPositions"][-1]["coordinateSourceIds"], ["S32"])
+        self.assertEqual(site["coordinateReview"]["issueNumber"], 1)
+        self.assertIs(result["record"]["updatePin"], True)
+        self.assertIs(site["reviewedContributions"][-1]["updatePin"], True)
+        self.assertTrue(any(item["field"] == "sites.madison.coord" for item in result["record"]["changes"]))
+
+    def test_content_links_submission_frame_without_removing_another_site_assignment(self):
+        self.github.issue = raw_issue(frame=659)
+        self.desk._cache_issue(self.github.issue)
+        result = self.publish(mode="content", connection="New evidence connects this site to another frame in the same film sequence.", history="Updated archive comparison.")
+        sites = json.loads(self.github.read_file(MAP_PATH))["sites"]
+        self.assertEqual([frame["id"] for frame in sites[0]["frames"]], [658, 659])
+        self.assertEqual(sites[0]["frames"][1]["image"], "other-image")
+        self.assertEqual(sites[1]["frames"], map_fixture()["sites"][1]["frames"])
+        self.assertTrue(any(item["field"] == "sites.third.frames" for item in result["record"]["changes"]))
+
+    def test_content_without_a_submission_frame_can_update_an_existing_site_only(self):
+        self.github.issue = raw_issue(frame="_No response_")
+        self.desk._cache_issue(self.github.issue)
+        self.connect()
+        preview = self.preview(mode="content", connection="General historical evidence updates the description of this existing site.")
+        self.desk.publish(1, preview["previewId"])
+        self.assertEqual(json.loads(self.github.read_file(MAP_PATH))["sites"][0]["frames"], map_fixture()["sites"][0]["frames"])
+        with self.assertRaises(ReviewError):
+            self.preview(mode="content", place="new", connection="General historical evidence with no valid film frame cannot create a site.")
+
+    def test_content_validation_requires_text_and_explicit_valid_pin_fields(self):
+        content = {"mode": "content", "connection": "The submitted source provides a revised description of the film location."}
+        self.connect()
+        for changes in ({"name": "x"}, {"connection": "short"}, {"place": ""}, {"publicNote": "short"},
+                        {"updatePin": True}, {"updatePin": True, "latitude": 42, "longitude": -81.6},
+                        {"updatePin": True, "latitude": 41.47, "longitude": -81.67, "confidenceNote": "short"},
+                        {"updatePin": True, "latitude": 41.47, "longitude": -81.67, "status": "Unplaced"}):
+            with self.subTest(changes=changes), self.assertRaises(ReviewError):
+                self.preview(**{**content, **changes})
+        for invalid in ("false", 0, None, []):
+            with self.subTest(updatePin=invalid), self.assertRaises(ReviewError):
+                self.desk.save_draft(1, self.draft(**content, updatePin=invalid))
+        self.assertEqual(self.writes(), [])
+
+    def test_existing_persisted_legacy_draft_keeps_evidence_only_behavior(self):
+        # A draft saved by the released app has none of the new content fields.
+        legacy = self.draft()
+        self.desk.state["drafts"]["1"] = legacy
+        self.desk._persist()
+        self.desk = ReviewDesk(self.root, self.data_dir, self.github, now=lambda: "2026-10-18T17:00:00Z")
+        self.connect()
+        preview = self.desk.preview(1)
+        result = self.desk.publish(1, preview["previewId"])
+        site = json.loads(self.github.read_file(MAP_PATH))["sites"][0]
+        self.assertEqual(result["record"]["mode"], "evidence")
+        for field in ("coord", "name", "address", "connection", "history", "status", "confidenceLabel", "confidenceNote", "pinNote"):
+            self.assertEqual(site[field], map_fixture()["sites"][0][field])
+
+    def test_content_edit_preserves_the_prior_public_approval_and_text_in_the_ledger(self):
+        old = self.publish()
+        prior_map = json.loads(self.github.read_file(MAP_PATH))
+        prior_review = copy.deepcopy(prior_map["sites"][0]["reviewedContributions"][0])
+        result = self.publish(mode="content", connection="The approved evidence now supplies the main website description of the location.",
+                              history="The new historical description incorporates the submitted archive source.")
+        site = json.loads(self.github.read_file(MAP_PATH))["sites"][0]
+        ledger = json.loads(self.github.read_file(DECISIONS_PATH))["decisions"]
+        self.assertEqual(ledger[0], {key: value for key, value in old["record"].items() if key not in ("commitSha", "commitUrl", "publishedAt", "issueSynced", "warning")})
+        self.assertEqual(site["reviewedContributions"][0], prior_review)
+        history_change = next(item for item in result["record"]["changes"] if item["field"] == "sites.third.history")
+        self.assertEqual(history_change["before"], prior_map["sites"][0]["history"])
+        self.assertEqual(site["sourceIds"], prior_map["sites"][0]["sourceIds"])
+
+    def test_nonapproval_content_only_records_the_decision_without_changing_website_information(self):
+        before = self.github.read_file(MAP_PATH)
+        result = self.publish(mode="content", decision="disputed", connection="Replacement content must not appear until approved.",
+                              history="This also remains a local draft.", updatePin=True, latitude=41.47, longitude=-81.67, publicNote="")
+        self.assertEqual(self.github.read_file(MAP_PATH), before)
+        self.assertEqual(result["record"]["publicNote"], "Marked the evidence in issue #1 as disputed.")
+        self.assertEqual([item["field"] for item in result["record"]["changes"]], ["issue.reviewStatus"])
+
+    def test_existing_persisted_legacy_location_draft_keeps_its_explicit_pin_update(self):
+        self.desk.state["drafts"]["1"] = self.draft(mode="location", latitude=41.470289, longitude=-81.6755)
+        self.desk._persist()
+        self.desk = ReviewDesk(self.root, self.data_dir, self.github, now=lambda: "2026-10-18T17:00:00Z")
+        self.connect()
+        preview = self.desk.preview(1)
+        result = self.desk.publish(1, preview["previewId"])
+        site = json.loads(self.github.read_file(MAP_PATH))["sites"][0]
+        self.assertEqual(site["coord"], [-81.6755, 41.470289])
+        self.assertEqual(site["connection"], map_fixture()["sites"][0]["connection"])
+        self.assertEqual(site["history"], map_fixture()["sites"][0]["history"])
+        self.assertNotIn("updatePin", result["record"])
 
     def test_draft_validation_and_private_backup(self):
         for changes in ({"latitude": True}, {"longitude": float("nan")}, {"place": "unknown"}, {"decision": "accept"}, {"publicNote": []}):
@@ -530,6 +697,36 @@ class WorkflowTests(DeskCase):
         result = self.desk.publish(1, recovered["previewId"])
         self.assertTrue(result["published"])
         self.assertEqual(len(self.writes("/git/commits")), 1)
+
+    def test_upgraded_legacy_draft_recovers_its_original_commit_after_a_late_remote_write(self):
+        legacy = self.draft()
+        self.desk.state["drafts"]["1"] = copy.deepcopy(legacy)
+        self.desk._persist()
+        self.connect()
+        preview = self.desk.preview(1)
+        self.github.patch_mode = "ambiguous_no_write"
+        with self.assertRaises(ReviewError):
+            self.desk.publish(1, preview["previewId"])
+        journal = self.desk.state["publications"][preview["previewId"]]
+        self.assertEqual(journal["draftFingerprint"], fingerprint(legacy))
+        original_commit = journal["commitSha"]
+        self.desk = ReviewDesk(self.root, self.data_dir, self.github, now=lambda: "2026-10-18T17:00:00Z")
+        self.connect()
+        self.desk.save_draft(1, legacy)
+        self.assertIn("connection", self.desk.state["drafts"]["1"])
+        self.assertIn("updatePin", self.desk.state["drafts"]["1"])
+        delayed_write = [True]
+        def delayed(method, path, payload):
+            if delayed_write[0] and method == "GET" and path == API_ROOT + "/issues/1":
+                delayed_write[0] = False
+                self.github.head = original_commit
+        self.github.before = delayed
+        recovered = self.desk.preview(1)
+        self.assertEqual(recovered["previewId"], preview["previewId"])
+        result = self.desk.publish(1, recovered["previewId"])
+        self.assertEqual(result["commitSha"], original_commit)
+        self.assertEqual(len(self.writes("/git/commits")), 1)
+        self.assertEqual(len(json.loads(self.github.read_file(DECISIONS_PATH))["decisions"]), 1)
 
     def test_stale_ambiguous_draft_and_issue_can_get_fresh_preview(self):
         self.connect()

@@ -146,3 +146,23 @@ test('optional local-server uploads retain the actual selected frame', async () 
   assert.equal(requests.length, 1);
   assert.equal(requests[0].options.body.get('frame'), '638');
 });
+
+test('published website information replaces the primary location text while text-only edits keep the pin', () => {
+  const {c} = make();
+  c.state.data = JSON.parse(JSON.stringify(data));
+  c.state.sel = 'third';
+  const site = c.state.data.sites.find(item => item.id === 'third');
+  const original = {coord: site.coord, status: site.status, confidence: site.confidenceLabel};
+  Object.assign(site, {name: 'Reviewed location name', address: 'Reviewed location area',
+    connection: 'New information accepted from the submitted source.\n\nA second paragraph remains distinct.',
+    history: 'Revised historical context based on the dated archive record.'});
+  site.reviewedContributions = [{issueNumber: 1, reviewDate: '2026-10-18', decision: 'approved',
+    mode: 'content', updatePin: false, publicNote: 'Published the approved website information.'}];
+  const selected = c.renderVals().sel;
+  for (const field of ['name', 'address', 'connection', 'history']) assert.equal(selected[field], site[field]);
+  assert.match(selected.reviews[0].label, /website information/);
+  assert.doesNotMatch(selected.reviews[0].label, /\+ pin/);
+  assert.deepEqual({coord: site.coord, status: site.status, confidence: site.confidenceLabel}, original);
+  site.reviewedContributions[0].updatePin = true;
+  assert.match(c.renderVals().sel.reviews[0].label, /website information \+ pin/);
+});

@@ -14,8 +14,8 @@
   const BOUNDS = [-81.74, 41.43, -81.57, 41.56];
   const DECISIONS = ['pending', 'under-review', 'disputed', 'approved'];
   const DECISION_LABELS = { pending: 'Awaiting review', 'under-review': 'Under review', disputed: 'Disputed', approved: 'Approved locally' };
-  const DRAFT_KEYS = ['decision', 'mode', 'place', 'name', 'address', 'latitude', 'longitude', 'status', 'confidenceLabel', 'confidenceNote', 'pinNote', 'publicNote', 'privateNote', 'baseIssueUpdatedAt'];
-  const FIELD_IDS = { decision: 'decision', place: 'place', name: 'location-name', address: 'location-address', latitude: 'latitude', longitude: 'longitude', status: 'location-status', confidenceLabel: 'confidence-label', confidenceNote: 'confidence-note', pinNote: 'pin-note', publicNote: 'public-note', privateNote: 'private-note' };
+  const DRAFT_KEYS = ['decision', 'mode', 'place', 'name', 'address', 'connection', 'history', 'updatePin', 'latitude', 'longitude', 'status', 'confidenceLabel', 'confidenceNote', 'pinNote', 'publicNote', 'privateNote', 'baseIssueUpdatedAt'];
+  const FIELD_IDS = { decision: 'decision', place: 'place', name: 'location-name', address: 'location-address', connection: 'website-information', history: 'website-history', updatePin: 'update-pin', latitude: 'latitude', longitude: 'longitude', status: 'location-status', confidenceLabel: 'confidence-label', confidenceNote: 'confidence-note', pinNote: 'pin-note', publicNote: 'public-note', privateNote: 'private-note' };
   const text = value => value == null ? '' : String(value);
   const validFrame = value => Number.isInteger(Number(value)) && Number(value) >= 1 && Number(value) <= 682 ? Number(value) : null;
 
@@ -57,8 +57,9 @@
   function defaultDraft(issue, sites, saved) {
     const site = siteForIssue(issue, sites), fields = issue.fields || {};
     const result = {
-      decision: 'pending', mode: 'evidence', place: site ? site.id : 'new',
+      decision: 'pending', mode: 'content', place: site ? site.id : 'new',
       name: site ? text(site.name) : text(fields.location), address: site ? text(site.address) : text(fields.proposedAddress),
+      connection: text(fields.evidence) || text(site && site.connection), history: text(site && site.history), updatePin: false,
       latitude: site && Array.isArray(site.coord) ? site.coord[1] : null,
       longitude: site && Array.isArray(site.coord) ? site.coord[0] : null,
       status: site && ['Candidate', 'Strong match', 'Unplaced'].includes(site.status) ? site.status : 'Candidate',
@@ -67,18 +68,21 @@
     };
     if (saved && typeof saved === 'object') DRAFT_KEYS.forEach(key => { if (Object.prototype.hasOwnProperty.call(saved, key)) result[key] = saved[key]; });
     if (!DECISIONS.includes(result.decision)) result.decision = 'pending';
-    if (!['evidence', 'location'].includes(result.mode)) result.mode = 'evidence';
+    if (!['content', 'evidence', 'location'].includes(result.mode)) result.mode = 'content';
+    result.updatePin = result.updatePin === true;
     return result;
   }
+  function pinEditsEnabled(draft) { return !!draft && (draft.mode === 'location' || (draft.mode === 'content' && draft.updatePin === true)); }
   function draftPayload(draft) {
     const result = {};
-    DRAFT_KEYS.forEach(key => { result[key] = key === 'latitude' || key === 'longitude' ? numberInput(draft[key]).value : text(draft[key]); });
+    DRAFT_KEYS.forEach(key => { result[key] = key === 'updatePin' ? draft[key] === true : key === 'latitude' || key === 'longitude' ? numberInput(draft[key]).value : text(draft[key]); });
     return result;
   }
   function fingerprint(draft) {
     if (!draft) return '';
     return JSON.stringify(DRAFT_KEYS.map(key => {
       if (key === 'latitude' || key === 'longitude') { const n = numberInput(draft[key]); return n.valid ? n.value : text(draft[key]); }
+      if (key === 'updatePin') return draft[key] === true;
       return text(draft[key]);
     }));
   }
@@ -87,7 +91,7 @@
     return { received: 'pending', 'under-review': 'under-review', disputed: 'disputed', incorporated: 'approved', approved: 'approved', conflicting: 'disputed' }[issue.remoteStatus] || 'pending';
   }
   function hasLocalReview(draft, dirty, number) {
-    return !!draft && (dirty.has(number) || draft.decision !== 'pending' || draft.mode !== 'evidence' || !!text(draft.publicNote) || !!text(draft.privateNote));
+    return !!draft && (dirty.has(number) || draft.decision !== 'pending' || draft.mode !== 'content' || !!text(draft.publicNote) || !!text(draft.privateNote));
   }
   function filterIssues(issues, query, filter, drafts, history, dirty) {
     const needles = text(query).toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
@@ -358,7 +362,7 @@
     }
     function renderCurrentResearch() {
       const site = selectedSite(), node = $('current-research'); node.replaceChildren(); $('related-frames').replaceChildren();
-      if (!site) { node.append(element('p', 'No existing location is linked. The submission will be reviewed as new evidence; a new map location requires an explicit location review.', 'research-text')); return; }
+      if (!site) { node.append(element('p', 'No existing location is linked. An approved website update will create a new candidate entry for the submission’s frame. You can publish its information before setting a map pin.', 'research-text')); return; }
       node.append(element('h4', site.name, 'research-title'), element('span', site.status, 'badge ' + (site.status === 'Candidate' ? 'approved' : '')));
       node.append(element('p', [site.address, formatPoint(site.coord)].filter(Boolean).join(' · '), 'research-meta'));
       [['Film connection', site.connection], ['Historical context', site.history], ['Confidence: ' + text(site.confidenceLabel), site.confidenceNote], ['Meaning of the pin', site.pinNote]].forEach(([label, content]) => { if (!content) return; const block = element('div', null, 'research-text'); block.append(element('strong', label)); const p = element('p'); richText(p, content); block.append(p); node.append(block); });
@@ -401,19 +405,29 @@
       const place = $('place'); place.replaceChildren();
       state.sites.forEach(site => { const option = element('option', site.name); option.value = site.id; place.append(option); });
       const fresh = element('option', 'New location for this submission frame'); fresh.value = 'new'; place.append(fresh);
-      Object.entries(FIELD_IDS).forEach(([key, id]) => { $(id).value = draft[key] == null ? '' : draft[key]; });
+      Object.entries(FIELD_IDS).forEach(([key, id]) => { if (key === 'updatePin') $(id).checked = draft[key] === true; else $(id).value = draft[key] == null ? '' : draft[key]; });
       doc.querySelectorAll('input[name="review-mode"]').forEach(input => { input.checked = input.value === draft.mode; });
+      $('other-review-options').open = draft.mode !== 'content';
       renderMode(); renderSaveStatus(); errorAt('review-error', ''); updateMap(true);
     }
     function renderMode() {
       const draft = selectedDraft(), site = selectedSite(); if (!draft) return;
-      $('location-fields').hidden = draft.mode !== 'location';
+      const content = draft.mode === 'content', editPin = pinEditsEnabled(draft);
+      $('content-fields').hidden = !content; $('site-fields').hidden = draft.mode === 'evidence';
+      $('legacy-content-action').hidden = content; $('location-fields').hidden = !editPin;
+      $('map-section').hidden = content && !editPin;
+      setText('review-heading', content ? 'Website information' : 'Decision & map');
+      setText('preview-button', content ? 'Review website changes →' : 'Preview publication →');
+      setText('public-note-hint', content ? 'Optional' : 'Required to publish');
+      setText('public-note-help', content ? 'A brief publication record is created automatically. Add a note here only if you want to explain the decision further.' : 'This note and the submitted source links will appear in the public review record.');
+      $('public-note').placeholder = content ? 'Optional: explain your editorial decision or any remaining uncertainty.' : 'Explain your decision in terms a visitor can understand. Say which evidence you accept and what remains uncertain.';
       const frames = site ? (site.frames || []).map(frame => validFrame(frame.id)).filter(Boolean) : [validFrame(selectedIssue()?.fields?.frame)].filter(Boolean);
       let scope = site ? 'This location is shared by ' + frames.length + ' frame' + (frames.length === 1 ? '' : 's') + ': ' + frames.join(', ') + '.' : 'A new location will use the submission’s frame' + (frames.length ? ' ' + frames[0] : '') + '.';
-      scope += draft.mode === 'location' ? ' An approved location review changes this whole location record.' : ' An approved evidence review adds notes and sources while preserving its map position and confidence.';
+      scope += content ? ' Approval publishes the edited website text and sources for this location.' + (editPin ? ' It also updates the pin and confidence shown below.' : site ? ' The current pin and confidence are kept.' : ' The new candidate entry will remain unpinned.') : draft.mode === 'location' ? ' An approved location review changes this whole location record.' : ' An approved evidence review adds notes and sources while preserving its map position and confidence.';
       setText('linked-scope', scope);
-      setText('decision-help', draft.decision === 'approved' ? 'Approved locally. Your decision reaches the public site only after you preview and publish it.' : 'A saved decision stays local until you preview and publish it.');
-      if (draft.mode !== 'location' && map) { map.picking = false; map.setInteraction(); }
+      $('decision').querySelector('option[value="approved"]').textContent = content ? 'Approve website update' : 'Approve contribution';
+      setText('decision-help', draft.decision === 'approved' ? 'Approved locally. Your decision reaches the public site only after you preview and publish it.' : content ? 'Choose Approve website update to publish this text. You can save unfinished work locally.' : 'A saved decision stays local until you preview and publish it.');
+      if (!editPin && map) { map.picking = false; map.setInteraction(); }
       const point = issuePoint(selectedIssue()); $('use-submitted-point').disabled = !withinBounds(point, state.bounds);
       $('use-submitted-point').title = !point ? 'No coordinates were supplied.' : !withinBounds(point, state.bounds) ? 'The submitted point is outside the research area.' : '';
       $('pick-map-point').disabled = !map?.ready;
@@ -438,10 +452,17 @@
       if (state.previewNumber === state.selected) state.preview = null;
       renderSaveStatus(); renderInbox();
     }
+    function changeMode(mode) {
+      if (!['content', 'evidence', 'location'].includes(mode) || !selectedDraft()) return;
+      setDraftField('mode', mode);
+      doc.querySelectorAll('input[name="review-mode"]').forEach(input => { input.checked = input.value === mode; });
+      if (mode === 'content') $('other-review-options').open = false;
+      renderMode(); updateMap(false);
+    }
     function changePlace(place) {
       setDraftField('place', place);
       const draft = selectedDraft(), site = selectedSite(), fields = selectedIssue().fields || {};
-      const replacements = site ? { name: site.name, address: site.address, latitude: site.coord?.[1] ?? null, longitude: site.coord?.[0] ?? null, status: site.status, confidenceLabel: site.confidenceLabel, confidenceNote: site.confidenceNote, pinNote: site.pinNote } : { name: fields.location || '', address: fields.proposedAddress || '', latitude: null, longitude: null, status: 'Candidate', confidenceLabel: '', confidenceNote: '', pinNote: '' };
+      const replacements = site ? { name: site.name, address: site.address, history: site.history, latitude: site.coord?.[1] ?? null, longitude: site.coord?.[0] ?? null, status: site.status, confidenceLabel: site.confidenceLabel, confidenceNote: site.confidenceNote, pinNote: site.pinNote } : { name: fields.location || '', address: fields.proposedAddress || '', history: '', latitude: null, longitude: null, status: 'Candidate', confidenceLabel: '', confidenceNote: '', pinNote: '' };
       Object.entries(replacements).forEach(([key, value]) => { draft[key] = value == null && !['latitude', 'longitude'].includes(key) ? '' : value; });
       setDraftField('place', place); renderEditor(); renderCurrentResearch();
     }
@@ -460,10 +481,10 @@
     }
     function updateMap(fit) {
       const issue = selectedIssue(), draft = selectedDraft(); if (!issue || !draft) return;
-      const current = selectedSite()?.coord || null, submitted = issuePoint(issue), proposed = draft.mode === 'location' ? draftPoint(draft) : null;
+      const current = selectedSite()?.coord || null, submitted = issuePoint(issue), proposed = pinEditsEnabled(draft) ? draftPoint(draft) : null;
       const comparison = $('point-comparison'); comparison.replaceChildren();
       [['current', 'Current', current], ['submitted', 'Submitted', submitted], ['draft', 'Your draft', proposed]].forEach(([kind, label, point]) => {
-        const cell = element('div', null, 'point-cell ' + kind); cell.append(element('strong', label), element('span', kind === 'draft' && draft.mode === 'evidence' ? 'Evidence only' : formatPoint(point)));
+        const cell = element('div', null, 'point-cell ' + kind); cell.append(element('strong', label), element('span', kind === 'draft' && !pinEditsEnabled(draft) ? draft.mode === 'content' ? 'Keep current pin' : 'Evidence only' : formatPoint(point)));
         if (point && !withinBounds(point, state.bounds)) cell.append(element('span', 'Outside area')); comparison.append(cell);
       });
       if (map) { map.setPoints([{ kind: 'current', label: 'Current public point', coord: current }, { kind: 'submitted', label: 'Submitted point — unreviewed', coord: submitted }, { kind: 'draft', label: 'Local draft point', coord: proposed }], fit); }
@@ -479,7 +500,7 @@
     }
     async function saveDraft(number = state.selected) {
       const draft = state.drafts.get(number); if (!draft || state.busy.has('save:' + number)) return false;
-      if (!numberInput(draft.latitude).valid || !numberInput(draft.longitude).valid) { errorAt('review-error', 'Correct the coordinate format before saving. Use decimal numbers or leave the fields empty.'); return false; }
+      if ((draft.mode !== 'content' || pinEditsEnabled(draft)) && (!numberInput(draft.latitude).valid || !numberInput(draft.longitude).valid)) { errorAt('review-error', 'Correct the coordinate format before saving. Use decimal numbers or leave the fields empty.'); return false; }
       const payload = draftPayload(draft), sentFingerprint = fingerprint(draft);
       state.busy.add('save:' + number); if (state.selected === number) { errorAt('review-error', ''); renderSaveStatus(); }
       try {
@@ -495,11 +516,17 @@
     function validateForPreview() {
       const draft = selectedDraft(), issue = selectedIssue();
       if (text(draft.baseIssueUpdatedAt) !== text(issue.updatedAt)) return 'The submission has changed. Read the updated evidence and choose “Use this version for my review” before previewing.';
-      if (text(draft.publicNote).trim().length < 20) return 'Add a public review note of at least 20 characters explaining the decision and its limits.';
-      if (draft.mode === 'location' && draft.decision === 'approved') {
+      const note = text(draft.publicNote).trim();
+      if ((draft.mode !== 'content' || note) && note.length < 20) return draft.mode === 'content' ? 'Use at least 20 characters for a custom public note, or leave it empty for an automatic publication record.' : 'Add a public review note of at least 20 characters explaining the decision and its limits.';
+      if (draft.mode === 'content' && draft.decision === 'approved') {
+        if (text(draft.name).trim().length < 2) return 'Add a location name before reviewing the website changes.';
+        if (text(draft.connection).trim().length < 20) return 'Add the film and location information you want to publish, using at least 20 characters.';
+        if (draft.place === 'new' && !validFrame(issue.fields?.frame)) return 'A new website location needs a valid submission frame from 1 to 682.';
+      }
+      if (pinEditsEnabled(draft) && draft.decision === 'approved') {
         if (!validFrame(issue.fields?.frame)) return 'A map location needs a valid submission frame. Use evidence-only review for a general historical contribution.';
-        if (!withinBounds(draftPoint(draft), state.bounds)) return 'Choose a point inside the research area before publishing a location. Use evidence-only review to leave it unpinned.';
-        if (draft.status === 'Unplaced') return 'A published pin needs Candidate or Strong match status. Use evidence-only review to leave the location unplaced.';
+        if (!withinBounds(draftPoint(draft), state.bounds)) return 'Choose a point inside the research area before publishing a location.' + (draft.mode === 'content' ? ' Uncheck Also update the map pin to publish the website text with the current position.' : ' Use website information or evidence-only review to leave it unpinned.');
+        if (draft.status === 'Unplaced') return 'A published pin needs Candidate or Strong match status.' + (draft.mode === 'content' ? ' Uncheck Also update the map pin to keep the current position.' : ' Use evidence-only review to leave the location unplaced.');
         for (const [key, min, label] of [['name', 2, 'location name'], ['confidenceLabel', 3, 'confidence label'], ['confidenceNote', 20, 'confidence explanation'], ['pinNote', 20, 'explanation of what the pin represents']]) if (text(draft[key]).trim().length < min) return 'Complete the ' + label + ' before previewing a location change.';
       }
       return '';
@@ -537,21 +564,26 @@
     }
     function renderPreview() {
       const preview = state.preview, body = $('preview-body'); if (!preview) return;
-      body.replaceChildren(); setText('preview-heading', 'Preview submission #' + preview.issueNumber);
+      const content = (preview.mode || state.drafts.get(state.previewNumber)?.mode) === 'content';
+      body.replaceChildren(); setText('preview-heading', (content ? 'Website changes · submission #' : 'Preview submission #') + preview.issueNumber);
       body.append(element('p', preview.summary || 'Review the exact public changes below.', 'preview-summary'));
       const meta = element('div', null, 'preview-meta'); meta.append(element('span', preview.decision === 'approved' ? 'Approve contribution' : DECISION_LABELS[preview.decision] || preview.decision, 'badge ' + preview.decision), element('span', 'Ready for your final review', 'micro')); body.append(meta);
       if (Array.isArray(preview.warnings) && preview.warnings.length) { const warnings = element('ul', null, 'warning-list'); preview.warnings.forEach(warning => warnings.append(element('li', warning))); body.append(warnings); }
       const table = element('table', null, 'change-table'), head = element('thead'), tr = element('tr'); ['Field', 'Current public record', 'After publication'].forEach(label => { const th = element('th', label); th.scope = 'col'; tr.append(th); }); head.append(tr); table.append(head);
-      const tbody = element('tbody'); (preview.changes || []).forEach(change => { const row = element('tr'); row.append(element('td', change.field), element('td', displayValue(change.before)), element('td', displayValue(change.after))); tbody.append(row); }); table.append(tbody); body.append(table);
+      const fieldLabels = { connection: 'Film & location information', history: 'Historical context', name: 'Location name', address: 'Address or area', coord: 'Map pin', sources: 'Source links' };
+      const tbody = element('tbody'); (preview.changes || []).forEach(change => { const row = element('tr'), label = content && fieldLabels[text(change.field).split('.').at(-1)] || change.field; row.append(element('td', label), element('td', displayValue(change.before)), element('td', displayValue(change.after))); tbody.append(row); }); table.append(tbody); body.append(table);
       if (!(preview.changes || []).length) body.append(element('p', 'The preview contains no field changes.', 'micro'));
       const note = element('section', null, 'preview-section'); note.append(element('h3', 'Public review note')); const prose = element('div', null, 'prose'); richText(prose, preview.publicNote); note.append(prose); body.append(note);
       const sources = element('section', null, 'preview-section'); sources.append(element('h3', 'Source links in the public record')); const links = element('div', null, 'source-list'); uniqueUrls(preview.sourceLinks).forEach(url => links.append(sourceCard(url))); if (!links.childNodes.length) links.append(element('p', 'No source links supplied.', 'micro')); sources.append(links); body.append(sources);
       const files = element('section', null, 'preview-section'); files.append(element('h3', 'Files this will update')); const list = element('ul', null, 'file-list'); (preview.files || []).forEach(file => list.append(element('li', file))); files.append(list); body.append(files);
-      body.append(element('p', 'Publishing writes this decision to the public repository. The website updates through GitHub Pages after the commit. Private working notes are excluded.', 'preview-detail-note'));
+      const publicationHelp = content && preview.decision === 'approved' ? 'Approve and publish applies the website changes shown above. The public site updates after its deployment finishes. Private working notes are excluded.' : content ? 'This decision publishes the review status. Choose Approve website update in the editor to publish the edited website text. Private working notes are excluded.' : 'Publishing writes this decision to the public repository. The website updates through GitHub Pages after the commit. Private working notes are excluded.';
+      body.append(element('p', publicationHelp, 'preview-detail-note'));
       errorAt('preview-error', ''); setText('publish-status', 'Nothing from this preview has been published.'); renderPreviewActions();
     }
     function renderPreviewActions() {
       const canPublish = !!state.connection.canPublish && !!state.connection.connected;
+      const draft = state.drafts.get(state.previewNumber), mode = state.preview?.mode || draft?.mode, decision = state.preview?.decision || draft?.decision;
+      setText('publish-button', mode === 'content' && decision === 'approved' ? 'Approve & publish to site' : 'Publish this decision');
       $('publish-button').hidden = !!state.publication; $('publish-button').disabled = !state.preview || !canPublish || state.publishing;
       $('preview-connect').hidden = canPublish || !!state.publication;
       $('refresh-preview').hidden = !!state.preview || !!state.publication;
@@ -578,17 +610,19 @@
       if (index >= 0) state.history[index] = record; else state.history.unshift(record);
     }
     function renderPublication(result) {
-      const body = $('preview-body'); body.replaceChildren(); setText('preview-heading', 'Review committed successfully');
-      const card = element('div', null, 'success-card'); card.append(element('h3', 'Your review is in the repository.'), element('p', 'The decision was published as commit ' + text(result.commitSha).slice(0, 7) + '. GitHub Pages may still be building the updated website.'));
+      const content = result.record?.mode === 'content' && result.record?.decision === 'approved';
+      const body = $('preview-body'); body.replaceChildren(); setText('preview-heading', content ? 'Website update committed' : 'Review committed successfully');
+      const card = element('div', null, 'success-card'); card.append(element('h3', content ? 'Your website update is committed.' : 'Your review is in the repository.'), element('p', (content ? 'The website information was published as commit ' : 'The decision was published as commit ') + text(result.commitSha).slice(0, 7) + '. GitHub Pages may still be building the updated website.'));
       card.append(externalLink(result.commitUrl, 'Inspect the published commit ↗', 'quiet-link')); body.append(card);
       if (result.issueSynced) body.append(element('p', 'The submission’s public review status has also been synchronized.', 'preview-detail-note'));
       else {
         const pending = element('div', null, 'pending-card'); pending.append(element('strong', 'Published · submission status sync pending'), element('p', result.warning || 'Your review commit succeeded. Only the issue’s status label still needs synchronization.'));
         const retry = element('button', 'Retry status sync', 'small secondary'); retry.type = 'button'; retry.addEventListener('click', () => syncIssue(Number(result.record?.issueNumber || state.previewNumber), retry)); pending.append(retry); body.append(pending);
       }
-      const links = element('div', null, 'history-links'); links.append(externalLink(result.issueUrl, 'Submission record ↗'), externalLink(state.bootstrap?.siteUrl || 'https://hgw3lls.github.io/uptight/', 'Open public map ↗')); body.append(links);
+      const siteUrl = result.siteUrl || (result.record?.siteId ? 'https://hgw3lls.github.io/uptight/#place=' + encodeURIComponent(result.record.siteId) : state.bootstrap?.siteUrl || 'https://hgw3lls.github.io/uptight/');
+      const links = element('div', null, 'history-links'); links.append(externalLink(result.issueUrl, 'Submission record ↗'), externalLink(siteUrl, content ? 'View updated location ↗' : 'Open public map ↗')); body.append(links);
       $('publish-button').hidden = true; $('refresh-preview').hidden = true; $('preview-connect').hidden = true; setText('close-preview', 'Done'); setText('publish-status', result.issueSynced ? 'Commit verified · status synchronized' : 'Commit verified · status sync pending'); errorAt('preview-error', '');
-      announce('Review committed successfully. The public website may still be rebuilding.');
+      announce((content ? 'Website update committed successfully.' : 'Review committed successfully.') + ' The public website may still be rebuilding.');
     }
     async function syncIssue(number, button) {
       if (!number || state.busy.has('sync:' + number)) return;
@@ -608,6 +642,7 @@
         head.append(heading, element('span', record.decision === 'approved' ? 'Approved' : DECISION_LABELS[record.decision] || record.decision, 'badge published')); entry.append(head);
         const note = element('div', null, 'prose'); richText(note, record.publicNote); entry.append(note);
         const links = element('div', null, 'history-links'); if (record.commitUrl) links.append(externalLink(record.commitUrl, 'Commit ' + text(record.commitSha).slice(0, 7) + ' ↗')); if (record.issueUrl) links.append(externalLink(record.issueUrl, 'Submission ↗'));
+        if (record.siteId) links.append(externalLink('https://hgw3lls.github.io/uptight/#place=' + encodeURIComponent(record.siteId), 'View location ↗'));
         if (record.issueSynced === false) { links.append(element('span', 'Status sync pending', 'badge approved')); const retry = element('button', 'Retry sync', 'small secondary'); retry.type = 'button'; retry.addEventListener('click', () => syncIssue(Number(record.issueNumber), retry)); links.append(retry); }
         else links.append(element('span', 'Status synchronized', 'micro'));
         entry.append(links); list.append(entry);
@@ -667,7 +702,7 @@
       $('startup-retry').hidden = true;
       try {
         const request = bootstrapRequest(), result = await api('/api/bootstrap'); applyBootstrap(result, request);
-        if (!map) map = new ReviewMap(win, $('review-map'), { onPick: coord => { if (selectedDraft()?.mode !== 'location') return; setDraftField('latitude', coord[1]); setDraftField('longitude', coord[0]); $('latitude').value = coord[1]; $('longitude').value = coord[0]; map.picking = false; map.setInteraction(); updateMap(false); setText('map-message', 'Point added to your local draft. Explain what it represents below.'); announce('Draft point set at ' + formatPoint(coord)); }, onMessage: message => setText('map-message', message) });
+        if (!map) map = new ReviewMap(win, $('review-map'), { onPick: coord => { if (!pinEditsEnabled(selectedDraft())) return; setDraftField('latitude', coord[1]); setDraftField('longitude', coord[0]); $('latitude').value = coord[1]; $('longitude').value = coord[0]; map.picking = false; map.setInteraction(); updateMap(false); setText('map-message', 'Point added to your local draft. Explain what it represents below.'); announce('Draft point set at ' + formatPoint(coord)); }, onMessage: message => setText('map-message', message) });
         if (!map.ready) $('map-fallback').hidden = false;
         renderMode(); updateMap(true); loadContext(); if (state.selected) loadIssue(state.selected);
       } catch (error) {
@@ -688,20 +723,21 @@
     $('film-enlarge').addEventListener('click', () => { $('large-image').src = '/api/frame/' + state.frame; $('large-image').alt = $('film-image').alt; setText('large-image-caption', 'Uptight · frame ' + state.frame); showDialog('image-dialog'); });
     $('reload-comments').addEventListener('click', () => { if (state.selected) loadIssue(state.selected, true); });
     Object.entries(FIELD_IDS).forEach(([key, id]) => {
-      $(id).addEventListener(['decision', 'place', 'status'].includes(key) ? 'change' : 'input', event => {
+      $(id).addEventListener(['decision', 'place', 'status', 'updatePin'].includes(key) ? 'change' : 'input', event => {
         if (key === 'place') return changePlace(event.target.value);
-        setDraftField(key, event.target.value);
-        if (key === 'decision' || key === 'status') renderMode();
-        if (key === 'latitude' || key === 'longitude') updateMap(false);
+        setDraftField(key, key === 'updatePin' ? event.target.checked : event.target.value);
+        if (key === 'decision' || key === 'status' || key === 'updatePin') renderMode();
+        if (key === 'latitude' || key === 'longitude' || key === 'updatePin') updateMap(false);
       });
     });
-    doc.querySelectorAll('input[name="review-mode"]').forEach(input => input.addEventListener('change', () => { if (input.checked) { setDraftField('mode', input.value); renderMode(); updateMap(false); } }));
+    doc.querySelectorAll('input[name="review-mode"]').forEach(input => input.addEventListener('change', () => { if (input.checked) changeMode(input.value); }));
+    $('edit-website-information').addEventListener('click', () => { changeMode('content'); $('website-information').focus(); announce('Website editor opened. Review the proposed text and choose whether to update the pin before publishing.'); });
     $('review-form').addEventListener('submit', event => { event.preventDefault(); saveDraft(); });
     $('preview-button').addEventListener('click', previewReview); $('refresh-preview').addEventListener('click', previewReview); $('publish-button').addEventListener('click', publishReview);
     $('preview-connect').addEventListener('click', () => { state.resumePreviewAfterConnection = true; state.preview = null; closeDialog($('preview-dialog')); renderConnection(); showDialog('connection-dialog'); });
-    $('use-submitted-point').addEventListener('click', () => { if (selectedDraft()?.mode !== 'location') return; const point = issuePoint(selectedIssue()); if (!withinBounds(point, state.bounds)) return; setDraftField('latitude', point[1]); setDraftField('longitude', point[0]); $('latitude').value = point[1]; $('longitude').value = point[0]; if (selectedDraft().status === 'Unplaced') { setDraftField('status', 'Candidate'); $('location-status').value = 'Candidate'; } updateMap(true); announce('Submitted point copied to your local draft. It has not been published.'); });
-    $('clear-point').addEventListener('click', () => { setDraftField('latitude', null); setDraftField('longitude', null); $('latitude').value = ''; $('longitude').value = ''; updateMap(false); });
-    $('pick-map-point').addEventListener('click', () => { if (!map?.ready || selectedDraft()?.mode !== 'location') return; map.picking = !map.picking; map.exploring = false; map.setInteraction(); updateMap(false); setText('map-message', map.picking ? 'Click a point inside the dashed research boundary. Escape cancels.' : 'Point selection canceled. Use + / − to zoom.'); $('review-map').scrollIntoView({ block: 'center', behavior: 'auto' }); });
+    $('use-submitted-point').addEventListener('click', () => { if (!pinEditsEnabled(selectedDraft())) return; const point = issuePoint(selectedIssue()); if (!withinBounds(point, state.bounds)) return; setDraftField('latitude', point[1]); setDraftField('longitude', point[0]); $('latitude').value = point[1]; $('longitude').value = point[0]; if (selectedDraft().status === 'Unplaced') { setDraftField('status', 'Candidate'); $('location-status').value = 'Candidate'; } updateMap(true); announce('Submitted point copied to your local draft. It has not been published.'); });
+    $('clear-point').addEventListener('click', () => { if (!pinEditsEnabled(selectedDraft())) return; setDraftField('latitude', null); setDraftField('longitude', null); $('latitude').value = ''; $('longitude').value = ''; updateMap(false); });
+    $('pick-map-point').addEventListener('click', () => { if (!map?.ready || !pinEditsEnabled(selectedDraft())) return; map.picking = !map.picking; map.exploring = false; map.setInteraction(); updateMap(false); setText('map-message', map.picking ? 'Click a point inside the dashed research boundary. Escape cancels.' : 'Point selection canceled. Use + / − to zoom.'); $('review-map').scrollIntoView({ block: 'center', behavior: 'auto' }); });
     $('map-explore').addEventListener('click', () => { if (!map?.ready) return; map.exploring = !map.exploring; map.picking = false; map.setInteraction(); updateMap(false); setText('map-message', map.exploring ? 'Drag or pinch inside the map. Use + / − to zoom; wheel scrolling continues through the review.' : 'Use + / − to zoom. Scrolling here continues through the review.'); });
     $('map-zoom-in').addEventListener('click', () => map?.scaleBy(1.7)); $('map-zoom-out').addEventListener('click', () => map?.scaleBy(1 / 1.7)); $('map-fit').addEventListener('click', () => map?.fit()); $('map-area').addEventListener('click', () => map?.area());
     doc.querySelectorAll('[data-close-dialog]').forEach(button => button.addEventListener('click', () => closeDialog(button.closest('dialog'))));

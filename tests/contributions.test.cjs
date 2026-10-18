@@ -201,3 +201,16 @@ test('review-note reads are bounded and failures do not become false approvals',
     assert.equal((await request).state, 'error'); assert.equal(signal.aborted, true);
   } finally { global.setTimeout = savedSetTimeout; global.clearTimeout = savedClearTimeout; }
 });
+
+test('published website-content reviews remain visible and report pin changes only when explicitly requested', () => {
+  const row = {issueNumber: 1, issueUrl: 'https://github.com/hgw3lls/uptight/issues/1', decision: 'approved',
+    mode: 'content', publicNote: 'Published the reviewed information in the location entry.', reviewedAt: '2026-10-18T18:00:00Z',
+    sourceLinks: ['https://example.org/archive']};
+  const parse = updatePin => api.normalisePublishedReviews({schemaVersion: 1, decisions: [{...row, updatePin}]})[1];
+  assert.equal(parse(false).mode, 'content'); assert.equal(parse(false).updatePin, false);
+  assert.equal(parse(true).updatePin, true); assert.equal(parse('true').updatePin, false);
+  assert.equal(parse(undefined).publicNote, row.publicNote);
+  const linked = api.normalisePublishedReviews({schemaVersion: 1, decisions: [{...row, siteId: 'third', siteUrl: 'javascript:alert(1)'}]})[1];
+  assert.equal(linked.siteUrl, 'https://hgw3lls.github.io/uptight/#place=third');
+  assert.equal(api.normalisePublishedReviews({schemaVersion: 1, decisions: [{...row, siteId: '../bad'}]})[1].siteUrl, null);
+});

@@ -79,7 +79,7 @@ const ISSUE = {
   body: 'A bridge comparison. <img src=x onerror=alert(1)>\nhttps://example.org/1935\n<script>unsafe()</script>',
   fields: { location: 'Former Clark Avenue Bridge / steelworks area', frame: 658, kind: 'New candidate', evidence: 'The central truss resembles the bridge; position remains a candidate.', links: ['https://example.org/1935', 'javascript:alert(1)', 'https://example.org/1984'], attachments: ['https://example.org/comparison.jpg'], latitude: 41.470289, longitude: -81.6755, place: 'third', sourceDate: '1935', attribution: 'Public archive', proposedAddress: 'Industrial valley' }
 };
-const SITE = { id: 'third', name: 'Former Clark Avenue Bridge / steelworks area', status: 'Candidate', coord: null, address: 'Former crossing', frames: [{ id: 658 }, { id: 654 }, { id: 653 }, { id: 657 }], connection: 'Published film comparison.', confidenceLabel: 'Probable candidate', confidenceNote: 'The bridge identity is probable; the exact camera position is unresolved.', pinNote: 'Currently unpinned; a site position still needs review.', sources: [['Archive', 'https://example.org/old']] };
+const SITE = { id: 'third', name: 'Former Clark Avenue Bridge / steelworks area', status: 'Candidate', coord: null, address: 'Former crossing', frames: [{ id: 658 }, { id: 654 }, { id: 653 }, { id: 657 }], connection: 'Published film comparison.', history: 'Historical context from the existing research.', confidenceLabel: 'Probable candidate', confidenceNote: 'The bridge identity is probable; the exact camera position is unresolved.', pinNote: 'Currently unpinned; a site position still needs review.', sources: [['Archive', 'https://example.org/old']] };
 function make(overrides = {}) {
   const document = new Document(html), requests = [], handlers = new Map(), windowListeners = new Map();
   const data = { csrfToken: 'csrf-secret', repository: 'hgw3lls/uptight', siteUrl: 'https://hgw3lls.github.io/uptight/', bounds: ui.BOUNDS, connection: { connected: false, canPublish: false, mode: 'public', message: 'Reading public submissions.' }, issues: [copy(ISSUE)], sites: [copy(SITE)], drafts: {}, history: [], lastRefresh: null, ...overrides };
@@ -100,21 +100,78 @@ function make(overrides = {}) {
   const app = ui.createApp(win, { manualStart: true, fetch }); app.applyBootstrap(copy(data));
   return { app, win, document, data, requests, handlers, listeners: windowListeners, $: id => document.getElementById(id) };
 }
-function approvedEvidence(app) { app.setDraftField('decision', 'approved'); app.setDraftField('publicNote', 'Reviewed the structural comparison. The bridge remains a probable candidate; no camera position is established.'); }
+function approvedEvidence(app) { app.setDraftField('mode', 'evidence'); app.setDraftField('decision', 'approved'); app.setDraftField('publicNote', 'Reviewed the structural comparison. The bridge remains a probable candidate; no camera position is established.'); }
 function mockPreview(number = 1) { return { previewId: 'preview-1', issueNumber: number, decision: 'approved', changes: [{ field: 'review.decisions', before: 0, after: 1 }, { field: 'sites.third.reviewedContributions', before: 0, after: 1 }], publicNote: 'A public assessment; position remains unresolved.', sourceLinks: ['https://example.org/1935'], files: ['data/review-decisions.json', 'data/map-data.json'], warnings: ['A candidate is not a verified camera position.'], summary: 'Approve evidence for the existing candidate.' }; }
 function fail(message, code, status = 409) { return { __response: { ok: false, status, json: async () => ({ error: message, code }) } }; }
 
-test('first opening retains submitted coordinates as evidence; map adoption requires explicit action', async () => {
+test('first opening prepares website information while retaining submitted coordinates as evidence', async () => {
   const { app, $, requests, document } = make();
   const draft = app.state.drafts.get(1);
-  assert.equal(draft.decision, 'pending'); assert.equal(draft.mode, 'evidence'); assert.equal(draft.latitude, null); assert.equal(draft.longitude, null);
-  assert.ok($('point-comparison').textContent.includes('41.470289')); assert.ok($('point-comparison').textContent.includes('Evidence only'));
+  assert.equal(draft.decision, 'pending'); assert.equal(draft.mode, 'content'); assert.equal(draft.updatePin, false); assert.equal(draft.latitude, null); assert.equal(draft.longitude, null);
+  assert.equal($('website-information').value, ISSUE.fields.evidence); assert.equal($('website-history').value, SITE.history);
+  assert.ok($('current-research').textContent.includes(SITE.connection)); assert.equal($('content-fields').hidden, false);
+  assert.ok($('point-comparison').textContent.includes('41.470289')); assert.ok($('point-comparison').textContent.includes('Keep current pin'));
   assert.equal($('location-fields').hidden, true); assert.equal(requests.length, 0);
   const location = document.querySelector('input[name="review-mode"][value="location"]'); location.checked = true; await location.fire('change');
   assert.equal(draft.latitude, null, 'enabling location mode does not adopt a submitted point');
   await $('use-submitted-point').fire('click');
   assert.equal(draft.latitude, 41.470289); assert.equal(draft.longitude, -81.6755); assert.equal(app.state.dirty.has(1), true); assert.equal(requests.length, 0);
   assert.ok($('linked-scope').textContent.includes('658, 654, 653, 657'), 'all linked frames are visible before a shared site change');
+});
+
+test('website information is saved and previewed without an extra note, then published only by the final action', async () => {
+  const { app, $, requests, handlers, data } = make({ connection: { connected: true, canPublish: true, login: 'owner' } });
+  const information = 'The archived view supports the Clark Avenue Bridge identification for these frames.';
+  $('website-information').value = information; await $('website-information').fire('input');
+  $('website-history').value = 'The historical crossing served the industrial valley.'; await $('website-history').fire('input');
+  $('decision').value = 'approved'; await $('decision').fire('change');
+  assert.equal($('public-note').value, '');
+  handlers.set('/api/preview/1', () => ({ ...mockPreview(), mode: 'content', summary: 'Publish website information for the Clark Avenue Bridge.', publicNote: 'Updated website information from submission #1.', changes: [{ field: 'sites.third.connection', before: SITE.connection, after: information }, { field: 'sites.third.history', before: SITE.history, after: 'The historical crossing served the industrial valley.' }] }));
+  await $('preview-button').fire('click');
+  assert.deepEqual(requests.map(request => request.url), ['/api/drafts/1', '/api/preview/1']);
+  const payload = JSON.parse(requests[0].body);
+  assert.equal(payload.mode, 'content'); assert.equal(payload.connection, information); assert.equal(payload.history, 'The historical crossing served the industrial valley.'); assert.equal(payload.updatePin, false); assert.equal(payload.publicNote, '');
+  assert.ok($('preview-body').textContent.includes(information)); assert.equal($('publish-button').textContent, 'Approve & publish to site');
+  const siteUrl = 'https://hgw3lls.github.io/uptight/?place=third&frame=658';
+  const record = { id: 'content-review-1', issueNumber: 1, decision: 'approved', mode: 'content', publicNote: 'Updated website information from submission #1.', commitSha: 'abc123456789', commitUrl: 'https://github.com/hgw3lls/uptight/commit/abc123456789', siteUrl, issueUrl: ISSUE.url, publishedAt: '2026-10-18T18:00:00Z', issueSynced: true };
+  handlers.set('/api/publish/1', options => { assert.deepEqual(JSON.parse(options.body), { previewId: 'preview-1' }); data.history = [record]; return { published: true, commitSha: record.commitSha, commitUrl: record.commitUrl, siteUrl, issueUrl: ISSUE.url, issueSynced: true, record }; });
+  await $('publish-button').fire('click');
+  assert.equal(requests.filter(request => request.url === '/api/publish/1').length, 1);
+  assert.ok($('preview-body').querySelectorAll('a').some(a => a.href === siteUrl && a.textContent.includes('View updated location')));
+  assert.ok($('preview-body').textContent.includes('Pages may still be building'));
+  assert.equal(app.state.dirty.has(1), false);
+});
+
+test('saved legacy reviews remain intact until explicitly switched to website information', async () => {
+  for (const mode of ['evidence', 'location']) {
+    const saved = { ...ui.defaultDraft(ISSUE, [SITE]), mode, decision: 'approved', publicNote: 'The structural evidence supports the bridge identification.', privateNote: 'Keep this existing private work.', latitude: 41.470289, longitude: -81.6755 };
+    delete saved.connection; delete saved.history; delete saved.updatePin;
+    const { app, $, requests } = make({ drafts: { '1': saved } });
+    assert.equal(app.state.drafts.get(1).mode, mode); assert.equal(app.state.dirty.has(1), false);
+    assert.equal($('content-fields').hidden, true); assert.equal($('legacy-content-action').hidden, false);
+    await $('edit-website-information').fire('click');
+    const draft = app.state.drafts.get(1);
+    assert.equal(draft.mode, 'content'); assert.equal(draft.connection, ISSUE.fields.evidence); assert.equal(draft.history, SITE.history); assert.equal(draft.publicNote, saved.publicNote); assert.equal(draft.privateNote, saved.privateNote); assert.equal(draft.updatePin, false);
+    assert.equal($('update-pin').checked, false); assert.equal($('location-fields').hidden, true); assert.equal($('content-fields').hidden, false);
+    assert.equal(app.state.dirty.has(1), true); assert.equal(requests.length, 0);
+  }
+});
+
+test('content pin changes require both explicit enablement and point adoption, and remain bounded', async () => {
+  const { app, $, requests, handlers } = make();
+  $('decision').value = 'approved'; await $('decision').fire('change');
+  await $('use-submitted-point').fire('click'); assert.equal(app.state.drafts.get(1).latitude, null, 'a hidden pin action cannot change website-only drafts');
+  $('update-pin').checked = true; await $('update-pin').fire('change');
+  assert.equal(app.state.drafts.get(1).updatePin, true); assert.equal(app.state.drafts.get(1).latitude, null); assert.equal($('location-fields').hidden, false);
+  await app.previewReview(); assert.equal(requests.length, 0); assert.ok($('review-error').textContent.includes('inside the research area'));
+  await $('use-submitted-point').fire('click');
+  assert.equal(app.state.drafts.get(1).latitude, ISSUE.fields.latitude); assert.equal(app.state.drafts.get(1).longitude, ISSUE.fields.longitude);
+  const withPin = ui.fingerprint(app.state.drafts.get(1));
+  $('update-pin').checked = false; await $('update-pin').fire('change');
+  assert.notEqual(ui.fingerprint(app.state.drafts.get(1)), withPin);
+  handlers.set('/api/preview/1', () => ({ ...mockPreview(), mode: 'content' })); await app.previewReview();
+  assert.equal(JSON.parse(requests[0].body).updatePin, false); assert.equal($('location-fields').hidden, true);
+  assert.equal(ui.draftPayload({ ...app.state.drafts.get(1), updatePin: 'false' }).updatePin, false);
 });
 
 test('untrusted issue HTML and unsafe source URLs remain inert', () => {

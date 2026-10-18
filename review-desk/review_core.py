@@ -43,7 +43,7 @@ PREVIEW_SECONDS = 15 * 60
 MAX_API_BYTES = 32 * 1024 * 1024
 SHA_RE = re.compile(r"^[0-9a-f]{40}$")
 TEXT_FIELDS = (
-    "name", "address", "confidenceLabel", "confidenceNote", "pinNote",
+    "name", "address", "connection", "history", "confidenceLabel", "confidenceNote", "pinNote",
     "publicNote", "privateNote", "baseIssueUpdatedAt",
 )
 
@@ -79,6 +79,15 @@ def git_blob_sha(content):
 
 def fingerprint(value):
     return hashlib.sha256(canonical_json(value)).hexdigest()
+
+
+def fingerprint_draft(draft):
+    # These fields have no effect in the two legacy modes. Ignoring them there
+    # keeps a pre-upgrade journal's exact fingerprint when the new form saves
+    # an otherwise unchanged draft, so an interrupted commit is retried once.
+    if draft.get("mode") in ("evidence", "location"):
+        draft = {key: value for key, value in draft.items() if key not in ("connection", "history", "updatePin")}
+    return fingerprint(draft)
 
 
 def _clean(value):
@@ -546,7 +555,7 @@ class ReviewDesk:
             if not isinstance(raw, dict):
                 raise ReviewError("A review draft must be a JSON object.")
             defaults = {"decision": "pending", "mode": "evidence", "place": issue["fields"]["place"],
-                        "status": "Candidate", "latitude": None, "longitude": None}
+                        "status": "Candidate", "latitude": None, "longitude": None, "updatePin": False}
             draft = {}
             for key, default in defaults.items():
                 draft[key] = raw.get(key, default)
@@ -557,8 +566,10 @@ class ReviewDesk:
                 if len(value) > (30000 if key in ("publicNote", "privateNote") else 12000):
                     raise ReviewError(key + " is too long.")
                 draft[key] = value.strip()
-            if draft["decision"] not in REVIEW_LABELS or draft["mode"] not in ("evidence", "location"):
+            if draft["decision"] not in REVIEW_LABELS or draft["mode"] not in ("evidence", "location", "content"):
                 raise ReviewError("Choose a valid review decision and edit mode.")
+            if not isinstance(draft["updatePin"], bool):
+                raise ReviewError("updatePin must be true or false.")
             if draft["status"] not in ("Candidate", "Strong match", "Unplaced"):
                 raise ReviewError("Choose Candidate, Strong match or Unplaced for map confidence.")
             site_ids = {site["id"] for site in self.state["sites"]}
@@ -631,14 +642,26 @@ class ReviewDesk:
     def _validate_publication(self, draft, issue, sites):
         if draft["baseIssueUpdatedAt"] != issue["updatedAt"]:
             raise ReviewError("The submission changed after this draft was started. Refresh its evidence, save the reviewed draft against the new version, then preview again.", 409, "ISSUE_CHANGED")
-        if len(draft["publicNote"]) < 20:
+        content_mode = draft["mode"] == "content"
+        if len(draft["publicNote"]) < 20 and not (content_mode and not draft["publicNote"]):
             raise ReviewError("Add a public review note of at least 20 characters explaining the decision and its limits.")
         by_id = {site["id"]: site for site in sites}
         if draft["place"] not in ("", "new") and draft["place"] not in by_id:
             raise ReviewError("The selected map location no longer exists. Refresh and choose a current location.", 409, "SITE_CHANGED")
-        if draft["decision"] == "approved" and draft["mode"] == "location":
+        edits_pin = draft["mode"] == "location" or (content_mode and draft.get("updatePin", False) is True)
+        if draft["decision"] == "approved" and (content_mode or edits_pin):
             if draft["place"] == "":
                 raise ReviewError("Choose the existing location to update or explicitly choose a new location.")
+            if draft["place"] == "new":
+                if not valid_frame(issue["fields"]["frame"]):
+                    raise ReviewError("A new website location requires a valid submission frame from 1 to 682.")
+                if "issue-" + str(issue["number"]) in by_id:
+                    raise ReviewError("This issue already created a map location. Select that existing location to revise it.", 409, "SITE_ALREADY_EXISTS")
+        if draft["decision"] == "approved" and content_mode:
+            for key, minimum in (("name", 2), ("connection", 20)):
+                if len(draft.get(key, "")) < minimum:
+                    raise ReviewError("Complete " + key + " before publishing this website information.")
+        if draft["decision"] == "approved" and edits_pin:
             if not valid_frame(issue["fields"]["frame"]):
                 raise ReviewError("A location change requires a valid submission frame from 1 to 682. General historical evidence can be approved in evidence-only mode.")
             if not within_bounds(draft["latitude"], draft["longitude"], self.bounds):
@@ -648,8 +671,6 @@ class ReviewDesk:
             for key, minimum in (("name", 2), ("confidenceLabel", 3), ("confidenceNote", 20), ("pinNote", 20)):
                 if len(draft[key]) < minimum:
                     raise ReviewError("Complete " + key + " before publishing this coordinate. Explain what the point represents and what remains uncertain.")
-            if draft["place"] == "new" and "issue-" + str(issue["number"]) in by_id:
-                raise ReviewError("This issue already created a map location. Select that existing location to revise it.", 409, "SITE_ALREADY_EXISTS")
 
     def _frame_reference(self, frame, sites):
         for site in sites:
@@ -678,27 +699,49 @@ class ReviewDesk:
         reviewed_at = self.now()
         record_id = "review-" + str(number) + "-" + secrets.token_hex(8)
         source_links = list(dict.fromkeys(issue["fields"]["links"] + issue["fields"]["attachments"]))
-        site_id = ("issue-" + str(number) if draft["decision"] == "approved" and draft["mode"] == "location" else None) if draft["place"] == "new" else draft["place"] or None
+        content_mode = draft["mode"] == "content"
+        edits_pin = draft["mode"] == "location" or (content_mode and draft.get("updatePin", False) is True)
+        site_id = ("issue-" + str(number) if draft["decision"] == "approved" and (content_mode or edits_pin) else None) if draft["place"] == "new" else draft["place"] or None
+        public_note = draft["publicNote"]
+        if content_mode and not public_note:
+            if draft["decision"] == "approved":
+                public_note = "Published website information for " + draft["name"] + " from evidence submitted in issue #" + str(number) + "."
+            else:
+                state_label = {"pending": "awaiting review", "under-review": "under review", "disputed": "disputed"}[draft["decision"]]
+                public_note = "Marked the evidence in issue #" + str(number) + " as " + state_label + "."
         record = {"id": record_id, "issueNumber": number, "issueUrl": issue["url"], "issueUpdatedAt": issue["updatedAt"],
                   "reviewedAt": reviewed_at, "reviewer": self.connection["login"] or "Maintainer",
                   "decision": draft["decision"], "mode": draft["mode"], "siteId": site_id,
-                  "frame": issue["fields"]["frame"], "publicNote": draft["publicNote"], "sourceLinks": source_links,
+                  "frame": issue["fields"]["frame"], "publicNote": public_note, "sourceLinks": source_links,
                   "sourceDate": issue["fields"]["sourceDate"], "attribution": issue["fields"]["attribution"], "changes": []}
+        if content_mode:
+            record["updatePin"] = edits_pin
         before_sites = copy.deepcopy(map_data["sites"])
         site = next((item for item in map_data["sites"] if item["id"] == site_id), None)
         warnings = []
         if draft["decision"] == "approved":
-            if draft["mode"] == "location":
-                if draft["place"] == "new":
+            if draft["place"] == "new" and (content_mode or edits_pin):
+                if content_mode:
+                    site = {"id": site_id, "name": "", "coord": None, "address": "", "status": "Candidate", "frames": [],
+                            "connection": "", "history": "", "sources": [], "confidenceLabel": "Location unverified",
+                            "confidenceNote": "The location identification and precise map position have not been established. This entry records the submitted evidence.",
+                            "pinNote": "No map pin has been approved for this location."}
+                else:
                     site = {"id": site_id, "name": draft["name"], "coord": None, "address": "", "status": "Unplaced",
                             "frames": [self._frame_reference(issue["fields"]["frame"], map_data["sites"])],
                             "connection": "Location proposed in public evidence issue #" + str(number) + ".",
                             "history": "", "sources": []}
-                    map_data["sites"].append(site)
-                    record["changes"].append({"field": "sites." + site_id, "before": None, "after": "New map location for frame " + str(issue["fields"]["frame"])})
+                map_data["sites"].append(site)
+                record["changes"].append({"field": "sites." + site_id, "before": None, "after": "New map location for frame " + str(issue["fields"]["frame"])})
+                if content_mode and not edits_pin:
+                    for key in ("coord", "status", "confidenceLabel", "confidenceNote", "pinNote"):
+                        record["changes"].append({"field": "sites." + site_id + "." + key, "before": None, "after": site[key]})
+                    warnings.append("This creates an unpinned Candidate entry. Its identification and precise position remain unverified.")
+            if edits_pin:
                 before = {key: copy.deepcopy(site.get(key)) for key in ("name", "address", "coord", "status", "confidenceLabel", "confidenceNote", "pinNote")}
                 old_coordinate_metadata = {key: copy.deepcopy(site[key]) for key in ("coordinateSourceIds", "coordinateUncertaintyMeters", "coordinateReview") if key in site}
-                proposed = {key: draft[key] for key in ("name", "address", "status", "confidenceLabel", "confidenceNote", "pinNote")}
+                pin_fields = ("status", "confidenceLabel", "confidenceNote", "pinNote")
+                proposed = {key: draft[key] for key in (pin_fields if content_mode else ("name", "address") + pin_fields)}
                 proposed["coord"] = [draft["longitude"], draft["latitude"]]
                 for key, value in proposed.items():
                     if before[key] != value:
@@ -719,15 +762,23 @@ class ReviewDesk:
                                          "reviewDate": reviewed_at[:10], "note": draft["pinNote"]}
                     record["changes"].append({"field": "sites." + site_id + ".coordinateReview", "before": old_coordinate_metadata.get("coordinateReview"), "after": coordinate_review})
                     site["coordinateReview"] = coordinate_review
+                warnings.append("This point represents a landmark, site or area. It does not establish the film camera station.")
+                if draft["status"] == "Candidate":
+                    warnings.append("Approval will publish a Candidate pin; it will not turn this identification into a Strong match.")
+            if content_mode:
+                for key in ("name", "address", "connection", "history"):
+                    before = copy.deepcopy(site.get(key)) if draft["place"] != "new" else None
+                    value = draft.get(key, "")
+                    if before != value:
+                        record["changes"].append({"field": "sites." + site_id + "." + key, "before": before, "after": value})
+                    site[key] = value
+            if (content_mode or edits_pin) and valid_frame(issue["fields"]["frame"]):
                 if not any(frame.get("id") == issue["fields"]["frame"] for frame in site["frames"]):
                     before_frames = [frame.get("id") for frame in site["frames"]]
                     site["frames"].append(self._frame_reference(issue["fields"]["frame"], map_data["sites"]))
                     record["changes"].append({"field": "sites." + site_id + ".frames", "before": before_frames,
                                                "after": [frame.get("id") for frame in site["frames"]]})
-                warnings.append("This point represents a landmark, site or area. It does not establish the film camera station.")
-                if draft["status"] == "Candidate":
-                    warnings.append("Approval will publish a Candidate pin; it will not turn this identification into a Strong match.")
-            elif draft["place"] == "new":
+            elif not content_mode and not edits_pin and draft["place"] == "new":
                 site = None
                 warnings.append("Evidence-only approval records the review without creating a new map location.")
             if site is not None:
@@ -735,13 +786,16 @@ class ReviewDesk:
                 if not isinstance(reviews, list):
                     raise ReviewError("Existing site review records have an unexpected structure.", 409, "MAP_FORMAT_CHANGED")
                 review_note = {"issueNumber": number, "issueUrl": issue["url"], "reviewDate": reviewed_at[:10],
-                               "decision": draft["decision"], "publicNote": draft["publicNote"],
+                               "decision": draft["decision"], "publicNote": public_note,
                                "sourceLinks": source_links, "mode": draft["mode"]}
+                if content_mode:
+                    review_note["updatePin"] = edits_pin
                 reviews.append(review_note)
                 site["reviewDate"] = reviewed_at[:10]
                 sources = site.setdefault("sources", [])
                 if not isinstance(sources, list):
                     raise ReviewError("Existing site sources have an unexpected structure.", 409, "MAP_FORMAT_CHANGED")
+                before_sources = copy.deepcopy(sources)
                 existing_urls = {entry[1] for entry in sources if isinstance(entry, list) and len(entry) >= 2 and isinstance(entry[1], str)}
                 for url in source_links:
                     if url not in existing_urls:
@@ -749,6 +803,9 @@ class ReviewDesk:
                         existing_urls.add(url)
                 if issue["url"] not in existing_urls:
                     sources.append(["Public evidence and review: issue #" + str(number), issue["url"]])
+                if sources != before_sources:
+                    record["changes"].append({"field": "sites." + site_id + ".sources", "before": before_sources,
+                                               "after": copy.deepcopy(sources)})
                 record["changes"].append({"field": "sites." + site_id + ".reviewedContributions", "before": len(reviews) - 1,
                                            "after": review_note})
             else:
@@ -780,7 +837,7 @@ class ReviewDesk:
                     issue = self._latest_issue(number)
                     draft = self.state["drafts"].get(str(number))
                     identity_matches = not self.connection["connected"] or self.connection["login"] == pending["record"]["reviewer"]
-                    if draft is not None and fingerprint(draft) == pending["draftFingerprint"] and issue["updatedAt"] == pending["issueUpdatedAt"] and identity_matches:
+                    if draft is not None and fingerprint_draft(draft) == pending["draftFingerprint"] and issue["updatedAt"] == pending["issueUpdatedAt"] and identity_matches:
                         result = copy.deepcopy(pending["preview"])
                         result["warnings"].append("An earlier network response was interrupted. Publishing this preview retries the same existing commit; it will not create a second review.")
                         return result
@@ -802,12 +859,14 @@ class ReviewDesk:
                 built["warnings"].append("This is a read-only preview. Connect the publishing account and create a fresh preview so the review records the correct reviewer.")
             preview_id = secrets.token_urlsafe(24)
             result = {"previewId": preview_id, "issueNumber": number, "decision": draft["decision"],
-                      "changes": built["record"]["changes"], "publicNote": draft["publicNote"],
+                      "changes": built["record"]["changes"], "publicNote": built["record"]["publicNote"],
                       "sourceLinks": built["record"]["sourceLinks"], "files": sorted(built["files"]),
                       "warnings": built["warnings"],
                       "summary": "Publish " + draft["decision"] + " review for issue #" + str(number) +
                                  (" and its explicit location change." if draft["decision"] == "approved" and draft["mode"] == "location" else ".")}
-            self.previews[preview_id] = {"public": result, "draftFingerprint": fingerprint(draft),
+            if draft["decision"] == "approved" and draft["mode"] == "content":
+                result["summary"] = "Publish website information for " + draft["name"] + " from issue #" + str(number) + (" with its explicit map pin update." if draft.get("updatePin", False) is True else ".")
+            self.previews[preview_id] = {"public": result, "draftFingerprint": fingerprint_draft(draft),
                                          "issueUpdatedAt": issue["updatedAt"], "snapshot": snapshot,
                                          "expires": self.monotonic() + PREVIEW_SECONDS, **built}
             self.state["sites"] = strip_images(self._read_json_blob(snapshot, MAP_PATH)["sites"])
@@ -821,7 +880,7 @@ class ReviewDesk:
 
     def _check_unchanged(self, number, draft_fingerprint, issue_updated_at, parent):
         draft = self.state["drafts"].get(str(number))
-        if draft is None or fingerprint(draft) != draft_fingerprint:
+        if draft is None or fingerprint_draft(draft) != draft_fingerprint:
             raise ReviewError("The saved draft changed after preview. Create a fresh preview before publishing.", 409, "DRAFT_CHANGED")
         issue = self._latest_issue(number)
         if issue["updatedAt"] != issue_updated_at:
@@ -988,8 +1047,11 @@ class ReviewDesk:
 
     def _publication_result(self, journal):
         record = self._record(journal)
-        return {"published": True, "commitSha": journal["commitSha"], "commitUrl": record["commitUrl"],
-                "issueUrl": record["issueUrl"], "issueSynced": journal["issueSynced"], "warning": journal["warning"], "record": record}
+        result = {"published": True, "commitSha": journal["commitSha"], "commitUrl": record["commitUrl"],
+                  "issueUrl": record["issueUrl"], "issueSynced": journal["issueSynced"], "warning": journal["warning"], "record": record}
+        if isinstance(record.get("siteId"), str) and record["siteId"]:
+            result["siteUrl"] = SITE_URL + "#place=" + quote(record["siteId"], safe="")
+        return result
 
     def _sync_labels(self, journal):
         number = journal["issueNumber"]

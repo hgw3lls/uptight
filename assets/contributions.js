@@ -175,12 +175,15 @@
     const labels = { pending: 'Awaiting review', 'under-review': 'Under review', disputed: 'Disputed', approved: 'Approved contribution' };
     for (const row of data.decisions) {
       if (!row || !Number.isInteger(row.issueNumber) || row.issueNumber < 1 || !own(labels, row.decision) ||
-          !['evidence', 'location'].includes(row.mode) || typeof row.publicNote !== 'string' || !row.publicNote.trim()) continue;
+          !['content', 'evidence', 'location'].includes(row.mode) || typeof row.publicNote !== 'string' || !row.publicNote.trim()) continue;
       const reviewedAt = new Date(row.reviewedAt);
       if (typeof row.reviewedAt !== 'string' || !/^\d{4}-\d{2}-\d{2}T/.test(row.reviewedAt) || Number.isNaN(reviewedAt.getTime())) continue;
       if (row.issueUrl !== REPOSITORY + '/issues/' + row.issueNumber) continue;
       reviews[row.issueNumber] = {
         issueNumber: row.issueNumber, decision: row.decision, label: labels[row.decision], mode: row.mode,
+        updatePin: row.mode === 'content' && row.updatePin === true,
+        siteUrl: row.mode === 'content' && typeof row.siteId === 'string' && /^[a-zA-Z0-9_-]{1,100}$/.test(row.siteId)
+          ? SITE + '#place=' + encodeURIComponent(row.siteId) : null,
         publicNote: row.publicNote.trim(), reviewedAt: reviewedAt.toISOString(),
         sourceLinks: (Array.isArray(row.sourceLinks) ? row.sourceLinks : []).map(safeSourceUrl).filter(Boolean).slice(0, 12),
       };
@@ -379,9 +382,15 @@
             const section = text('section', undefined, 'published-review');
             section.append(text('p', 'Published review · ' + review.reviewedAt.slice(0, 10), 'issue-meta'),
               text('h4', review.label), text('p', review.publicNote, 'review-note'));
-            if (review.decision === 'approved') section.append(text('p', review.mode === 'location'
-              ? 'This review includes a location update. The map records its confidence and the meaning of the point.'
-              : 'Evidence review only. This decision does not change the map pin or location confidence.', 'small'));
+            if (review.decision === 'approved') section.append(text('p', review.mode === 'content'
+              ? review.updatePin ? 'The location’s website information and map pin were updated. Read the location entry for the new information and confidence.'
+                : 'The location’s website information was updated. No map pin change was requested.'
+              : review.mode === 'location' ? 'This review includes a location update. The map records its confidence and the meaning of the point.'
+                : 'Evidence review only. This decision does not change the map pin or location confidence.', 'small'));
+            if (review.siteUrl && review.decision === 'approved') {
+              const location = text('a', 'Read the updated location ↗'); location.href = review.siteUrl;
+              location.target = '_blank'; location.rel = 'noopener noreferrer'; section.appendChild(location);
+            }
             const expectedStatus = review.decision === 'approved' ? 'incorporated' : review.decision === 'pending' ? 'received' : review.decision;
             if (item.status.key !== expectedStatus) section.append(text('p', 'The latest published review and the current issue label differ. The issue status above has not been inferred from this note.', 'small'));
             if (review.sourceLinks.length) {

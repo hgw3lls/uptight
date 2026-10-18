@@ -6,16 +6,19 @@ Live at `https://hgw3lls.github.io/uptight/`
 
 ## Local review desk
 
-The owner can read submitted evidence and publish review decisions from the
+The owner can read submitted evidence, edit its proposed website information,
+and publish it directly into the main location entry from the
 [local review desk](review-desk/README.md). Run `python3 review-desk/app.py`, or
 use its Mac/Windows launcher. It provides an inbox, film and source inspection,
 current/proposed map points, local drafts, and an explicit publication preview.
 Reading works without an account; publishing uses a locally authenticated GitHub
 CLI account or a session-only token with repository write access.
 
-An approval can retain evidence or update a location pin while preserving its
-chosen confidence level. Published review notes appear on the map, and the app
-synchronizes the submission's review label after committing the decision.
+The primary website-information mode updates the location name, address,
+description, historical context, and sources. Pin changes are optional. The
+owner previews exact old/new values before choosing **Approve & publish to site**.
+Published review notes retain the decision history, and the app synchronizes the
+submission's review label after committing the approved update.
 
 The review desk's source is tracked here, but **it is not deployed to GitHub
 Pages**. `scripts/build_pages.py` creates the public artifact from an explicit
