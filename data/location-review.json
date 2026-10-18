@@ -17,15 +17,17 @@
       "A strong visual identification locates a landmark or setting; it does not establish an exact camera position.",
       "Editing does not prove geographic continuity, that interiors belong to the preceding exterior, or that all industrial inserts share one plant.",
       "Movable signs, mascots, police insignia and scene dressing are not fixed geographic landmarks.",
-      "Sources S01–S29 and their access date follow the supplied review; C01–C02 are supplementary map-placement references checked for this update. Historical address dates and unresolved gaps remain part of each finding."
+      "Sources S01–S29 retain the supplied review’s provenance. Later numbered sources and dated follow-up notes record additional checks; C01–C04 support geographic placement or coordinate assessment. A place’s history or current address alone does not establish a film appearance."
     ]
   },
   "summary": [
     "Madison Square’s 7812–14 and 7820 Hough addresses fall within one named historic frontage. Frame 63 remains probable pending a full facade match; the approximate marker now follows the southwest-corner building footprint.",
     "Eagle Avenue Lift Bridge is a strong visual identification in frames 638 and 652.",
+    "Carter Road’s broad highway tower and narrow adjacent railroad tower in frame 639 closely match a labeled July 1986 photograph. The landmark identification is strong; the exact overhead bridge and camera position remain unresolved.",
     "A newly located 1984 photograph through the former Clark Avenue Bridge’s central truss strengthens the comparison with frame 658. Clark remains a probable, unpinned candidate; the intact roadway and exact viewpoint are unresolved.",
     "East 86th Street / Wade Park Avenue is documented as a filming area in a contemporary account; no indexed still has yet been matched to that evidence.",
-    "The Save-Way directory evidence dates to 1974. Unresolved business and interior leads retain their uncertainty, while the Atlanta and Los Angeles sequences are distinguished from Cleveland."
+    "The Save-Way directory evidence dates to 1974. Unresolved business and interior leads retain their uncertainty, while the Atlanta and Los Angeles sequences are distinguished from Cleveland.",
+    "The October 18 claim check distinguishes probable background bridges from unresolved hotels and storefronts. The proposed frame 667 river bridge and present-day St. Agnes/Fatima backdrop do not fit the inspected image or building chronology; no new exact camera points are assigned."
   ],
   "confidenceDefinitions": [
     {
@@ -217,12 +219,13 @@
       "firstTimestamp": "01:39:03.938",
       "confidenceLabel": "Strong visual identification",
       "confidenceNote": "The central steel arch, concrete approaches and former lower streetcar deck are distinctive. Nearby landmarks have separate confidence levels, and the editing does not establish a continuous route.",
-      "connection": "The central steel arch appears in the river views; concrete approach arches and the former streetcar deck are especially clear in frames 642 and 644. The review supports frames 635–637 and 642–646. These views identify several Flats settings without proving a single continuous walk or drive.",
+      "connection": "The central steel arch appears in the river views; concrete approach arches and the former streetcar deck are especially clear in frames 642 and 644. The review supports frames 635–637 and 642–646. These views identify several Flats settings without proving a single continuous walk or drive. Frame 646 also shows the probable Union Terminal railway viaduct; the specific approach side and camera corner remain unresolved.",
       "pinNote": "Existing pin locates the bridge landmark; camera positions differ between the river views and approach-deck shots.",
       "sourceIds": [
         "S08",
         "S09",
-        "S27"
+        "S27",
+        "S42"
       ],
       "sources": [
         [
@@ -244,6 +247,10 @@
         [
           "Bridges of Metropolitan Cleveland: railroad viaducts",
           "https://pressbooks.ulib.csuohio.edu/bridges-of-metropolitan-cleveland/chapter/the-railroad-era-in-cleveland-bridge-history/"
+        ],
+        [
+          "Jet Lowe: Detroit–Superior east-approach concrete arch, 1978",
+          "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/459/"
         ]
       ],
       "visibleLandmarks": [
@@ -268,7 +275,8 @@
         {
           "name": "Cleveland Union Terminal railroad viaduct",
           "frames": [
-            642
+            642,
+            646
           ],
           "confidenceLabel": "Probable / geographic fit",
           "connection": "The elevated railway and overhead electrical gantries fit the documented crossing immediately south of Detroit–Superior. This remains a geographic inference, not an exact photographic camera match.",
@@ -361,12 +369,16 @@
         639
       ],
       "firstTimestamp": "01:39:27.628",
-      "confidenceLabel": "Probable",
-      "confidenceNote": "The grouped towers and adjacent road/rail configuration are consistent with Carter Road. An exact historical photograph comparison was not completed, so this remains probable.",
-      "connection": "Frame 639’s paired four-tower configuration is consistent with Carter Road Lift Bridge and the adjacent New York Central / Big Four railroad lift bridge. Unlike Eagle Avenue, an exact archival photo comparison remains outstanding.",
-      "pinNote": "Existing pin locates the candidate bridge, not a verified shooting position.",
+      "confidenceLabel": "Strong visual identification",
+      "confidenceNote": "Frame 639’s broad Carter Road tower with a notched crown, narrower adjacent railroad tower and approach-road setting closely match a labeled July 1986 HAER photograph. The comparison identifies Carter Road Lift Bridge with the adjacent Big Four / New York Central railroad lift bridge. The southeast-facing archive view favors the northwest approach side. The exact film camera position, foreground street and overhead structure remain unverified; the proposed Columbus Road underpass is not established.",
+      "connection": "Frame 639’s broad Carter Road tower with a notched crown, narrower adjacent railroad tower and approach-road setting closely match a labeled July 1986 HAER photograph. The comparison identifies Carter Road Lift Bridge with the adjacent Big Four / New York Central railroad lift bridge. The southeast-facing archive view favors the northwest approach side. The exact film camera position, foreground street and overhead structure remain unverified; the proposed Columbus Road underpass is not established.",
+      "pinNote": "The existing point marks the Carter Road bridge landmark; it is not a camera coordinate or a verified place to recreate the shot.",
       "sourceIds": [
-        "S09"
+        "S09",
+        "S34",
+        "S35",
+        "S36",
+        "S37"
       ],
       "sources": [
         [
@@ -380,9 +392,26 @@
         [
           "Sarah Ruth Watson and John Wolfs: Bridges of Metropolitan Cleveland, movable bridges",
           "https://pressbooks.ulib.csuohio.edu/bridges-of-metropolitan-cleveland/chapter/movable-bridges/"
+        ],
+        [
+          "Louise Taft Cawood: Carter Road southeast approach, July 1986",
+          "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/382/"
+        ],
+        [
+          "William C. Barrow: Carter Road and Big Four railroad bridge pair, May 23, 2002",
+          "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/588/"
+        ],
+        [
+          "Bridges of Metropolitan Cleveland: structures across the Cuyahoga River",
+          "https://pressbooks.ulib.csuohio.edu/bridges-of-metropolitan-cleveland/back-matter/structures-across-the-cuyahoga-river/"
+        ],
+        [
+          "Conrail System Diagram Map, April 1, 1981",
+          "https://www.multimodalways.org/docs/railroads/companies/CR/CR%20Maps/CR%20Other%20Maps/CR%20System%20Abandonments%20Map%204-1-1981.pdf"
         ]
       ],
-      "visibleLandmarks": []
+      "visibleLandmarks": [],
+      "reviewed": "2026-10-18"
     },
     {
       "id": "third",
@@ -396,13 +425,18 @@
       ],
       "firstTimestamp": "01:40:54.382",
       "confidenceLabel": "Probable candidate",
-      "confidenceNote": "Follow-up research found Michael A. Fuerst’s 1984 photograph cea0146 looking through the Clark Avenue Bridge’s central truss. Its haunched transverse frames and crossed overhead lattice closely match frame 658 and strengthen the candidate. The photograph shows deck demolition; the intact roadway, skyline and camera position remain unresolved, so the candidate stays probable and unpinned.",
+      "confidenceNote": "Follow-up research found Michael A. Fuerst’s 1984 photograph cea0146 looking through the Clark Avenue Bridge’s central truss. Its haunched transverse frames and crossed overhead lattice closely match frame 658 and strengthen the candidate. The photograph shows deck demolition; the intact roadway, skyline and camera position remain unresolved, so the candidate stays probable and unpinned. An east-facing camera bearing and the exact Republic Steel furnace alignment remain unverified. Frame 658 does not locate every subsequent industrial cut. The supplied pier coordinate is not a verified bridge-remnant or camera point.",
       "connection": "Frames 653, 654, 657 and 658 show a road bridge beside blast-furnace equipment and a long, high-level through-truss with dense overhead bracing. The tall structure in frame 654 is furnace apparatus, not a lift-bridge tower. Bridge form and the industrial relationship make the former Clark Avenue Bridge the better candidate.",
       "pinNote": "Unpinned: the new central-truss comparison strengthens the candidate, but an intact roadway view and film camera position remain unresolved.",
       "sourceIds": [
         "S12",
         "S29",
-        "S31"
+        "S31",
+        "S45",
+        "S46",
+        "S47",
+        "C04",
+        "S50"
       ],
       "sources": [
         [
@@ -416,6 +450,26 @@
         [
           "Cuyahoga County Engineer photograph: Clark central truss, cea0146, 1984",
           "https://clevelandmemory.contentdm.oclc.org/digital/collection/cca/id/129/"
+        ],
+        [
+          "Bridges of Metropolitan Cleveland: unusual bridges, chapter 6",
+          "https://www.clevelandmemory.org/ebooks/bmc/Bmcchap6.html"
+        ],
+        [
+          "Ohio DOT: IR 490 over Cuyahoga River, 2020 bridge inspection",
+          "https://ftp.dot.state.oh.us/pub/districts/D12/Production/Consultant_Programmatic/115407/1811991.pdf"
+        ],
+        [
+          "Michael A. Fuerst: Clark Avenue river-span demolition, 1985",
+          "https://clevelandmemory.contentdm.oclc.org/digital/collection/cca/id/807/"
+        ],
+        [
+          "Cuyahoga County: 2019 spring aerial check of proposed Clark pier coordinate",
+          "https://gis.cuyahogacounty.gov/server/rest/services/IMAGERY/2019_Spring_Aerial/MapServer"
+        ],
+        [
+          "Stanley L. McMichael: Clark Avenue crossing dimensions, 1918",
+          "https://clemem-test.ulib.csuohio.edu/speccoll/bccc/bccc29.html"
         ]
       ],
       "visibleLandmarks": []
@@ -430,13 +484,16 @@
       ],
       "firstTimestamp": "01:33:31.189",
       "confidenceLabel": "Area strong; building name tentative",
-      "confidenceNote": "The cobblestone street, wedge-shaped hotel and raised bascule bridge support a Superior Hill setting. Bethel House Hotel and older Bethel Union / Bethel Hall imagery remain separate leads because their dates and building histories differ.",
-      "connection": "The hotel exterior in frames 601 and 602 has a persuasive Superior Hill setting. The city entry for Bethel House Hotel at 1468 West 10th and older Bethel Union / Bethel Hall imagery should not be equated. Frames 603–633 do not establish that the interiors occupied the exterior building.",
+      "confidenceNote": "The cobblestone street, wedge-shaped hotel and raised bascule bridge support a Superior Hill setting. Bethel House Hotel and older Bethel Union / Bethel Hall imagery remain separate leads because their dates and building histories differ. The Flat Iron Cafe proposal does not fit its official 1114 Center Street address or its published two-story building history. The film’s taller hotel remains unnamed; the HOTEL sign’s production origin is unverified.",
+      "connection": "The hotel exterior in frames 601 and 602 has a persuasive Superior Hill setting. The city entry for Bethel House Hotel at 1468 West 10th and older Bethel Union / Bethel Hall imagery should not be equated. Frames 603–633 do not establish that the interiors occupied the exterior building. A labeled B&O No. 463 comparison supports a probable background bridge in frame 602; the Flat Iron proposal does not identify the hotel.",
       "pinNote": "Existing pin is an approximate candidate street-range location. The hotel’s name, facade and exact shooting property are unconfirmed.",
       "sourceIds": [
         "S21",
         "S22",
-        "S23"
+        "S23",
+        "S39",
+        "S40",
+        "S41"
       ],
       "sources": [
         [
@@ -450,9 +507,45 @@
         [
           "Cleveland Memory: Bethel Union Building, 1869",
           "https://clevelandmemory.contentdm.oclc.org/digital/collection/press/id/15778/"
+        ],
+        [
+          "Flat Iron Cafe: official address and building history",
+          "https://flatironcafe.com/"
+        ],
+        [
+          "Glenn Zahn: B&O Bridge No. 463 under construction, July 3, 1956",
+          "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/203/"
+        ],
+        [
+          "William C. Barrow: Baltimore and Ohio Bridge Number 463, May 16, 2002",
+          "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/413/"
         ]
       ],
-      "visibleLandmarks": []
+      "visibleLandmarks": [
+        {
+          "name": "Baltimore & Ohio Railroad Bridge No. 463",
+          "confidenceLabel": "Probable background landmark",
+          "connection": "The upright raised leaf and articulated triangular mechanism at left of frame 602 are compatible with the labeled B&O No. 463 jackknife-bascule photographs. This identifies a probable background structure without settling the hotel’s name or camera position.",
+          "sourceIds": [
+            "S09",
+            "S40",
+            "S41"
+          ],
+          "frames": [
+            602
+          ],
+          "sources": [
+            [
+              "Glenn Zahn: B&O Bridge No. 463 under construction, July 3, 1956",
+              "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/203/"
+            ],
+            [
+              "William C. Barrow: Baltimore and Ohio Bridge Number 463, May 16, 2002",
+              "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/413/"
+            ]
+          ]
+        }
+      ]
     },
     {
       "id": "united",
@@ -464,16 +557,21 @@
       ],
       "firstTimestamp": "00:50:17.681",
       "confidenceLabel": "Unplaced",
-      "confidenceNote": "The sign and lamp display identify a business-name lead. The 1956 record distinguishes similarly named companies, and neither historical address can be assigned to the 1968 film frontage from the sign alone.",
+      "confidenceNote": "The sign and lamp display identify a business-name lead. The 1956 record distinguishes similarly named companies, and neither historical address can be assigned to the 1968 film frontage from the sign alone. The proposed 3630 Euclid Avenue address and demolition history have not been corroborated. United Electric lettering alone cannot distinguish the similarly named businesses or locate the 1968 shop.",
       "connection": "Frames 330–331 show United Electric lettering, a LIGHTING FIXTURES window strip and a lamp/chandelier display. The 1956 court record’s two businesses at 1772 East 9th and 5805 Euclid remain alternative research leads; the sign alone cannot choose an address. The lamp windows in frames 372–374 may be related, but that continuity is unproved.",
       "pinNote": "No point is plotted because the historical business address and frontage remain unresolved.",
       "sourceIds": [
-        "S19"
+        "S19",
+        "S49"
       ],
       "sources": [
         [
           "1956 court record",
           "https://law.counselstack.com/opinion/united-electric-fixture-supply-co-v-united-electric-supply-co-ohctcomplcuyaho-1956"
+        ],
+        [
+          "Richard Van Curen: United Electric premises at 1830 East 23rd, 1979",
+          "https://clevelandmemory.contentdm.oclc.org/digital/collection/structure/id/585/"
         ]
       ],
       "visibleLandmarks": []
@@ -505,7 +603,7 @@
       ],
       "firstTimestamp": "00:20:48.330",
       "confidenceLabel": "Unplaced",
-      "confidenceNote": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
+      "confidenceNote": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced. The proposed Hough Avenue / East 79th Street corner and claimed demolition remain unverified. A period branch record and matching pharmacy/furniture frontage are still needed.",
       "connection": "The street-speech sequence in frames 151–169 includes Leader Drug. Frames 151 and 153 add a red FURNITURE KRO… sign, plausibly Kronheim. A branch directory plus matching frontage or neighboring business is still needed.",
       "pinNote": "No point is plotted. The pharmacy branch and neighboring furniture frontage have not been matched.",
       "sourceIds": [
@@ -731,7 +829,7 @@
       "reportStartTime": "00:06:01.28",
       "reportPage": 13,
       "scene": "Hough street lead",
-      "observation": "58 dentist window with partial Dr A Co...;59-62 porches and street listeners. 63 MADISON SQUARE roofline, ornate apartment facade and corner drugstore; probable 7812-14 Hough/E79. Follow-up for frame 63: Hopkins plate 6b places both address forms in the named 7812–7828 Hough frontage; the full facade remains unmatched. Frames 58–62 remain unassigned.",
+      "observation": "58 dentist window with partial Dr A Co...;59-62 porches and street listeners. 63 MADISON SQUARE roofline, ornate apartment facade and corner drugstore; probable 7812-14 Hough/E79. Follow-up for frame 63: Hopkins plate 6b places both address forms in the named 7812–7828 Hough frontage; the full facade remains unmatched. Frames 58–62 remain unassigned. Follow-up, October 18: MADISON lettering is visible along the high roofline; the claimed carved nameplate above the entrance is not established at this image resolution. Current survival or redevelopment claims do not strengthen the incomplete full-facade match.",
       "sourceIds": [
         "S01",
         "S02",
@@ -896,7 +994,7 @@
       "reportStartTime": "00:20:48.33",
       "reportPage": 14,
       "scene": "Leader drug street",
-      "observation": "Street speech outside Leader Drug. 151/153 red FURNITURE KRO... neon may be Kronheim. Exact block unplaced. Follow-up: the 1974 Kronheim and Leader entries provide later address controls, but no 1968 pairing is established.",
+      "observation": "Street speech outside Leader Drug. 151/153 red FURNITURE KRO... neon may be Kronheim. Exact block unplaced. Follow-up: the 1974 Kronheim and Leader entries provide later address controls, but no 1968 pairing is established. Follow-up, October 18: The proposed Hough Avenue / East 79th Street corner and claimed demolition remain unverified. A period branch record and matching pharmacy/furniture frontage are still needed.",
       "sourceIds": [
         "S01",
         "S16",
@@ -1233,10 +1331,11 @@
       "reportStartTime": "00:50:17.68",
       "reportPage": 15,
       "scene": "United electric",
-      "observation": "Frames 330–331 show United Electric lettering, a LIGHTING FIXTURES strip and a lamp/chandelier display. A 1956 court record distinguishes United Electric Fixture & Supply at 1772 East 9th from United Electric Supply at 5805 Euclid. Neither historical address is confirmed as the filmed storefront.",
+      "observation": "Frames 330–331 show United Electric lettering, a LIGHTING FIXTURES strip and a lamp/chandelier display. A 1956 court record distinguishes United Electric Fixture & Supply at 1772 East 9th from United Electric Supply at 5805 Euclid. Neither historical address is confirmed as the filmed storefront. Follow-up, October 18: The proposed 3630 Euclid Avenue address and demolition history have not been corroborated. United Electric lettering alone cannot distinguish the similarly named businesses or locate the 1968 shop.",
       "sourceIds": [
         "S01",
-        "S19"
+        "S19",
+        "S49"
       ],
       "reportObservation": "331 reads UNITED Electric with LIGHTING FIXTURES window strip and lamp/chandelier display. Exact address unconfirmed.1956 court record distinguishes 1772 E9 th retail/wholesale United Electric Fixture & Supply and 5805 Euclid wholesale United Electric Supply. A later 1986/2015 CAGE record lists 6610 Euclid, showing address continuity cannot…"
     },
@@ -1685,12 +1784,16 @@
       "reportStartTime": "01:33:31.19",
       "reportPage": 17,
       "scene": "Hotel at a wedge-shaped corner in the flats",
-      "observation": "Cobblestone street, wedge-shaped brick hotel and raised bascule bridge to the left. Site suggests Bethel House Hotel, 1468 West 10th. Exact facade match and historic property continuity not established.",
+      "observation": "Cobblestone street, wedge-shaped brick hotel and raised bascule bridge to the left. Site suggests Bethel House Hotel, 1468 West 10th. Exact facade match and historic property continuity not established. Follow-up, October 18: The Flat Iron Cafe proposal is unsupported by the address and building comparison. B&O No. 463 is a probable background landmark in frame 602; the hotel name remains unresolved.",
       "sourceIds": [
         "S01",
         "S21",
         "S22",
-        "S23"
+        "S23",
+        "S09",
+        "S39",
+        "S40",
+        "S41"
       ],
       "reportObservation": "Cobblestone street, wedge-shaped brick hotel and raised bascule bridge to the left. Site suggests Bethel House Hotel, 1468 W 10 th. Exact facade match and historic property continuity not established."
     },
@@ -1778,11 +1881,16 @@
       "reportStartTime": "01:39:27.63",
       "reportPage": 18,
       "scene": "Paired lift bridges",
-      "observation": "Carter Road Bridge and adjacent New York Central/Big Four railroad vertical-lift bridge are the best fit for the paired four-tower configuration.",
+      "observation": "Frame 639’s broad Carter Road tower with a notched crown, narrower adjacent railroad tower and approach-road setting closely match a labeled July 1986 HAER photograph. The comparison identifies Carter Road Lift Bridge with the adjacent Big Four / New York Central railroad lift bridge. The southeast-facing archive view favors the northwest approach side. The exact film camera position, foreground street and overhead structure remain unverified; the proposed Columbus Road underpass is not established.",
       "sourceIds": [
         "S01",
-        "S09"
-      ]
+        "S09",
+        "S34",
+        "S35",
+        "S36",
+        "S37"
+      ],
+      "reportObservation": "Carter Road Bridge and adjacent New York Central/Big Four railroad vertical-lift bridge are the best fit for the paired four-tower configuration."
     },
     {
       "firstFrame": 640,
@@ -1873,13 +1981,15 @@
       "reportStartTime": "01:40:14.38",
       "reportPage": 18,
       "scene": "Under detroit–superior approach",
-      "observation": "Return to concrete-arch environment visible in 642; no additional named landmark.",
+      "observation": "Return to concrete-arch environment visible in 642; no additional named landmark. Follow-up, October 18: The CUT railway viaduct is a probable background landmark in frame 646. Exact bank, arch and proposed Mulberry / West Superior camera location remain unverified.",
       "sourceIds": [
         "S01",
         "S08",
         "S09",
-        "S27"
-      ]
+        "S27",
+        "S42"
+      ],
+      "reportObservation": "Return to concrete-arch environment visible in 642; no additional named landmark."
     },
     {
       "firstFrame": 647,
@@ -1974,12 +2084,17 @@
       "reportStartTime": "01:41:20.70",
       "reportPage": 18,
       "scene": "Long red through-truss road bridge",
-      "observation": "Long through-truss with repeated haunched transverse frames, heavy crossed lattice overhead and chimneys beyond. Follow-up: Michael A. Fuerst’s 1984 photograph cea0146 looks through the former Clark Avenue Bridge’s central truss and closely matches this structural pattern. Its dismantled deck leaves the intact road edge, railing, skyline and camera position unresolved. Clark remains probable and unpinned.",
+      "observation": "Long through-truss with repeated haunched transverse frames, heavy crossed lattice overhead and chimneys beyond. Follow-up: Michael A. Fuerst’s 1984 photograph cea0146 looks through the former Clark Avenue Bridge’s central truss and closely matches this structural pattern. Its dismantled deck leaves the intact road edge, railing, skyline and camera position unresolved. Clark remains probable and unpinned. Follow-up, October 18: An east-facing camera bearing and the exact Republic Steel furnace alignment remain unverified. Frame 658 does not locate every subsequent industrial cut. The supplied pier coordinate is not a verified bridge-remnant or camera point.",
       "sourceIds": [
         "S01",
         "S12",
         "S29",
-        "S31"
+        "S31",
+        "S45",
+        "S46",
+        "S47",
+        "C04",
+        "S50"
       ],
       "reportObservation": "Long through-truss with repeated rounded/haunched inner portal frames, heavy lattice overhead and chimneys beyond. Site's West 3 rd Street label is not supported securely; Clark is stronger but remains a candidate. Key unresolved bridge frame. Compare primary ClarkCountyEngineerphotocea 0144; road-level historic view still needed."
     },
@@ -2017,10 +2132,13 @@
       "reportStartTime": "01:41:48.94",
       "reportPage": 18,
       "scene": "Final ore yard and ore-handling gantry",
-      "observation": "Ore piles, large ore bridge with operator cab/stairs and clamshell bucket. Republic's former Corrigan-McKinney lower dock is a lead, not a confirmed parcel/company identification.",
+      "observation": "Ore piles, large ore bridge with operator cab/stairs and clamshell bucket. Republic's former Corrigan-McKinney lower dock is a lead, not a confirmed parcel/company identification. Follow-up, October 18: Frame 667’s staircase and gantry match the ore-handling apparatus visible in nearby frames, including the clamshell bucket. The proposed river-bridge attribution is rejected for this frame; the yard remains unplaced.",
       "sourceIds": [
-        "S01"
-      ]
+        "S01",
+        "S09",
+        "S40"
+      ],
+      "reportObservation": "Ore piles, large ore bridge with operator cab/stairs and clamshell bucket. Republic's former Corrigan-McKinney lower dock is a lead, not a confirmed parcel/company identification."
     },
     {
       "firstFrame": 677,
@@ -2278,6 +2396,136 @@
       "title": "Georeferenced Cleveland historic plat-map mosaic: Madison building-site placement",
       "url": "https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services/Cleveland1932_1937/MapServer",
       "note": "Approximate building-site point derived from the named southwest-corner footprint on the historic mosaic and cross-checked with S30. The marker is [-81.63391, 41.50913] in longitude, latitude, about 60 m southwest of the former C02 vicinity marker. Allow roughly 30 m of positional uncertainty as a conservative working allowance, not a measured error bound. Historic surveying and map alignment limit accuracy. Tile, pixel and projection details are retained in data/research-log.json; this is not a film camera position."
+    },
+    {
+      "id": "S34",
+      "title": "Louise Taft Cawood: Carter Road southeast approach, July 1986",
+      "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/382/",
+      "note": "HAER photograph, Cleveland Memory urbanohio/382; repository: Library of Congress. The catalog explicitly identifies a southeast-facing view of Carter Road’s lift towers and approach. The distinctive broad notched highway tower and narrow adjacent railroad tower closely match frame 639. The film’s exact camera point and overhead structure are not established.",
+      "date": "1986-07",
+      "accessed": "2026-10-18"
+    },
+    {
+      "id": "S35",
+      "title": "William C. Barrow: Carter Road and Big Four railroad bridge pair, May 23, 2002",
+      "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/588/",
+      "note": "Cleveland Memory urbanohio/588, gacbridge099.JPG. The caption identifies the Big Four railroad lift in front of Carter Road in this particular broadside view. This clarifies the two structures, not their relative foreground order in every view or their operating status in 1968. Catalog bridge numbering differs from other histories.",
+      "date": "2002-05-23",
+      "accessed": "2026-10-18"
+    },
+    {
+      "id": "S36",
+      "title": "Bridges of Metropolitan Cleveland: structures across the Cuyahoga River",
+      "url": "https://pressbooks.ulib.csuohio.edu/bridges-of-metropolitan-cleveland/back-matter/structures-across-the-cuyahoga-river/",
+      "note": "The river inventory lists the Carter-adjacent railroad lift at mile 2.42 and Carter Road highway bridge at 2.43, separately from another railroad lift at 2.24. River-inventory numbers should not be confused with railroad asset numbers.",
+      "accessed": "2026-10-18"
+    },
+    {
+      "id": "S37",
+      "title": "Conrail System Diagram Map, April 1, 1981",
+      "url": "https://www.multimodalways.org/docs/railroads/companies/CR/CR%20Maps/CR%20Other%20Maps/CR%20System%20Abandonments%20Map%204-1-1981.pdf",
+      "note": "Original Consolidated Rail Corporation map, AB Number 167. The Ohio list places River Bed Main Line—Cleveland Erie Docks to Literary Street in Category 1, defined by the legend as anticipated line abandonment. The map does not establish a last-train date or daily operation in 1968 and does not substantiate calling the railroad abandoned in the film.",
+      "date": "1981-04-01",
+      "accessed": "2026-10-18"
+    },
+    {
+      "id": "S38",
+      "title": "Ohio & Erie Canalway: Towpath Trail trailheads",
+      "url": "https://www.ohioanderiecanalway.com/explore/the-towpath-trail/trailheads/",
+      "note": "Official modern trailhead listings: Scranton Flats, 2057 Scranton Road; Sokolowski’s Overlook, 1203 University Road. These are visitor references, not verified recreations of frame 639 or evidence of a 1968 camera position.",
+      "accessed": "2026-10-18"
+    },
+    {
+      "id": "S39",
+      "title": "Flat Iron Cafe: official address and building history",
+      "url": "https://flatironcafe.com/",
+      "note": "The cafe lists 1114 Center Street and says a late-nineteenth-century fire reduced its former hotel building to two stories. This conflicts with the supplied 1633 West 2nd address and the taller hotel in frame 602. The business history supplies no film-production or temporary HOTEL-sign evidence.",
+      "accessed": "2026-10-18"
+    },
+    {
+      "id": "S40",
+      "title": "Glenn Zahn: B&O Bridge No. 463 under construction, July 3, 1956",
+      "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/203/",
+      "note": "Cleveland Press photograph, clevbridge015.jpg; Cleveland Memory urbanohio/203. The catalog identifies B&O No. 463 and its jackknife-bascule construction. The 1956 bridge replaced a Scherzer rolling lift; it is distinct from the New York Central / Penn Central vertical lift called Bridge No. 1.",
+      "accessed": "2026-10-18"
+    },
+    {
+      "id": "S41",
+      "title": "William C. Barrow: Baltimore and Ohio Bridge Number 463, May 16, 2002",
+      "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/413/",
+      "note": "Cleveland Memory urbanohio/413, gacbridge053, Graduate Assistant Collection. The upright long leaf and articulated triangular mechanism provide a probable silhouette comparison for the distant bridge in frame 602. This later opposite-bank view does not identify the hotel or camera point.",
+      "accessed": "2026-10-18"
+    },
+    {
+      "id": "S42",
+      "title": "Jet Lowe: Detroit–Superior east-approach concrete arch, 1978",
+      "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/459/",
+      "note": "HAER photograph, Library of Congress; Cleveland Memory urbanohio/459. The catalog identifies an east-approach arch. Similar concrete arch construction is therefore insufficient by itself to assign frame 646 to the west approach or a particular street corner.",
+      "accessed": "2026-10-18"
+    },
+    {
+      "id": "S43",
+      "title": "St. Agnes + Our Lady of Fatima: parish history",
+      "url": "https://www.saolf.org/about",
+      "note": "The parish places St. Agnes at East 79th and Euclid, with a 1917 church demolished in 1975. Our Lady of Fatima was established separately on Lexington in 1949. The parishes merged in 1980 and the present adjacent complex was dedicated April 16, 1983. A 1968 film claim must identify a predecessor building; no specific shot has been matched.",
+      "accessed": "2026-10-18"
+    },
+    {
+      "id": "S44",
+      "title": "National Park Service: Cory United Methodist Church",
+      "url": "https://www.nps.gov/articles/000/cory-united-methodist-church-cleveland-ohio.htm",
+      "note": "Institutional history documents Cory’s civil-rights organizing and community role. It does not establish an appearance in Uptight. The separate municipal landmark record confirms the address at 1117 East 105th Street.",
+      "accessed": "2026-10-18"
+    },
+    {
+      "id": "S45",
+      "title": "Bridges of Metropolitan Cleveland: unusual bridges, chapter 6",
+      "url": "https://www.clevelandmemory.org/ebooks/bmc/Bmcchap6.html",
+      "note": "The chapter gives Clark Avenue Bridge’s total length as 6,687 feet. Its preceding acid-fume/uranium corrosion passage concerns Harvard–Denison, not Clark. The chapter’s 1980 demolition statement must be read at section level alongside County Engineer photographs dated 1984 and 1985; it does not establish the final removal date for the complete crossing.",
+      "accessed": "2026-10-18"
+    },
+    {
+      "id": "S46",
+      "title": "Ohio DOT: IR 490 over Cuyahoga River, 2020 bridge inspection",
+      "url": "https://ftp.dot.state.oh.us/pub/districts/D12/Production/Consultant_Programmatic/115407/1811991.pdf",
+      "note": "State of Ohio report for Structure File Number 1811991, inspection July 27, 2020. PDF page 2 lists Year Built 1990. This dates the I-490 valley crossing but does not establish that it immediately replaced every Clark Avenue traffic movement.",
+      "accessed": "2026-10-18"
+    },
+    {
+      "id": "S47",
+      "title": "Michael A. Fuerst: Clark Avenue river-span demolition, 1985",
+      "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/cca/id/807/",
+      "note": "Cuyahoga County Engineer Photography Collection, cea0824; Cleveland Memory cca/807. The archive dates the river-span demolition photograph to 1985. Together with cea0146 and cea0144 from 1984, it documents staged demolition in 1984–85; no exact final day is inferred from a year-only catalog date.",
+      "accessed": "2026-10-18"
+    },
+    {
+      "id": "S48",
+      "title": "City of Cleveland: Cory United Methodist Church landmark",
+      "url": "https://www.clevelandohio.gov/explore/about-cleveland/designated-landmarks/cory-united-methodist-church-anshe-emeth-synagogue",
+      "note": "Municipal landmark identity and address: 1117 East 105th Street. This is historical-place context, not a film-production record.",
+      "accessed": "2026-10-18"
+    },
+    {
+      "id": "S49",
+      "title": "Richard Van Curen: United Electric premises at 1830 East 23rd, 1979",
+      "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/structure/id/585/",
+      "note": "CSU Office of Campus Planning photograph, Cleveland Memory structure/585. This later industrial facade does not reproduce frame 331’s lighting showroom. It does not establish a 1968 address or corporate continuity with either firm in the 1956 court record.",
+      "accessed": "2026-10-18"
+    },
+    {
+      "id": "C04",
+      "title": "Cuyahoga County: 2019 spring aerial check of proposed Clark pier coordinate",
+      "url": "https://gis.cuyahogacounty.gov/server/rest/services/IMAGERY/2019_Spring_Aerial/MapServer",
+      "note": "The supplied latitude/longitude 41.472714, -81.681121 maps to the center of the inspected 2019 aerial export, on an industrial building roof. This does not substantiate a location for two surviving piers or a film camera. Returned extent, projection and reproducible export URL are recorded in data/research-log.json. Imagery credit: CCFO, CCGIS.",
+      "accessed": "2026-10-18"
+    },
+    {
+      "id": "S50",
+      "title": "Stanley L. McMichael: Clark Avenue crossing dimensions, 1918",
+      "url": "https://clemem-test.ulib.csuohio.edu/speccoll/bccc/bccc29.html",
+      "note": "Contemporary account in Bridges of Cleveland and Cuyahoga County, pages 29 and 32. Clark’s overall 6,687-foot length includes intervening fills; steelwork alone is given as 5,992 feet. These are complete-crossing dimensions, not a single clear span.",
+      "date": "1918",
+      "accessed": "2026-10-18"
     }
   ],
   "frameNotes": {
@@ -3763,7 +4011,7 @@
       "image": "media/frames/00000063.jpg",
       "sourceImage": "https://hgw3lls.github.io/uptight/media/frames/00000063.jpg",
       "scene": "Hough street lead",
-      "observation": "MADISON roof lettering, a less legible possible SQUARE, a long apartment/commercial facade, pale corner blocks, stacked balconies and a central arch. Follow-up: Hopkins plate 6b, dated 1921 and revised 1924, places the named Madison Square frontage at 7812–7828 Hough on the southwest East 79th corner, reconciling the address forms. The full archival facade match remains incomplete.",
+      "observation": "MADISON roof lettering, a less legible possible SQUARE, a long apartment/commercial facade, pale corner blocks, stacked balconies and a central arch. Follow-up: Hopkins plate 6b, dated 1921 and revised 1924, places the named Madison Square frontage at 7812–7828 Hough on the southwest East 79th corner, reconciling the address forms. The full archival facade match remains incomplete. MADISON lettering is visible along the high roofline; the claimed carved nameplate above the entrance is not established at this image resolution. Current survival or redevelopment claims do not strengthen the incomplete full-facade match.",
       "location": "Madison Square Building / Hough Avenue",
       "confidence": "Probable / high confidence",
       "classification": "Location finding",
@@ -3792,13 +4040,16 @@
         }
       ],
       "caveats": [
-        "The MADISON lettering and partial 1964 corner comparison support the candidate. Follow-up research reconciles 7812–14 and 7820 Hough within the named Madison Square frontage on a 1921 plat map revised in 1924. A complete historical view of the central arch, balconies and roofline remains unmatched, so the film identification stays probable."
+        "The MADISON lettering and partial 1964 corner comparison support the candidate. Follow-up research reconciles 7812–14 and 7820 Hough within the named Madison Square frontage on a 1921 plat map revised in 1924. A complete historical view of the central arch, balconies and roofline remains unmatched, so the film identification stays probable.",
+        "MADISON lettering is visible along the high roofline; the claimed carved nameplate above the entrance is not established at this image resolution. Current survival or redevelopment claims do not strengthen the incomplete full-facade match."
       ],
       "reportPage": 13,
       "coverageRange": {
         "firstFrame": 58,
         "lastFrame": 63
-      }
+      },
+      "assessmentBefore20261018": "MADISON roof lettering, a less legible possible SQUARE, a long apartment/commercial facade, pale corner blocks, stacked balconies and a central arch. Follow-up: Hopkins plate 6b, dated 1921 and revised 1924, places the named Madison Square frontage at 7812–7828 Hough on the southwest East 79th corner, reconciling the address forms. The full archival facade match remains incomplete.",
+      "reviewed": "2026-10-18"
     },
     "64": {
       "timestamp": "00:06:33.059",
@@ -5754,7 +6005,7 @@
       "image": "media/frames/00000151.jpg",
       "sourceImage": "https://hgw3lls.github.io/uptight/media/frames/00000151.jpg",
       "scene": "Leader drug street",
-      "observation": "Street-speech sequence outside Leader Drug, with a red FURNITURE KRO… sign plausibly reading Kronheim. Exact pharmacy branch and neighboring furniture frontage remain unplaced.",
+      "observation": "Street-speech sequence outside Leader Drug, with a red FURNITURE KRO… sign plausibly reading Kronheim. Exact pharmacy branch and neighboring furniture frontage remain unplaced. The proposed Hough Avenue / East 79th Street corner and claimed demolition remain unverified. A period branch record and matching pharmacy/furniture frontage are still needed.",
       "location": "Leader Drug street scene — unplaced",
       "confidence": "Unplaced",
       "classification": "Unplaced research lead",
@@ -5786,13 +6037,16 @@
       ],
       "caveats": [
         "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
-        "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
+        "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced.",
+        "The proposed Hough Avenue / East 79th Street corner and claimed demolition remain unverified. A period branch record and matching pharmacy/furniture frontage are still needed."
       ],
       "reportPage": 14,
       "coverageRange": {
         "firstFrame": 151,
         "lastFrame": 169
-      }
+      },
+      "assessmentBefore20261018": "Street-speech sequence outside Leader Drug, with a red FURNITURE KRO… sign plausibly reading Kronheim. Exact pharmacy branch and neighboring furniture frontage remain unplaced.",
+      "reviewed": "2026-10-18"
     },
     "152": {
       "timestamp": "00:20:58.340",
@@ -5846,7 +6100,7 @@
       "image": "media/frames/00000153.jpg",
       "sourceImage": "https://hgw3lls.github.io/uptight/media/frames/00000153.jpg",
       "scene": "Leader drug street",
-      "observation": "Street-speech sequence outside Leader Drug, with a red FURNITURE KRO… sign plausibly reading Kronheim. Exact pharmacy branch and neighboring furniture frontage remain unplaced.",
+      "observation": "Street-speech sequence outside Leader Drug, with a red FURNITURE KRO… sign plausibly reading Kronheim. Exact pharmacy branch and neighboring furniture frontage remain unplaced. The proposed Hough Avenue / East 79th Street corner and claimed demolition remain unverified. A period branch record and matching pharmacy/furniture frontage are still needed.",
       "location": "Leader Drug street scene — unplaced",
       "confidence": "Unplaced",
       "classification": "Unplaced research lead",
@@ -5878,13 +6132,16 @@
       ],
       "caveats": [
         "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
-        "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
+        "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced.",
+        "The proposed Hough Avenue / East 79th Street corner and claimed demolition remain unverified. A period branch record and matching pharmacy/furniture frontage are still needed."
       ],
       "reportPage": 14,
       "coverageRange": {
         "firstFrame": 151,
         "lastFrame": 169
-      }
+      },
+      "assessmentBefore20261018": "Street-speech sequence outside Leader Drug, with a red FURNITURE KRO… sign plausibly reading Kronheim. Exact pharmacy branch and neighboring furniture frontage remain unplaced.",
+      "reviewed": "2026-10-18"
     },
     "154": {
       "timestamp": "00:21:18.360",
@@ -6582,7 +6839,7 @@
       "image": "media/frames/00000169.jpg",
       "sourceImage": "https://hgw3lls.github.io/uptight/media/frames/00000169.jpg",
       "scene": "Leader drug street",
-      "observation": "Street speech outside Leader Drug. 151/153 red FURNITURE KRO... neon may be Kronheim. Exact block unplaced.",
+      "observation": "Street speech outside Leader Drug. 151/153 red FURNITURE KRO... neon may be Kronheim. Exact block unplaced. The proposed Hough Avenue / East 79th Street corner and claimed demolition remain unverified. A period branch record and matching pharmacy/furniture frontage are still needed.",
       "location": "Leader Drug street scene — unplaced",
       "confidence": "Unplaced",
       "classification": "Unplaced research lead",
@@ -6614,13 +6871,16 @@
       ],
       "caveats": [
         "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
-        "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
+        "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced.",
+        "The proposed Hough Avenue / East 79th Street corner and claimed demolition remain unverified. A period branch record and matching pharmacy/furniture frontage are still needed."
       ],
       "reportPage": 14,
       "coverageRange": {
         "firstFrame": 151,
         "lastFrame": 169
-      }
+      },
+      "assessmentBefore20261018": "Street speech outside Leader Drug. 151/153 red FURNITURE KRO... neon may be Kronheim. Exact block unplaced.",
+      "reviewed": "2026-10-18"
     },
     "170": {
       "timestamp": "00:23:58.520",
@@ -10384,13 +10644,14 @@
       "image": "media/frames/00000330.jpg",
       "sourceImage": "https://hgw3lls.github.io/uptight/media/frames/00000330.jpg",
       "scene": "United electric",
-      "observation": "Frames 330–331 show United Electric lettering, a LIGHTING FIXTURES strip and a lamp/chandelier display. A 1956 court record distinguishes United Electric Fixture & Supply at 1772 East 9th from United Electric Supply at 5805 Euclid. Neither historical address is confirmed as the filmed storefront.",
+      "observation": "Frames 330–331 show United Electric lettering, a LIGHTING FIXTURES strip and a lamp/chandelier display. A 1956 court record distinguishes United Electric Fixture & Supply at 1772 East 9th from United Electric Supply at 5805 Euclid. Neither historical address is confirmed as the filmed storefront. The proposed 3630 Euclid Avenue address and demolition history have not been corroborated. United Electric lettering alone cannot distinguish the similarly named businesses or locate the 1968 shop.",
       "location": "United Electric storefront — unplaced",
       "confidence": "Unplaced",
       "classification": "Unplaced research lead",
       "sourceIds": [
         "S01",
-        "S19"
+        "S19",
+        "S49"
       ],
       "siteIds": [
         "united"
@@ -10408,13 +10669,16 @@
       ],
       "caveats": [
         "The sign and lamp display identify a business-name lead. The 1956 record distinguishes similarly named companies, and neither historical address can be assigned to the 1968 film frontage from the sign alone.",
-        "The 1956 business addresses are earlier historical leads, not established 1968 film-site addresses."
+        "The 1956 business addresses are earlier historical leads, not established 1968 film-site addresses.",
+        "The proposed 3630 Euclid Avenue address and demolition history have not been corroborated. United Electric lettering alone cannot distinguish the similarly named businesses or locate the 1968 shop."
       ],
       "reportPage": 15,
       "coverageRange": {
         "firstFrame": 330,
         "lastFrame": 331
-      }
+      },
+      "assessmentBefore20261018": "Frames 330–331 show United Electric lettering, a LIGHTING FIXTURES strip and a lamp/chandelier display. A 1956 court record distinguishes United Electric Fixture & Supply at 1772 East 9th from United Electric Supply at 5805 Euclid. Neither historical address is confirmed as the filmed storefront.",
+      "reviewed": "2026-10-18"
     },
     "331": {
       "timestamp": "00:50:27.691",
@@ -10422,13 +10686,14 @@
       "image": "media/frames/00000331.jpg",
       "sourceImage": "https://hgw3lls.github.io/uptight/media/frames/00000331.jpg",
       "scene": "United electric",
-      "observation": "Frames 330–331 show United Electric lettering, a LIGHTING FIXTURES strip and a lamp/chandelier display. A 1956 court record distinguishes United Electric Fixture & Supply at 1772 East 9th from United Electric Supply at 5805 Euclid. Neither historical address is confirmed as the filmed storefront.",
+      "observation": "Frames 330–331 show United Electric lettering, a LIGHTING FIXTURES strip and a lamp/chandelier display. A 1956 court record distinguishes United Electric Fixture & Supply at 1772 East 9th from United Electric Supply at 5805 Euclid. Neither historical address is confirmed as the filmed storefront. The proposed 3630 Euclid Avenue address and demolition history have not been corroborated. United Electric lettering alone cannot distinguish the similarly named businesses or locate the 1968 shop.",
       "location": "United Electric storefront — unplaced",
       "confidence": "Unplaced",
       "classification": "Unplaced research lead",
       "sourceIds": [
         "S01",
-        "S19"
+        "S19",
+        "S49"
       ],
       "siteIds": [
         "united"
@@ -10446,13 +10711,16 @@
       ],
       "caveats": [
         "The sign and lamp display identify a business-name lead. The 1956 record distinguishes similarly named companies, and neither historical address can be assigned to the 1968 film frontage from the sign alone.",
-        "The 1956 business addresses are earlier historical leads, not established 1968 film-site addresses."
+        "The 1956 business addresses are earlier historical leads, not established 1968 film-site addresses.",
+        "The proposed 3630 Euclid Avenue address and demolition history have not been corroborated. United Electric lettering alone cannot distinguish the similarly named businesses or locate the 1968 shop."
       ],
       "reportPage": 15,
       "coverageRange": {
         "firstFrame": 330,
         "lastFrame": 331
-      }
+      },
+      "assessmentBefore20261018": "Frames 330–331 show United Electric lettering, a LIGHTING FIXTURES strip and a lamp/chandelier display. A 1956 court record distinguishes United Electric Fixture & Supply at 1772 East 9th from United Electric Supply at 5805 Euclid. Neither historical address is confirmed as the filmed storefront.",
+      "reviewed": "2026-10-18"
     },
     "332": {
       "timestamp": "00:50:37.701",
@@ -16450,7 +16718,7 @@
       "image": "media/frames/00000601.jpg",
       "sourceImage": "https://hgw3lls.github.io/uptight/media/frames/00000601.jpg",
       "scene": "Hotel at a wedge-shaped corner in the flats",
-      "observation": "Cobblestone street, wedge-shaped brick hotel and raised bascule bridge to the left. Site suggests Bethel House Hotel, 1468 West 10th. Exact facade match and historic property continuity not established.",
+      "observation": "Cobblestone street, wedge-shaped brick hotel and raised bascule bridge to the left. Site suggests Bethel House Hotel, 1468 West 10th. Exact facade match and historic property continuity not established. The Flat Iron Cafe proposal does not fit its official 1114 Center Street address or its published two-story building history. The film’s taller hotel remains unnamed; the HOTEL sign’s production origin is unverified.",
       "location": "Superior Hill hotel / possible Bethel connection",
       "confidence": "Area strong; building name tentative",
       "classification": "Location finding",
@@ -16458,7 +16726,8 @@
         "S01",
         "S21",
         "S22",
-        "S23"
+        "S23",
+        "S39"
       ],
       "siteIds": [
         "hotel"
@@ -16478,13 +16747,16 @@
       ],
       "caveats": [
         "The cobblestone street, wedge-shaped hotel and raised bascule bridge support a Superior Hill setting. Bethel House Hotel and older Bethel Union / Bethel Hall imagery remain separate leads because their dates and building histories differ.",
-        "Bethel House Hotel at 1468 West 10th and older Bethel Union / Bethel Hall imagery remain separate historical leads. The 1869 engraving is not proof of a 1968 property match."
+        "Bethel House Hotel at 1468 West 10th and older Bethel Union / Bethel Hall imagery remain separate historical leads. The 1869 engraving is not proof of a 1968 property match.",
+        "The Flat Iron Cafe proposal does not fit its official 1114 Center Street address or its published two-story building history. The film’s taller hotel remains unnamed; the HOTEL sign’s production origin is unverified."
       ],
       "reportPage": 17,
       "coverageRange": {
         "firstFrame": 601,
         "lastFrame": 602
-      }
+      },
+      "assessmentBefore20261018": "Cobblestone street, wedge-shaped brick hotel and raised bascule bridge to the left. Site suggests Bethel House Hotel, 1468 West 10th. Exact facade match and historic property continuity not established.",
+      "reviewed": "2026-10-18"
     },
     "602": {
       "timestamp": "01:33:41.199",
@@ -16492,7 +16764,7 @@
       "image": "media/frames/00000602.jpg",
       "sourceImage": "https://hgw3lls.github.io/uptight/media/frames/00000602.jpg",
       "scene": "Hotel at a wedge-shaped corner in the flats",
-      "observation": "Cobblestone street, wedge-shaped brick hotel and raised bascule bridge to the left. Site suggests Bethel House Hotel, 1468 West 10th. Exact facade match and historic property continuity not established.",
+      "observation": "A tall wedge-corner hotel and raised jackknife bascule support the Superior Hill-area setting. The distant bridge is a probable B&O No. 463 match. The Flat Iron Cafe proposal does not fit its official 1114 Center Street address or its published two-story building history. The film’s taller hotel remains unnamed; the HOTEL sign’s production origin is unverified.",
       "location": "Superior Hill hotel / possible Bethel connection",
       "confidence": "Area strong; building name tentative",
       "classification": "Location finding",
@@ -16500,7 +16772,11 @@
         "S01",
         "S21",
         "S22",
-        "S23"
+        "S23",
+        "S09",
+        "S39",
+        "S40",
+        "S41"
       ],
       "siteIds": [
         "hotel"
@@ -16516,17 +16792,31 @@
             "S23"
           ],
           "siteId": "hotel"
+        },
+        {
+          "name": "Baltimore & Ohio Railroad Bridge No. 463",
+          "confidenceLabel": "Probable background landmark",
+          "connection": "The upright raised leaf and articulated triangular mechanism at left of frame 602 are compatible with the labeled B&O No. 463 jackknife-bascule photographs. This identifies a probable background structure without settling the hotel’s name or camera position.",
+          "sourceIds": [
+            "S09",
+            "S40",
+            "S41"
+          ]
         }
       ],
       "caveats": [
         "The cobblestone street, wedge-shaped hotel and raised bascule bridge support a Superior Hill setting. Bethel House Hotel and older Bethel Union / Bethel Hall imagery remain separate leads because their dates and building histories differ.",
-        "Bethel House Hotel at 1468 West 10th and older Bethel Union / Bethel Hall imagery remain separate historical leads. The 1869 engraving is not proof of a 1968 property match."
+        "Bethel House Hotel at 1468 West 10th and older Bethel Union / Bethel Hall imagery remain separate historical leads. The 1869 engraving is not proof of a 1968 property match.",
+        "The Flat Iron Cafe proposal does not fit its official 1114 Center Street address or its published two-story building history. The film’s taller hotel remains unnamed; the HOTEL sign’s production origin is unverified.",
+        "The probable B&O background match does not establish the hotel parcel or a present-day place to recreate the shot."
       ],
       "reportPage": 17,
       "coverageRange": {
         "firstFrame": 601,
         "lastFrame": 602
-      }
+      },
+      "assessmentBefore20261018": "Cobblestone street, wedge-shaped brick hotel and raised bascule bridge to the left. Site suggests Bethel House Hotel, 1468 West 10th. Exact facade match and historic property continuity not established.",
+      "reviewed": "2026-10-18"
     },
     "603": {
       "timestamp": "01:33:51.209",
@@ -17526,13 +17816,17 @@
       "image": "media/frames/00000639.jpg",
       "sourceImage": "https://hgw3lls.github.io/uptight/media/frames/00000639.jpg",
       "scene": "Paired lift bridges",
-      "observation": "The grouped road/rail lift towers and surroundings are consistent with Carter Road and the adjacent New York Central / Big Four lift bridge. An exact historical photograph comparison remains incomplete; identification is probable.",
+      "observation": "Frame 639’s broad Carter Road tower with a notched crown, narrower adjacent railroad tower and approach-road setting closely match a labeled July 1986 HAER photograph. The comparison identifies Carter Road Lift Bridge with the adjacent Big Four / New York Central railroad lift bridge. The southeast-facing archive view favors the northwest approach side. The exact film camera position, foreground street and overhead structure remain unverified; the proposed Columbus Road underpass is not established.",
       "location": "Carter Road Lift Bridge",
-      "confidence": "Probable",
+      "confidence": "Strong visual identification",
       "classification": "Location finding",
       "sourceIds": [
         "S01",
-        "S09"
+        "S09",
+        "S34",
+        "S35",
+        "S36",
+        "S37"
       ],
       "siteIds": [
         "carter"
@@ -17540,22 +17834,30 @@
       "findings": [
         {
           "name": "Carter Road Lift Bridge",
-          "confidenceLabel": "Probable",
-          "connection": "The grouped towers and adjacent road/rail configuration are consistent with Carter Road. An exact historical photograph comparison was not completed, so this remains probable.",
+          "confidenceLabel": "Strong visual identification",
+          "connection": "Frame 639’s broad Carter Road tower with a notched crown, narrower adjacent railroad tower and approach-road setting closely match a labeled July 1986 HAER photograph. The comparison identifies Carter Road Lift Bridge with the adjacent Big Four / New York Central railroad lift bridge. The southeast-facing archive view favors the northwest approach side. The exact film camera position, foreground street and overhead structure remain unverified; the proposed Columbus Road underpass is not established.",
           "sourceIds": [
-            "S09"
+            "S09",
+            "S34",
+            "S35",
+            "S36",
+            "S37"
           ],
           "siteId": "carter"
         }
       ],
       "caveats": [
-        "The grouped towers and adjacent road/rail configuration are consistent with Carter Road. An exact historical photograph comparison was not completed, so this remains probable."
+        "The southeast-facing archive view favors the northwest approach side. The exact film camera position, foreground street and overhead structure remain unverified; the proposed Columbus Road underpass is not established.",
+        "The comparison photographs date to 1986 and 2002. A 1981 Conrail map lists anticipated abandonment of the River Bed Main Line; no verified abandonment date or 1968 operating status is assigned here.",
+        "The existing point marks the Carter Road bridge landmark; it is not a camera coordinate or a verified place to recreate the shot."
       ],
       "reportPage": 18,
       "coverageRange": {
         "firstFrame": 639,
         "lastFrame": 639
-      }
+      },
+      "reportObservation": "The grouped road/rail lift towers and surroundings are consistent with Carter Road and the adjacent New York Central / Big Four lift bridge. An exact historical photograph comparison remains incomplete; identification is probable.",
+      "reviewed": "2026-10-18"
     },
     "640": {
       "timestamp": "01:39:33.509",
@@ -17829,15 +18131,16 @@
       "image": "media/frames/00000646.jpg",
       "sourceImage": "https://hgw3lls.github.io/uptight/media/frames/00000646.jpg",
       "scene": "Under detroit–superior approach",
-      "observation": "Return to concrete-arch environment visible in 642; no additional named landmark.",
-      "location": "Detroit–Superior Bridge",
-      "confidence": "Strong visual identification",
+      "observation": "Detroit–Superior’s concrete approach arches provide a strong structural identification. The elevated railway and overhead electrical gantries behind the actor are a probable Cleveland Union Terminal viaduct match. The precise approach arch, river bank and camera position are unverified. The suggested Mulberry Avenue / West Superior Avenue corner is not established, and the current cafe address does not identify it.",
+      "location": "Detroit–Superior Bridge; Cleveland Union Terminal railroad viaduct",
+      "confidence": "Mixed: Detroit–Superior strong; Union Terminal viaduct probable",
       "classification": "Location finding",
       "sourceIds": [
         "S01",
         "S08",
         "S09",
-        "S27"
+        "S27",
+        "S42"
       ],
       "siteIds": [
         "detroit"
@@ -17853,16 +18156,28 @@
             "S27"
           ],
           "siteId": "detroit"
+        },
+        {
+          "name": "Cleveland Union Terminal railroad viaduct",
+          "confidenceLabel": "Probable / geographic fit",
+          "connection": "The elevated railway and overhead electrical gantries fit the documented crossing immediately south of Detroit–Superior. This remains a geographic inference, not an exact photographic camera match.",
+          "sourceIds": [
+            "S27"
+          ]
         }
       ],
       "caveats": [
-        "The central steel arch, concrete approaches and former lower streetcar deck are distinctive. Nearby landmarks have separate confidence levels, and the editing does not establish a continuous route."
+        "The central steel arch, concrete approaches and former lower streetcar deck are distinctive. Nearby landmarks have separate confidence levels, and the editing does not establish a continuous route.",
+        "The precise approach arch, river bank and camera position are unverified. The suggested Mulberry Avenue / West Superior Avenue corner is not established, and the current cafe address does not identify it.",
+        "A labeled 1978 HAER photograph shows similar concrete arches at the east approach; arch shape alone does not establish the west side."
       ],
       "reportPage": 18,
       "coverageRange": {
         "firstFrame": 646,
         "lastFrame": 646
-      }
+      },
+      "assessmentBefore20261018": "Return to concrete-arch environment visible in 642; no additional named landmark.",
+      "reviewed": "2026-10-18"
     },
     "647": {
       "timestamp": "01:40:21.933",
@@ -18187,7 +18502,7 @@
       "image": "media/frames/00000658.jpg",
       "sourceImage": "https://hgw3lls.github.io/uptight/media/frames/00000658.jpg",
       "scene": "Long red through-truss road bridge",
-      "observation": "Long through-truss with repeated haunched transverse frames, heavy crossed lattice overhead and chimneys beyond. Follow-up: Michael A. Fuerst’s 1984 photograph cea0146 looks through the former Clark Avenue Bridge’s central truss and closely matches this structural pattern. Its dismantled deck leaves the intact road edge, railing, skyline and camera position unresolved. Clark remains probable and unpinned.",
+      "observation": "Long through-truss with repeated haunched transverse frames, heavy crossed lattice overhead and chimneys beyond. Follow-up: Michael A. Fuerst’s 1984 photograph cea0146 looks through the former Clark Avenue Bridge’s central truss and closely matches this structural pattern. Its dismantled deck leaves the intact road edge, railing, skyline and camera position unresolved. Clark remains probable and unpinned. An east-facing camera bearing and the exact Republic Steel furnace alignment remain unverified. Frame 658 does not locate every subsequent industrial cut. The supplied pier coordinate is not a verified bridge-remnant or camera point.",
       "location": "Former Clark Avenue Bridge / steelworks area",
       "confidence": "Probable candidate",
       "classification": "Location finding",
@@ -18195,7 +18510,12 @@
         "S01",
         "S12",
         "S29",
-        "S31"
+        "S31",
+        "S45",
+        "S46",
+        "S47",
+        "C04",
+        "S50"
       ],
       "siteIds": [
         "third"
@@ -18215,13 +18535,17 @@
       ],
       "caveats": [
         "Follow-up research found Michael A. Fuerst’s 1984 photograph cea0146 looking through the Clark Avenue Bridge’s central truss. Its haunched transverse frames and crossed overhead lattice closely match frame 658 and strengthen the candidate. The photograph shows deck demolition; the intact roadway, skyline and camera position remain unresolved, so the candidate stays probable and unpinned.",
-        "Withdraw the West 3rd Street attribution as the leading hypothesis. Former Clark Avenue Bridge is probable; no exact replacement pin, film camera angle or steel-company parcel is established."
+        "Withdraw the West 3rd Street attribution as the leading hypothesis. Former Clark Avenue Bridge is probable; no exact replacement pin, film camera angle or steel-company parcel is established.",
+        "An east-facing camera bearing and the exact Republic Steel furnace alignment remain unverified. Frame 658 does not locate every subsequent industrial cut. The supplied pier coordinate is not a verified bridge-remnant or camera point.",
+        "County photographs document demolition in 1984–85. The exact October 16, 1978 closure date has not been corroborated by a primary item in this pass."
       ],
       "reportPage": 18,
       "coverageRange": {
         "firstFrame": 658,
         "lastFrame": 658
-      }
+      },
+      "assessmentBefore20261018": "Long through-truss with repeated haunched transverse frames, heavy crossed lattice overhead and chimneys beyond. Follow-up: Michael A. Fuerst’s 1984 photograph cea0146 looks through the former Clark Avenue Bridge’s central truss and closely matches this structural pattern. Its dismantled deck leaves the intact road edge, railing, skyline and camera position unresolved. Clark remains probable and unpinned.",
+      "reviewed": "2026-10-18"
     },
     "659": {
       "timestamp": "01:41:24.036",
@@ -18480,12 +18804,14 @@
       "image": "media/frames/00000667.jpg",
       "sourceImage": "https://hgw3lls.github.io/uptight/media/frames/00000667.jpg",
       "scene": "Final ore yard and ore-handling gantry",
-      "observation": "Ore piles, large ore bridge with operator cab/stairs and clamshell bucket. Republic's former Corrigan-McKinney lower dock is a lead, not a confirmed parcel/company identification.",
+      "observation": "Low-angle detail of an ore-handling gantry with access stairs, platforms and machinery. Matching apparatus in frames 665–668 includes ore piles and a suspended clamshell bucket. The yard remains unplaced. The proposed B&O / NS No. 1 river-bridge identification does not match frame 667. No steel-company parcel, river-bank camera coordinate or public recreation point is established.",
       "location": "Steelworks / ore yards — unplaced",
       "confidence": "Unplaced",
       "classification": "Unplaced research lead",
       "sourceIds": [
-        "S01"
+        "S01",
+        "S09",
+        "S40"
       ],
       "siteIds": [
         "steel"
@@ -18503,13 +18829,17 @@
       ],
       "caveats": [
         "The ore piles, bucket gantry and industrial apparatus do not establish a steel company, plant parcel or a common shooting site for all industrial inserts.",
-        "Do not infer one steel company, plant parcel or common shooting site for all industrial inserts. Corrigan-McKinney’s former lower dock remains a research lead only."
+        "Do not infer one steel company, plant parcel or common shooting site for all industrial inserts. Corrigan-McKinney’s former lower dock remains a research lead only.",
+        "The proposed B&O / NS No. 1 river-bridge identification does not match frame 667. No steel-company parcel, river-bank camera coordinate or public recreation point is established.",
+        "The 1956 B&O jackknife bascule and the New York Central / Penn Central vertical lift called Bridge No. 1 are different structures; their names and bridge types should not be merged."
       ],
       "reportPage": 18,
       "coverageRange": {
         "firstFrame": 662,
         "lastFrame": 676
-      }
+      },
+      "assessmentBefore20261018": "Ore piles, large ore bridge with operator cab/stairs and clamshell bucket. Republic's former Corrigan-McKinney lower dock is a lead, not a confirmed parcel/company identification.",
+      "reviewed": "2026-10-18"
     },
     "668": {
       "timestamp": "01:42:27.183",
@@ -19040,6 +19370,7 @@
   "researchFollowUp": {
     "researchDate": "2026-10-17",
     "updated": "2026-10-18",
-    "log": "data/research-log.json"
+    "log": "data/research-log.json",
+    "latestResearchDate": "2026-10-18"
   }
 }

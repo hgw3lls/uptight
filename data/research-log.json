@@ -3,7 +3,7 @@
   "researchDate": "2026-10-17",
   "releaseDate": "2026-10-18",
   "timezone": "America/New_York",
-  "scope": "Bounded research on Madison Square, the Clark Avenue Bridge comparison, and the possible Leader Drug / Kronheim pairing.",
+  "scope": "The initial October 17 pass covers Madison Square, the Clark Avenue Bridge comparison and the possible Leader Drug / Kronheim pairing. Additional dated checks of supplied location claims appear under followUps.",
   "requestStatus": "The archive requests below are prepared research leads. No requests have been sent.",
   "cases": [
     {
@@ -318,6 +318,231 @@
         29
       ],
       "recordUrl": "https://clevelandmemory.contentdm.oclc.org/digital/api/collection/press/id/11382/download"
+    },
+    {
+      "id": "S34",
+      "title": "Louise Taft Cawood: Carter Road southeast approach, July 1986",
+      "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/382/",
+      "note": "HAER photograph, Cleveland Memory urbanohio/382; repository: Library of Congress. The catalog explicitly identifies a southeast-facing view of Carter Road’s lift towers and approach. The distinctive broad notched highway tower and narrow adjacent railroad tower closely match frame 639. The film’s exact camera point and overhead structure are not established.",
+      "date": "1986-07",
+      "accessed": "2026-10-18",
+      "recordUrl": "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/382/"
+    },
+    {
+      "id": "S35",
+      "title": "William C. Barrow: Carter Road and Big Four railroad bridge pair, May 23, 2002",
+      "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/588/",
+      "note": "Cleveland Memory urbanohio/588, gacbridge099.JPG. The caption identifies the Big Four railroad lift in front of Carter Road in this particular broadside view. This clarifies the two structures, not their relative foreground order in every view or their operating status in 1968. Catalog bridge numbering differs from other histories.",
+      "date": "2002-05-23",
+      "accessed": "2026-10-18",
+      "recordUrl": "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/588/"
+    },
+    {
+      "id": "S36",
+      "title": "Bridges of Metropolitan Cleveland: structures across the Cuyahoga River",
+      "url": "https://pressbooks.ulib.csuohio.edu/bridges-of-metropolitan-cleveland/back-matter/structures-across-the-cuyahoga-river/",
+      "note": "The river inventory lists the Carter-adjacent railroad lift at mile 2.42 and Carter Road highway bridge at 2.43, separately from another railroad lift at 2.24. River-inventory numbers should not be confused with railroad asset numbers.",
+      "accessed": "2026-10-18",
+      "recordUrl": "https://pressbooks.ulib.csuohio.edu/bridges-of-metropolitan-cleveland/back-matter/structures-across-the-cuyahoga-river/"
+    },
+    {
+      "id": "S37",
+      "title": "Conrail System Diagram Map, April 1, 1981",
+      "url": "https://www.multimodalways.org/docs/railroads/companies/CR/CR%20Maps/CR%20Other%20Maps/CR%20System%20Abandonments%20Map%204-1-1981.pdf",
+      "note": "Original Consolidated Rail Corporation map, AB Number 167. The Ohio list places River Bed Main Line—Cleveland Erie Docks to Literary Street in Category 1, defined by the legend as anticipated line abandonment. The map does not establish a last-train date or daily operation in 1968 and does not substantiate calling the railroad abandoned in the film.",
+      "date": "1981-04-01",
+      "accessed": "2026-10-18",
+      "recordUrl": "https://www.multimodalways.org/docs/railroads/companies/CR/CR%20Maps/CR%20Other%20Maps/CR%20System%20Abandonments%20Map%204-1-1981.pdf"
+    },
+    {
+      "id": "S38",
+      "title": "Ohio & Erie Canalway: Towpath Trail trailheads",
+      "url": "https://www.ohioanderiecanalway.com/explore/the-towpath-trail/trailheads/",
+      "note": "Official modern trailhead listings: Scranton Flats, 2057 Scranton Road; Sokolowski’s Overlook, 1203 University Road. These are visitor references, not verified recreations of frame 639 or evidence of a 1968 camera position.",
+      "accessed": "2026-10-18",
+      "recordUrl": "https://www.ohioanderiecanalway.com/explore/the-towpath-trail/trailheads/"
+    },
+    {
+      "id": "S39",
+      "title": "Flat Iron Cafe: official address and building history",
+      "url": "https://flatironcafe.com/",
+      "note": "The cafe lists 1114 Center Street and says a late-nineteenth-century fire reduced its former hotel building to two stories. This conflicts with the supplied 1633 West 2nd address and the taller hotel in frame 602. The business history supplies no film-production or temporary HOTEL-sign evidence.",
+      "accessed": "2026-10-18",
+      "recordUrl": "https://flatironcafe.com/"
+    },
+    {
+      "id": "S40",
+      "title": "Glenn Zahn: B&O Bridge No. 463 under construction, July 3, 1956",
+      "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/203/",
+      "note": "Cleveland Press photograph, clevbridge015.jpg; Cleveland Memory urbanohio/203. The catalog identifies B&O No. 463 and its jackknife-bascule construction. The 1956 bridge replaced a Scherzer rolling lift; it is distinct from the New York Central / Penn Central vertical lift called Bridge No. 1.",
+      "accessed": "2026-10-18",
+      "recordUrl": "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/203/"
+    },
+    {
+      "id": "S41",
+      "title": "William C. Barrow: Baltimore and Ohio Bridge Number 463, May 16, 2002",
+      "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/413/",
+      "note": "Cleveland Memory urbanohio/413, gacbridge053, Graduate Assistant Collection. The upright long leaf and articulated triangular mechanism provide a probable silhouette comparison for the distant bridge in frame 602. This later opposite-bank view does not identify the hotel or camera point.",
+      "accessed": "2026-10-18",
+      "recordUrl": "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/413/"
+    },
+    {
+      "id": "S42",
+      "title": "Jet Lowe: Detroit–Superior east-approach concrete arch, 1978",
+      "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/459/",
+      "note": "HAER photograph, Library of Congress; Cleveland Memory urbanohio/459. The catalog identifies an east-approach arch. Similar concrete arch construction is therefore insufficient by itself to assign frame 646 to the west approach or a particular street corner.",
+      "accessed": "2026-10-18",
+      "recordUrl": "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/459/"
+    },
+    {
+      "id": "S43",
+      "title": "St. Agnes + Our Lady of Fatima: parish history",
+      "url": "https://www.saolf.org/about",
+      "note": "The parish places St. Agnes at East 79th and Euclid, with a 1917 church demolished in 1975. Our Lady of Fatima was established separately on Lexington in 1949. The parishes merged in 1980 and the present adjacent complex was dedicated April 16, 1983. A 1968 film claim must identify a predecessor building; no specific shot has been matched.",
+      "accessed": "2026-10-18",
+      "recordUrl": "https://www.saolf.org/about"
+    },
+    {
+      "id": "S44",
+      "title": "National Park Service: Cory United Methodist Church",
+      "url": "https://www.nps.gov/articles/000/cory-united-methodist-church-cleveland-ohio.htm",
+      "note": "Institutional history documents Cory’s civil-rights organizing and community role. It does not establish an appearance in Uptight. The separate municipal landmark record confirms the address at 1117 East 105th Street.",
+      "accessed": "2026-10-18",
+      "recordUrl": "https://www.nps.gov/articles/000/cory-united-methodist-church-cleveland-ohio.htm"
+    },
+    {
+      "id": "S45",
+      "title": "Bridges of Metropolitan Cleveland: unusual bridges, chapter 6",
+      "url": "https://www.clevelandmemory.org/ebooks/bmc/Bmcchap6.html",
+      "note": "The chapter gives Clark Avenue Bridge’s total length as 6,687 feet. Its preceding acid-fume/uranium corrosion passage concerns Harvard–Denison, not Clark. The chapter’s 1980 demolition statement must be read at section level alongside County Engineer photographs dated 1984 and 1985; it does not establish the final removal date for the complete crossing.",
+      "accessed": "2026-10-18",
+      "recordUrl": "https://www.clevelandmemory.org/ebooks/bmc/Bmcchap6.html"
+    },
+    {
+      "id": "S46",
+      "title": "Ohio DOT: IR 490 over Cuyahoga River, 2020 bridge inspection",
+      "url": "https://ftp.dot.state.oh.us/pub/districts/D12/Production/Consultant_Programmatic/115407/1811991.pdf",
+      "note": "State of Ohio report for Structure File Number 1811991, inspection July 27, 2020. PDF page 2 lists Year Built 1990. This dates the I-490 valley crossing but does not establish that it immediately replaced every Clark Avenue traffic movement.",
+      "accessed": "2026-10-18",
+      "recordUrl": "https://ftp.dot.state.oh.us/pub/districts/D12/Production/Consultant_Programmatic/115407/1811991.pdf"
+    },
+    {
+      "id": "S47",
+      "title": "Michael A. Fuerst: Clark Avenue river-span demolition, 1985",
+      "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/cca/id/807/",
+      "note": "Cuyahoga County Engineer Photography Collection, cea0824; Cleveland Memory cca/807. The archive dates the river-span demolition photograph to 1985. Together with cea0146 and cea0144 from 1984, it documents staged demolition in 1984–85; no exact final day is inferred from a year-only catalog date.",
+      "accessed": "2026-10-18",
+      "recordUrl": "https://clevelandmemory.contentdm.oclc.org/digital/collection/cca/id/807/"
+    },
+    {
+      "id": "S48",
+      "title": "City of Cleveland: Cory United Methodist Church landmark",
+      "url": "https://www.clevelandohio.gov/explore/about-cleveland/designated-landmarks/cory-united-methodist-church-anshe-emeth-synagogue",
+      "note": "Municipal landmark identity and address: 1117 East 105th Street. This is historical-place context, not a film-production record.",
+      "accessed": "2026-10-18",
+      "recordUrl": "https://www.clevelandohio.gov/explore/about-cleveland/designated-landmarks/cory-united-methodist-church-anshe-emeth-synagogue"
+    },
+    {
+      "id": "S49",
+      "title": "Richard Van Curen: United Electric premises at 1830 East 23rd, 1979",
+      "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/structure/id/585/",
+      "note": "CSU Office of Campus Planning photograph, Cleveland Memory structure/585. This later industrial facade does not reproduce frame 331’s lighting showroom. It does not establish a 1968 address or corporate continuity with either firm in the 1956 court record.",
+      "accessed": "2026-10-18",
+      "recordUrl": "https://clevelandmemory.contentdm.oclc.org/digital/collection/structure/id/585/"
+    },
+    {
+      "id": "C04",
+      "title": "Cuyahoga County: 2019 spring aerial check of proposed Clark pier coordinate",
+      "url": "https://gis.cuyahogacounty.gov/server/rest/services/IMAGERY/2019_Spring_Aerial/MapServer",
+      "note": "The supplied latitude/longitude 41.472714, -81.681121 maps to the center of the inspected 2019 aerial export, on an industrial building roof. This does not substantiate a location for two surviving piers or a film camera. Returned extent, projection and reproducible export URL are recorded in data/research-log.json. Imagery credit: CCFO, CCGIS.",
+      "accessed": "2026-10-18",
+      "recordUrl": "https://gis.cuyahogacounty.gov/server/rest/services/IMAGERY/2019_Spring_Aerial/MapServer"
+    },
+    {
+      "id": "S50",
+      "title": "Stanley L. McMichael: Clark Avenue crossing dimensions, 1918",
+      "url": "https://clemem-test.ulib.csuohio.edu/speccoll/bccc/bccc29.html",
+      "note": "Contemporary account in Bridges of Cleveland and Cuyahoga County, pages 29 and 32. Clark’s overall 6,687-foot length includes intervening fills; steelwork alone is given as 5,992 feet. These are complete-crossing dimensions, not a single clear span.",
+      "date": "1918",
+      "accessed": "2026-10-18",
+      "recordUrl": "https://clemem-test.ulib.csuohio.edu/speccoll/bccc/bccc29.html"
+    },
+    {
+      "id": "S01",
+      "title": "Frame collection and original location hypotheses",
+      "url": "https://hgw3lls.github.io/uptight/",
+      "note": "The reviewed corpus: 682 indexed stills, frame/time index and the site’s existing map. All film illustrations below link to this collection.",
+      "recordUrl": "https://hgw3lls.github.io/uptight/"
+    },
+    {
+      "id": "S03",
+      "title": "Cleveland Public Library: Hough Avenue and East 79th Street, 1964",
+      "url": "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/8730/",
+      "note": "CPL photograph dated September 16, 1964; the record credits the Cleveland Plain Dealer as contributor. The narrow corner view supports the frame 63 comparison but does not establish the full facade.",
+      "recordUrl": "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/8730/"
+    },
+    {
+      "id": "S08",
+      "title": "Encyclopedia of Cleveland History: Veterans Memorial Bridge",
+      "url": "https://case.edu/ech/articles/v/veterans-memorial-bridge",
+      "note": "Detroit–Superior Bridge: concrete approach arches, central steel arch and former lower streetcar deck.",
+      "recordUrl": "https://case.edu/ech/articles/v/veterans-memorial-bridge"
+    },
+    {
+      "id": "S09",
+      "title": "Sarah Ruth Watson and John Wolfs: Bridges of Metropolitan Cleveland, movable bridges",
+      "url": "https://pressbooks.ulib.csuohio.edu/bridges-of-metropolitan-cleveland/chapter/movable-bridges/",
+      "note": "CSU digitization. Figure XIII identifies Eagle Street’s lift bridge; Figure XVI shows Center Street beneath Detroit–Superior. Also documents Carter Road and the river’s other movable crossings.",
+      "recordUrl": "https://pressbooks.ulib.csuohio.edu/bridges-of-metropolitan-cleveland/chapter/movable-bridges/"
+    },
+    {
+      "id": "S15",
+      "title": "National Park Service: Ebenezer Heritage Sanctuary",
+      "url": "https://home.nps.gov/places/ebenezer-heritage-sanctuary.htm",
+      "note": "Ebenezer Baptist Church at 407 Auburn Avenue, Atlanta; location visible in the opening funeral footage.",
+      "recordUrl": "https://home.nps.gov/places/ebenezer-heritage-sanctuary.htm"
+    },
+    {
+      "id": "S17",
+      "title": "Encyclopedia of Cleveland History: Kronheim Furniture Co.",
+      "url": "https://case.edu/ech/articles/k/kronheim-furniture-co",
+      "note": "Business history supports an earlier East 55th store. Does not independently identify the film’s furniture sign.",
+      "recordUrl": "https://case.edu/ech/articles/k/kronheim-furniture-co"
+    },
+    {
+      "id": "S18",
+      "title": "Cleveland Public Library: East 9th/St. Clair, 1960",
+      "url": "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/3085/",
+      "note": "A photographed Leader Drug branch. The facade is not a sufficiently convincing match to frame 169.",
+      "recordUrl": "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/3085/"
+    },
+    {
+      "id": "S19",
+      "title": "United Electric Fixture & Supply Co. v. United Electric Supply Co., 1956",
+      "url": "https://law.counselstack.com/opinion/united-electric-fixture-supply-co-v-united-electric-supply-co-ohctcomplcuyaho-1956",
+      "note": "Court decision reproduced online distinguishes businesses at 1772 East 9th and 5805 Euclid. It does not settle the 1968 storefront address.",
+      "recordUrl": "https://law.counselstack.com/opinion/united-electric-fixture-supply-co-v-united-electric-supply-co-ohctcomplcuyaho-1956"
+    },
+    {
+      "id": "S27",
+      "title": "Bridges of Metropolitan Cleveland: railroad viaducts",
+      "url": "https://pressbooks.ulib.csuohio.edu/bridges-of-metropolitan-cleveland/chapter/the-railroad-era-in-cleveland-bridge-history/",
+      "note": "Describes the Cleveland Union Terminal Railway Bridge directly south of Detroit–Superior; supports the geographic inference in frame 642.",
+      "recordUrl": "https://pressbooks.ulib.csuohio.edu/bridges-of-metropolitan-cleveland/chapter/the-railroad-era-in-cleveland-bridge-history/"
+    },
+    {
+      "id": "S28",
+      "title": "Cleveland Memory: Hough and East 79th aerial, 1972",
+      "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/press/id/9464/",
+      "note": "Aerial context for the Hough intersection; resolution does not settle the central arch and balcony match.",
+      "recordUrl": "https://clevelandmemory.contentdm.oclc.org/digital/collection/press/id/9464/"
+    },
+    {
+      "id": "S29",
+      "title": "Cleveland Public Library: view from Clark Avenue Bridge, 1935",
+      "url": "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/108/",
+      "note": "Period photograph and caption place Republic Steel furnaces beside the Clark Avenue crossing. Contextual evidence, not the film camera angle.",
+      "recordUrl": "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/108/"
     }
   ],
   "archiveAccess": {
@@ -329,5 +554,284 @@
       "https://library.csuohio.edu/forms/spcoll.html"
     ],
     "requestsSent": false
-  }
+  },
+  "updated": "2026-10-18",
+  "followUps": [
+    {
+      "id": "carter-frame639",
+      "researchDate": "2026-10-18",
+      "frames": [
+        639
+      ],
+      "suppliedClaim": "Under Columbus Road Bridge or a rail overpass, looking toward Carter Road with an abandoned Big Four railroad lift behind; modern view suggestions at Scranton Flats, Superior Viaduct and Sokolowski’s Overlook.",
+      "status": "Strong visual identification; exact camera position unresolved.",
+      "verifiedFacts": [
+        {
+          "id": "HAER-CARTER-SE-1986",
+          "sourceUrl": "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/382/",
+          "fact": "The archive identifies the photograph as Carter Road Lift Bridge, looking southeast along its approach, dated July 1986, photographed by Louise Taft Cawood for HAER."
+        },
+        {
+          "id": "CSU-BRIDGE-PAIR-2002",
+          "sourceUrl": "https://clevelandmemory.contentdm.oclc.org/digital/collection/urbanohio/id/588/",
+          "fact": "The archive expressly identifies two separate structures: the Big Four railroad lift in the foreground and Carter Road Bridge behind it. It dates the photograph 23 May 2002 and credits William C. Barrow.",
+          "nomenclatureNote": "Its catalog title calls the railroad structure Cleveland, Columbus, Cincinnati, and St. Louis Railroad Bridge Number 5; this differs from the modern No. 2 label found in secondary bridge histories. Preserve the catalog title in citations, but avoid choosing a number for the film caption."
+        },
+        {
+          "id": "CONRAIL-1981-ABANDONMENT-MAP",
+          "sourceUrl": "https://www.multimodalways.org/docs/railroads/companies/CR/CR%20Maps/CR%20Other%20Maps/CR%20System%20Abandonments%20Map%204-1-1981.pdf",
+          "title": "Conrail System Diagram Map",
+          "creator": "Consolidated Rail Corporation, Office of Chief Engineer, Design & Construction, Philadelphia, Pennsylvania",
+          "date": "1981-04-01",
+          "identifier": "AB Number 167; subject to 49 CFR 1121",
+          "fact": "The Ohio Category 1 list includes River Bed Main Line—Cleveland Erie Docks to Literary Street. The legend defines Category 1 as anticipated line abandonment.",
+          "inspection": "Original one-page scan and readable list/legend crops visually inspected.",
+          "limit": "This shows an anticipated abandonment in 1981; it does not independently establish the last train date, daily operating status in 1968, or a final 1982 legal abandonment date."
+        },
+        {
+          "id": "BMC-RIVER-TABLE",
+          "sourceUrl": "https://www.clevelandmemory.org/ebooks/bmc/Bmclist.html",
+          "title": "Bridges of Metropolitan Cleveland: Structures Across the Cuyahoga River",
+          "date": "1981",
+          "fact": "The table distinguishes railroad vertical lifts at river miles 2.24 and 2.42; Carter Road highway bridge is listed at mile 2.43. The adjacent pair is therefore the railroad lift at 2.42 and Carter at 2.43.",
+          "limit": "These are river-inventory numbers 8, 9, and 9a, not necessarily railroad asset numbers. Do not apply discussion of the team-track lift at 2.24 to the Carter-adjacent bridge without checking."
+        }
+      ],
+      "inferences": [
+        "Frame 639’s broad Carter Road tower with a notched crown, narrower adjacent railroad tower and approach-road setting closely match a labeled July 1986 HAER photograph. The comparison identifies Carter Road Lift Bridge with the adjacent Big Four / New York Central railroad lift bridge.",
+        "The southeast-facing archive view favors the northwest approach side. The exact film camera position, foreground street and overhead structure remain unverified; the proposed Columbus Road underpass is not established."
+      ],
+      "limits": [
+        "The comparison photographs date to 1986 and 2002. A 1981 Conrail map lists anticipated abandonment of the River Bed Main Line; no verified abandonment date or 1968 operating status is assigned here.",
+        "The existing point marks the Carter Road bridge landmark; it is not a camera coordinate or a verified place to recreate the shot.",
+        "The foreground street and overhead structure have not been independently matched. No continuous geography is inferred from adjacent cuts."
+      ],
+      "modernVisitorContext": [
+        {
+          "place": "Scranton Flats / Towpath Trail",
+          "officialTrailheadAddress": "2057 Scranton Road",
+          "sourceIds": [
+            "S38"
+          ],
+          "status": "Official modern trailhead listing; exact film sight line unverified."
+        },
+        {
+          "place": "Sokolowski’s Overlook",
+          "officialTrailheadAddress": "1203 University Road",
+          "sourceIds": [
+            "S38"
+          ],
+          "status": "Official modern trailhead listing; exact film sight line unverified."
+        },
+        {
+          "place": "Superior Viaduct",
+          "status": "User-supplied modern viewpoint lead; exact frame sight line and current access were not established in this check."
+        }
+      ],
+      "remainingWork": "Compare a period Carter north-approach plan and labeled views of the foreground underpass before naming the overhead structure or publishing a camera coordinate.",
+      "sourceIds": [
+        "S34",
+        "S35",
+        "S36",
+        "S37",
+        "S38"
+      ],
+      "requestsSent": false
+    },
+    {
+      "id": "additional-location-claims",
+      "researchDate": "2026-10-18",
+      "scope": "Frame-specific review of the supplied bridge, storefront, church, route and modern-visit claims.",
+      "claims": [
+        {
+          "id": "hotel602",
+          "frames": [
+            602
+          ],
+          "suppliedClaim": "Flat Iron Cafe at 1633 West 2nd, with temporary HOTEL sign.",
+          "assessment": "The Flat Iron Cafe proposal does not fit its official 1114 Center Street address or its published two-story building history. The film’s taller hotel remains unnamed; the HOTEL sign’s production origin is unverified.",
+          "positiveFinding": "The upright raised leaf and articulated triangular mechanism at left of frame 602 are compatible with the labeled B&O No. 463 jackknife-bascule photographs. This identifies a probable background structure without settling the hotel’s name or camera position.",
+          "sourceIds": [
+            "S39",
+            "S40",
+            "S41"
+          ]
+        },
+        {
+          "id": "detroit646",
+          "frames": [
+            646
+          ],
+          "suppliedClaim": "Western Detroit–Superior approach at Mulberry / West Superior, beside Flat Iron Cafe.",
+          "assessment": "The precise approach arch, river bank and camera position are unverified. The suggested Mulberry Avenue / West Superior Avenue corner is not established, and the current cafe address does not identify it.",
+          "positiveFinding": "Detroit–Superior strong; Cleveland Union Terminal background viaduct probable.",
+          "sourceIds": [
+            "S08",
+            "S27",
+            "S39",
+            "S42"
+          ]
+        },
+        {
+          "id": "ore667",
+          "frames": [
+            667
+          ],
+          "relatedFrames": [
+            665,
+            666,
+            668
+          ],
+          "suppliedClaim": "B&O / NS No. 1 river bridge with an exact walkable East Bank viewpoint.",
+          "assessment": "The proposed B&O / NS No. 1 river-bridge identification does not match frame 667. No steel-company parcel, river-bank camera coordinate or public recreation point is established.",
+          "positiveFinding": "The matching staircase, ore piles and clamshell bucket identify an ore-handling gantry, without locating its company or parcel.",
+          "sourceIds": [
+            "S01",
+            "S09",
+            "S40"
+          ]
+        },
+        {
+          "id": "united331",
+          "frames": [
+            330,
+            331
+          ],
+          "suppliedClaim": "United Electric Supply at 3630 Euclid, since demolished.",
+          "assessment": "The proposed 3630 Euclid Avenue address and demolition history have not been corroborated. United Electric lettering alone cannot distinguish the similarly named businesses or locate the 1968 shop.",
+          "sourceIds": [
+            "S19",
+            "S49"
+          ]
+        },
+        {
+          "id": "leader169",
+          "frames": [
+            151,
+            153,
+            169
+          ],
+          "suppliedClaim": "Leader Drug at Hough / East 79th, since demolished.",
+          "assessment": "The proposed Hough Avenue / East 79th Street corner and claimed demolition remain unverified. A period branch record and matching pharmacy/furniture frontage are still needed.",
+          "sourceIds": [
+            "S16",
+            "S17",
+            "S18",
+            "S32",
+            "S33"
+          ]
+        },
+        {
+          "id": "madison63",
+          "frames": [
+            63
+          ],
+          "suppliedClaim": "Madison Square, with a carved nameplate over its entrance.",
+          "assessment": "MADISON lettering is visible along the high roofline; the claimed carved nameplate above the entrance is not established at this image resolution. Current survival or redevelopment claims do not strengthen the incomplete full-facade match.",
+          "positiveFinding": "The named southwest-corner footprint and address reconciliation are retained; full facade identification remains probable.",
+          "sourceIds": [
+            "S02",
+            "S03",
+            "S28",
+            "S30"
+          ]
+        },
+        {
+          "id": "cory-backdrop",
+          "frames": [],
+          "suppliedClaim": "Cory United Methodist Church, 1117 East 105th, as a political-organizing backdrop.",
+          "assessment": "Address and civil-rights role supported. No specific frame or production record establishes filming at Cory.",
+          "sourceIds": [
+            "S44",
+            "S48"
+          ]
+        },
+        {
+          "id": "agnes-fatima-backdrop",
+          "frames": [],
+          "suppliedClaim": "St. Agnes / Our Lady of Fatima, 6800 Lexington, as a 1968 stone-facade backdrop.",
+          "assessment": "The present complex was dedicated in 1983. In 1968 St. Agnes at East 79th / Euclid and Our Lady of Fatima on Lexington were separate parishes. An appearance by either predecessor requires a specific frame match.",
+          "sourceIds": [
+            "S43"
+          ]
+        },
+        {
+          "id": "eastside-routes",
+          "frames": [],
+          "suppliedClaim": "East 79th / Lexington storefront scenes and a continuous Hough route from East 55th to East 79th, with unchanged street grid.",
+          "assessment": "No specific frame, route log or facade comparison verifies the proposed intersection cluster or continuous route. The separate opening funeral sequence remains cataloged as Atlanta. Current survival and street-condition assertions were not established.",
+          "sourceIds": [
+            "S01",
+            "S15"
+          ]
+        },
+        {
+          "id": "clark658-history",
+          "frames": [
+            658
+          ],
+          "suppliedClaim": "Clark roadway looking east into Republic Steel; closed October 16, 1978 because of pollution; removed in the early 1980s; I-490 built shortly after.",
+          "assessment": "An east-facing camera bearing and the exact Republic Steel furnace alignment remain unverified. Frame 658 does not locate every subsequent industrial cut. The supplied pier coordinate is not a verified bridge-remnant or camera point.",
+          "verifiedHistory": "McMichael’s 1918 account gives 6,687 feet including fills and 5,992 feet of steelwork. County photographs document demolition in 1984–85. ODOT lists I-490 SFN 1811991 as built in 1990. The exact closure day and Clark-specific corrosion account were not verified in a primary item.",
+          "sourceIds": [
+            "S29",
+            "S31",
+            "S45",
+            "S46",
+            "S47",
+            "S50"
+          ]
+        },
+        {
+          "id": "clark-pier-coordinate",
+          "frames": [],
+          "suppliedLatitudeLongitude": [
+            41.472714,
+            -81.681121
+          ],
+          "assessment": "The supplied point centers on an industrial building roof in the checked spring 2019 county aerial. It is not accepted as a two-pier location or film-camera point. Actual remnant position and current public access remain unresolved.",
+          "sourceIds": [
+            "C04"
+          ]
+        }
+      ],
+      "coordinateCheck": {
+        "sourceId": "C04",
+        "imageryDate": "Spring 2019",
+        "checkedDate": "2026-10-18",
+        "proposedLatitudeLongitude": [
+          41.472714,
+          -81.681121
+        ],
+        "acceptedCameraPoint": false,
+        "serviceUrl": "https://gis.cuyahogacounty.gov/server/rest/services/IMAGERY/2019_Spring_Aerial/MapServer",
+        "exportUrl": "https://gis.cuyahogacounty.gov/server/rest/services/IMAGERY/2019_Spring_Aerial/MapServer/export?bbox=-9092920.797143765%2C5082138.90486949%2C-9092480.797143765%2C5082498.90486949&bboxSR=3857&imageSR=3857&size=1100%2C900&format=jpg&f=image",
+        "returnedExtent": {
+          "xmin": -9092920.797143765,
+          "ymin": 5082138.90486949,
+          "xmax": -9092480.797143765,
+          "ymax": 5082498.90486949,
+          "spatialReference": {
+            "wkid": 102100,
+            "latestWkid": 3857
+          }
+        },
+        "imageSizePixels": [
+          1100,
+          900
+        ],
+        "pointPixelXY": [
+          550,
+          450
+        ],
+        "pointMeaning": "The supplied point is the exact export center. It falls on an industrial roof in the inspected image.",
+        "projection": "Web Mercator, EPSG:3857; radius 6378137 m",
+        "reproduction": "x = R * longitude * pi / 180; y = R * ln(tan(pi/4 + latitude*pi/360)). The mean of the returned xmin/xmax and ymin/ymax reproduces this projected point.",
+        "publishedReferenceImage": "media/evidence/clark-proposed-coordinate-county-2019.jpg",
+        "limit": "Aerial imagery is dated 2019. It neither surveys the bridge remnants nor establishes present-day public access or a 1968 shooting position."
+      },
+      "method": "Actual film stills, primary archive metadata and selected images, institutional histories and an official county aerial were compared. Negative results are bounded by the records inspected and do not establish that other archive evidence is absent.",
+      "requestsSent": false
+    }
+  ]
 }

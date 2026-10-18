@@ -23,8 +23,8 @@ assigned an invented frame.
 
 ## Evidence comparisons and research board
 
-`evidence.html` presents three illustrated cases: Eagle Avenue Lift Bridge,
-Madison Square Building, and the probable former Clark Avenue Bridge. Film
+`evidence.html` presents four illustrated cases: Eagle Avenue Lift Bridge,
+Madison Square Building, the probable former Clark Avenue Bridge, and Carter Road Bridge. Film
 stills and reference photographs retain their dates, credits and source links.
 The case notes state which features support an identification and what remains
 unresolved. Reference photographs are comparisons, not automatically photographs
@@ -50,6 +50,28 @@ recorded as later controls; the filming-period storefront pairing remains open.
 source dates, remaining archive requests, access limits, and reproducible marker
 calculation. Original PDF observations remain in the coverage provenance fields;
 the follow-up does not upgrade either film identification to confirmed.
+
+### Frame 639 pass, 18 October 2026
+
+The Carter Road comparison pairs frame 639 (01:39:27.628) with a July 1986
+HAER southeast-approach photograph and a 2002 context image. Its assessment is
+**Strong visual identification**; the later references do not establish the
+1968 camera position. The research board retains its five existing questions.
+
+### Additional frame and visitor claims, 18 October 2026
+
+The follow-up log and individual frame notes assess the supplied hotel, storefront,
+bridge, church, and street-route claims. Frame 602 gains a probable B&O No. 463
+background landmark while the hotel name stays unresolved. Frame 646 gains a
+probable Union Terminal viaduct comparison. Frame 667 remains ore-handling
+apparatus in an unplaced yard. Flat Iron, United Electric and Leader address claims
+are distinguished from verified film locations, and the present St. Agnes / Our
+Lady of Fatima church is dated to 1983.
+
+The Clark case adds a county aerial check showing that the supplied pier coordinate
+falls on an industrial roof in 2019. County photographs document demolition in
+1984–85, and ODOT dates the I-490 crossing to 1990. No camera coordinate or
+public access promise is inferred from these historical and geographic controls.
 
 ## Contributing evidence
 

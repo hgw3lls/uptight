@@ -2,8 +2,8 @@
   'use strict';
 
   const byId = id => document.getElementById(id);
-  const caseOrder = ['eagle', 'madison', 'clark'];
-  const caseNames = { eagle: 'Eagle Avenue', madison: 'Madison Square', clark: 'Clark Avenue' };
+  const caseOrder = ['eagle', 'madison', 'clark', 'carter'];
+  const caseNames = { eagle: 'Eagle Avenue', madison: 'Madison Square', clark: 'Clark Avenue', carter: 'Carter Road' };
   const caseQuestions = { madison: 'madison-full-facade', clark: 'clark-road-level' };
   const questionOrder = ['madison-full-facade', 'clark-road-level', 'leader-kronheim-adjacency', 'colonial-blood-bank-frontage', 'east86-wadepark-shot'];
   const state = { data: null, activeCase: null, frameIndex: 0, referenceIndex: 0, loading: false, returnFocus: null, showAnnotations: false };
@@ -105,7 +105,7 @@
   }
 
   function validateEvidence(data) {
-    if (!data || !Array.isArray(data.cases) || data.cases.length !== 3) throw new Error('Three comparison records are required');
+    if (!data || !Array.isArray(data.cases) || data.cases.length !== caseOrder.length) throw new Error(caseOrder.length + ' comparison records are required');
     if (!caseOrder.every(id => data.cases.filter(item => item.id === id).length === 1)) throw new Error('Unexpected comparison identifiers');
     data.cases.forEach(item => {
       if (!item.title || !item.status || !Array.isArray(item.frames) || !item.frames.length || !item.frames.every(frame => validFrame(frame.id))) throw new Error('Incomplete film comparison');
@@ -330,15 +330,17 @@
 
   function renderCasePagination() {
     const position = caseOrder.indexOf(state.activeCase);
+    const count = caseOrder.length;
+    const hasNext = position < count - 1;
     const fragment = document.createDocumentFragment();
     if (position > 0) {
       const previous = element('a', '', '← ' + caseNames[caseOrder[position - 1]]);
       previous.href = '#case=' + caseOrder[position - 1];
       fragment.appendChild(previous);
     } else fragment.appendChild(element('span', '', 'First comparison'));
-    fragment.appendChild(element('span', '', String(position + 1).padStart(2, '0') + ' / 03'));
-    const next = element('a', '', position < 2 ? caseNames[caseOrder[position + 1]] + ' →' : 'Research board →');
-    next.href = position < 2 ? '#case=' + caseOrder[position + 1] : './research-board.html';
+    fragment.appendChild(element('span', '', String(position + 1).padStart(2, '0') + ' / ' + String(count).padStart(2, '0')));
+    const next = element('a', '', hasNext ? caseNames[caseOrder[position + 1]] + ' →' : 'Research board →');
+    next.href = hasNext ? '#case=' + caseOrder[position + 1] : './research-board.html';
     fragment.appendChild(next);
     byId('case-pagination').replaceChildren(fragment);
   }
