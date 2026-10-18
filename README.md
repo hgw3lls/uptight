@@ -37,6 +37,20 @@ and a connection between documented East 86th/Wade Park filming and a shot.
 The research records live in `data/evidence-cases.json` and
 `data/research-questions.json`.
 
+### Focused follow-up, 18 October 2026
+
+Research completed on 17 October adds Hopkins plate 6b (1921, revised 1924),
+which reconciles Madison Square's Hough address forms within one named frontage,
+and County Engineer photograph cea0146 (1984), which supplies a direct Clark
+central-truss comparison. Madison's approximate marker now follows the historic
+southwest-corner footprint. The 1974 Kronheim and Leader directory entries are
+recorded as later controls; the filming-period storefront pairing remains open.
+
+`data/research-log.json` retains the bounded searches, primary record identifiers,
+source dates, remaining archive requests, access limits, and reproducible marker
+calculation. Original PDF observations remain in the coverage provenance fields;
+the follow-up does not upgrade either film identification to confirmed.
+
 ## Contributing evidence
 
 Use `contribute.html`, or **Send evidence** from a selected map still. The form

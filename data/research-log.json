@@ -1,0 +1,333 @@
+{
+  "title": "Uptight location research: focused follow-up",
+  "researchDate": "2026-10-17",
+  "releaseDate": "2026-10-18",
+  "timezone": "America/New_York",
+  "scope": "Bounded research on Madison Square, the Clark Avenue Bridge comparison, and the possible Leader Drug / Kronheim pairing.",
+  "requestStatus": "The archive requests below are prepared research leads. No requests have been sent.",
+  "cases": [
+    {
+      "id": "madison",
+      "frames": [
+        63
+      ],
+      "status": "Probable / high confidence; full facade identification remains open.",
+      "searchSummary": "Compared the municipal address and previously inspected 1943–1944 and 1955 directories with Hopkins's 1921 atlas, revised in 1924, and a georeferenced historical mosaic. Resolved the building-level address relationship and improved the approximate marker; no complete facade or film camera position was established.",
+      "verifiedFacts": [
+        {
+          "text": "Plate 6b names MADISON SQUARE BLDG. at the southwest corner of Hough Avenue and East 79th Street, with Hough labels 7812, 14, 16, 18, 20, 22, 24, 26 and 7828.",
+          "sourceIds": [
+            "S30"
+          ]
+        },
+        {
+          "text": "The municipal architects database lists Madison Square Building, 7812–4 Hough Avenue, 1915, demolished, under Albert F. Janowitz. It cautions that not all entries are fully researched; this entry gives no individual permit citation.",
+          "sourceIds": [
+            "S02"
+          ]
+        },
+        {
+          "text": "The previously inspected 1943–1944 and 1955 directory pages list Madison Square at 7820 Hough Avenue.",
+          "sourceIds": [
+            "MADISON-D1943",
+            "MADISON-D1955"
+          ]
+        }
+      ],
+      "inferences": [
+        "The atlas reconciles 7812–14 and 7820 within one named building frontage. It does not assign numbers to apartment entrances, storefronts or other entrances.",
+        "The southwest-corner candidate marker represents an approximate historic building location, not a surveyed boundary, surviving entrance or camera position.",
+        "The complete arch, balcony and roofline match in frame 63 remains unproven. Frames 58–62 remain separately unresolved."
+      ],
+      "negativeResultLimit": "The photographs examined in this and the preceding focused pass did not establish a complete facade match. Undigitized photographs, drawings and permits remain outside that result.",
+      "remainingArchiveRequests": [
+        {
+          "target": "Cleveland Public Library architectural and local-history holdings",
+          "request": "Seek a full elevation, plan, permit attachment or dated facade photograph for Madison Square Building, Albert F. Janowitz, municipal date 1915, Hough frontage 7812–28 at East 79th Street's southwest corner. Prioritize the central arch, balconies and roofline; clarify entrance or occupancy assignments for 7812–14 and 7820 if available."
+        },
+        {
+          "target": "Cleveland Press Photograph Collection, PH2000.000PRE, Hough subject folders",
+          "request": "Ask about Hough houses/buildings and streets/airviews subjects on printed page 26, prioritizing a complete Hough-facing view of the southwest corner at East 79th Street near filming.",
+          "sourceIds": [
+            "PRESS-FINDING-AID"
+          ]
+        }
+      ],
+      "coordinateRevision": {
+        "sourceIds": [
+          "S30",
+          "C03"
+        ],
+        "previousLongitudeLatitude": [
+          -81.63338,
+          41.509501
+        ],
+        "previousMeaning": "Historical-marker intersection reference, northeast of Madison's footprint on the inspected mosaic.",
+        "publishedLongitudeLatitude": [
+          -81.63391,
+          41.50913
+        ],
+        "meaning": "Approximate point inside the historic southwest-corner Madison Square building footprint.",
+        "shift": "Approximately 60 m southwest from the previous vicinity marker.",
+        "workingAllowanceMeters": 30,
+        "allowanceMeaning": "Conservative working allowance, not a measured error bound or survey accuracy claim. Rectification can distort historical maps.",
+        "reproduction": {
+          "serviceUrl": "https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services/Cleveland1932_1937/MapServer",
+          "projection": "Web Mercator, WKID 102100 / latest WKID 3857",
+          "tileSizePixels": 256,
+          "level": 17,
+          "tileRows": [
+            48894,
+            48895,
+            48896
+          ],
+          "tileColumns": [
+            35813,
+            35814,
+            35815
+          ],
+          "tileUrlTemplate": "https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services/Cleveland1932_1937/MapServer/tile/17/{row}/{column}",
+          "mosaicSizePixels": [
+            768,
+            768
+          ],
+          "mosaicUpperLeftTileColumnRow": [
+            35813,
+            48894
+          ],
+          "selectedMosaicPixelXY": [
+            256,
+            443
+          ],
+          "pixelConvention": "Zero-based coordinates from the mosaic's upper-left corner.",
+          "approximateBuildingBoundsPixels": [
+            234,
+            431,
+            278,
+            455
+          ],
+          "boundsMeaning": "A rough visual footprint guide excluding the garage; not a surveyed polygon.",
+          "projectedOriginXY": [
+            -20037508.342787,
+            20037508.342787
+          ],
+          "projectedMetersPerPixel": 1.1943285668550503,
+          "projectedPointXY": [
+            -9087445.419690227,
+            5087731.012592312
+          ],
+          "inverseProjectionRadiusMeters": 6378137,
+          "formulas": [
+            "globalPixelX = 35813 * 256 + 256; globalPixelY = 48894 * 256 + 443",
+            "x = originX + globalPixelX * resolution; y = originY - globalPixelY * resolution",
+            "longitude = x / R * 180 / pi; latitude = (2 * atan(exp(y / R)) - pi / 2) * 180 / pi"
+          ],
+          "computedLongitudeLatitude": [
+            -81.6339111410967,
+            41.509131674298246
+          ],
+          "independentSlippyMapCheckLongitudeLatitude": [
+            -81.6339111328125,
+            41.50913166582311
+          ],
+          "crossCheck": "The southwest-corner footprint agrees with named Madison Square on S30. The georeferenced mosaic is a separate, later map source."
+        }
+      }
+    },
+    {
+      "id": "clark",
+      "frames": [
+        658
+      ],
+      "relatedFramesStillRequiringSeparateComparison": [
+        653,
+        654,
+        657
+      ],
+      "status": "Probable candidate; remains unpinned.",
+      "searchSummary": "Reviewed thumbnails for 61 County Engineer records and selected originals and metadata, 4 Press query results, 12 CPL results (11 photograph records and a subject guide), an approach-view lead and drawing references. County photograph cea0146 provides the new view through the central truss during deck demolition.",
+      "verifiedFacts": [
+        {
+          "text": "Cleveland Memory cca/129 identifies Michael A. Fuerst's 1984 Clark Avenue Bridge photograph as cea0146, Cuyahoga County Engineer Photography Collection. It looks lengthwise through the central truss after roadway deck removal.",
+          "sourceIds": [
+            "S31"
+          ]
+        }
+      ],
+      "inferences": [
+        "Frame 658 and cea0146 share compatible haunched frame corners, crossed overhead lattice, a broad rounded far opening, and riveted posts and diagonals. This strengthens Clark relative to the previous low exterior view.",
+        "The truss-axis comparison does not reproduce the film's offset camera or intact roadway. Repeated internal frames are not separate bridge spans.",
+        "The road edge, railing, complete skyline, furnace equipment and camera position remain unresolved. Frames 653 and 654 need separate equipment comparisons; film-route continuity across cuts is unproven."
+      ],
+      "negativeResultsAndLimits": [
+        "The 4 Press results did not add a comparable roadway-axis view; undigitized holdings were outside the check.",
+        "The CPL results and credited 1978 approach photograph did not supply an intact central-truss view comparable to frame 658. The approach pony truss is a different structure.",
+        "Attempted Library of Congress HAER OH-13 pages were inaccessible. No accessed plan or journal drawing settled the portal geometry. These limits do not establish that suitable sources are absent."
+      ],
+      "remainingArchiveRequests": [
+        {
+          "target": "Cuyahoga County Archives / County Engineer photographs and bridge records",
+          "request": "Seek an in-service view through the former Clark Avenue Bridge's central truss, preferably near 1968. Use cea0146 to compare the intact road edge, railing, internal frame sequence and skyline with frame 658. Ask whether plans or additional photographs establish camera position."
+        },
+        {
+          "target": "Cleveland Press photograph holdings and industrial photograph collections",
+          "request": "Seek views connecting the former Clark crossing to furnace and industrial equipment in frames 653 and 654. Assess each film view separately until landmarks establish the connection."
+        }
+      ]
+    },
+    {
+      "id": "leader-kronheim",
+      "frames": [
+        151,
+        153,
+        169
+      ],
+      "status": "Open; Leader Drug branch and furniture pairing remain unplaced.",
+      "searchSummary": "Reviewed 85 records in the examined CPL directory catalog: the newest Cleveland city volumes located were 1974 and then 1955; no 1968 volume was found there. Inspected the 1974 title leaf and Kronheim and Leader entries. East 55th photograph metadata was located, but attempted original image routes were inaccessible and supplied no visual frontage evidence.",
+      "verifiedFacts": [
+        {
+          "text": "The verified 1974 directory volume lists Kronheim addresses at 2043 East 55th Street, 15204 Puritas Avenue and 1814 East 40th Street.",
+          "sourceIds": [
+            "S32"
+          ]
+        },
+        {
+          "text": "The inspected 1974 Leader entry lists 1400 East 9th Street, 5909 Broadway, 11650 Detroit Avenue under Discount, and 17400 Lorain Avenue under Kamm's Plaza.",
+          "sourceIds": [
+            "S33"
+          ]
+        },
+        {
+          "text": "The 1955 Kronheim lead places retail at 2041 East 55th Street. The Press finding aid separately lists Kronheim Furniture Co. and Leader Drug Stores folders, Subjects series, PH2000.000PRE, printed page 29.",
+          "sourceIds": [
+            "S16",
+            "PRESS-FINDING-AID"
+          ]
+        }
+      ],
+      "inferences": [
+        "The 1974 addresses guide further research; they do not establish locations or adjacency during filming in 1968.",
+        "These entries are not an exhaustive branch, affiliate or trade-name list. The 1955 number 2041 and 1974 number 2043 do not alone establish an address change, shared storefront or film location.",
+        "The partly readable furniture sign may indicate Kronheim. Neither directory entries nor folder names prove a neighboring Leader branch."
+      ],
+      "negativeResultLimit": "No pairing near 1968 was established. Failure to find a 1968 volume in this digital catalog says nothing definitive about other holdings or publication history.",
+      "remainingArchiveRequests": [
+        {
+          "target": "Cleveland Public Library city, business and street directories",
+          "request": "Request the 1968 Cleveland-proper directory title page, Kronheim and Leader alphabetical entries, classified druggist and furniture lists, and street-address pages for each candidate Kronheim retail address. Start with 2041–2043 East 55th and include both sides of the street and the nearest intersections. If 1968 is unavailable, use 1966 as an earlier control and identify its exact geographic coverage. Seek an addressed advertisement near filming for any Leader affiliate using another trade name."
+        },
+        {
+          "target": "Cleveland Press Photograph Collection, PH2000.000PRE, Subjects series",
+          "request": "Check the Kronheim Furniture Co. and Leader Drug Stores subject folders for exterior photographs or contact sheets from 1966–1969. Request the full image and verso or caption, date, address, photographer, and box/folder identifier, prioritizing a view containing both businesses or enough frontage to compare the upper windows, bays and signs with frames 151, 153 and 169. The folder index alone supplies no image-level adjacency.",
+          "sourceIds": [
+            "PRESS-FINDING-AID"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S02",
+      "title": "City of Cleveland, Cleveland Architects: Albert F. Janowitz",
+      "recordUrl": "https://www.clevelandohio.gov/city-hall/boards-commissions/planning/landmarks/cleveland-architects?title=10",
+      "note": "Current municipal database location; replaces the unavailable older planning.clevelandohio.gov print page. A compiled architectural inventory, not an original building permit."
+    },
+    {
+      "id": "S30",
+      "title": "G. M. Hopkins & Co., Cleveland atlas, volume 1, plate 6b",
+      "date": "1921, revised 1924",
+      "repository": "Cleveland Public Library",
+      "collectionItem": "p4014coll24/325",
+      "parentItem": "p4014coll24/392",
+      "catalogIdentifier": "G1399.C5 H62 1920 V.1",
+      "archiveFilename": "Hopkins1921V.1_14Plate6b.TIF",
+      "recordUrl": "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll24/id/325/",
+      "metadataUrl": "https://cplorg.contentdm.oclc.org/digital/api/singleitem/collection/p4014coll24/id/325",
+      "imageUrl": "https://cplorg.contentdm.oclc.org/iiif/2/p4014coll24:325/full/full/0/default.jpg",
+      "detailImageUrl": "https://cplorg.contentdm.oclc.org/iiif/2/p4014coll24:325/pct:17,9,23,18/full/0/default.jpg",
+      "rightsNote": "The archive metadata supplies rights code CNE; no open-license claim is made."
+    },
+    {
+      "id": "C03",
+      "title": "Georeferenced Cleveland historic plat-map mosaic",
+      "recordUrl": "https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services/Cleveland1932_1937/MapServer",
+      "note": "Used for approximate geographic placement and checked against the named building on S30. Historical map rectification can introduce distortion."
+    },
+    {
+      "id": "S31",
+      "title": "Michael A. Fuerst, Clark Avenue Bridge during deck demolition",
+      "date": "1984",
+      "repository": "Cuyahoga County Archives, Cuyahoga County Engineer Photography Collection; published by Cleveland Memory",
+      "collectionItem": "cca/129",
+      "archiveIdentifier": "cea0146",
+      "recordUrl": "https://clevelandmemory.contentdm.oclc.org/digital/collection/cca/id/129/",
+      "metadataUrl": "https://clevelandmemory.contentdm.oclc.org/digital/api/singleitem/collection/cca/id/129",
+      "imageUrl": "https://clevelandmemory.contentdm.oclc.org/iiif/2/cca:129/full/full/0/default.jpg"
+    },
+    {
+      "id": "S32",
+      "title": "Cleveland City Directory, 1974: Kronheim entry",
+      "repository": "Cleveland Public Library",
+      "collectionItem": "p16014coll29/60736",
+      "recordUrl": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/60736/",
+      "metadataUrl": "https://cplorg.contentdm.oclc.org/digital/api/singleitem/collection/p16014coll29/id/60736",
+      "parentVolumeUrl": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/61902/",
+      "titleLeafUrl": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/59919/",
+      "printedPage": 544,
+      "scanUrl": "https://cplorg.contentdm.oclc.org/digital/api/collection/p16014coll29/id/60736/download",
+      "titlePageScanUrl": "https://cplorg.contentdm.oclc.org/digital/api/collection/p16014coll29/id/59919/download"
+    },
+    {
+      "id": "S33",
+      "title": "Cleveland City Directory, 1974: Leader entry",
+      "repository": "Cleveland Public Library",
+      "collectionItem": "p16014coll29/60759",
+      "recordUrl": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/60759/",
+      "metadataUrl": "https://cplorg.contentdm.oclc.org/digital/api/singleitem/collection/p16014coll29/id/60759",
+      "parentVolumeUrl": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/61902/",
+      "titleLeafUrl": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/59919/",
+      "printedPage": 566,
+      "scanUrl": "https://cplorg.contentdm.oclc.org/digital/api/collection/p16014coll29/id/60759/download",
+      "titlePageScanUrl": "https://cplorg.contentdm.oclc.org/digital/api/collection/p16014coll29/id/59919/download"
+    },
+    {
+      "id": "S16",
+      "title": "Cleveland City Directory, 1955: Kronheim entry, printed page 729",
+      "recordUrl": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/56440/"
+    },
+    {
+      "id": "MADISON-D1943",
+      "title": "Cleveland City Directory, 1943–1944: Madison Square, printed page 1528",
+      "recordUrl": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/51154/",
+      "parentVolumeUrl": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/51702/"
+    },
+    {
+      "id": "MADISON-D1955",
+      "title": "Cleveland City Directory, 1955: Madison Square, printed page 1662",
+      "recordUrl": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/57384/",
+      "parentVolumeUrl": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/57927/"
+    },
+    {
+      "id": "PRESS-FINDING-AID",
+      "title": "Cleveland Press Photograph Collection finding aid",
+      "collectionIdentifier": "PH2000.000PRE",
+      "series": "Subjects",
+      "relevantPrintedPages": [
+        26,
+        29
+      ],
+      "recordUrl": "https://clevelandmemory.contentdm.oclc.org/digital/api/collection/press/id/11382/download"
+    }
+  ],
+  "archiveAccess": {
+    "institution": "Cleveland State University Library Special Collections",
+    "checkedDate": "2026-10-17",
+    "note": "The official page and form stated that Special Collections was closed to the public because of retirements. Arrange staff consultation through its published contact route; do not assume walk-in access. Status checked on the stated date.",
+    "urls": [
+      "https://library.csuohio.edu/speccoll/",
+      "https://library.csuohio.edu/forms/spcoll.html"
+    ],
+    "requestsSent": false
+  }
+}

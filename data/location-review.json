@@ -21,9 +21,9 @@
     ]
   },
   "summary": [
-    "Madison Square Building at Hough Avenue / East 79th Street is a probable identification in frame 63, with the remaining facade-match gap stated explicitly.",
+    "Madison Square’s 7812–14 and 7820 Hough addresses fall within one named historic frontage. Frame 63 remains probable pending a full facade match; the approximate marker now follows the southwest-corner building footprint.",
     "Eagle Avenue Lift Bridge is a strong visual identification in frames 638 and 652.",
-    "The former West 3rd Street bridge hypothesis is replaced by an unpinned, probable former Clark Avenue Bridge candidate in frames 653, 654, 657 and 658.",
+    "A newly located 1984 photograph through the former Clark Avenue Bridge’s central truss strengthens the comparison with frame 658. Clark remains a probable, unpinned candidate; the intact roadway and exact viewpoint are unresolved.",
     "East 86th Street / Wade Park Avenue is documented as a filming area in a contemporary account; no indexed still has yet been matched to that evidence.",
     "The Save-Way directory evidence dates to 1974. Unresolved business and interior leads retain their uncertainty, while the Atlanta and Los Angeles sequences are distinguished from Cleveland."
   ],
@@ -396,12 +396,13 @@
       ],
       "firstTimestamp": "01:40:54.382",
       "confidenceLabel": "Probable candidate",
-      "confidenceNote": "Clark Avenue is a stronger candidate than the previous West 3rd Street attribution. The review does not provide an identical road-level historical view, so no replacement pin is asserted.",
+      "confidenceNote": "Follow-up research found Michael A. Fuerst’s 1984 photograph cea0146 looking through the Clark Avenue Bridge’s central truss. Its haunched transverse frames and crossed overhead lattice closely match frame 658 and strengthen the candidate. The photograph shows deck demolition; the intact roadway, skyline and camera position remain unresolved, so the candidate stays probable and unpinned.",
       "connection": "Frames 653, 654, 657 and 658 show a road bridge beside blast-furnace equipment and a long, high-level through-truss with dense overhead bracing. The tall structure in frame 654 is furnace apparatus, not a lift-bridge tower. Bridge form and the industrial relationship make the former Clark Avenue Bridge the better candidate.",
-      "pinNote": "Unpinned: the review explicitly calls for withdrawing the West 3rd Street pin without publishing an exact replacement location.",
+      "pinNote": "Unpinned: the new central-truss comparison strengthens the candidate, but an intact roadway view and film camera position remain unresolved.",
       "sourceIds": [
         "S12",
-        "S29"
+        "S29",
+        "S31"
       ],
       "sources": [
         [
@@ -411,6 +412,10 @@
         [
           "Cleveland Public Library: view from Clark Avenue Bridge, 1935",
           "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/108/"
+        ],
+        [
+          "Cuyahoga County Engineer photograph: Clark central truss, cea0146, 1984",
+          "https://clevelandmemory.contentdm.oclc.org/digital/collection/cca/id/129/"
         ]
       ],
       "visibleLandmarks": []
@@ -476,7 +481,7 @@
     {
       "id": "leader",
       "name": "Leader Drug street scene — unplaced",
-      "address": "Branch unknown; earlier Kronheim lead: 2041 East 55th Street (1955), not a confirmed filming address",
+      "address": "Branch unknown; Kronheim leads at 2041 East 55th (1955) and 2043 East 55th (1974), neither a confirmed filming address",
       "frames": [
         169,
         151,
@@ -500,13 +505,15 @@
       ],
       "firstTimestamp": "00:20:48.330",
       "confidenceLabel": "Unplaced",
-      "confidenceNote": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+      "confidenceNote": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
       "connection": "The street-speech sequence in frames 151–169 includes Leader Drug. Frames 151 and 153 add a red FURNITURE KRO… sign, plausibly Kronheim. A branch directory plus matching frontage or neighboring business is still needed.",
       "pinNote": "No point is plotted. The pharmacy branch and neighboring furniture frontage have not been matched.",
       "sourceIds": [
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "sources": [
         [
@@ -524,6 +531,14 @@
         [
           "Cleveland Public Library: East 9th/St. Clair, 1960",
           "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/3085/"
+        ],
+        [
+          "Cleveland City Directory, 1974: Kronheim entries, printed p. 544",
+          "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/60736/"
+        ],
+        [
+          "Cleveland City Directory, 1974: Leader entries, printed p. 566",
+          "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/60759/"
         ]
       ],
       "visibleLandmarks": []
@@ -568,24 +583,25 @@
     {
       "id": "madison",
       "name": "Madison Square Building / Hough Avenue",
-      "address": "7812–14 Hough Avenue, at East 79th Street",
+      "address": "7812–7828 Hough Avenue frontage, southwest corner of East 79th Street",
       "frames": [
         63
       ],
       "firstTimestamp": "00:06:29.431",
       "confidenceLabel": "Probable / high confidence",
-      "confidenceNote": "The MADISON roof lettering, corner blocks, balconies and drugstore cornice converge with the address record, a 1964 corner photograph and a 1972 aerial. The archive photograph does not show the full central arch and balcony pattern, so the identification remains probable.",
+      "confidenceNote": "The MADISON lettering and partial 1964 corner comparison support the candidate. Follow-up research reconciles 7812–14 and 7820 Hough within the named Madison Square frontage on a 1921 plat map revised in 1924. A complete historical view of the central arch, balconies and roofline remains unmatched, so the film identification stays probable.",
       "connection": "Frame 63 shows a long brick apartment/commercial building with heavy white corner blocks, stacked balconies and a tall central arch. MADISON is readable on the roof; SQUARE is less legible. The historical corner comparison supports the inference without conclusively matching the full facade. Frames 58–62 may belong to the local sequence, but their properties remain unassigned.",
-      "pinNote": "Approximate Hough Avenue / East 79th Street vicinity; this pin does not establish the demolished building footprint or camera position.",
+      "pinNote": "Approximate Madison Square Building site, southwest corner of Hough Avenue and East 79th Street. Placement follows the historic plat-map mosaic; allow roughly 30 m of positional uncertainty as a working allowance. This is a building-site marker, not a film camera position.",
       "sourceIds": [
         "S02",
         "S03",
-        "S28"
+        "S28",
+        "S30"
       ],
       "sources": [
         [
           "Cleveland Landmarks Commission: Albert F. Janowitz",
-          "https://planning.clevelandohio.gov/dompdf/architectDomPrint.php?afil=&archID=137"
+          "https://www.clevelandohio.gov/city-hall/boards-commissions/planning/landmarks/cleveland-architects?title=10"
         ],
         [
           "Cleveland Public Library: Hough Avenue and East 79th Street, 1964",
@@ -596,11 +612,20 @@
           "https://clevelandmemory.contentdm.oclc.org/digital/collection/press/id/9464/"
         ],
         [
-          "Historical Marker Database: Hough / East 79th vicinity reference",
-          "https://www.hmdb.org/m.asp?m=18043"
+          "Cleveland Public Library: Madison Square on Hopkins plate 6b, 1921 (revised 1924)",
+          "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll24/id/325/"
+        ],
+        [
+          "Georeferenced Cleveland historic plat-map mosaic: Madison building-site placement",
+          "https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services/Cleveland1932_1937/MapServer"
         ]
       ],
-      "visibleLandmarks": []
+      "visibleLandmarks": [],
+      "coordinateSourceIds": [
+        "C03",
+        "S30"
+      ],
+      "coordinateUncertaintyMeters": 30
     },
     {
       "id": "eagle",
@@ -706,12 +731,13 @@
       "reportStartTime": "00:06:01.28",
       "reportPage": 13,
       "scene": "Hough street lead",
-      "observation": "58 dentist window with partial Dr A Co...;59-62 porches and street listeners. 63 MADISON SQUARE roofline, ornate apartment facade and corner drugstore; probable 7812-14 Hough/E79.",
+      "observation": "58 dentist window with partial Dr A Co...;59-62 porches and street listeners. 63 MADISON SQUARE roofline, ornate apartment facade and corner drugstore; probable 7812-14 Hough/E79. Follow-up for frame 63: Hopkins plate 6b places both address forms in the named 7812–7828 Hough frontage; the full facade remains unmatched. Frames 58–62 remain unassigned.",
       "sourceIds": [
         "S01",
         "S02",
         "S03",
-        "S28"
+        "S28",
+        "S30"
       ],
       "reportObservation": "58 dentist window with partial Dr A Co...;59-62 porches and street listeners.63 MADISON SQUARE roofline, ornate apartment facade and corner drugstore; probable 7812-14 Hough/E79."
     },
@@ -870,12 +896,14 @@
       "reportStartTime": "00:20:48.33",
       "reportPage": 14,
       "scene": "Leader drug street",
-      "observation": "Street speech outside Leader Drug. 151/153 red FURNITURE KRO... neon may be Kronheim. Exact block unplaced.",
+      "observation": "Street speech outside Leader Drug. 151/153 red FURNITURE KRO... neon may be Kronheim. Exact block unplaced. Follow-up: the 1974 Kronheim and Leader entries provide later address controls, but no 1968 pairing is established.",
       "sourceIds": [
         "S01",
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "reportObservation": "Street speech outside Leader Drug.151/153 red FURNITURE KRO... neon may be Kronheim. Exact block unplaced."
     },
@@ -1946,11 +1974,12 @@
       "reportStartTime": "01:41:20.70",
       "reportPage": 18,
       "scene": "Long red through-truss road bridge",
-      "observation": "Long through-truss with repeated rounded/haunched inner portal frames, heavy lattice overhead and chimneys beyond. Site's West 3rd Street label is not supported securely; Clark is stronger but remains a candidate. Key unresolved bridge frame. Compare Michael A. Fuerst’s 1984 demolition photograph cea0144 in the County Engineer collection; an intact road-level historical view is still needed.",
+      "observation": "Long through-truss with repeated haunched transverse frames, heavy crossed lattice overhead and chimneys beyond. Follow-up: Michael A. Fuerst’s 1984 photograph cea0146 looks through the former Clark Avenue Bridge’s central truss and closely matches this structural pattern. Its dismantled deck leaves the intact road edge, railing, skyline and camera position unresolved. Clark remains probable and unpinned.",
       "sourceIds": [
         "S01",
         "S12",
-        "S29"
+        "S29",
+        "S31"
       ],
       "reportObservation": "Long through-truss with repeated rounded/haunched inner portal frames, heavy lattice overhead and chimneys beyond. Site's West 3 rd Street label is not supported securely; Clark is stronger but remains a candidate. Key unresolved bridge frame. Compare primary ClarkCountyEngineerphotocea 0144; road-level historic view still needed."
     },
@@ -2043,8 +2072,8 @@
     {
       "id": "S02",
       "title": "Cleveland Landmarks Commission: Albert F. Janowitz",
-      "url": "https://planning.clevelandohio.gov/dompdf/architectDomPrint.php?afil=&archID=137",
-      "note": "Lists Madison Square Building, 7812–4 Hough Avenue, 1915, demolished. Also available in the current municipal architects database."
+      "url": "https://www.clevelandohio.gov/city-hall/boards-commissions/planning/landmarks/cleveland-architects?title=10",
+      "note": "The current municipal Janowitz inventory lists Madison Square Building, 7812–4 Hough Avenue, 1915, demolished. This is a compiled inventory entry, with no individual permit citation or linked building photograph. The database cautions that unsourced entries need confirmation. S30 independently reconciles the frontage address forms."
     },
     {
       "id": "S03",
@@ -2218,7 +2247,37 @@
       "id": "C02",
       "title": "Historical Marker Database: Hough / East 79th vicinity reference",
       "url": "https://www.hmdb.org/m.asp?m=18043",
-      "note": "Supplementary map-placement source checked during this website update. The Hough history marker’s map link supplies an approximate intersection-vicinity point, not Madison Square’s demolished footprint or a film camera position."
+      "note": "Supplementary map-placement source checked during this website update. The Hough history marker’s map link supplies an approximate intersection-vicinity point, not Madison Square’s demolished footprint or a film camera position. Superseded for the current Madison marker by C03; retained as provenance for the former vicinity point."
+    },
+    {
+      "id": "S30",
+      "title": "Cleveland Public Library: Madison Square on Hopkins plate 6b, 1921 (revised 1924)",
+      "url": "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll24/id/325/",
+      "note": "G. M. Hopkins & Co., volume 1, plate 6b; CPL leaf 325, parent 392, G1399.C5 H62 1920 V.1. The original map labels Madison Square Building on the southwest Hough / East 79th corner, with Hough frontage numbers 7812–7828. It reconciles 7812–14 and 7820 at building level, without assigning an apartment entrance or establishing the full facade."
+    },
+    {
+      "id": "S31",
+      "title": "Cuyahoga County Engineer photograph: Clark central truss, cea0146, 1984",
+      "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/cca/id/129/",
+      "note": "Michael A. Fuerst, 1984; Cuyahoga County Engineer’s Photography Collection, Cuyahoga County Archives; Cleveland Memory item 129. A view through the central truss during deck demolition closely matches the haunched transverse frames and crossed overhead lattice in frame 658. The intact roadway, skyline and camera position remain unresolved."
+    },
+    {
+      "id": "S32",
+      "title": "Cleveland City Directory, 1974: Kronheim entries, printed p. 544",
+      "url": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/60736/",
+      "note": "Original scan, CPL leaf 60736, parent volume 61902; the title leaf 59919 confirms 1974 Cleveland proper. Kronheim’s is listed at 2043 East 55th, with a furniture branch at 15204 Puritas and furniture or related offices at 1814 East 40th. Later evidence only; no 1968 pharmacy adjacency is established. Street digits were checked visually against the scan."
+    },
+    {
+      "id": "S33",
+      "title": "Cleveland City Directory, 1974: Leader entries, printed p. 566",
+      "url": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/60759/",
+      "note": "Original scan, CPL leaf 60759, parent volume 61902. Alphabetical Leader entries list Leader Drug at 1400 East 9th and 5909 Broadway, Leader Discount Drug at 11650 Detroit, and Leader Drug–Kamm’s Plaza at 17400 Lorain. These 1974 entries are neither a 1968 branch list nor a demonstrated complete list of affiliates using other trade names."
+    },
+    {
+      "id": "C03",
+      "title": "Georeferenced Cleveland historic plat-map mosaic: Madison building-site placement",
+      "url": "https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services/Cleveland1932_1937/MapServer",
+      "note": "Approximate building-site point derived from the named southwest-corner footprint on the historic mosaic and cross-checked with S30. The marker is [-81.63391, 41.50913] in longitude, latitude, about 60 m southwest of the former C02 vicinity marker. Allow roughly 30 m of positional uncertainty as a conservative working allowance, not a measured error bound. Historic surveying and map alignment limit accuracy. Tile, pixel and projection details are retained in data/research-log.json; this is not a film camera position."
     }
   ],
   "frameNotes": {
@@ -3704,7 +3763,7 @@
       "image": "media/frames/00000063.jpg",
       "sourceImage": "https://hgw3lls.github.io/uptight/media/frames/00000063.jpg",
       "scene": "Hough street lead",
-      "observation": "MADISON roof lettering, a less legible possible SQUARE, ornate long apartment/commercial facade, white corner blocks, stacked balconies and a central arch. Probable Madison Square Building at 7812–14 Hough Avenue / East 79th; full archival facade match remains incomplete.",
+      "observation": "MADISON roof lettering, a less legible possible SQUARE, a long apartment/commercial facade, pale corner blocks, stacked balconies and a central arch. Follow-up: Hopkins plate 6b, dated 1921 and revised 1924, places the named Madison Square frontage at 7812–7828 Hough on the southwest East 79th corner, reconciling the address forms. The full archival facade match remains incomplete.",
       "location": "Madison Square Building / Hough Avenue",
       "confidence": "Probable / high confidence",
       "classification": "Location finding",
@@ -3712,7 +3771,8 @@
         "S01",
         "S02",
         "S03",
-        "S28"
+        "S28",
+        "S30"
       ],
       "siteIds": [
         "madison"
@@ -3721,17 +3781,18 @@
         {
           "name": "Madison Square Building / Hough Avenue",
           "confidenceLabel": "Probable / high confidence",
-          "connection": "The MADISON roof lettering, corner blocks, balconies and drugstore cornice converge with the address record, a 1964 corner photograph and a 1972 aerial. The archive photograph does not show the full central arch and balcony pattern, so the identification remains probable.",
+          "connection": "The MADISON lettering and partial 1964 corner comparison support the candidate. Follow-up research reconciles 7812–14 and 7820 Hough within the named Madison Square frontage on a 1921 plat map revised in 1924. A complete historical view of the central arch, balconies and roofline remains unmatched, so the film identification stays probable.",
           "sourceIds": [
             "S02",
             "S03",
-            "S28"
+            "S28",
+            "S30"
           ],
           "siteId": "madison"
         }
       ],
       "caveats": [
-        "The MADISON roof lettering, corner blocks, balconies and drugstore cornice converge with the address record, a 1964 corner photograph and a 1972 aerial. The archive photograph does not show the full central arch and balcony pattern, so the identification remains probable."
+        "The MADISON lettering and partial 1964 corner comparison support the candidate. Follow-up research reconciles 7812–14 and 7820 Hough within the named Madison Square frontage on a 1921 plat map revised in 1924. A complete historical view of the central arch, balconies and roofline remains unmatched, so the film identification stays probable."
       ],
       "reportPage": 13,
       "coverageRange": {
@@ -5701,7 +5762,9 @@
         "S01",
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "siteIds": [
         "leader"
@@ -5710,17 +5773,19 @@
         {
           "name": "Leader Drug street scene — unplaced",
           "confidenceLabel": "Unplaced",
-          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
           "sourceIds": [
             "S16",
             "S17",
-            "S18"
+            "S18",
+            "S32",
+            "S33"
           ],
           "siteId": "leader"
         }
       ],
       "caveats": [
-        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
         "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
       ],
       "reportPage": 14,
@@ -5743,7 +5808,9 @@
         "S01",
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "siteIds": [
         "leader"
@@ -5752,17 +5819,19 @@
         {
           "name": "Leader Drug street scene — unplaced",
           "confidenceLabel": "Unplaced",
-          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
           "sourceIds": [
             "S16",
             "S17",
-            "S18"
+            "S18",
+            "S32",
+            "S33"
           ],
           "siteId": "leader"
         }
       ],
       "caveats": [
-        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
         "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
       ],
       "reportPage": 14,
@@ -5785,7 +5854,9 @@
         "S01",
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "siteIds": [
         "leader"
@@ -5794,17 +5865,19 @@
         {
           "name": "Leader Drug street scene — unplaced",
           "confidenceLabel": "Unplaced",
-          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
           "sourceIds": [
             "S16",
             "S17",
-            "S18"
+            "S18",
+            "S32",
+            "S33"
           ],
           "siteId": "leader"
         }
       ],
       "caveats": [
-        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
         "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
       ],
       "reportPage": 14,
@@ -5827,7 +5900,9 @@
         "S01",
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "siteIds": [
         "leader"
@@ -5836,17 +5911,19 @@
         {
           "name": "Leader Drug street scene — unplaced",
           "confidenceLabel": "Unplaced",
-          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
           "sourceIds": [
             "S16",
             "S17",
-            "S18"
+            "S18",
+            "S32",
+            "S33"
           ],
           "siteId": "leader"
         }
       ],
       "caveats": [
-        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
         "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
       ],
       "reportPage": 14,
@@ -5869,7 +5946,9 @@
         "S01",
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "siteIds": [
         "leader"
@@ -5878,17 +5957,19 @@
         {
           "name": "Leader Drug street scene — unplaced",
           "confidenceLabel": "Unplaced",
-          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
           "sourceIds": [
             "S16",
             "S17",
-            "S18"
+            "S18",
+            "S32",
+            "S33"
           ],
           "siteId": "leader"
         }
       ],
       "caveats": [
-        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
         "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
       ],
       "reportPage": 14,
@@ -5911,7 +5992,9 @@
         "S01",
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "siteIds": [
         "leader"
@@ -5920,17 +6003,19 @@
         {
           "name": "Leader Drug street scene — unplaced",
           "confidenceLabel": "Unplaced",
-          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
           "sourceIds": [
             "S16",
             "S17",
-            "S18"
+            "S18",
+            "S32",
+            "S33"
           ],
           "siteId": "leader"
         }
       ],
       "caveats": [
-        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
         "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
       ],
       "reportPage": 14,
@@ -5953,7 +6038,9 @@
         "S01",
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "siteIds": [
         "leader"
@@ -5962,17 +6049,19 @@
         {
           "name": "Leader Drug street scene — unplaced",
           "confidenceLabel": "Unplaced",
-          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
           "sourceIds": [
             "S16",
             "S17",
-            "S18"
+            "S18",
+            "S32",
+            "S33"
           ],
           "siteId": "leader"
         }
       ],
       "caveats": [
-        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
         "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
       ],
       "reportPage": 14,
@@ -5995,7 +6084,9 @@
         "S01",
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "siteIds": [
         "leader"
@@ -6004,17 +6095,19 @@
         {
           "name": "Leader Drug street scene — unplaced",
           "confidenceLabel": "Unplaced",
-          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
           "sourceIds": [
             "S16",
             "S17",
-            "S18"
+            "S18",
+            "S32",
+            "S33"
           ],
           "siteId": "leader"
         }
       ],
       "caveats": [
-        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
         "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
       ],
       "reportPage": 14,
@@ -6037,7 +6130,9 @@
         "S01",
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "siteIds": [
         "leader"
@@ -6046,17 +6141,19 @@
         {
           "name": "Leader Drug street scene — unplaced",
           "confidenceLabel": "Unplaced",
-          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
           "sourceIds": [
             "S16",
             "S17",
-            "S18"
+            "S18",
+            "S32",
+            "S33"
           ],
           "siteId": "leader"
         }
       ],
       "caveats": [
-        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
         "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
       ],
       "reportPage": 14,
@@ -6079,7 +6176,9 @@
         "S01",
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "siteIds": [
         "leader"
@@ -6088,17 +6187,19 @@
         {
           "name": "Leader Drug street scene — unplaced",
           "confidenceLabel": "Unplaced",
-          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
           "sourceIds": [
             "S16",
             "S17",
-            "S18"
+            "S18",
+            "S32",
+            "S33"
           ],
           "siteId": "leader"
         }
       ],
       "caveats": [
-        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
         "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
       ],
       "reportPage": 14,
@@ -6121,7 +6222,9 @@
         "S01",
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "siteIds": [
         "leader"
@@ -6130,17 +6233,19 @@
         {
           "name": "Leader Drug street scene — unplaced",
           "confidenceLabel": "Unplaced",
-          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
           "sourceIds": [
             "S16",
             "S17",
-            "S18"
+            "S18",
+            "S32",
+            "S33"
           ],
           "siteId": "leader"
         }
       ],
       "caveats": [
-        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
         "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
       ],
       "reportPage": 14,
@@ -6163,7 +6268,9 @@
         "S01",
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "siteIds": [
         "leader"
@@ -6172,17 +6279,19 @@
         {
           "name": "Leader Drug street scene — unplaced",
           "confidenceLabel": "Unplaced",
-          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
           "sourceIds": [
             "S16",
             "S17",
-            "S18"
+            "S18",
+            "S32",
+            "S33"
           ],
           "siteId": "leader"
         }
       ],
       "caveats": [
-        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
         "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
       ],
       "reportPage": 14,
@@ -6205,7 +6314,9 @@
         "S01",
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "siteIds": [
         "leader"
@@ -6214,17 +6325,19 @@
         {
           "name": "Leader Drug street scene — unplaced",
           "confidenceLabel": "Unplaced",
-          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
           "sourceIds": [
             "S16",
             "S17",
-            "S18"
+            "S18",
+            "S32",
+            "S33"
           ],
           "siteId": "leader"
         }
       ],
       "caveats": [
-        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
         "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
       ],
       "reportPage": 14,
@@ -6247,7 +6360,9 @@
         "S01",
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "siteIds": [
         "leader"
@@ -6256,17 +6371,19 @@
         {
           "name": "Leader Drug street scene — unplaced",
           "confidenceLabel": "Unplaced",
-          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
           "sourceIds": [
             "S16",
             "S17",
-            "S18"
+            "S18",
+            "S32",
+            "S33"
           ],
           "siteId": "leader"
         }
       ],
       "caveats": [
-        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
         "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
       ],
       "reportPage": 14,
@@ -6289,7 +6406,9 @@
         "S01",
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "siteIds": [
         "leader"
@@ -6298,17 +6417,19 @@
         {
           "name": "Leader Drug street scene — unplaced",
           "confidenceLabel": "Unplaced",
-          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
           "sourceIds": [
             "S16",
             "S17",
-            "S18"
+            "S18",
+            "S32",
+            "S33"
           ],
           "siteId": "leader"
         }
       ],
       "caveats": [
-        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
         "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
       ],
       "reportPage": 14,
@@ -6331,7 +6452,9 @@
         "S01",
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "siteIds": [
         "leader"
@@ -6340,17 +6463,19 @@
         {
           "name": "Leader Drug street scene — unplaced",
           "confidenceLabel": "Unplaced",
-          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
           "sourceIds": [
             "S16",
             "S17",
-            "S18"
+            "S18",
+            "S32",
+            "S33"
           ],
           "siteId": "leader"
         }
       ],
       "caveats": [
-        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
         "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
       ],
       "reportPage": 14,
@@ -6373,7 +6498,9 @@
         "S01",
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "siteIds": [
         "leader"
@@ -6382,17 +6509,19 @@
         {
           "name": "Leader Drug street scene — unplaced",
           "confidenceLabel": "Unplaced",
-          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
           "sourceIds": [
             "S16",
             "S17",
-            "S18"
+            "S18",
+            "S32",
+            "S33"
           ],
           "siteId": "leader"
         }
       ],
       "caveats": [
-        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
         "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
       ],
       "reportPage": 14,
@@ -6415,7 +6544,9 @@
         "S01",
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "siteIds": [
         "leader"
@@ -6424,17 +6555,19 @@
         {
           "name": "Leader Drug street scene — unplaced",
           "confidenceLabel": "Unplaced",
-          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
           "sourceIds": [
             "S16",
             "S17",
-            "S18"
+            "S18",
+            "S32",
+            "S33"
           ],
           "siteId": "leader"
         }
       ],
       "caveats": [
-        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
         "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
       ],
       "reportPage": 14,
@@ -6457,7 +6590,9 @@
         "S01",
         "S16",
         "S17",
-        "S18"
+        "S18",
+        "S32",
+        "S33"
       ],
       "siteIds": [
         "leader"
@@ -6466,17 +6601,19 @@
         {
           "name": "Leader Drug street scene — unplaced",
           "confidenceLabel": "Unplaced",
-          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+          "connection": "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
           "sourceIds": [
             "S16",
             "S17",
-            "S18"
+            "S18",
+            "S32",
+            "S33"
           ],
           "siteId": "leader"
         }
       ],
       "caveats": [
-        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. A 1955 listing at 2041 East 55th is an earlier lead only; no period image or 1968 record pairs that frontage with the film’s Leader Drug branch.",
+        "The red FURNITURE KRO… sign in frames 151 and 153 may read Kronheim. The 1955 listing at 2041 East 55th and newly checked 1974 listing at 2043 East 55th are dated leads. The 1974 Leader entries do not establish a neighboring pharmacy during filming; the scene remains unplaced.",
         "Kronheim at 2041 East 55th is a 1955 directory lead. No period image or 1968 record pairs that storefront with the film’s pharmacy; the branch remains unplaced."
       ],
       "reportPage": 14,
@@ -17887,7 +18024,8 @@
       "sourceIds": [
         "S01",
         "S12",
-        "S29"
+        "S29",
+        "S31"
       ],
       "siteIds": [
         "third"
@@ -17896,16 +18034,17 @@
         {
           "name": "Former Clark Avenue Bridge / steelworks area",
           "confidenceLabel": "Probable candidate",
-          "connection": "Clark Avenue is a stronger candidate than the previous West 3rd Street attribution. The review does not provide an identical road-level historical view, so no replacement pin is asserted.",
+          "connection": "Follow-up research found Michael A. Fuerst’s 1984 photograph cea0146 looking through the Clark Avenue Bridge’s central truss. Its haunched transverse frames and crossed overhead lattice closely match frame 658 and strengthen the candidate. The photograph shows deck demolition; the intact roadway, skyline and camera position remain unresolved, so the candidate stays probable and unpinned.",
           "sourceIds": [
             "S12",
-            "S29"
+            "S29",
+            "S31"
           ],
           "siteId": "third"
         }
       ],
       "caveats": [
-        "Clark Avenue is a stronger candidate than the previous West 3rd Street attribution. The review does not provide an identical road-level historical view, so no replacement pin is asserted.",
+        "Follow-up research found Michael A. Fuerst’s 1984 photograph cea0146 looking through the Clark Avenue Bridge’s central truss. Its haunched transverse frames and crossed overhead lattice closely match frame 658 and strengthen the candidate. The photograph shows deck demolition; the intact roadway, skyline and camera position remain unresolved, so the candidate stays probable and unpinned.",
         "Withdraw the West 3rd Street attribution as the leading hypothesis. Former Clark Avenue Bridge is probable; no exact replacement pin, film camera angle or steel-company parcel is established."
       ],
       "reportPage": 18,
@@ -17927,7 +18066,8 @@
       "sourceIds": [
         "S01",
         "S12",
-        "S29"
+        "S29",
+        "S31"
       ],
       "siteIds": [
         "third"
@@ -17936,16 +18076,17 @@
         {
           "name": "Former Clark Avenue Bridge / steelworks area",
           "confidenceLabel": "Probable candidate",
-          "connection": "Clark Avenue is a stronger candidate than the previous West 3rd Street attribution. The review does not provide an identical road-level historical view, so no replacement pin is asserted.",
+          "connection": "Follow-up research found Michael A. Fuerst’s 1984 photograph cea0146 looking through the Clark Avenue Bridge’s central truss. Its haunched transverse frames and crossed overhead lattice closely match frame 658 and strengthen the candidate. The photograph shows deck demolition; the intact roadway, skyline and camera position remain unresolved, so the candidate stays probable and unpinned.",
           "sourceIds": [
             "S12",
-            "S29"
+            "S29",
+            "S31"
           ],
           "siteId": "third"
         }
       ],
       "caveats": [
-        "Clark Avenue is a stronger candidate than the previous West 3rd Street attribution. The review does not provide an identical road-level historical view, so no replacement pin is asserted.",
+        "Follow-up research found Michael A. Fuerst’s 1984 photograph cea0146 looking through the Clark Avenue Bridge’s central truss. Its haunched transverse frames and crossed overhead lattice closely match frame 658 and strengthen the candidate. The photograph shows deck demolition; the intact roadway, skyline and camera position remain unresolved, so the candidate stays probable and unpinned.",
         "Withdraw the West 3rd Street attribution as the leading hypothesis. Former Clark Avenue Bridge is probable; no exact replacement pin, film camera angle or steel-company parcel is established."
       ],
       "reportPage": 18,
@@ -18011,7 +18152,8 @@
       "sourceIds": [
         "S01",
         "S12",
-        "S29"
+        "S29",
+        "S31"
       ],
       "siteIds": [
         "third"
@@ -18020,16 +18162,17 @@
         {
           "name": "Former Clark Avenue Bridge / steelworks area",
           "confidenceLabel": "Probable candidate",
-          "connection": "Clark Avenue is a stronger candidate than the previous West 3rd Street attribution. The review does not provide an identical road-level historical view, so no replacement pin is asserted.",
+          "connection": "Follow-up research found Michael A. Fuerst’s 1984 photograph cea0146 looking through the Clark Avenue Bridge’s central truss. Its haunched transverse frames and crossed overhead lattice closely match frame 658 and strengthen the candidate. The photograph shows deck demolition; the intact roadway, skyline and camera position remain unresolved, so the candidate stays probable and unpinned.",
           "sourceIds": [
             "S12",
-            "S29"
+            "S29",
+            "S31"
           ],
           "siteId": "third"
         }
       ],
       "caveats": [
-        "Clark Avenue is a stronger candidate than the previous West 3rd Street attribution. The review does not provide an identical road-level historical view, so no replacement pin is asserted.",
+        "Follow-up research found Michael A. Fuerst’s 1984 photograph cea0146 looking through the Clark Avenue Bridge’s central truss. Its haunched transverse frames and crossed overhead lattice closely match frame 658 and strengthen the candidate. The photograph shows deck demolition; the intact roadway, skyline and camera position remain unresolved, so the candidate stays probable and unpinned.",
         "Withdraw the West 3rd Street attribution as the leading hypothesis. Former Clark Avenue Bridge is probable; no exact replacement pin, film camera angle or steel-company parcel is established."
       ],
       "reportPage": 18,
@@ -18044,14 +18187,15 @@
       "image": "media/frames/00000658.jpg",
       "sourceImage": "https://hgw3lls.github.io/uptight/media/frames/00000658.jpg",
       "scene": "Long red through-truss road bridge",
-      "observation": "Long through-truss with repeated rounded/haunched inner portal frames, heavy lattice overhead and chimneys beyond. Site's West 3rd Street label is not supported securely; Clark is stronger but remains a candidate. Key unresolved bridge frame. Compare Michael A. Fuerst’s 1984 demolition photograph cea0144 in the County Engineer collection; an intact road-level historical view is still needed.",
+      "observation": "Long through-truss with repeated haunched transverse frames, heavy crossed lattice overhead and chimneys beyond. Follow-up: Michael A. Fuerst’s 1984 photograph cea0146 looks through the former Clark Avenue Bridge’s central truss and closely matches this structural pattern. Its dismantled deck leaves the intact road edge, railing, skyline and camera position unresolved. Clark remains probable and unpinned.",
       "location": "Former Clark Avenue Bridge / steelworks area",
       "confidence": "Probable candidate",
       "classification": "Location finding",
       "sourceIds": [
         "S01",
         "S12",
-        "S29"
+        "S29",
+        "S31"
       ],
       "siteIds": [
         "third"
@@ -18060,16 +18204,17 @@
         {
           "name": "Former Clark Avenue Bridge / steelworks area",
           "confidenceLabel": "Probable candidate",
-          "connection": "Clark Avenue is a stronger candidate than the previous West 3rd Street attribution. The review does not provide an identical road-level historical view, so no replacement pin is asserted.",
+          "connection": "Follow-up research found Michael A. Fuerst’s 1984 photograph cea0146 looking through the Clark Avenue Bridge’s central truss. Its haunched transverse frames and crossed overhead lattice closely match frame 658 and strengthen the candidate. The photograph shows deck demolition; the intact roadway, skyline and camera position remain unresolved, so the candidate stays probable and unpinned.",
           "sourceIds": [
             "S12",
-            "S29"
+            "S29",
+            "S31"
           ],
           "siteId": "third"
         }
       ],
       "caveats": [
-        "Clark Avenue is a stronger candidate than the previous West 3rd Street attribution. The review does not provide an identical road-level historical view, so no replacement pin is asserted.",
+        "Follow-up research found Michael A. Fuerst’s 1984 photograph cea0146 looking through the Clark Avenue Bridge’s central truss. Its haunched transverse frames and crossed overhead lattice closely match frame 658 and strengthen the candidate. The photograph shows deck demolition; the intact roadway, skyline and camera position remain unresolved, so the candidate stays probable and unpinned.",
         "Withdraw the West 3rd Street attribution as the leading hypothesis. Former Clark Avenue Bridge is probable; no exact replacement pin, film camera angle or steel-company parcel is established."
       ],
       "reportPage": 18,
@@ -18891,5 +19036,10 @@
         "lastFrame": 682
       }
     }
+  },
+  "researchFollowUp": {
+    "researchDate": "2026-10-17",
+    "updated": "2026-10-18",
+    "log": "data/research-log.json"
   }
 }

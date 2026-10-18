@@ -18,7 +18,7 @@
       ],
       "status": "Probable / high confidence",
       "statusKey": "probable",
-      "summary": "The proposed identification is the Madison Square Building at 7812–14 Hough Avenue, at East 79th Street. The corner comparison is persuasive; the full central arch and balcony arrangement remain unmatched.",
+      "summary": "The named Madison Square frontage spans 7812–7828 Hough on the southwest East 79th corner. The address discrepancy is resolved at building level; the full central arch and balcony arrangement in frame 63 remain unmatched.",
       "checked": [
         {
           "text": "Frame 63 shows MADISON roof lettering, heavy white corner blocks, stacked balconies and a tall central arch. The possible word SQUARE is less legible.",
@@ -40,9 +40,10 @@
           ]
         },
         {
-          "text": "The 1943–44 and 1955 apartment-directory scans list Madison Square at 7820 Hough Avenue, while the municipal inventory uses 7812–14. The relationship between these address forms remains unresolved.",
+          "text": "The 1943–44 and 1955 directories use 7820 Hough, while the municipal inventory uses 7812–14. Hopkins plate 6b (1921, revised 1924) labels Madison Square Building with frontage numbers 7812–7828, placing both forms within the same named building frontage. The map does not identify the apartment entrance.",
           "sourceIds": [
-            "S02"
+            "S02",
+            "S30"
           ],
           "links": [
             {
@@ -54,9 +55,16 @@
               "url": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/51154/"
             }
           ]
+        },
+        {
+          "text": "The approximate map marker now follows the named southwest-corner footprint on a georeferenced historic-map mosaic. Allow roughly 30 m of positional uncertainty; this placement does not identify the film camera.",
+          "sourceIds": [
+            "C03",
+            "S30"
+          ]
         }
       ],
-      "missing": "A dated full facade photograph or building drawing tied to the building’s address, showing the central arch and entire balcony pattern. A parcel, permit or building plan should also reconcile 7820 with 7812–14 Hough.",
+      "missing": "A dated full Hough Avenue facade photograph or building elevation for Madison Square, 7812–7828 Hough, showing the central arch, complete balcony arrangement, roof lettering and corner storefront together.",
       "closure": "The full frontage should explain how the corner drugstore, arch, balconies and roof lettering fit one building. A conflicting facade is useful evidence as well.",
       "evidenceCase": "madison",
       "sources": [
@@ -68,7 +76,7 @@
         {
           "id": "S02",
           "title": "Cleveland Landmarks Commission: Albert F. Janowitz",
-          "url": "https://planning.clevelandohio.gov/dompdf/architectDomPrint.php?afil=&archID=137"
+          "url": "https://www.clevelandohio.gov/city-hall/boards-commissions/planning/landmarks/cleveland-architects?title=10"
         },
         {
           "id": "S03",
@@ -79,6 +87,16 @@
           "id": "S28",
           "title": "Cleveland Memory: Hough and East 79th aerial, 1972",
           "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/press/id/9464/"
+        },
+        {
+          "id": "S30",
+          "title": "Cleveland Public Library: Madison Square on Hopkins plate 6b, 1921 (revised 1924)",
+          "url": "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll24/id/325/"
+        },
+        {
+          "id": "C03",
+          "title": "Georeferenced Cleveland historic plat-map mosaic: Madison building-site placement",
+          "url": "https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services/Cleveland1932_1937/MapServer"
         }
       ]
     },
@@ -109,7 +127,7 @@
       ],
       "status": "Probable candidate · unpinned",
       "statusKey": "probable",
-      "summary": "Clark Avenue is the stronger candidate for the bridge beside the steelworks. The former West 3rd Street attribution has been withdrawn, and no exact replacement pin is asserted.",
+      "summary": "A newly located photograph through Clark Avenue’s central truss closely matches frame 658’s internal framing. The candidate is stronger, while the intact roadway, industrial skyline and exact viewpoint remain unresolved.",
       "checked": [
         {
           "text": "Frame 658 shows a long road through-truss with dense overhead bracing. The tall structure in frame 654 is blast-furnace equipment, so it cannot support the old lift-bridge identification.",
@@ -118,8 +136,9 @@
           ]
         },
         {
-          "text": "Michael A. Fuerst’s 1984 demolition photograph in the County Engineer collection provides a comparison for bridge form and the industrial setting. It is later than the 1968 film and does not reproduce the film’s road-level view.",
+          "text": "Michael A. Fuerst’s 1984 demolition photograph cea0146 looks through the central truss. Its haunched transverse frames, crossed overhead lattice and broad far opening closely match frame 658. The removed deck limits comparison with the intact roadway; cea0144 supplies a separate lower-angle view.",
           "sourceIds": [
+            "S31",
             "S12"
           ]
         },
@@ -130,8 +149,8 @@
           ]
         }
       ],
-      "missing": "A dated road-level photograph of the former Clark Avenue crossing that can be compared with frame 658’s repeated portal shapes, overhead bracing, roadway and relationship to the furnaces.",
-      "closure": "A match should account for several fixed structural details in one view. If another crossing fits better, identify the same details and the source that establishes its location.",
+      "missing": "An in-service roadway photograph, preferably near 1968, that aligns the intact road edge, railing, sequence of internal frames and industrial skyline. The furnace equipment in frames 653–654 also needs its own direct comparison.",
+      "closure": "A match should account for the visible structure and intact roadway in one view, with enough context to locate the camera. The repeating transverse frames must not be counted as separate bridge spans. Evidence for another crossing remains useful if it explains the same details.",
       "evidenceCase": "clark",
       "sources": [
         {
@@ -148,6 +167,11 @@
           "id": "S29",
           "title": "Cleveland Public Library: view from Clark Avenue Bridge, 1935",
           "url": "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/108/"
+        },
+        {
+          "id": "S31",
+          "title": "Cuyahoga County Engineer photograph: Clark central truss, cea0146, 1984",
+          "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/cca/id/129/"
         }
       ]
     },
@@ -204,9 +228,16 @@
               "url": "https://clevelandmemory.contentdm.oclc.org/digital/api/collection/press/id/11382/download#page=29"
             }
           ]
+        },
+        {
+          "text": "The 1974 Cleveland directory lists Kronheim’s at 2043 East 55th, with other furniture locations at 15204 Puritas and 1814 East 40th. Leader entries give 1400 East 9th, 5909 Broadway, 11650 Detroit and 17400 Lorain. These later controls do not establish a 1968 pairing or cover every possible affiliate trade name.",
+          "sourceIds": [
+            "S32",
+            "S33"
+          ]
         }
       ],
-      "missing": "A record near 1968 that places a Leader Drug branch next to the candidate furniture shop, together with a frontage photograph matching the pharmacy and its neighboring signs in the film.",
+      "missing": "The 1968 Cleveland-proper business and street-address directory entries, or a dated advertisement and frontage photograph, placing the film’s pharmacy beside the candidate furniture shop. The 1966 directory can serve as an earlier control. Full images and captions from the named Cleveland Press folders would help test the signs and windows.",
       "closure": "An address or business name alone does not settle the branch. The adjacency and visible frontage should agree with the same block.",
       "evidenceCase": null,
       "sources": [
@@ -229,6 +260,16 @@
           "id": "S18",
           "title": "Cleveland Public Library: East 9th/St. Clair, 1960",
           "url": "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/3085/"
+        },
+        {
+          "id": "S32",
+          "title": "Cleveland City Directory, 1974: Kronheim entries, printed p. 544",
+          "url": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/60736/"
+        },
+        {
+          "id": "S33",
+          "title": "Cleveland City Directory, 1974: Leader entries, printed p. 566",
+          "url": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/60759/"
         }
       ]
     },
@@ -335,5 +376,6 @@
         }
       ]
     }
-  ]
+  ],
+  "updated": "2026-10-18"
 }

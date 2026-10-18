@@ -60,9 +60,13 @@ test('Evidence navigation, image details, annotations, safe links, and retry sta
   assert.equal(e.ids.get('case-nav').children.filter(node => node.getAttribute('aria-current') === 'true').length, 1);
   e.changeHash('#case=madison');
   assert.match(e.ids.get('case-title').textContent, /Madison/);
-  assert.equal(e.ids.get('reference-selectors').children.length, 2);
-  e.ids.get('reference-selectors').children[1].fire('click');
+  const madisonReferences = evidence.cases.find(item => item.id === 'madison').references;
+  assert.equal(e.ids.get('reference-selectors').children.length, madisonReferences.length);
+  e.ids.get('reference-selectors').children[madisonReferences.findIndex(item => item.archiveId === 'H-020.jpg')].fire('click');
   assert.match(e.ids.get('reference-panel').textContent, /August 11, 1972/);
+  e.ids.get('reference-selectors').children[madisonReferences.findIndex(item => item.archiveId.includes('p4014coll24/325'))].fire('click');
+  assert.match(e.ids.get('reference-panel').textContent, /1921 \(revised 1924\)/);
+  assert.match(e.ids.get('reference-panel').textContent, /7812.*7828/);
   assert.match(e.ids.get('film-panel').textContent, /Frame 63/);
   e.changeHash('#case=eagle');
   e.ids.get('film-selectors').children[1].fire('click');
