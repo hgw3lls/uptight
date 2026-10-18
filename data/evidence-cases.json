@@ -1,0 +1,470 @@
+{
+  "updated": "2026-10-17",
+  "cases": [
+    {
+      "id": "eagle",
+      "title": "Eagle Avenue Lift Bridge",
+      "placeId": "eagle",
+      "status": "Strong visual identification",
+      "summary": "The two exposed counterweights, freestanding braced towers and narrow mast over the span form a distinctive match between the film and a separately labeled historical photograph. The evidence identifies the bridge visible in frames 638 and 652; it does not locate the camera or the gravel pile precisely.",
+      "frames": [
+        {
+          "id": 652,
+          "time": "01:40:52.004",
+          "src": "https://hgw3lls.github.io/uptight/media/frames/00000652.jpg",
+          "caption": "Frame 652 gives the clearest combined view of both braced lift towers, their broad rectangular counterweights and the thin mast between them.",
+          "alt": "Frame 652 gives the clearest combined view of both braced lift towers, their broad rectangular counterweights and the thin mast between them.",
+          "annotations": [
+            {
+              "x": 61,
+              "y": 16,
+              "label": "Broad exposed counterweight"
+            },
+            {
+              "x": 60,
+              "y": 47,
+              "label": "Open tower bracing"
+            },
+            {
+              "x": 78,
+              "y": 50,
+              "label": "Narrow lattice mast"
+            }
+          ]
+        },
+        {
+          "id": 638,
+          "time": "01:39:23.249",
+          "src": "https://hgw3lls.github.io/uptight/media/frames/00000638.jpg",
+          "caption": "Frame 638 shows one braced tower and its exposed counterweight behind Tank on the gravel pile. Compare its structure with the wider view in frame 652.",
+          "alt": "Frame 638 shows one braced tower and its exposed counterweight behind Tank on the gravel pile. Compare its structure with the wider view in frame 652."
+        }
+      ],
+      "references": [
+        {
+          "title": "Figure XIII: Eagle Street vertical lift bridge",
+          "src": "media/evidence/eagle-figure-xiii.png",
+          "sourceUrl": "https://pressbooks.ulib.csuohio.edu/bridges-of-metropolitan-cleveland/chapter/movable-bridges/",
+          "originalImageUrl": "https://pressbooks.ulib.csuohio.edu/bridges-of-metropolitan-cleveland/wp-content/uploads/sites/62/2019/05/Figure_XIII.png",
+          "date": "Photograph undated; reproduced in the 1981 book",
+          "credit": "Figure XIII in Sara Ruth Watson and John R. Wolfs, Bridges of Metropolitan Cleveland; digital image: Michael Schwartz Library, Cleveland State University. The chapter does not identify an individual photographer.",
+          "rights": "The Pressbooks edition states © 2016 Cleveland State University Michael Schwartz Library, All Rights Reserved. No open reuse license is asserted.",
+          "caption": "The source independently labels this as the Eagle Street lift bridge. The exposed counterweights, open braced towers and central lattice mast are the features used in this comparison. The photograph is taken from a vessel at a different angle.",
+          "alt": "Black and white view of the Eagle Street lift bridge from a vessel, showing the truss span, exposed counterweights at the towers and a narrow mast above the span.",
+          "archiveId": "Figure XIII",
+          "accessed": "2026-10-17",
+          "annotations": [
+            {
+              "x": 9,
+              "y": 15,
+              "label": "Broad exposed counterweight"
+            },
+            {
+              "x": 10,
+              "y": 31,
+              "label": "Open tower bracing"
+            },
+            {
+              "x": 40,
+              "y": 19,
+              "label": "Narrow lattice mast"
+            }
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "title": "Paired towers and counterweights",
+          "text": "Frame 652 shows two tall, freestanding steel towers with open diagonal bracing and unusually broad, exposed rectangular counterweights. The labeled reference has the same arrangement. This combination carries more identifying weight than the general industrial setting."
+        },
+        {
+          "title": "The narrow mast between the towers",
+          "text": "A thin lattice mast rises above the span in both frame 652 and Figure XIII, with lines extending toward the towers. It adds a second, spatially related feature to the tower comparison."
+        },
+        {
+          "title": "A link between two film views",
+          "text": "The braced tower and broad counterweight behind Tank in frame 638 are consistent with the clearer pair in frame 652. The identification applies to these visible structures; adjacent cuts in the sequence still need their own evidence."
+        }
+      ],
+      "uncertainties": [
+        "The historical photograph's capture date and individual photographer are not specified in the chapter. The 1981 date belongs to the book, and 2016 belongs to the digital edition.",
+        "The film and reference use different viewpoints. Neither the precise camera station nor the gravel-pile parcel is established.",
+        "The map point marks the bridge as a landmark. It does not trace Tank's route or assign every nearby industrial insert to this site."
+      ],
+      "resolution": "Retain Eagle Avenue Lift Bridge as a strong landmark identification for frames 638 and 652. A period site plan or aerial tied to the film's sight lines would be needed to locate the gravel pile and camera more precisely.",
+      "sources": [
+        {
+          "title": "Bridges of Metropolitan Cleveland: Movable Bridges, Figure XIII",
+          "url": "https://pressbooks.ulib.csuohio.edu/bridges-of-metropolitan-cleveland/chapter/movable-bridges/",
+          "note": "Labeled historical image used for the structural comparison; original review source S09."
+        },
+        {
+          "title": "Cleveland Memory: original book and publication history",
+          "url": "https://www.clevelandmemory.org/ebooks/bmc/",
+          "note": "Identifies Sara Ruth Watson and John R. Wolfs and the original 1981 publication. This does not date the photograph."
+        },
+        {
+          "title": "Pressbooks edition: publication and rights metadata",
+          "url": "https://pressbooks.ulib.csuohio.edu/bridges-of-metropolitan-cleveland/",
+          "note": "Digital edition dated July 1, 2016; All Rights Reserved notice."
+        },
+        {
+          "title": "Uptight frame review data",
+          "url": "data/location-review.json",
+          "note": "Frame IDs and timestamps from the existing index; identification and limits from the supplied review dated October 17, 2026."
+        }
+      ]
+    },
+    {
+      "id": "madison",
+      "title": "Madison Square Building, Hough Avenue",
+      "placeId": "madison",
+      "status": "Probable / high confidence",
+      "summary": "Frame 63 shows MADISON roof lettering on a long brick apartment and shop building with pale corner blocks, stacked balconies and a tall central arch. The city inventory and a dated Hough/East 79th photograph support Madison Square as the candidate, while the full facade remains unverified.",
+      "frames": [
+        {
+          "id": 63,
+          "time": "00:06:29.431",
+          "src": "https://hgw3lls.github.io/uptight/media/frames/00000063.jpg",
+          "caption": "Frame 63: MADISON is legible along the roofline; possible SQUARE lettering is less clear. The central arch, stacked balconies, pale corner blocks and corner storefront are the features to compare.",
+          "alt": "Frame 63: MADISON is legible along the roofline; possible SQUARE lettering is less clear. The central arch, stacked balconies, pale corner blocks and corner storefront are the features to compare.",
+          "annotations": [
+            {
+              "x": 41,
+              "y": 5,
+              "label": "MADISON roof lettering"
+            },
+            {
+              "x": 48.5,
+              "y": 48.5,
+              "label": "Tall central arch"
+            },
+            {
+              "x": 5,
+              "y": 30,
+              "label": "Pale corner blocks"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "title": "Hough Avenue and East 79th Street",
+          "src": "media/evidence/hough-e79-1964.jpg",
+          "sourceUrl": "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/8730/",
+          "originalImageUrl": "https://cplorg.contentdm.oclc.org/iiif/2/p4014coll18:8730/full/full/0/default.jpg",
+          "downloadUrl": "https://cplorg.contentdm.oclc.org/iiif/2/p4014coll18:8730/full/1000,/0/default.jpg",
+          "date": "September 16, 1964",
+          "credit": "Cleveland Plain Dealer (record contributor); Cleveland Public Library Digital Gallery, Subject Cleveland Collection, SCL019151.",
+          "rights": "The CPL record is marked Copyright Not Evaluated (CNE). No open license is stated.",
+          "caption": "At the far right, a narrow portion of the corner building shows pale alternating corner blocks above a Coca-Cola storefront cornice. The archive identifies the intersection as Hough Avenue and East 79th Street. The central arch and complete balcony arrangement are outside this view.",
+          "alt": "A 1964 street photograph at Hough Avenue and East 79th Street, with a bar across the road and a drugstore corner partly visible at the far right.",
+          "archiveId": "SCL019151",
+          "accessed": "2026-10-17",
+          "annotations": [
+            {
+              "x": 91,
+              "y": 19,
+              "label": "Pale corner blocks at far right"
+            },
+            {
+              "x": 94,
+              "y": 38.5,
+              "label": "Coca-Cola storefront cornice"
+            }
+          ]
+        },
+        {
+          "title": "Aerial view of Hough Avenue and East 79th Street",
+          "src": "media/evidence/hough-e79-aerial-1972.jpg",
+          "sourceUrl": "https://clevelandmemory.contentdm.oclc.org/digital/collection/press/id/9464/",
+          "originalImageUrl": "https://clevelandmemory.contentdm.oclc.org/iiif/2/press:9464/full/full/0/default.jpg",
+          "date": "August 11, 1972",
+          "credit": "Van Dillard; The Cleveland Press Collection, Special Collections, Michael Schwartz Library, Cleveland State University; H-020.jpg.",
+          "rights": "The item links to Cleveland Memory's repository use terms; no open license is specified.",
+          "caption": "The archive locates East 79th Street from south to north, top to bottom, with Hough Avenue from east to west across the upper half. This later aerial supplies block context; its angle does not resolve the facade match.",
+          "alt": "A 1972 oblique aerial of the Hough Avenue and East 79th Street intersection, surrounding apartment blocks, houses and a school.",
+          "archiveId": "H-020.jpg",
+          "accessed": "2026-10-17"
+        }
+      ],
+      "observations": [
+        {
+          "title": "A named architectural candidate",
+          "text": "The film's MADISON lettering is unusually useful. The long brick elevation, pale corner blocks, stacked balconies and central arch provide several features that a complete historical facade photograph could test together."
+        },
+        {
+          "title": "Partial corner correspondence",
+          "text": "The 1964 photograph independently fixes a drugstore corner at Hough Avenue and East 79th Street. Its pale corner blocks and Coca-Cola cornice support the comparison with frame 63, but the reference includes only a narrow part of the candidate building."
+        },
+        {
+          "title": "An address record with a defined limit",
+          "text": "The Cleveland Landmarks Commission inventory lists Madison Square Building at 7812–14 Hough Avenue, built in 1915 and demolished. Apartment-building directories from 1943–44 and 1955 instead list Madison Square at 7820 Hough Avenue. The records support a named Hough Avenue candidate while leaving the entrance or address-range relationship unresolved."
+        },
+        {
+          "title": "Later block context",
+          "text": "The 1972 aerial helps place the intersection within the surrounding blocks. It should be read with its date and oblique angle in mind when comparing it with the film's street-level view."
+        }
+      ],
+      "uncertainties": [
+        "A source photograph showing the central arch, the entire balcony pattern and the roof lettering together has not yet been matched.",
+        "The municipal inventory's 7812–14 Hough address and the apartment directories' 7820 Hough address have not been reconciled to a single entrance or parcel range.",
+        "The SQUARE portion of the film's roof lettering is less legible than MADISON in the available 480 × 270 still.",
+        "The corner photograph dates to 1964 and the aerial to 1972; neither is a documented film-production photograph.",
+        "The existing pin is an approximate Hough/East 79th vicinity reference, not the demolished building footprint or a camera position. Frames 58–62 remain unassigned."
+      ],
+      "resolution": "Keep the identification probable. The decisive next evidence is a dated full facade view or a building drawing tying the central arch, balconies and roofline to Madison Square's documented Hough Avenue address.",
+      "sources": [
+        {
+          "title": "Cleveland Landmarks Commission: Albert F. Janowitz",
+          "url": "https://planning.clevelandohio.gov/dompdf/architectDomPrint.php?afil=&archID=137",
+          "note": "Municipal inventory entry for Madison Square Building, 7812–4 Hough Avenue, 1915, demolished; original review source S02."
+        },
+        {
+          "title": "Cleveland Public Library: Hough Avenue and East 79th Street, 1964",
+          "url": "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/8730/",
+          "note": "Date, contributor, collection and partial corner view verified from the item record and image; original review source S03."
+        },
+        {
+          "title": "Cleveland Memory: Hough/East 79th aerial, 1972",
+          "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/press/id/9464/",
+          "note": "Date and Van Dillard credit verified from the archive record. Contextual aerial only; original review source S28."
+        },
+        {
+          "title": "Cleveland City Directory 1955: Madison Square listing",
+          "url": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/57384/",
+          "note": "Printed p. 1662, apartment-building listings: Madison Square at 7820 Hough Avenue. Parent item 57927 identifies the 1955 volume. The catalog leaf title is Page 1672."
+        },
+        {
+          "title": "Cleveland City Directory 1943–1944: Madison Square listing",
+          "url": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/51154/",
+          "note": "Printed p. 1528, apartment-house listings: Madison Square at 7820 Hough Avenue. Parent item 51702 identifies the 1943–1944 volume. The catalog leaf title is Page 1535."
+        },
+        {
+          "title": "Cleveland Memory: repository use terms",
+          "url": "https://www.clevelandmemory.org/copyright/",
+          "note": "Repository's acknowledgment and rights guidance for the aerial."
+        },
+        {
+          "title": "Uptight frame review data",
+          "url": "data/location-review.json",
+          "note": "Frame 63 timestamp and original probable finding from the supplied review dated October 17, 2026."
+        }
+      ]
+    },
+    {
+      "id": "clark",
+      "title": "Former Clark Avenue Bridge and furnace views",
+      "placeId": "third",
+      "status": "Probable candidate",
+      "summary": "The final road-bridge views fit the former Clark Avenue crossing more plausibly than the earlier West 3rd Street label. The through-truss framework and documented furnace setting support that candidate, but the available references do not reproduce the film's road-level angle. The candidate remains unpinned.",
+      "frames": [
+        {
+          "id": 658,
+          "time": "01:41:20.700",
+          "src": "https://hgw3lls.github.io/uptight/media/frames/00000658.jpg",
+          "caption": "Frame 658: a long road through-truss with repeated rounded or haunched inner portals, dense overhead lattice bracing and distant chimneys. This is the key unresolved bridge view.",
+          "alt": "Frame 658: a long road through-truss with repeated rounded or haunched inner portals, dense overhead lattice bracing and distant chimneys. This is the key unresolved bridge view.",
+          "annotations": [
+            {
+              "x": 38,
+              "y": 40,
+              "label": "Haunched inner portal corner"
+            },
+            {
+              "x": 66,
+              "y": 19,
+              "label": "Dense overhead lattice bracing"
+            }
+          ]
+        },
+        {
+          "id": 653,
+          "time": "01:40:54.382",
+          "src": "https://hgw3lls.github.io/uptight/media/frames/00000653.jpg",
+          "caption": "Frame 653 shows a pedestrian on a road bridge beside a furnace complex, with stacks and a tall industrial structure close beyond the railing.",
+          "alt": "Frame 653 shows a pedestrian on a road bridge beside a furnace complex, with stacks and a tall industrial structure close beyond the railing."
+        },
+        {
+          "id": 654,
+          "time": "01:41:04.392",
+          "src": "https://hgw3lls.github.io/uptight/media/frames/00000654.jpg",
+          "caption": "Frame 654 gives a clearer view of the large pipes and furnace equipment beside the roadway. The tall structure at the left should not be counted as a lift-bridge tower.",
+          "alt": "Frame 654 gives a clearer view of the large pipes and furnace equipment beside the roadway. The tall structure at the left should not be counted as a lift-bridge tower."
+        }
+      ],
+      "references": [
+        {
+          "title": "Clark Avenue Bridge during demolition",
+          "src": "media/evidence/clark-bridge-cea0144-1984.jpg",
+          "sourceUrl": "https://clevelandmemory.contentdm.oclc.org/digital/collection/cca/id/126/",
+          "originalImageUrl": "https://clevelandmemory.contentdm.oclc.org/iiif/2/cca:126/full/full/0/default.jpg",
+          "date": "1984",
+          "credit": "Michael A. Fuerst; Cuyahoga County Engineer's Photography Collection, Cuyahoga County Archives, cea0144. Digital image: Cleveland Memory Project.",
+          "rights": "The item links to Cleveland Memory's repository use terms; no open license is specified.",
+          "caption": "The county archive identifies this as the Clark Avenue Bridge during demolition. The low viewpoint shows the central through-truss, dense steel bracing and supporting towers. Taken in 1984, it does not provide an equivalent view through the roadway portals seen in frame 658.",
+          "alt": "Black and white photograph from below the Clark Avenue Bridge central span and steel supports during its 1984 demolition.",
+          "archiveId": "cea0144",
+          "accessed": "2026-10-17",
+          "annotations": [
+            {
+              "x": 64,
+              "y": 10,
+              "label": "Compatible truss bracing"
+            },
+            {
+              "x": 70,
+              "y": 58,
+              "label": "Supporting structure below the roadway"
+            }
+          ]
+        },
+        {
+          "title": "Republic Steel furnaces viewed from Clark Avenue Bridge",
+          "src": "media/evidence/clark-republic-steel-1935.jpg",
+          "sourceUrl": "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/108/",
+          "originalImageUrl": "https://cplorg.contentdm.oclc.org/iiif/2/p4014coll18:108/full/full/0/default.jpg",
+          "downloadUrl": "https://cplorg.contentdm.oclc.org/iiif/2/p4014coll18:108/full/1000,/0/default.jpg",
+          "date": "1935",
+          "credit": "Cleveland Public Library Digital Gallery, Cleveland Picture Collection, CP02878. The record does not identify an individual photographer.",
+          "rights": "The CPL record is marked Copyright Not Evaluated (CNE). No open license is stated.",
+          "caption": "The archive describes a northwest view from Clark Avenue Bridge at Independence Road toward Republic Steel's blast-furnace plant. This documents a furnace setting beside the crossing; it does not establish which company or parcel appears in the film.",
+          "alt": "A 1935 view of a steelworks and ore dock beside the Cuyahoga River, photographed northwest from Clark Avenue Bridge.",
+          "archiveId": "CP02878",
+          "accessed": "2026-10-17"
+        }
+      ],
+      "observations": [
+        {
+          "title": "The road view that needs a match",
+          "text": "Frame 658 shows repeated inner portal frames with curved or haunched corners and a heavy lattice of diagonal members overhead. A road-level historical photograph must reproduce this structure and its relationship to the roadway before the bridge can be treated as confirmed."
+        },
+        {
+          "title": "Compatible structure, incomplete angle",
+          "text": "The 1984 county photograph documents a high road through-truss with dense bracing. It is compatible with the candidate, but its low viewpoint and demolition state leave the film's portal sequence untested."
+        },
+        {
+          "title": "Correcting the tall structure in frame 654",
+          "text": "The close view shows industrial piping and furnace equipment alongside grouped stacks. This feature belongs to the furnace complex and cannot serve as evidence for a lift-bridge tower."
+        },
+        {
+          "title": "A documented industrial setting",
+          "text": "The 1935 archive caption places Republic Steel furnaces beside Clark Avenue Bridge. It supports the general setting of the candidate. The different date and view do not identify the film's exact furnace, steel-company parcel or camera station."
+        }
+      ],
+      "uncertainties": [
+        "No equivalent road-level historical view has yet matched the full portal profile, span rhythm and skyline in frame 658.",
+        "The 1984 structural photograph records demolition well after the film; removed or changed elements limit direct comparison.",
+        "The film's precise camera stations, furnace identity and steel-company parcel remain unresolved.",
+        "The transition from Eagle Avenue in frame 652 to the furnace views does not by itself establish a continuous route or shared shooting position. Other ore-yard inserts retain their separate status."
+      ],
+      "resolution": "Retain former Clark Avenue Bridge as probable and withdraw West 3rd Street as the leading attribution. Keep this candidate unpinned until a period roadway photograph or engineering view aligns the inner portals, span sequence, roadway edge and industrial skyline.",
+      "sources": [
+        {
+          "title": "Cuyahoga County Engineer's Photography Collection: Clark Avenue Bridge",
+          "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/cca/id/126/",
+          "note": "Primary county archive photograph cea0144, 1984, Michael A. Fuerst; original review source S12."
+        },
+        {
+          "title": "Cleveland Public Library: Cleveland Flats, Republic Steel, 1935",
+          "url": "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/108/",
+          "note": "Primary caption locates the view northwest from Clark Avenue Bridge at Independence Road; original review source S29."
+        },
+        {
+          "title": "Cleveland Memory: repository use terms",
+          "url": "https://www.clevelandmemory.org/copyright/",
+          "note": "Repository's acknowledgment and rights guidance for the county photograph."
+        },
+        {
+          "title": "Uptight frame review data",
+          "url": "data/location-review.json",
+          "note": "Frames 653, 654 and 658; supplied October 17, 2026 review corrects the earlier bridge attribution while retaining probable confidence."
+        }
+      ]
+    }
+  ],
+  "researchNotes": [
+    {
+      "topic": "Madison Square: the full facade and an address variant",
+      "caseId": "madison",
+      "placeId": "madison",
+      "date": "2026-10-17",
+      "checked": "Checked the CPL Madison catalog results, selected Hough/East 79th metadata and six additional photographs: two 1957 aerials, two 1966 street views, and two 1968 Hough/East 78th records showing the same scene. Also inspected the printed 1943–44 and 1955 apartment-directory pages and verified their parent volumes.",
+      "found": "None of those photographs supplies the complete roofline, central arch and balcony arrangement needed for a full facade match. Frank Aleksandrowicz’s July 25, 1966 Hough/East 79th night view shows a partial balcony frontage at the left, with glare and cropping. Both directory scans list Madison Square at 7820 Hough Avenue, while the municipal inventory uses 7812–14.",
+      "remaining": "Keep Madison probable. Reconcile the addresses using a parcel map, permit or building plan, then seek a full elevation or dated facade photograph. The Cleveland Press finding aid names Hough houses/buildings and streets/airviews folders; this focused online check did not exhaust those holdings.",
+      "sources": [
+        {
+          "title": "Hough at night, July 25, 1966, Frank Aleksandrowicz",
+          "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/press/id/19581/"
+        },
+        {
+          "title": "National Guard and police at Hough/East 79th, July 20, 1966, Bill Nehez",
+          "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/press/id/9602/"
+        },
+        {
+          "title": "Hough/East 79th aerial, August 26, 1957, H-021.jpg",
+          "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/press/id/9465/"
+        },
+        {
+          "title": "Hough/East 79th aerial, August 27, 1957, Clayton Knipper",
+          "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/press/id/16792/"
+        },
+        {
+          "title": "Old and new buildings at Hough/East 78th, catalog date December 26, 1968",
+          "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/press/id/7083/"
+        },
+        {
+          "title": "Same Hough/East 78th scene, catalog date December 22, 1968",
+          "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/press/id/16828/"
+        },
+        {
+          "title": "1955 directory, Madison Square at 7820 Hough, printed p. 1662",
+          "url": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/57384/"
+        },
+        {
+          "title": "1955 directory parent volume",
+          "url": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/57927/"
+        },
+        {
+          "title": "1943–1944 directory, Madison Square at 7820 Hough, printed p. 1528",
+          "url": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/51154/"
+        },
+        {
+          "title": "1943–1944 directory parent volume",
+          "url": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/51702/"
+        },
+        {
+          "title": "Cleveland Press photograph finding aid, Hough subjects, printed p.26",
+          "url": "https://clevelandmemory.contentdm.oclc.org/digital/api/collection/press/id/11382/download#page=26"
+        }
+      ]
+    },
+    {
+      "topic": "Leader Drug and Kronheim: specific archive folders, no confirmed pairing",
+      "caseId": null,
+      "placeId": "leader",
+      "date": "2026-10-17",
+      "checked": "Re-inspected film frames 151 and 169 against CPL’s July 11, 1960 East 9th/St. Clair Leader Drug photograph. Checked the Cleveland Press digital catalog for Kronheim and Leader Drug, then verified the library’s original photograph-collection finding aid.",
+      "found": "The 1960 photograph gives a definite Leader Drug branch, but the film’s night view still leaves the storefront geometry unresolved. The Kronheim catalog search returned an association portrait and two Euclid Avenue parade records; it did not establish the film pairing. More usefully, the finding aid lists separate Kronheim Furniture Co. and Leader Drug Stores folders in collection PH2000.000PRE, Subjects series, ca. 1920–1982, printed p.29.",
+      "remaining": "The folder index supplies no specific photograph dates, addresses, box numbers or evidence of neighboring stores. Examine those folders or a 1967–68 business/street directory for a Leader Drug and furniture frontage that fit the same block. The 1955 Kronheim address at 2041 East 55th remains an earlier lead, and the film scene stays unplaced.",
+      "sources": [
+        {
+          "title": "CPL: East 9th Street, Pat Joyce Tavern and Leader Drug, July 11, 1960",
+          "url": "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/3085/"
+        },
+        {
+          "title": "Cleveland Press Photograph Collection finding aid, printed p.29",
+          "url": "https://clevelandmemory.contentdm.oclc.org/digital/api/collection/press/id/11382/download#page=29"
+        },
+        {
+          "title": "Cleveland Press digital catalog: Kronheim search",
+          "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/press/search/searchterm/Kronheim/field/all/mode/all/conn/and"
+        },
+        {
+          "title": "Cleveland City Directory 1955: Kronheim listing",
+          "url": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/56440/"
+        }
+      ]
+    }
+  ]
+}

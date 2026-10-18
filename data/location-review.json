@@ -1946,7 +1946,7 @@
       "reportStartTime": "01:41:20.70",
       "reportPage": 18,
       "scene": "Long red through-truss road bridge",
-      "observation": "Long through-truss with repeated rounded/haunched inner portal frames, heavy lattice overhead and chimneys beyond. Site's West 3rd Street label is not supported securely; Clark is stronger but remains a candidate. Key unresolved bridge frame. Compare primary Clark Avenue County Engineer photograph cea0144; road-level historic view still needed.",
+      "observation": "Long through-truss with repeated rounded/haunched inner portal frames, heavy lattice overhead and chimneys beyond. Site's West 3rd Street label is not supported securely; Clark is stronger but remains a candidate. Key unresolved bridge frame. Compare Michael A. Fuerst’s 1984 demolition photograph cea0144 in the County Engineer collection; an intact road-level historical view is still needed.",
       "sourceIds": [
         "S01",
         "S12",
@@ -2050,7 +2050,7 @@
       "id": "S03",
       "title": "Cleveland Public Library: Hough Avenue and East 79th Street, 1964",
       "url": "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/8730/",
-      "note": "Municipal photograph dated September 16, 1964. The corner drugstore detail supports, but does not conclusively prove, the frame 63 match."
+      "note": "CPL photograph dated September 16, 1964; the record credits the Cleveland Plain Dealer as contributor. The narrow corner view supports the frame 63 comparison but does not establish the full facade."
     },
     {
       "id": "S04",
@@ -2104,7 +2104,7 @@
       "id": "S12",
       "title": "Cuyahoga County Engineer photograph: Clark Avenue Bridge",
       "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/cca/id/126/",
-      "note": "Historical bridge/industrial setting comparison. Compatible with the final through-truss sequence, without an exact matching camera angle."
+      "note": "Michael A. Fuerst photograph dated 1984, showing the Clark Avenue Bridge during demolition; held in the Cuyahoga County Engineer collection. This later structural and industrial-setting comparison does not provide an intact 1968 view or the film camera angle."
     },
     {
       "id": "S13",
@@ -18044,7 +18044,7 @@
       "image": "media/frames/00000658.jpg",
       "sourceImage": "https://hgw3lls.github.io/uptight/media/frames/00000658.jpg",
       "scene": "Long red through-truss road bridge",
-      "observation": "Long through-truss with repeated rounded/haunched inner portal frames, heavy lattice overhead and chimneys beyond. Site's West 3rd Street label is not supported securely; Clark is stronger but remains a candidate. Key unresolved bridge frame. Compare primary Clark Avenue County Engineer photograph cea0144; road-level historic view still needed.",
+      "observation": "Long through-truss with repeated rounded/haunched inner portal frames, heavy lattice overhead and chimneys beyond. Site's West 3rd Street label is not supported securely; Clark is stronger but remains a candidate. Key unresolved bridge frame. Compare Michael A. Fuerst’s 1984 demolition photograph cea0144 in the County Engineer collection; an intact road-level historical view is still needed.",
       "location": "Former Clark Avenue Bridge / steelworks area",
       "confidence": "Probable candidate",
       "classification": "Location finding",

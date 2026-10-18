@@ -7,6 +7,12 @@
 <meta name="description" content="Explore the locations and visual evidence in Uptight (1968), with research notes for 682 indexed stills and a Cleveland location review dated 17 October 2026.">
 <script src="./config.js"></script>
 <script src="./support.js"></script>
+<style>
+.u-sections{display:flex;align-items:center;gap:15px;min-width:0;margin-left:auto;padding:8px 16px;overflow-x:auto}
+.u-sections a{display:inline-flex;align-items:center;min-height:32px;white-space:nowrap;font:700 11px 'Courier Prime',monospace;letter-spacing:.04em;color:#f2c919;text-underline-offset:4px}
+.u-hd .u-nav{flex:1 0 100%;box-sizing:border-box;justify-content:flex-end;border-top:1px solid #514b3f;padding:7px 14px!important}
+@media(max-width:759px){.u-hd .u-sections{order:3;flex:1 0 100%;box-sizing:border-box;margin:0;padding:2px 12px;gap:18px}.u-hd .u-nav{order:4;justify-content:flex-start}.u-sections a{font-size:10px;min-height:36px}}
+</style>
 </head>
 <body>
 <x-dc>
@@ -18,7 +24,7 @@
 <strong style="font:800 30px/1 Jost,sans-serif;letter-spacing:-.05em;color:#c8321f;text-transform:uppercase">Uptight</strong>
 <span style="font:700 10px 'Courier Prime',monospace;letter-spacing:.12em;color:#1c1a17">CLEVELAND · 1968</span></div>
 <span title="{{ apiTip }}" style="align-self:center;display:flex;align-items:center;gap:6px;font:700 10px 'Courier Prime',monospace;letter-spacing:.1em;color:{{ apiFg }};white-space:nowrap"><i style="width:8px;height:8px;border-radius:50%;background:{{ apiDot }};box-shadow:0 0 0 1.5px {{ apiFg }}"></i>{{ apiLabel }}</span>
-<a href="./location-review.html" style="align-self:center;white-space:nowrap;font:700 11px 'Courier Prime',monospace;letter-spacing:.06em;color:#f2c919;padding:8px 4px;text-underline-offset:4px">LOCATION REVIEW ↗</a>
+<nav class="u-sections" aria-label="Research pages"><a href="./location-review.html">LOCATION REVIEW</a><a href="./evidence.html">EVIDENCE</a><a href="./research-board.html">RESEARCH BOARD</a><a href="./contribute.html">CONTRIBUTE ↗</a></nav>
 <nav class="u-nav" aria-label="Filter places" style="display:flex;min-width:0;gap:6px;align-items:center;margin-left:auto;padding:8px 14px 8px 0;overflow-x:auto">
 <button onClick="{{ toggleQueue }}" aria-pressed="{{ queueOn }}" style="white-space:nowrap;font:800 13px Jost,sans-serif;letter-spacing:.02em;border:2px solid #f2c919;background:{{ queueBg }};color:{{ queueFg }};padding:5px 10px;border-radius:0;margin-right:6px">{{ queueBtn }}</button>
 <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4"><button onClick="{{ f.onClick }}" aria-pressed="{{ f.on }}" style="display:flex;align-items:center;gap:7px;white-space:nowrap;font:700 11px 'Courier Prime',monospace;letter-spacing:.04em;border:2px solid #f5f0e1;background:{{ f.bg }};color:{{ f.fg }};padding:6px 10px;border-radius:0">
@@ -77,7 +83,7 @@
 <sc-if value="{{ cam.show }}"><div style="display:grid;gap:7px;border:1px solid rgba(28,26,23,.25);padding:8px 10px">
 <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="font:700 10px 'Courier Prime',monospace;letter-spacing:.1em;color:#675f50">CAMERA FACING</span><span style="display:flex;gap:6px;align-items:center"><b style="font:800 15px Jost,sans-serif;color:#1c1a17">{{ cam.value }}</b><span style="font:700 9px 'Courier Prime',monospace;letter-spacing:.1em;padding:2px 5px;border:1.5px dashed {{ cam.tagC }};color:{{ cam.tagC }}">{{ cam.tag }}</span></span></div>
 <div style="font:400 11px/1.4 'Courier Prime',monospace;color:#675f50">{{ cam.note }}</div>
-<sc-if value="{{ cam.editing }}"><div style="display:flex;gap:6px;flex-wrap:wrap"><button onClick="{{ cam.submit }}" style="font:800 13px Jost,sans-serif;padding:7px 10px;background:#1c1a17;color:#ece6d3;border:2px solid #1c1a17;border-radius:0">Submit {{ cam.value }} as evidence</button><button onClick="{{ cam.cancel }}" style="font:700 10px 'Courier Prime',monospace;padding:7px 9px;background:none;color:#1c1a17;border:1.5px solid #1c1a17;border-radius:0">CANCEL</button></div></sc-if>
+<sc-if value="{{ cam.editing }}"><div style="display:flex;gap:6px;flex-wrap:wrap"><button onClick="{{ cam.submit }}" style="font:800 13px Jost,sans-serif;padding:7px 10px;background:#1c1a17;color:#ece6d3;border:2px solid #1c1a17;border-radius:0">Add evidence for {{ cam.value }}</button><button onClick="{{ cam.cancel }}" style="font:700 10px 'Courier Prime',monospace;padding:7px 9px;background:none;color:#1c1a17;border:1.5px solid #1c1a17;border-radius:0">CANCEL</button></div></sc-if>
 <sc-if value="{{ cam.canAdjust }}"><button onClick="{{ cam.adjust }}" style="justify-self:start;font:700 10px 'Courier Prime',monospace;letter-spacing:.06em;padding:6px 9px;background:none;color:#1c1a17;border:1.5px solid #1c1a17;border-radius:0">ADJUST BEARING ON MAP</button></sc-if>
 </div></sc-if>
 <sc-if value="{{ sel.placed }}"><div style="display:grid;gap:8px">
@@ -100,7 +106,8 @@
 <p style="margin:0;font:12.5px/1.55 'IBM Plex Sans';color:#675f50;text-wrap:pretty">{{ sel.connection }}</p>
 <sc-if value="{{ sel.history }}"><p style="margin:0;font:12px/1.55 'IBM Plex Sans';color:#675f50">{{ sel.history }}</p></sc-if>
 <sc-if value="{{ sel.hasLandmarks }}"><div style="display:grid;gap:8px;border-top:1px solid rgba(28,26,23,.25);padding-top:8px"><h3 style="margin:0;font:700 10px 'Courier Prime',monospace;letter-spacing:.12em;color:#675f50">ALSO VISIBLE IN THIS STILL</h3><sc-for list="{{ sel.landmarks }}" as="lm"><div style="display:grid;gap:4px"><b style="font:700 13px 'IBM Plex Sans';color:#1c1a17">{{ lm.name }}</b><span style="font:10px 'Courier Prime',monospace;color:#b63e09">{{ lm.confidenceLabel }}</span><p style="margin:0;font:12px/1.5 'IBM Plex Sans';color:#675f50">{{ lm.connection }}</p><sc-for list="{{ lm.sources }}" as="src"><a href="{{ src.url }}" target="_blank" rel="noopener noreferrer" style="font:10.5px/1.4 'Courier Prime',monospace">{{ src.name }}</a></sc-for></div></sc-for></div></sc-if>
-<sc-if value="{{ sel.placed }}"><button onClick="{{ openHold }}" style="justify-self:start;background:#c8321f;color:#fff;border:0;border-radius:0;font:800 14px Jost,sans-serif;padding:9px 24px 9px 14px;clip-path:polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%)">HOLD · ADD EVIDENCE</button></sc-if>
+<sc-if value="{{ sel.evidenceUrl }}"><a href="{{ sel.evidenceUrl }}" style="font:700 12px/1.5 'Courier Prime',monospace;text-underline-offset:3px">Compare the visual evidence →</a></sc-if>
+<sc-if value="{{ sel.placed }}"><button onClick="{{ openHold }}" style="justify-self:start;background:#c8321f;color:#fff;border:0;border-radius:0;font:800 14px Jost,sans-serif;padding:9px 24px 9px 14px;clip-path:polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%)">SEND EVIDENCE →</button></sc-if>
 <sc-if value="{{ notes.show }}"><div style="display:grid;gap:6px;border-top:1px solid rgba(28,26,23,.25);padding-top:8px"><span style="font:700 10px 'Courier Prime',monospace;letter-spacing:.12em;color:#675f50">{{ notes.heading }}</span><sc-if value="{{ notes.empty }}"><span style="font:12px/1.45 'IBM Plex Sans';color:#675f50">No margin notes yet. Recognize this place? Add the first clue.</span></sc-if><sc-for list="{{ notes.items }}" as="nt"><div style="display:grid;gap:2px;border-left:2px dashed rgba(28,26,23,.4);padding-left:8px"><span style="font:700 9.5px 'Courier Prime',monospace;letter-spacing:.08em;color:#675f50">{{ nt.kicker }}</span><span style="font:12px/1.45 'IBM Plex Sans';color:#1c1a17;text-wrap:pretty">{{ nt.body }}</span></div></sc-for></div></sc-if>
 <div style="display:grid;gap:3px;border-top:1px solid rgba(28,26,23,.25);padding-top:8px"><span style="font:700 10px 'Courier Prime',monospace;letter-spacing:.12em;color:#675f50">SOURCES</span><sc-for list="{{ sel.sources }}" as="src"><a href="{{ src.url }}" target="_blank" rel="noopener" style="font:11.5px/1.4 'Courier Prime',monospace">{{ src.name }}</a></sc-for></div>
 </div></sc-if>
@@ -124,6 +131,7 @@
 <sc-if value="{{ shot.meta }}"><dl style="margin:0;display:grid;grid-template-columns:88px minmax(0,1fr);gap:5px 12px;border:1px solid rgba(28,26,23,.25);padding:9px 10px"><sc-for list="{{ shot.meta }}" as="m"><dt style="font:700 9.5px 'Courier Prime',monospace;letter-spacing:.1em;color:#675f50">{{ m.k }}</dt><dd style="margin:0;font:12.5px/1.45 'IBM Plex Sans';color:#1c1a17;overflow-wrap:anywhere">{{ m.v }}</dd></sc-for></dl></sc-if>
 <sc-if value="{{ shot.hasSources }}"><div style="display:grid;gap:5px;border-top:1px solid rgba(28,26,23,.25);padding-top:8px"><b style="font:700 10px 'Courier Prime',monospace;letter-spacing:.1em;color:#675f50">REVIEW SOURCES</b><sc-for list="{{ shot.sources }}" as="src"><a href="{{ src.url }}" target="_blank" rel="noopener noreferrer" style="font:11.5px/1.4 'Courier Prime',monospace;overflow-wrap:anywhere">{{ src.title }}</a></sc-for></div></sc-if>
 <a href="{{ shot.reviewUrl }}" style="font:11px 'Courier Prime',monospace;color:#1f5a96;text-underline-offset:3px">Read this still’s location review and coverage →</a>
+<a href="{{ shot.contributeUrl }}" style="font:700 11px 'Courier Prime',monospace;color:#973609;text-underline-offset:3px">Contribute evidence for this still →</a>
 <div style="display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px">
 <button onClick="{{ shot.prev }}" style="font:800 14px Jost,sans-serif;padding:9px 12px;background:none;border:2px solid #1c1a17;border-radius:0;color:#1c1a17">← Prev</button>
 <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
@@ -299,23 +307,31 @@ class Component extends DCLogic {
   async apiVote(id, val) {
     try { const r = await fetch('/api/votes', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ site: id, choice: VOTE_API[val] }) }); const v = await r.json(); if (r.ok) this.setState(s => ({ tallies: { ...s.tallies, [id]: v } })); } catch (e) {}
   }
+  selectedFrame(site) {
+    if (!site || !site.frames || !site.frames.length) return null;
+    const index = site.id === this.state.sel ? Math.max(0, Math.min(site.frames.length - 1, Math.floor(this.state.frame) || 0)) : 0;
+    return site.frames[index];
+  }
+  contributionUrl(siteId = this.state.sel, fields = {}) {
+    const site = this.state.data && this.state.data.sites.find(item => item.id === siteId);
+    const frame = this.selectedFrame(site);
+    const query = new URLSearchParams();
+    if (site && !site.custom) query.set('place', site.id);
+    const id = Number(fields.frame == null ? frame && frame.id : fields.frame);
+    if (Number.isInteger(id) && id > 0 && id <= 682) query.set('frame', String(id));
+    const values = {...fields, note: fields.note == null ? fields.text : fields.note};
+    for (const key of ['kind', 'note', 'links', 'address', 'latitude', 'longitude', 'stance', 'question']) {
+      if (values[key] != null && String(values[key]).trim()) query.set(key, String(values[key]));
+    }
+    return './contribute.html' + (query.size ? '?' + query.toString() : '');
+  }
   async apiContribute(site, fields, files) {
-    const fd = new FormData(); fd.set('site', site.id); fd.set('frame', String(site.frames[0].id));
+    const fd = new FormData(); fd.set('site', site.id); fd.set('frame', String(fields.frame || this.selectedFrame(site).id));
     Object.entries(fields).forEach(([k, v]) => v != null && v !== '' && fd.set(k, String(v)));
     (files || []).forEach(f => fd.append('proof', f));
     const r = await fetch('/api/contributions', { method: 'POST', body: fd }); const a = await r.json().catch(() => ({}));
     if (!r.ok) throw new Error(a.error || 'Could not save to the local server.');
     this.fetchSite(site.id); return a;
-  }
-  async emailContribute(site, fields, files) {
-    const E = window.UPTIGHT_EMAIL || {}, f = site.frames && site.frames[0] || {};
-    const maps = fields.latitude && fields.longitude ? 'https://www.google.com/maps?q=' + fields.latitude + ',' + fields.longitude : '';
-    const payload = { access_key: E.accessKey, subject: 'Uptight map: ' + (fields.kind || 'submission') + ' for ' + site.name, from_name: fields.author || 'Anonymous', place: site.name, place_id: site.id, scene_frame: f.id, scene_time: f.time, kind: fields.kind, note: fields.body, address: fields.address, credit: fields.author, source_links: fields.links, latitude: fields.latitude, longitude: fields.longitude, map_link: maps, attachments_not_sent: (files || []).map(x => x.name).join(', '), page: location.href };
-    Object.keys(payload).forEach(k => (payload[k] == null || payload[k] === '') && delete payload[k]);
-    const r = await fetch(E.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) });
-    const a = await r.json().catch(() => ({}));
-    if (!r.ok || a.success === false) throw new Error(a.message || 'Could not send the email.');
-    return a;
   }
   attach() {
     const el = this.wrapRef.current; if (!el || el === this.obsEl) return;
@@ -362,7 +378,13 @@ class Component extends DCLogic {
   }
   select(id, cb) { this.setState({ sel: id, frame: 0, hover: null }, cb); }
   step(d, cb) { const o = this.order(); if (!o.length) return; const i = o.findIndex(s => s.id === this.state.sel); this.select(o[(i + d + o.length) % o.length].id, cb); }
-  openDrawer(type, extra) { this.fileObjs = []; this.setState({ drawer: { site: this.state.sel, step: type ? 1 : 0, type: type || null, text: '', links: '', address: '', files: [], credit: '', err: null, ...extra } }); }
+  openDrawer(type, extra = {}) {
+    const site = this.state.data && this.state.data.sites.find(item => item.id === this.state.sel);
+    if (!site) return;
+    if (!this.live(site)) { location.assign(this.contributionUrl(site.id, {kind: type, ...extra})); return; }
+    this.fileObjs = [];
+    this.setState({ drawer: { site: site.id, frameId: this.selectedFrame(site).id, step: type ? 1 : 0, type: type || null, text: '', links: '', address: '', files: [], credit: '', err: null, ...extra } });
+  }
   setD(patch) { this.setState(s => ({ drawer: { ...s.drawer, ...patch } })); }
   validate(d) {
     if (!d.type) return 'Pick what you are adding.';
@@ -457,7 +479,7 @@ class Component extends DCLogic {
       sel = { imgEl: img(f.image, `${site.name} — film frame ${f.time}`, '100%'), alt: `${site.name} — film frame ${f.time}`, frameId: f.id, stamp: site.status === 'Candidate' ? 'CANDIDATE' : MATCH.includes(site.status) ? 'VISUAL MATCH' : 'UNPLACED', stampBg: site.status === 'Candidate' ? '#f2c919' : 'rgba(245,240,225,.92)',
         multi: site.frames.length > 1, thumbs: site.frames.map((fr, i) => ({ imgEl: img(fr.image, '', '100%'), t: fr.time.slice(0, 8), on: i === fi, bc: i === fi ? '#c8470c' : '#1c1a17', onClick: () => this.setState({ frame: i }) })),
         kicker: `${site.coord ? num(site.id) + ' · ' : ''}${(site.confidenceLabel || site.status).toUpperCase()} · ${f.time}`, name: site.name.replace(/ — unplaced$/, ''), address: site.address, connection: site.connection, history: site.history, pinNote: site.pinNote, landmarks, hasLandmarks: landmarks.length > 0,
-        sources: (site.sources || []).map(([name, url]) => ({ name, url })), placed: !!site.coord, unplaced: !site.coord, unplacedNote: 'A precise map position has not been established. Add a proposed pin with supporting evidence, or contribute a clue.' };
+        sources: (site.sources || []).map(([name, url]) => ({ name, url })), evidenceUrl: ({eagle: './evidence.html#case=eagle', madison: './evidence.html#case=madison', third: './evidence.html#case=clark'})[site.id] || '', placed: !!site.coord, unplaced: !site.coord, unplacedNote: 'A precise map position has not been established. Add a proposed pin with supporting evidence, or contribute a clue.' };
       const vote = s.votes[site.id];
       const btn = (key, primary) => {
         const on = vote === key, other = vote && !on;
@@ -494,10 +516,11 @@ class Component extends DCLogic {
     let d = {};
     if (s.drawer) {
       const dr = s.drawer, ds = sites.find(x => x.id === dr.site), step = dr.step, hasPin = s.proposal && s.proposal.id === dr.site;
+      const df = ds.frames.find(frame => frame.id === dr.frameId) || this.selectedFrame(ds);
       const typeLabel = (TYPES.find(t => t.k === dr.type) || {}).label;
       const goStep = st => this.setD({ step: st, err: null });
-      d = { frameId: ds.frames[0].id, showSteps: step < 3, s0: step === 0, s1: step === 1, s2: step === 2, s3: step === 3, err: dr.err, text: dr.text, links: dr.links, credit: dr.credit,
-        context: `${ds.name.replace(/ — unplaced$/, '')} · ${ds.frames[0].time}${typeLabel ? ' · ' + typeLabel : ''}`,
+      d = { frameId: df.id, showSteps: step < 3, s0: step === 0, s1: step === 1, s2: step === 2, s3: step === 3, err: dr.err, text: dr.text, links: dr.links, credit: dr.credit,
+        context: `${ds.name.replace(/ — unplaced$/, '')} · ${df.time}${typeLabel ? ' · ' + typeLabel : ''}`,
         steps: ['1. Choose', '2. Evidence', '3. Review'].map((label, i) => ({ label, c: i === step ? '#b63e09' : i < step ? '#1c1a17' : '#675f50', bc: i <= step ? '#c8470c' : '#b3aa92', w: i === step ? '700' : '400' })),
         types: TYPES.map(t => ({ ...t, on: dr.type === t.k, bc: dr.type === t.k ? '#1c1a17' : '#b3aa92', bg: dr.type === t.k ? '#fff8e8' : 'transparent', sh: dr.type === t.k ? '3px 3px 0 #1f5a96' : 'none', onClick: () => this.setD({ type: t.k, err: null }) })),
         filesLabel: dr.files.length ? `Attached: ${dr.files.join(', ')} · click to change` : 'Attach proof · JPG, PNG, WebP, PDF or text',
@@ -506,7 +529,7 @@ class Component extends DCLogic {
         review: [['TYPE', typeLabel], ['NOTE', dr.text], ...(dr.type === 'location' ? [['ADDRESS', dr.address || '—']] : []), ['LINKS', dr.links.trim() || '—'], ['FILES', dr.files.join(', ') || '—'], ['PIN', hasPin ? `${s.proposal.coord[1].toFixed(5)}, ${s.proposal.coord[0].toFixed(5)}` : '—']].map(([k, v]) => ({ k, v })),
         backLabel: step === 0 ? 'Cancel' : step === 3 ? 'Back to map' : '← Back',
         needsAddress: dr.type === 'location', address: dr.address || '',
-        doneNote: dr.sentEmail ? `Sent to the Uptight researchers by email as unverified. Thank you.` : dr.sentLive ? `Saved to the local research server as unverified. It's now in the margin notes for this place.` : ds.custom ? `Saved in this browser. This place came from the frame viewer, so it isn't in locations.json yet and can't go to the server.` : `Saved in this browser only — start the local server (start-map.command) to share it with other researchers.`,
+        doneNote: dr.sentLive ? `Saved to the local research server as unverified. It's now in the margin notes for this place.` : `This draft has not been submitted.`,
         fwdLabel: s.sending ? 'Saving…' : step === 2 ? 'Submit' : step === 3 ? (unplacedSites.length ? 'Next unplaced →' : 'Done') : 'Next →',
         backFn: () => step === 0 || step === 3 ? this.setState({ drawer: null }) : goStep(step - 1),
         fwdFn: () => {
@@ -514,23 +537,15 @@ class Component extends DCLogic {
           const err = this.validate(dr); if (err) return this.setD({ err });
           if (step === 2) {
             if (s.sending) return;
-            this.setState({ held: { ...s.held, [dr.site]: true } });
             if (this.live(ds)) {
               const pin = hasPin ? s.proposal.coord : null;
               this.setState({ sending: true });
-              this.apiContribute(ds, { kind: dr.type, body: dr.text.trim(), address: (dr.address || '').trim(), author: dr.credit.trim(), links: dr.links.trim(), latitude: pin && pin[1].toFixed(6), longitude: pin && pin[0].toFixed(6) }, this.fileObjs)
-                .then(() => this.setState(st => ({ sending: false, drawer: st.drawer && { ...st.drawer, step: 3, err: null, sentLive: true } })))
+              this.apiContribute(ds, { frame: df.id, kind: dr.type, body: dr.text.trim(), address: (dr.address || '').trim(), author: dr.credit.trim(), links: dr.links.trim(), latitude: pin && pin[1].toFixed(6), longitude: pin && pin[0].toFixed(6) }, this.fileObjs)
+                .then(() => this.setState(st => ({ sending: false, held: {...st.held, [dr.site]: true}, drawer: st.drawer && { ...st.drawer, step: 3, err: null, sentLive: true } })))
                 .catch(e => this.setState(st => ({ sending: false, drawer: st.drawer && { ...st.drawer, err: e.message + ' Your draft is still here.' } })));
               return;
             }
-            if (window.UPTIGHT_EMAIL && window.UPTIGHT_EMAIL.accessKey) {
-              const pin = hasPin ? s.proposal.coord : null;
-              this.setState({ sending: true });
-              this.emailContribute(ds, { kind: dr.type, body: dr.text.trim(), address: (dr.address || '').trim(), author: dr.credit.trim(), links: dr.links.trim(), latitude: pin && pin[1].toFixed(6), longitude: pin && pin[0].toFixed(6) }, this.fileObjs)
-                .then(() => this.setState(st => ({ sending: false, drawer: st.drawer && { ...st.drawer, step: 3, err: null, sentEmail: true } })))
-                .catch(e => this.setState(st => ({ sending: false, drawer: st.drawer && { ...st.drawer, err: e.message + ' Your draft is still here.' } })));
-              return;
-            }
+            return this.setD({err: 'The research server is unavailable. Your draft and selected files are still here; reconnect before submitting.'});
           }
           goStep(step + 1);
         } };
@@ -557,7 +572,7 @@ class Component extends DCLogic {
       const sources = reviewFrame ? (reviewFrame.sourceIds || []).map(sourceId => (s.review.sources || []).find(source => source.id === sourceId)).filter(Boolean) : [];
       const reviewMeta = reviewFrame ? [['LOCATION', reviewFrame.location], ['CONFIDENCE', reviewFrame.confidence], ['REVIEW NOTE', reviewFrame.observation]].filter(([, value]) => value).map(([k, v]) => ({ k, v })) : null;
       shot = { id, total: ff.length, time: hms(t), imgEl: img(shotSrc(id), `Film frame ${id} at ${hms(t)}`, '100%', '2px solid #1c1a17'), title: sc ? sc.site.name.replace(/ — unplaced$/, '') : reviewFrame ? reviewFrame.scene : 'Indexed film still',
-        meta: s.meta[id] || reviewMeta, sources, hasSources: sources.length > 0, reviewUrl: './location-review.html#frame=' + id, scenes: frameScenes.map(a => ({ label: (a.site.coord ? 'Map: ' : 'Location record: ') + a.site.name.replace(/ — unplaced$/, ''), open: () => this.setState({ shot: null, sel: a.site.id, frame: a.i, queue: false, filter: 'all' }) })), isScene: !!sc, canFlag: !sc || flagged, flagged, flagBg: 'transparent', flagFg: '#b63e09', flagLabel: flagged ? 'REMOVE PLACE' : '◆ ADD AS NEW PLACE',
+        meta: s.meta[id] || reviewMeta, sources, hasSources: sources.length > 0, reviewUrl: './location-review.html#frame=' + id, contributeUrl: this.contributionUrl(sc ? sc.site.id : null, {frame: id}), scenes: frameScenes.map(a => ({ label: (a.site.coord ? 'Map: ' : 'Location record: ') + a.site.name.replace(/ — unplaced$/, ''), open: () => this.setState({ shot: null, sel: a.site.id, frame: a.i, queue: false, filter: 'all' }) })), isScene: !!sc, canFlag: !sc || flagged, flagged, flagBg: 'transparent', flagFg: '#b63e09', flagLabel: flagged ? 'REMOVE LOCAL FLAG' : '◆ FLAG FOR YOUR REVIEW',
         prev: () => this.stepShot(-1), next: () => this.stepShot(1),
         openScene: () => sc && this.setState({ shot: null, sel: sc.site.id, frame: sc.i, queue: false }),
         flag: () => this.toggleCustom(id, t) };
@@ -576,9 +591,9 @@ class Component extends DCLogic {
     const qList = this.order(), qIdx = qList.findIndex(x => x.id === s.sel);
     const qDone = qList.filter(x => s.held[x.id] || s.votes[x.id]).length;
     const cmpMode = s.cmp;
-    const cf = site ? (CONF[site.status] || CONF.Unplaced) : CONF.Unplaced, ev = site && s.held[site.id] ? 1 : 0;
+    const cf = site ? (CONF[site.status] || CONF.Unplaced) : CONF.Unplaced;
     const conf = { label: site && site.confidenceLabel || cf.label, c: cf.c, bars: [0, 1, 2, 3].map(i => ({ bg: i < cf.n ? (cf.n >= 3 ? '#1c1a17' : '#c8470c') : 'transparent' })),
-      note: (site && site.confidenceNote || (site && site.status === 'Unplaced' ? 'The location remains unresolved; observations are retained as research leads.' : site && site.status === 'Candidate' ? 'Converging clues suggest this location, with a material gap still to resolve.' : 'A distinctive visual identification supports the landmark match. The exact camera position is not established.')) + (ev ? ' Your evidence is in review.' : '') };
+      note: (site && site.confidenceNote || (site && site.status === 'Unplaced' ? 'The location remains unresolved; observations are retained as research leads.' : site && site.status === 'Candidate' ? 'Converging clues suggest this location, with a material gap still to resolve.' : 'A distinctive visual identification supports the landmark match. The exact camera position is not established.')) };
     return {
       swipeStart: e => { const p = e.touches[0]; this.sw = { x: p.clientX, y: p.clientY, top: e.currentTarget.scrollTop, t: Date.now() }; },
       swipeEnd: e => {
@@ -599,11 +614,11 @@ class Component extends DCLogic {
         const editing = s.camEdit && s.camEdit.id === site.id, mine = s.bearings[site.id], known = typeof site.bearing === 'number';
         const b = editing ? s.camEdit.b : mine != null ? mine : baseBearing(site);
         return { show: true, editing, canAdjust: !editing, value: editing || mine != null || known ? compass(b) : 'UNKNOWN',
-          tag: editing ? 'DRAFT' : mine != null ? 'IN REVIEW' : known ? 'SOURCED' : 'UNSET', tagC: editing || mine != null ? '#1f5a96' : known ? '#1c1a17' : '#b63e09',
-          note: editing ? 'Draft direction from the landmark pin, not a verified camera station. Drag the handle or use arrow keys (5° steps).' : mine != null ? `Your proposed direction is ${compass(mine)}; it has not been verified.` : known ? 'From a documented source.' : 'No camera direction has been established. Adjust the bearing to propose one with supporting evidence.',
+          tag: editing ? 'DRAFT' : mine != null ? 'LOCAL DRAFT' : known ? 'SOURCED' : 'UNSET', tagC: editing || mine != null ? '#1f5a96' : known ? '#1c1a17' : '#b63e09',
+          note: editing ? 'Draft direction from the landmark pin, not a verified camera station. Drag the handle or use arrow keys (5° steps).' : mine != null ? `Your proposed direction is ${compass(mine)}, saved in this browser. It has not been verified; review status belongs to the evidence record.` : known ? 'From a documented source.' : 'No camera direction has been established. Adjust the bearing to propose one with supporting evidence.',
           adjust: () => this.setState({ cones: true, camEdit: { id: site.id, b }, sheetOpen: false }, () => this.focusSel()),
           cancel: () => this.setState({ camEdit: null }),
-          submit: () => { const bearings = { ...s.bearings, [site.id]: s.camEdit.b }; try { localStorage.setItem('uptight-mock-bearings', JSON.stringify(bearings)); } catch (e) {} this.setState({ bearings, camEdit: null, held: { ...s.held, [site.id]: true } }); if (this.live(site)) this.apiContribute(site, { kind: 'fact', body: `Camera bearing: ${compass(s.camEdit.b)} (set by dragging the view cone on the map).`, author: '' }).catch(() => {}); } };
+          submit: () => { const bearings = { ...s.bearings, [site.id]: s.camEdit.b }; const text = `Proposed camera direction: ${compass(s.camEdit.b)}, drawn from the landmark pin. The direction and exact camera station are unverified. Supporting evidence: `; try { localStorage.setItem('uptight-mock-bearings', JSON.stringify(bearings)); } catch (e) {} this.setState({ bearings, camEdit: null }, () => this.openDrawer('fact', {text})); } };
       })(),
       conf, copyLabel: s.copied ? 'COPIED ✓' : 'COPY LINK',
       copyLink: () => { this.syncHash(); const u = location.href.split('#')[0] + this.linkFor(); (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).catch(() => {}).finally(() => this.setState({ copied: true })); },
@@ -627,6 +642,12 @@ class Component extends DCLogic {
         if (!s.placing || !this.proj) return;
         const r = this.wrapRef.current.getBoundingClientRect(), mx = (e.clientX - r.left - t.x) / t.k, my = (e.clientY - r.top - t.y) / t.k;
         const coord = this.proj.invert([mx, my]), id = s.placing;
+        const target = sites.find(item => item.id === id);
+        if (!this.live(target)) {
+          this.setState({placing: null, proposal: {id, coord}});
+          location.assign(this.contributionUrl(id, {kind: 'location', latitude: coord[1].toFixed(6), longitude: coord[0].toFixed(6)}));
+          return;
+        }
         const prev = s.drawer && s.drawer.site === id ? s.drawer : null;
         this.setState({ placing: null, proposal: { id, coord }, drawer: prev ? { ...prev, step: 1, err: null } : { site: id, step: 1, type: 'location', text: '', links: '', files: [], credit: '', err: null } });
       },
@@ -640,9 +661,9 @@ class Component extends DCLogic {
       pickFiles: () => this.fileRef.current && this.fileRef.current.click(),
       onFiles: e => { this.fileObjs = Array.from(e.target.files || []); this.setD({ files: this.fileObjs.map(f => f.name), err: null }); },
       setAddress: e => this.setD({ address: e.target.value, err: null }),
-      apiLabel: s.api === 'live' ? 'LIVE · SHARED' : s.api === 'checking' ? 'CONNECTING…' : 'OFFLINE · THIS BROWSER',
+      apiLabel: s.api === 'live' ? 'SHARED VOTES' : s.api === 'checking' ? 'CONNECTING…' : 'VOTES · THIS BROWSER',
       apiDot: s.api === 'live' ? '#7fbf6a' : 'transparent', apiFg: s.api === 'live' ? '#f5f0e1' : '#b3aa92',
-      apiTip: s.api === 'live' ? 'Votes and evidence go to the local research server (SQLite) and are shared with everyone on it.' : 'No local server found. Votes, evidence, bearings and new places are saved in this browser only. Run start-map.command and open the prototype from the server to share.',
+      apiTip: s.api === 'live' ? 'Votes and evidence are shared with other visitors using this research server.' : 'Votes, flags and camera drafts stay in this browser. Use Send evidence to create a public contribution record and attach supporting images.',
       repick: () => this.setState({ placing: s.drawer.site }),
     };
   }

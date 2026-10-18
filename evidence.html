@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1c1a17">
+  <meta name="description" content="Inspect the film stills and historical references behind three Cleveland location assessments in Uptight: Eagle Avenue, Madison Square and Clark Avenue.">
+  <title>Uptight — Evidence comparisons</title>
+  <link rel="stylesheet" href="assets/research.css">
+  <script src="assets/research.js" defer></script>
+</head>
+<body data-page="evidence">
+  <a class="skip-link" href="#main">Skip to the evidence</a>
+  <header class="masthead">
+    <a class="brand" href="./" aria-label="Uptight Cleveland 1968 — film map"><strong>Uptight</strong><span>Cleveland · 1968</span></a>
+    <nav aria-label="Site navigation">
+      <a href="./">Film map</a><a href="location-review.html">Review</a><a href="evidence.html" aria-current="page">Evidence</a><a href="research-board.html">Research board</a><a href="contribute.html">Contribute</a>
+    </nav>
+  </header>
+  <main class="page" id="main" tabindex="-1" aria-busy="true">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Evidence comparisons <span class="slash" aria-hidden="true">/</span> Uptight · 1968</p>
+        <h1>See the<br><span>evidence.</span></h1>
+        <p class="hero-intro">Three Cleveland locations, the film stills and the historical comparisons behind their assessments. Inspect the full images, follow the sources and see what remains unresolved.</p>
+      </div>
+      <aside class="docket" aria-label="Three evidence comparisons">
+        <p class="eyebrow">Film / archive</p><strong>03</strong><p class="eyebrow">Comparisons</p><p>Sources, observations<br>and remaining gaps.</p>
+      </aside>
+    </header>
+
+    <div class="load-state" id="loading-state" role="status"><p>Loading the comparison records…</p></div>
+    <div class="load-state" id="error-state" role="alert" hidden><h2>The comparisons could not load</h2><p>Check your connection and try again. You can also read the <a href="location-review.html">complete location review</a>.</p><button class="button" id="retry-button" type="button">Try again</button></div>
+    <noscript><p>JavaScript is needed to switch comparisons. Read the <a href="location-review.html">location review</a> or <a href="data/evidence-cases.json" download>download the evidence records</a>.</p></noscript>
+
+    <div id="evidence-content" hidden>
+      <nav class="case-nav" id="case-nav" aria-label="Choose an evidence comparison"></nav>
+      <p class="sr-only" id="case-live" role="status" aria-live="polite" aria-atomic="true"></p>
+      <article class="case-article" id="comparison-case" aria-labelledby="case-title">
+        <div class="case-heading"><h2 id="case-title" tabindex="-1"></h2><span class="status" id="case-status"></span></div>
+        <p class="case-summary" id="case-summary"></p>
+        <div class="comparison-tools" id="comparison-tools" hidden><button class="button secondary" id="toggle-annotations" type="button" aria-pressed="false">Show details</button><p>Numbered markers correspond to the feature labels beneath each image.</p></div>
+        <div class="comparison">
+          <section class="image-column" aria-labelledby="film-heading">
+            <div class="image-column-heading"><h3 id="film-heading">Film still</h3><span>Uptight · 1968</span></div>
+            <div class="image-selectors" id="film-selectors" role="group" aria-label="Choose a film still"></div>
+            <div id="film-panel"></div>
+          </section>
+          <section class="image-column" aria-labelledby="reference-heading">
+            <div class="image-column-heading"><h3 id="reference-heading">Historical reference</h3><span>Source date shown below</span></div>
+            <div class="image-selectors" id="reference-selectors" role="group" aria-label="Choose a historical reference"></div>
+            <div id="reference-panel"></div>
+          </section>
+        </div>
+        <p class="comparison-note">Images retain their full proportions. Select an image to enlarge it. The two views may have different dates, viewpoints and scales.</p>
+        <div class="reasoning-grid">
+          <section aria-labelledby="observations-heading"><h3 id="observations-heading">What to look for</h3><ol class="observations" id="observations"></ol></section>
+          <div>
+            <section class="limits" aria-labelledby="uncertainty-heading"><h3 id="uncertainty-heading">What remains uncertain</h3><ul id="uncertainties"></ul></section>
+            <section class="resolution" aria-labelledby="resolution-heading"><h3 id="resolution-heading">What would settle it?</h3><p id="resolution"></p></section>
+          </div>
+        </div>
+        <div class="case-actions" id="case-actions"></div>
+        <section class="case-sources" aria-labelledby="sources-heading"><h3 id="sources-heading">Sources for this comparison</h3><ul class="source-list" id="case-sources"></ul></section>
+        <nav class="case-pagination" id="case-pagination" aria-label="Previous and next evidence comparison"></nav>
+      </article>
+      <section class="followup-checks" id="followup-checks" aria-labelledby="followup-heading" hidden>
+        <h2 id="followup-heading">Further research checks</h2>
+        <div class="research-note-grid" id="research-note-list"></div>
+      </section>
+    </div>
+    <footer class="page-footer"><p>Uptight · Cleveland · 1968<br>Evidence supports an assessment; each remaining gap stays visible.</p><a href="research-board.html">The five open research questions →</a></footer>
+  </main>
+
+  <dialog class="image-dialog" id="image-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-caption">
+    <div class="dialog-toolbar"><h2 id="dialog-title"></h2><div class="dialog-actions"><button class="button secondary" id="toggle-image-size" type="button" aria-pressed="false">Original size</button><a class="button secondary" id="open-original" target="_blank" rel="noopener noreferrer">Open image ↗</a><button class="button" id="close-dialog" type="button" aria-label="Close enlarged image">Close</button></div></div>
+    <div class="dialog-stage" id="dialog-stage" data-size="fit" tabindex="0" aria-label="Enlarged image; scroll when viewing at original size"><img id="dialog-image" alt=""></div>
+    <p class="dialog-caption" id="dialog-caption"></p>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,100 @@
+name: Location evidence
+description: Support, challenge or propose an Uptight location with dated visual or historical evidence.
+title: "[Location evidence] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Add a public evidence record
+
+        This is the public **hgw3lls/uptight** repository. Your issue, GitHub account name and attached material will be public.
+
+        Review the prefilled fields, attach actual photographs or documents in the text areas below, and finish with **Submit new issue**. Opening this form does not submit an issue. Files selected in GitHub's editor upload immediately and are publicly accessible.
+
+        Explain what the evidence establishes and what remains uncertain. A landmark identification, a historic address and a film camera position are separate claims.
+  - type: input
+    id: location
+    attributes:
+      label: Location or area
+      description: Existing register entry, proposed building or an unplaced area. Leave blank if only a frame or question is known.
+      placeholder: Madison Square Building / Hough Avenue
+    validations:
+      required: false
+  - type: input
+    id: frame
+    attributes:
+      label: Frame number
+      description: One indexed frame from 1 to 682. Leave blank if no still has been matched; do not invent one for a documented filming area.
+      placeholder: "63"
+    validations:
+      required: false
+  - type: input
+    id: research-question
+    attributes:
+      label: Research question
+      description: Board question identifier and title, if applicable.
+      placeholder: madison-full-facade — Madison Square full facade comparison
+    validations:
+      required: false
+  - type: input
+    id: stance
+    attributes:
+      label: Contribution type
+      description: "Use one of: Supports current identification; Challenges current identification; New candidate."
+      placeholder: Supports current identification
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence statement
+      description: Describe the visual or historical connection, what claim it changes and the remaining uncertainty. Images may be dragged into this text area.
+      placeholder: Identify a facade feature, bridge detail, neighboring business, sign or dated record that another researcher can check.
+    validations:
+      required: true
+  - type: input
+    id: source-date
+    attributes:
+      label: Source date
+      description: Date of the photograph, map or document. Use an approximate date or “unknown” if necessary; distinguish this from an access date.
+      placeholder: September 1964
+    validations:
+      required: true
+  - type: textarea
+    id: attribution
+    attributes:
+      label: Attribution and catalogue reference
+      description: Creator, archive or publication; collection, item, page and credit information. State “unknown” where needed.
+    validations:
+      required: true
+  - type: textarea
+    id: source-links
+    attributes:
+      label: Source links
+      description: Original records and comparison images, one URL per line. Offline sources may be identified through their catalogue reference instead.
+      placeholder: https://…
+    validations:
+      required: false
+  - type: textarea
+    id: proposed-location
+    attributes:
+      label: Proposed address or map point
+      description: A proposed point is unverified. Say whether you are suggesting a landmark, former building footprint, area or camera position.
+    validations:
+      required: false
+  - type: textarea
+    id: attachments
+    attributes:
+      label: Image and document attachments
+      description: Click this text area, then drag files in or use GitHub's attachment control. Add captions and attribution for each file. Choosing a file uploads it to GitHub immediately; material attached in this public repository is publicly accessible.
+      placeholder: Attach actual images here. Filenames alone are not evidence files.
+    validations:
+      required: false
+  - type: textarea
+    id: context
+    attributes:
+      label: Site reference
+      description: Keep this reference so the public record can be associated with its frame, place and research question.
+      value: UPTIGHT-EVIDENCE-V1
+    validations:
+      required: true

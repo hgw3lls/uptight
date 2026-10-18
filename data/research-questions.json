@@ -1,0 +1,339 @@
+{
+  "title": "Uptight — five open location questions",
+  "reviewDate": "2026-10-17",
+  "orderingNote": "The ranking is a suggested research order: first close the two photographic gaps, then resolve business adjacency and connect the documented filming area to a still. It does not change any location’s confidence.",
+  "questions": [
+    {
+      "id": "madison-full-facade",
+      "rank": 1,
+      "shortTitle": "Madison facade",
+      "title": "Can we match the whole Madison Square facade?",
+      "placeId": "madison",
+      "frameId": 63,
+      "frames": [
+        {
+          "id": 63,
+          "time": "00:06:29.431"
+        }
+      ],
+      "status": "Probable / high confidence",
+      "statusKey": "probable",
+      "summary": "The proposed identification is the Madison Square Building at 7812–14 Hough Avenue, at East 79th Street. The corner comparison is persuasive; the full central arch and balcony arrangement remain unmatched.",
+      "checked": [
+        {
+          "text": "Frame 63 shows MADISON roof lettering, heavy white corner blocks, stacked balconies and a tall central arch. The possible word SQUARE is less legible.",
+          "sourceIds": [
+            "S01"
+          ]
+        },
+        {
+          "text": "The Cleveland Landmarks Commission inventory names a Madison Square Building at 7812–14 Hough Avenue, built in 1915 and since demolished.",
+          "sourceIds": [
+            "S02"
+          ]
+        },
+        {
+          "text": "A 1964 Hough / East 79th photograph supplies the drugstore-corner comparison. A 1972 aerial gives site context. Neither resolves the complete arch and balcony pattern.",
+          "sourceIds": [
+            "S03",
+            "S28"
+          ]
+        },
+        {
+          "text": "The 1943–44 and 1955 apartment-directory scans list Madison Square at 7820 Hough Avenue, while the municipal inventory uses 7812–14. The relationship between these address forms remains unresolved.",
+          "sourceIds": [
+            "S02"
+          ],
+          "links": [
+            {
+              "title": "1955 directory, Madison Square at 7820 Hough, printed p. 1662",
+              "url": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/57384/"
+            },
+            {
+              "title": "1943–1944 directory, Madison Square at 7820 Hough, printed p. 1528",
+              "url": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/51154/"
+            }
+          ]
+        }
+      ],
+      "missing": "A dated full facade photograph or building drawing tied to the building’s address, showing the central arch and entire balcony pattern. A parcel, permit or building plan should also reconcile 7820 with 7812–14 Hough.",
+      "closure": "The full frontage should explain how the corner drugstore, arch, balconies and roof lettering fit one building. A conflicting facade is useful evidence as well.",
+      "evidenceCase": "madison",
+      "sources": [
+        {
+          "id": "S01",
+          "title": "Frame collection and original location hypotheses",
+          "url": "https://hgw3lls.github.io/uptight/"
+        },
+        {
+          "id": "S02",
+          "title": "Cleveland Landmarks Commission: Albert F. Janowitz",
+          "url": "https://planning.clevelandohio.gov/dompdf/architectDomPrint.php?afil=&archID=137"
+        },
+        {
+          "id": "S03",
+          "title": "Cleveland Public Library: Hough Avenue and East 79th Street, 1964",
+          "url": "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/8730/"
+        },
+        {
+          "id": "S28",
+          "title": "Cleveland Memory: Hough and East 79th aerial, 1972",
+          "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/press/id/9464/"
+        }
+      ]
+    },
+    {
+      "id": "clark-road-level",
+      "rank": 2,
+      "shortTitle": "Clark road view",
+      "title": "Is the final through-truss the former Clark Avenue Bridge?",
+      "placeId": "third",
+      "frameId": 658,
+      "frames": [
+        {
+          "id": 658,
+          "time": "01:41:20.700"
+        },
+        {
+          "id": 654,
+          "time": "01:41:04.392"
+        },
+        {
+          "id": 653,
+          "time": "01:40:54.382"
+        },
+        {
+          "id": 657,
+          "time": "01:41:14.151"
+        }
+      ],
+      "status": "Probable candidate · unpinned",
+      "statusKey": "probable",
+      "summary": "Clark Avenue is the stronger candidate for the bridge beside the steelworks. The former West 3rd Street attribution has been withdrawn, and no exact replacement pin is asserted.",
+      "checked": [
+        {
+          "text": "Frame 658 shows a long road through-truss with dense overhead bracing. The tall structure in frame 654 is blast-furnace equipment, so it cannot support the old lift-bridge identification.",
+          "sourceIds": [
+            "S01"
+          ]
+        },
+        {
+          "text": "Michael A. Fuerst’s 1984 demolition photograph in the County Engineer collection provides a comparison for bridge form and the industrial setting. It is later than the 1968 film and does not reproduce the film’s road-level view.",
+          "sourceIds": [
+            "S12"
+          ]
+        },
+        {
+          "text": "A 1935 photograph taken from Clark Avenue documents neighboring Republic Steel furnaces. That establishes context rather than the film’s camera angle.",
+          "sourceIds": [
+            "S29"
+          ]
+        }
+      ],
+      "missing": "A dated road-level photograph of the former Clark Avenue crossing that can be compared with frame 658’s repeated portal shapes, overhead bracing, roadway and relationship to the furnaces.",
+      "closure": "A match should account for several fixed structural details in one view. If another crossing fits better, identify the same details and the source that establishes its location.",
+      "evidenceCase": "clark",
+      "sources": [
+        {
+          "id": "S01",
+          "title": "Frame collection and original location hypotheses",
+          "url": "https://hgw3lls.github.io/uptight/"
+        },
+        {
+          "id": "S12",
+          "title": "Cuyahoga County Engineer photograph: Clark Avenue Bridge",
+          "url": "https://clevelandmemory.contentdm.oclc.org/digital/collection/cca/id/126/"
+        },
+        {
+          "id": "S29",
+          "title": "Cleveland Public Library: view from Clark Avenue Bridge, 1935",
+          "url": "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/108/"
+        }
+      ]
+    },
+    {
+      "id": "leader-kronheim-adjacency",
+      "rank": 3,
+      "shortTitle": "Leader / furniture",
+      "title": "Which Leader Drug branch stood beside the furniture sign?",
+      "placeId": "leader",
+      "frameId": 151,
+      "frames": [
+        {
+          "id": 151,
+          "time": "00:20:48.330"
+        },
+        {
+          "id": 153,
+          "time": "00:21:08.350"
+        },
+        {
+          "id": 169,
+          "time": "00:23:48.510"
+        }
+      ],
+      "status": "Open · branch unplaced",
+      "statusKey": "open",
+      "summary": "The red FURNITURE KRO… sign may read Kronheim. The missing connection is a particular Leader Drug branch beside that furniture frontage during the filming period.",
+      "checked": [
+        {
+          "text": "Leader Drug appears in the street-speech sequence; frames 151 and 153 add the partly readable red furniture sign. The sign’s full name remains an inference.",
+          "sourceIds": [
+            "S01"
+          ]
+        },
+        {
+          "text": "A 1955 directory lists Kronheim retail at 2041 East 55th Street. The company history supports an earlier East 55th store, but these records do not establish the 1968 pharmacy pairing.",
+          "sourceIds": [
+            "S16",
+            "S17"
+          ]
+        },
+        {
+          "text": "A 1960 photograph shows a Leader Drug branch at East 9th / St. Clair. Its facade was not a sufficiently convincing match to frame 169.",
+          "sourceIds": [
+            "S18"
+          ]
+        },
+        {
+          "text": "The Cleveland Press Photograph Collection finding aid lists separate Kronheim Furniture Co. and Leader Drug Stores folders in the Subjects series, PH2000.000PRE. The folder index does not give a specific image date, address or evidence that the shops were neighbors.",
+          "sourceIds": [],
+          "links": [
+            {
+              "title": "Cleveland Press Photograph Collection finding aid, printed p.29",
+              "url": "https://clevelandmemory.contentdm.oclc.org/digital/api/collection/press/id/11382/download#page=29"
+            }
+          ]
+        }
+      ],
+      "missing": "A record near 1968 that places a Leader Drug branch next to the candidate furniture shop, together with a frontage photograph matching the pharmacy and its neighboring signs in the film.",
+      "closure": "An address or business name alone does not settle the branch. The adjacency and visible frontage should agree with the same block.",
+      "evidenceCase": null,
+      "sources": [
+        {
+          "id": "S01",
+          "title": "Frame collection and original location hypotheses",
+          "url": "https://hgw3lls.github.io/uptight/"
+        },
+        {
+          "id": "S16",
+          "title": "Cleveland City Directory, 1955, printed page 729",
+          "url": "https://cplorg.contentdm.oclc.org/digital/collection/p16014coll29/id/56440/"
+        },
+        {
+          "id": "S17",
+          "title": "Encyclopedia of Cleveland History: Kronheim Furniture Co.",
+          "url": "https://case.edu/ech/articles/k/kronheim-furniture-co"
+        },
+        {
+          "id": "S18",
+          "title": "Cleveland Public Library: East 9th/St. Clair, 1960",
+          "url": "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/3085/"
+        }
+      ]
+    },
+    {
+      "id": "colonial-blood-bank-frontage",
+      "rank": 4,
+      "shortTitle": "Hotel / blood bank",
+      "title": "Can the hotel and blood-bank frontage be placed on one block?",
+      "placeId": null,
+      "frameId": 413,
+      "frames": [
+        {
+          "id": 413,
+          "time": "01:03:08.535"
+        },
+        {
+          "id": 420,
+          "time": "01:04:18.605"
+        },
+        {
+          "id": 430,
+          "time": "01:05:58.705"
+        }
+      ],
+      "status": "Open · hotel name and address unconfirmed",
+      "statusKey": "open",
+      "summary": "The script above the green HOTEL sign in frame 413 is read tentatively as Colonial. Cleveland’s Colonial Hotel at 527 Prospect Avenue is a comparison target; the name has not established the filming address.",
+      "checked": [
+        {
+          "text": "The reviewed sequence includes the projecting HOTEL sign, a restaurant, clearance-sale windows and BLOOD BANK / DONORS PAID neon. These neighboring frontages offer more useful checks than the tentative hotel name alone.",
+          "sourceIds": [
+            "S01"
+          ]
+        },
+        {
+          "text": "The Colonial Hotel record supplies the 527 Prospect Avenue name and address. The review has not matched its facade and neighboring shops to this sequence.",
+          "sourceIds": [
+            "S20"
+          ]
+        },
+        {
+          "text": "The separate Los Angeles theatre sequence does not locate this later hotel street. A cut between sequences is not proof of geographic continuity.",
+          "sourceIds": [
+            "S01",
+            "S14"
+          ]
+        }
+      ],
+      "missing": "A dated streetscape or addressed property record that locates the hotel entrance and the adjoining blood bank or shops, with enough of the frontage visible to compare against frames 411–430.",
+      "closure": "The hotel, projecting sign and neighboring businesses should fit the same historical block. A different city or hotel remains possible until that match is made.",
+      "evidenceCase": null,
+      "sources": [
+        {
+          "id": "S01",
+          "title": "Frame collection and original location hypotheses",
+          "url": "https://hgw3lls.github.io/uptight/"
+        },
+        {
+          "id": "S14",
+          "title": "Historic L.A. Theatres Appearing in Movies: Uptight",
+          "url": "https://theatresinmovies.blogspot.com/2021/03/uptight.html"
+        },
+        {
+          "id": "S20",
+          "title": "Cleveland Historical: Colonial Hotel",
+          "url": "https://www.clevelandhistorical.org/index.php/items/show/819"
+        }
+      ]
+    },
+    {
+      "id": "east86-wadepark-shot",
+      "rank": 5,
+      "shortTitle": "East 86th / Wade Park",
+      "title": "Can one still be tied to East 86th Street and Wade Park Avenue?",
+      "placeId": null,
+      "frameId": null,
+      "frames": [],
+      "status": "Documented area · no frame matched",
+      "statusKey": "documented",
+      "summary": "A contemporary account places the production in this neighborhood. The open question is which, if any, of the indexed stills can be connected to a particular site there.",
+      "checked": [
+        {
+          "text": "Printed page 3 of the public FBI file records a June 5, 1968 source account of filming in the East 86 Street and Wade Park area, including a reported interruption at 9 p.m. on June 4.",
+          "sourceIds": [
+            "S13"
+          ]
+        },
+        {
+          "text": "The file includes an excerpt from the June 5 Cleveland Press article “Producer Sees Mayor After Film Interruption.” This supports investigating the production area without identifying a house, bowling alley or police-station frame.",
+          "sourceIds": [
+            "S13"
+          ]
+        }
+      ],
+      "missing": "A contemporaneous production photograph, location record or dated architectural image that ties a recognizable filmed exterior to an address in this area and matches a specific indexed still.",
+      "closure": "Keep the frame unassigned until the source-to-still connection is established. Neighborhood proximity and editing continuity do not supply that connection.",
+      "evidenceCase": null,
+      "contextUrl": "location-review.html#documented-areas",
+      "sources": [
+        {
+          "id": "S13",
+          "title": "FBI Vault: James Nathaniel Brown file, Up Tight report",
+          "url": "https://vault.fbi.gov/james-nathaniel-brown/James%20Nathaniel%20Brown%20Part%2001%20%28Final%29"
+        }
+      ]
+    }
+  ]
+}
