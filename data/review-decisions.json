@@ -1,5 +1,48 @@
 {
   "schemaVersion": 1,
-  "updatedAt": null,
-  "decisions": []
+  "updatedAt": "2026-10-18T16:59:05Z",
+  "decisions": [
+    {
+      "id": "review-1-f0ab9a33ed73bc32",
+      "issueNumber": 1,
+      "issueUrl": "https://github.com/hgw3lls/uptight/issues/1",
+      "issueUpdatedAt": "2026-10-18T15:52:21Z",
+      "reviewedAt": "2026-10-18T16:59:05Z",
+      "reviewer": "hgw3lls",
+      "decision": "approved",
+      "mode": "evidence",
+      "siteId": "third",
+      "frame": 658,
+      "publicNote": "this is more confirmation that its correct and the pin is approved",
+      "sourceLinks": [
+        "https://clevelandmemory.contentdm.oclc.org/digital/collection/cca/id/126/",
+        "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/108/"
+      ],
+      "sourceDate": "1935",
+      "attribution": "A 1935 image taken from Clark Avenue also documents neighboring furnaces",
+      "changes": [
+        {
+          "field": "sites.third.reviewedContributions",
+          "before": 0,
+          "after": {
+            "issueNumber": 1,
+            "issueUrl": "https://github.com/hgw3lls/uptight/issues/1",
+            "reviewDate": "2026-10-18",
+            "decision": "approved",
+            "publicNote": "this is more confirmation that its correct and the pin is approved",
+            "sourceLinks": [
+              "https://clevelandmemory.contentdm.oclc.org/digital/collection/cca/id/126/",
+              "https://cplorg.contentdm.oclc.org/digital/collection/p4014coll18/id/108/"
+            ],
+            "mode": "evidence"
+          }
+        },
+        {
+          "field": "issue.reviewStatus",
+          "before": "received",
+          "after": "incorporated"
+        }
+      ]
+    }
+  ]
 }
